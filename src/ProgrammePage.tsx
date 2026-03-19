@@ -43,16 +43,13 @@ export default function ProgrammePage() {
               About
             </a>
             <a href="/#dates" className="hover:text-uom-maroon">
-              Timeline
+              Important Dates
             </a>
-            <a href="/#days" className="hover:text-uom-maroon">
-              3-day programme
+            <a href="/#fees" className="hover:text-uom-maroon">
+              Fees
             </a>
             <a href="/#committees" className="hover:text-uom-maroon">
               Committees
-            </a>
-            <a href="/#faq" className="hover:text-uom-maroon">
-              FAQs
             </a>
             <a href="/#contact" className="hover:text-uom-maroon">
               Contact
@@ -89,18 +86,18 @@ export default function ProgrammePage() {
                   About
                 </Link>
                 <Link
+                  to="/#fees"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Fees
+                </Link>
+                <Link
                   to="/#dates"
                   onClick={() => setMobileNavOpen(false)}
                   className="hover:text-uom-maroon"
                 >
-                  Timeline
-                </Link>
-                <Link
-                  to="/#days"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  3-day programme
+                  Important Dates
                 </Link>
                 <Link
                   to="/#committees"
@@ -108,13 +105,6 @@ export default function ProgrammePage() {
                   className="hover:text-uom-maroon"
                 >
                   Committees
-                </Link>
-                <Link
-                  to="/#faq"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  FAQs
                 </Link>
                 <Link
                   to="/#contact"
@@ -308,10 +298,10 @@ export default function ProgrammePage() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:info@codl.lk"
+                          href="mailto:icode.codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          info@codl.lk
+                          icode.codl.lk
                         </a>
                       </div>
                     </li>

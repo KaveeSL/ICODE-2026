@@ -25,32 +25,55 @@ const people = [
     names: ["Prof Dileeka Dias", "Ms Vishaka Nanayakkara"]
   },
   {
-    role: "Publications & Proceedings Committee (incl. Programme & Review) – Co‑chairs",
-    names: ["Dr Buddhika Karunarathne", "Dr Thanuja Ambegoda"]
+    role: "Publications & Proceedings Committee (incl. Programme & Review)",
+    names: [
+      "Dr Buddhika Karunarathne",
+      "Dr Thanuja Ambegoda",
+      "Ms Eshana Ranasinghe",
+      "Mr Savin Gunawardena",
+      "Mr Nadeesha Ranaweera"
+    ]
   },
   {
-    role: "Media, Communications & Branding Committee – Chair",
-    names: ["Dr Nisansa de Silva"]
+    role: "Media, Communications & Branding Committee",
+    names: [
+      "Dr Nisansa de Silva",
+      "Dr Suranga Jayasena",
+      "Mr Nadeesha Ranaweera",
+      "Mr Kaveesha Nanayakkara"
+    ]
   },
   {
-    role: "Policy & Leadership Summit Steering Group – Co‑chairs",
-    names: ["Prof N D Gunawardena", "Ms Vishaka Nanayakkara"]
+    role: "Policy & Leadership Summit Steering Group",
+    names: [
+      "Prof N D Gunawardena",
+      "Ms Vishaka Nanayakkara",
+      "Ms Tashini Rodrigo",
+      "Mr Jageshkar Sivahar"
+    ]
   },
   {
-    role: "Finance & Sponsorship Committee – Co‑chairs",
-    names: ["Dr R M S Ratnayake", "Dr Tiloka de Silva"]
+    role: "Finance & Sponsorship Committee",
+    names: ["Dr R M S Ratnayake", "Dr Tiloka de Silva", "Ms Dhanushima Gamage"]
   },
   {
-    role: "Logistics & Operations Committee – Co‑chairs",
-    names: ["Dr Thilina Thanthriwatta", "Dr Adeesha Wijayasiri"]
+    role: "Logistics & Operations Committee",
+    names: [
+      "Ms Dineshi Nandasena",
+      "Dr Thilina Thanthriwatta",
+      "Dr Adeesha Wijayasiri",
+      "Ms Indika Samarasinghe",
+      "Ms Tharushi Kurukulasooriya",
+      "Ms Sanduli Tharuka"
+    ]
   },
   {
-    role: "Ethics, Quality & Risk Management Committee – Co‑chairs",
+    role: "Ethics, Quality & Risk Management Committee",
     names: ["Prof Nalin Wickramarachchi", "Dr Chathuranga Hettiarachchi"]
   },
   {
-    role: "Student & Volunteer Coordination Committee – Co‑chairs",
-    names: ["Dr Sandareka Wikramanayake", "Mr B H Sudantha"]
+    role: "Student & Volunteer Coordination Committee",
+    names: ["Prof D Chandrasekera", "Dr Sandareka Wikramanayake", "Mr B H Sudantha"]
   }
 ];
 
@@ -59,7 +82,14 @@ function getAvatarForName(name: string) {
     "Prof Dileeka Dias",
     "Ms Vishaka Nanayakkara",
     "Dr Tiloka de Silva",
-    "Dr Sandareka Wikramanayake"
+    "Dr Sandareka Wikramanayake",
+    "Ms Eshana Ranasinghe",
+    "Ms Dhanushima Gamage",
+    "Ms Dineshi Nandasena",
+    "Ms Indika Samarasinghe",
+    "Ms Tharushi Kurukulasooriya",
+    "Ms Sanduli Tharuka",
+    "Ms Tashini Rodrigo"
   ];
 
   return womenNames.includes(name) ? womanAvatar : manAvatar;
@@ -137,16 +167,13 @@ export default function GovernancePage() {
                 About
               </Link>
               <Link to="/#dates" className="hover:text-uom-maroon">
-                Timeline
+                Important Dates
               </Link>
-              <Link to="/#days" className="hover:text-uom-maroon">
-                3-day programme
+              <Link to="/#fees" className="hover:text-uom-maroon">
+                Fees
               </Link>
               <Link to="/#committees" className="hover:text-uom-maroon">
-                Governance
-              </Link>
-              <Link to="/#faq" className="hover:text-uom-maroon">
-                FAQs
+                Committees
               </Link>
               <Link to="/#contact" className="hover:text-uom-maroon">
                 Contact
@@ -187,32 +214,25 @@ export default function GovernancePage() {
                     About
                   </Link>
                   <Link
+                    to="/#fees"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="hover:text-uom-maroon"
+                  >
+                    Fees
+                  </Link>
+                  <Link
                     to="/#dates"
                     onClick={() => setMobileNavOpen(false)}
                     className="hover:text-uom-maroon"
                   >
-                    Timeline
-                  </Link>
-                  <Link
-                    to="/#days"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    3-day programme
+                    Important Dates
                   </Link>
                   <Link
                     to="/#committees"
                     onClick={() => setMobileNavOpen(false)}
                     className="hover:text-uom-maroon"
                   >
-                    Governance
-                  </Link>
-                  <Link
-                    to="/#faq"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    FAQs
+                    Committees
                   </Link>
                   <Link
                     to="/#contact"
@@ -464,10 +484,10 @@ export default function GovernancePage() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:info@codl.lk"
+                          href="mailto:icode.codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          info@codl.lk
+                          icode.codl.lk
                         </a>
                       </div>
                     </li>

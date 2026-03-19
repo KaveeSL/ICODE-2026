@@ -102,10 +102,10 @@ export function Footer() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:info@codl.lk"
+                          href="mailto:icode.codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          info@codl.lk
+                          icode.codl.lk
                         </a>
                       </div>
                     </li>

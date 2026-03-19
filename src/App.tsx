@@ -225,16 +225,13 @@ function App() {
                 About
               </a>
               <a href="#dates" className="hover:text-uom-maroon">
-                Timeline
+                Important Dates
               </a>
-              <a href="#days" className="hover:text-uom-maroon">
-                3-day programme
+              <a href="#fees" className="hover:text-uom-maroon">
+                Fees
               </a>
               <a href="#committees" className="hover:text-uom-maroon">
                 Committees
-              </a>
-              <a href="#faq" className="hover:text-uom-maroon">
-                FAQs
               </a>
               <a href="#contact" className="hover:text-uom-maroon">
                 Contact
@@ -263,48 +260,41 @@ function App() {
             <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
               <div className="mx-auto max-w-6xl px-4 py-4">
                 <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
-                  <Link
-                    to="/#about"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/#dates"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Timeline
-                  </Link>
-                  <Link
-                    to="/#days"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    3-day programme
-                  </Link>
-                  <Link
-                    to="/#committees"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Committees
-                  </Link>
-                  <Link
-                    to="/#faq"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    FAQs
-                  </Link>
-                  <Link
-                    to="/#contact"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Contact
-                  </Link>
+                <Link
+                  to="/#about"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/#fees"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Fees
+                </Link>
+                <Link
+                  to="/#dates"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Important Dates
+                </Link>
+                <Link
+                  to="/#committees"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Committees
+                </Link>
+                <Link
+                  to="/#contact"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Contact
+                </Link>
                   <div className="pt-2">
                     <Link to="/call-for-papers" onClick={() => setMobileNavOpen(false)}>
                       <Button
@@ -427,14 +417,14 @@ function App() {
         <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28 md:pt-10">
         {/* About */}
         <section id="about" className="mt-10 md:mt-14 scroll-mt-24">
-          <div className="grid gap-10 md:grid-cols-[minmax(0,3.1fr)_minmax(0,2.4fr)] md:items-stretch">
+          <div className="flex h-full flex-col">
             <div className="flex h-full flex-col">
               <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
                 <InformationCircleIcon className="h-6 w-6 text-uom-maroon" />
                 About ICODE2026
               </h2>
 
-              <div className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-700 md:text-base">
+              <div className="mt-4 text-sm leading-relaxed text-neutral-700 md:text-base text-justify">
                 <p>
                   ICODE2026 is an international conference curated by the{" "}
                   <span className="font-semibold">
@@ -446,10 +436,7 @@ function App() {
                   <span className="font-semibold">
                     open, distance, and digital education
                   </span>{" "}
-                  together.
-                </p>
-                <p>
-                  Over three days, the programme moves intentionally from{" "}
+                  together. Over three days, the programme moves intentionally from{" "}
                   <span className="font-semibold">policy rooms</span> to{" "}
                   <span className="font-semibold">research sessions</span> and then
                   into <span className="font-semibold">classrooms and platforms</span>.
@@ -474,15 +461,134 @@ function App() {
                 working on open, distance, and digital learning in universities,
                 professional education, and lifelong learning systems.
               </p>
-            </div>
 
-            <Card className="h-full border border-uom-gold/40 bg-white/95">
-              <CardHeader>
-                <CardTitle>Why participate?</CardTitle>
-              </CardHeader>
-              <CardContent className="flex h-full flex-col space-y-3 text-sm text-neutral-800">
+              {/* 3-day structure, visually connected to About */}
+              <div id="days" className="mt-12 md:mt-16 scroll-mt-24">
+                <div className="flex items-center justify-between gap-4">
+                  <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+                    <CursorArrowRaysIcon className="h-6 w-6 text-uom-maroon" />
+                    A Three-day Integrated Programme
+                  </h2>
+                  <div className="hidden items-center gap-4 md:flex">
+                    <Badge variant="solid">5–7 August 2026</Badge>
+                    <Link
+                      to="/programme"
+                      className="group inline-flex items-center gap-1.5 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-3 py-1.5 text-[11px] font-semibold text-neutral-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold"
+                    >
+                      <span>View full programme</span>
+                      <ChevronRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-6 md:grid-cols-3">
+                  <Card className="border border-uom-maroon/25 bg-white/95">
+                    <CardHeader>
+                      <div className="flex items-center justify-between gap-2">
+                        <CardTitle>Day 1 · Policy &amp; Leadership Summit</CardTitle>
+                        <span className="hidden rounded-full border border-uom-maroon/40 bg-uom-maroon/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-maroon md:inline-flex">
+                          Policy
+                        </span>
+                      </div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                        5 August 2026
+                      </p>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm text-neutral-800">
+                      <div className="flex gap-3">
+                        <div className="mt-1 h-full w-1 rounded-full bg-uom-maroon" />
+                        <div className="space-y-2">
+                          <p>
+                            Governance, quality, and digital transformation in higher
+                            education – designed for ministries, UGC, QA bodies, and
+                            institutional leaders.
+                          </p>
+                          <ul className="space-y-1 text-xs text-neutral-700">
+                            <li>• Ministerial and agency panels</li>
+                            <li>• Vice-Chancellors&apos; roundtables</li>
+                            <li>• Strategic policy dialogues</li>
+                            <li>• Leadership communiqué</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border border-uom-gold/45 bg-uom-goldSoft/70">
+                    <CardHeader>
+                      <div className="flex items-center justify-between gap-2">
+                        <CardTitle>Day 2 · Academic Research Conference</CardTitle>
+                        <span className="hidden rounded-full border border-uom-maroon/50 bg-uom-maroon/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-goldSoft md:inline-flex">
+                          Research
+                        </span>
+                      </div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                        6 August 2026
+                      </p>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm text-neutral-900">
+                      <div className="flex gap-3">
+                        <div className="mt-1 h-full w-1 rounded-full bg-uom-gold" />
+                        <div className="space-y-2">
+                          <p>
+                            A peer-reviewed research forum for scholars exploring the
+                            future of open, distance, and digital education.
+                          </p>
+                          <ul className="space-y-1 text-xs text-neutral-800">
+                            <li>• Keynote addresses and invited talks</li>
+                            <li>• Parallel paper sessions and symposia</li>
+                            <li>• Poster and demonstration space</li>
+                            <li>• Best paper recognitions</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border border-uom-maroon/18 bg-white/95">
+                    <CardHeader>
+                      <div className="flex items-center justify-between gap-2">
+                        <CardTitle>Day 3 · Practice &amp; Innovation Workshops</CardTitle>
+                        <span className="hidden rounded-full border border-uom-gold/60 bg-uom-gold/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900 md:inline-flex">
+                          Practice
+                        </span>
+                      </div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                        7 August 2026
+                      </p>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm text-neutral-800">
+                      <div className="flex gap-3">
+                        <div className="mt-1 h-full w-1 rounded-full bg-uom-maroon" />
+                        <div className="space-y-2">
+                          <p>
+                            Deep-dive, hands-on sessions for instructional designers,
+                            Moodle administrators, faculty, and EdTech teams.
+                          </p>
+                          <ul className="space-y-1 text-xs text-neutral-800">
+                            <li>• Course design studios and LX labs</li>
+                            <li>• Learning analytics and AI tools</li>
+                            <li>• Case-based institutional showcases</li>
+                            <li>• Micro-credential and recognition dialogues</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section id="why-participate" className="mt-12 md:mt-16 scroll-mt-24">
+            <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+              <AcademicCapIcon className="h-6 w-6 text-uom-maroon" />
+              Why participate?
+            </h2>
+            <Card className="mt-5 w-full border border-uom-gold/40 bg-white/95">
+              <CardContent className="flex flex-col space-y-3 text-sm text-neutral-800 md:text-base">
                 <div className="space-y-3">
-                  <p className="text-sm text-neutral-700">
+                  <p className="text-sm text-neutral-700 md:text-base">
                     Join a focused community working at the intersection of{" "}
                     <span className="font-semibold">
                       policy, research, and practice
@@ -498,7 +604,7 @@ function App() {
                     <p>• Help shape an inclusive, future-ready digital agenda.</p>
                   </div>
 
-                  <div className="mt-2 space-y-1 text-xs text-neutral-600">
+                  <div className="mt-2 space-y-1 text-xs text-neutral-600 md:text-sm">
                     <p className="font-semibold text-neutral-700">
                       Especially valuable for:
                     </p>
@@ -508,11 +614,11 @@ function App() {
                   </div>
                 </div>
 
-                <div className="mt-auto rounded-2xl border border-uom-gold/30 bg-uom-goldSoft/20 p-3">
+                <div className="mt-4 rounded-2xl border border-uom-gold/30 bg-uom-goldSoft/20 p-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
                     What you can take home
                   </p>
-                  <p className="mt-2 text-sm text-neutral-700">
+                  <p className="mt-2 text-sm text-neutral-700 md:text-base">
                     Practical insights you can apply immediately, from governance and
                     quality assurance to learning analytics, AI support tools, and
                     sustainable ODL models.
@@ -520,210 +626,119 @@ function App() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </section>
 
-          <div className="mt-8 rounded-2xl border border-border bg-white/90 px-4 py-4 md:px-5 md:py-5 space-y-4">
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
-              <AcademicCapIcon className="h-4 w-4 text-uom-maroon" />
-              About the host institution
-            </h3>
-
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-uom-maroon/10 text-uom-maroon">
-                <InformationCircleIcon className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                  CODL
-                </p>
-                <p className="mt-1 text-sm font-semibold text-neutral-900">
-                  Centre for Open and Distance Learning
-                </p>
-                <p className="mt-1 text-xs text-neutral-700">
-                  Over two decades of leadership in technology-enhanced higher
-                  education, large-scale virtual learning environments, and national
-                  and international collaborations in open education.
-                </p>
-              </div>
+          {/* Registration fee structure – sits under Why participate */}
+          <section id="fees" className="mt-16 md:mt-20 scroll-mt-24">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="flex items-center justify-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+                <CurrencyDollarIcon className="h-7 w-7 text-uom-maroon" />
+                <span>Registration Fees</span>
+              </h2>
+              <p className="mt-2 flex items-start justify-center gap-2 text-sm text-neutral-700 md:items-center md:text-base">
+                <CheckCircleIcon className="mt-0.5 h-4 w-4 text-uom-maroon" />
+                <span>Choose the option that best fits how you plan to join ICODE2026.</span>
+              </p>
             </div>
 
-            <div className="flex items-start gap-3 border-t border-uom-gold/40 pt-3">
-              <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-uom-goldSoft/80 text-neutral-900">
-                <CursorArrowRaysIcon className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                  BIT programme
+            <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 items-stretch gap-6 md:grid-cols-2">
+              {/* International tier */}
+              <div className="relative flex flex-col rounded-3xl border border-uom-maroon/50 bg-white/90 p-6 shadow-sm md:p-7">
+                <p
+                  id="tier-international"
+                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-uom-maroon"
+                >
+                  International participants
                 </p>
-                <p className="mt-1 text-sm font-semibold text-neutral-900">
-                  Bachelor of Information Technology (External)
-                </p>
-                <p className="mt-1 text-xs text-neutral-700">
-                  A nationally recognised, industry-aligned computing degree that
-                  has enabled thousands of learners to join Sri Lanka&apos;s digital
-                  workforce.
-                </p>
-                <div className="mt-2">
-                  <a
-                    href="https://bit.uom.lk/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-uom-maroon hover:underline"
-                  >
-                    Visit BIT programme site
-                    <ChevronRightIcon className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 border-t border-border pt-3">
-              <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-neutral-900 text-neutral-50">
-                <GlobeAltIcon className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                  University of Moratuwa
-                </p>
-                <p className="mt-1 text-sm font-semibold text-neutral-900">
-                  A leading technological university in South Asia
-                </p>
-                <p className="mt-1 text-xs text-neutral-700">
-                  Known for engineering, architecture, and IT programmes, the
-                  university has a strong track record in digital learning, industry
-                  partnerships, and EdTech innovation across the region.
-                </p>
-                <div className="mt-2">
-                  <a
-                    href="https://uom.lk/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-uom-maroon hover:underline"
-                  >
-                    Visit University of Moratuwa site
-                    <ChevronRightIcon className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3-day structure */}
-        <section id="days" className="mt-16 md:mt-20 scroll-mt-24">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-              <CursorArrowRaysIcon className="h-6 w-6 text-uom-maroon" />
-              A Three-day Integrated Programme
-            </h2>
-            <div className="hidden items-center gap-4 md:flex">
-              <Badge variant="solid">5–7 August 2026</Badge>
-              <Link
-                to="/programme"
-                className="flex items-center gap-1.5 text-[11px] font-semibold text-uom-maroon hover:underline"
-              >
-                <span>View full programme</span>
-                <span className="text-[9px] uppercase tracking-[0.18em] text-neutral-500">
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-6 md:grid-cols-3">
-            <Card className="border border-uom-maroon/25 bg-white/95">
-              <CardHeader>
-                <div className="flex items-center justify-between gap-2">
-                  <CardTitle>Day 1 · Policy &amp; Leadership Summit</CardTitle>
-                  <span className="hidden rounded-full border border-uom-maroon/40 bg-uom-maroon/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-maroon md:inline-flex">
-                    Policy
+                <p className="mt-3 flex items-baseline gap-2">
+                  <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+                    $150
                   </span>
-                </div>
-                <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                  5 August 2026
+                  <span className="text-xs text-neutral-500">from (physical academic)</span>
                 </p>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-neutral-800">
-                <div className="flex gap-3">
-                  <div className="mt-1 h-full w-1 rounded-full bg-uom-maroon" />
-                  <div className="space-y-2">
-                    <p>
-                      Governance, quality, and digital transformation in higher
-                      education – designed for ministries, UGC, QA bodies, and
-                      institutional leaders.
-                    </p>
-                    <ul className="space-y-1 text-xs text-neutral-700">
-                      <li>• Ministerial and agency panels</li>
-                      <li>• Vice-Chancellors&apos; roundtables</li>
-                      <li>• Strategic policy dialogues</li>
-                      <li>• Leadership communiqué</li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                <p className="mt-2 text-xs text-neutral-600 md:text-sm">
+                  For academics and students based outside Sri Lanka, with physical and online options.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs md:text-sm">
+                  <li className="flex gap-2 text-emerald-700">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
+                    <span>
+                      <span className="font-semibold">$150</span> – Physical (Academic)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-emerald-700">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
+                    <span>
+                      <span className="font-semibold">$100</span> – Physical (Student)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-sky-700">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
+                    <span>
+                      <span className="font-semibold">$75</span> – Online (Academic)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-sky-700">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
+                    <span>
+                      <span className="font-semibold">$50</span> – Online (Student)
+                    </span>
+                  </li>
+                </ul>
+                <p className="mt-3 text-[11px] text-neutral-500 md:text-xs">
+                  Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
+                </p>
+              </div>
 
-            <Card className="border border-uom-gold/45 bg-uom-goldSoft/70">
-              <CardHeader>
-                <div className="flex items-center justify-between gap-2">
-                  <CardTitle>Day 2 · Academic Research Conference</CardTitle>
-                  <span className="hidden rounded-full border border-uom-maroon/50 bg-uom-maroon/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-goldSoft md:inline-flex">
-                    Research
-                  </span>
-                </div>
-                <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                  6 August 2026
+              {/* Local tier */}
+              <div className="relative flex flex-col rounded-3xl border border-uom-gold/60 bg-uom-goldSoft/80 p-6 shadow-sm md:p-7">
+                <p
+                  id="tier-local"
+                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-900"
+                >
+                  Sri Lanka participants
                 </p>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-neutral-900">
-                <div className="flex gap-3">
-                  <div className="mt-1 h-full w-1 rounded-full bg-uom-gold" />
-                  <div className="space-y-2">
-                    <p>
-                      A peer-reviewed research forum for scholars exploring the
-                      future of open, distance, and digital education.
-                    </p>
-                    <ul className="space-y-1 text-xs text-neutral-800">
-                      <li>• Keynote addresses and invited talks</li>
-                      <li>• Parallel paper sessions and symposia</li>
-                      <li>• Poster and demonstration space</li>
-                      <li>• Best paper recognitions</li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-uom-maroon/18 bg-white/95">
-              <CardHeader>
-                <div className="flex items-center justify-between gap-2">
-                  <CardTitle>Day 3 · Practice &amp; Innovation Workshops</CardTitle>
-                  <span className="hidden rounded-full border border-uom-gold/60 bg-uom-gold/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-900 md:inline-flex">
-                    Practice
+                <p className="mt-3 flex items-baseline gap-2">
+                  <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+                    LKR ≈ $75
                   </span>
-                </div>
-                <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                  7 August 2026
+                  <span className="text-xs text-neutral-700">from (physical academic)</span>
                 </p>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-neutral-800">
-                <div className="flex gap-3">
-                  <div className="mt-1 h-full w-1 rounded-full bg-uom-maroon" />
-                  <div className="space-y-2">
-                    <p>
-                      Deep-dive, hands-on sessions for instructional designers,
-                      Moodle administrators, faculty, and EdTech teams.
-                    </p>
-                    <ul className="space-y-1 text-xs text-neutral-800">
-                      <li>• Course design studios and LX labs</li>
-                      <li>• Learning analytics and AI tools</li>
-                      <li>• Case-based institutional showcases</li>
-                      <li>• Micro-credential and recognition dialogues</li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                <p className="mt-2 text-xs text-neutral-800 md:text-sm">
+                  Fees payable in LKR, calculated at the prevailing exchange rate.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs md:text-sm">
+                  <li className="flex gap-2 text-emerald-800">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
+                    <span>
+                      <span className="font-semibold">LKR equivalent of $75</span> – Physical (Academic)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-emerald-800">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
+                    <span>
+                      <span className="font-semibold">LKR equivalent of $40</span> – Physical (Student)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-sky-800">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
+                    <span>
+                      <span className="font-semibold">LKR equivalent of $40</span> – Online (Academic)
+                    </span>
+                  </li>
+                  <li className="flex gap-2 text-sky-800">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
+                    <span>
+                      <span className="font-semibold">LKR equivalent of $25</span> – Online (Student)
+                    </span>
+                  </li>
+                </ul>
+                <p className="mt-3 text-[11px] text-neutral-700 md:text-xs">
+                  Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
+                </p>
+              </div>
+            </div>
+          </section>
         </section>
 
         {/* Important dates timeline */}
@@ -733,16 +748,13 @@ function App() {
               <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
                 <span className="inline-flex items-center gap-2">
                   <CalendarDaysIcon className="h-6 w-6 text-uom-maroon" />
-                  Timeline
+                  Important Dates
                 </span>
               </h2>
               <p className="mt-2 text-sm text-neutral-700 md:text-base">
                 Plan your submissions and registration for ICODE2026.
               </p>
             </div>
-            <Badge variant="outline" className="hidden md:inline-flex">
-              5–7 August 2026
-            </Badge>
           </div>
 
           {/* Mobile: vertical timeline */}
@@ -816,117 +828,6 @@ function App() {
           </div>
         </section>
 
-        {/* Registration fee structure */}
-        <section className="mt-16 md:mt-20 scroll-mt-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="flex items-center justify-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-              <CurrencyDollarIcon className="h-7 w-7 text-uom-maroon" />
-              <span>Registration Fees</span>
-            </h2>
-            <p className="mt-2 flex items-start justify-center gap-2 text-sm text-neutral-700 md:items-center md:text-base">
-              <CheckCircleIcon className="mt-0.5 h-4 w-4 text-uom-maroon" />
-              <span>Choose the option that best fits how you plan to join ICODE2026.</span>
-            </p>
-          </div>
-
-          <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-            {/* International tier */}
-            <div className="relative flex flex-col rounded-3xl border border-uom-maroon/50 bg-white/90 p-6 shadow-sm md:p-7">
-              <p
-                id="tier-international"
-                className="text-[11px] font-semibold uppercase tracking-[0.2em] text-uom-maroon"
-              >
-                International participants
-              </p>
-              <p className="mt-3 flex items-baseline gap-2">
-                <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-                  $150
-                </span>
-                <span className="text-xs text-neutral-500">from (physical academic)</span>
-              </p>
-              <p className="mt-2 text-xs text-neutral-600 md:text-sm">
-                For academics and students based outside Sri Lanka, with physical and online options.
-              </p>
-              <ul className="mt-5 space-y-2 text-xs md:text-sm">
-                <li className="flex gap-2 text-emerald-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                  <span>
-                    <span className="font-semibold">$150</span> – Physical (Academic)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-emerald-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                  <span>
-                    <span className="font-semibold">$100</span> – Physical (Student)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-sky-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
-                  <span>
-                    <span className="font-semibold">$75</span> – Online (Academic)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-sky-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
-                  <span>
-                    <span className="font-semibold">$50</span> – Online (Student)
-                  </span>
-                </li>
-              </ul>
-              <p className="mt-3 text-[11px] text-neutral-500 md:text-xs">
-                Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
-              </p>
-            </div>
-
-            {/* Local tier */}
-            <div className="relative flex flex-col rounded-3xl border border-uom-gold/60 bg-uom-goldSoft/80 p-6 shadow-sm md:p-7">
-              <p
-                id="tier-local"
-                className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-900"
-              >
-                Sri Lanka participants
-              </p>
-              <p className="mt-3 flex items-baseline gap-2">
-                <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-                  LKR ≈ $75
-                </span>
-                <span className="text-xs text-neutral-700">from (physical academic)</span>
-              </p>
-              <p className="mt-2 text-xs text-neutral-800 md:text-sm">
-                Fees payable in LKR, calculated at the prevailing exchange rate.
-              </p>
-              <ul className="mt-5 space-y-2 text-xs md:text-sm">
-                <li className="flex gap-2 text-emerald-800">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
-                  <span>
-                    <span className="font-semibold">LKR equivalent of $75</span> – Physical (Academic)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-emerald-800">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
-                  <span>
-                    <span className="font-semibold">LKR equivalent of $40</span> – Physical (Student)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-sky-800">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
-                  <span>
-                    <span className="font-semibold">LKR equivalent of $40</span> – Online (Academic)
-                  </span>
-                </li>
-                <li className="flex gap-2 text-sky-800">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
-                  <span>
-                    <span className="font-semibold">LKR equivalent of $25</span> – Online (Student)
-                  </span>
-                </li>
-              </ul>
-              <p className="mt-3 text-[11px] text-neutral-700 md:text-xs">
-                Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* Sponsors carousel */}
         <section className="mt-16 md:mt-20">
@@ -974,16 +875,16 @@ function App() {
           </p>
 
           <div className="mt-6 grid gap-6 md:grid-cols-3">
-            <Card className="relative overflow-hidden h-full">
+            <Card className="relative h-full">
               <CardHeader>
                 <CardTitle>Strategic leadership</CardTitle>
               </CardHeader>
-              <CardContent className="flex h-full flex-col gap-3 text-sm text-neutral-800">
+              <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
                   Event Patron and Co‑chairs provide overall direction with support
                   from the International Advisory Board and summit steering groups.
                 </p>
-                <Link to="/governance#strategic" className="block mt-auto pt-1">
+                <Link to="/governance#strategic" className="block mt-auto pt-2">
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <UsersIcon className="h-3.5 w-3.5 text-uom-maroon" />
@@ -995,16 +896,16 @@ function App() {
               </CardContent>
             </Card>
 
-            <Card className="relative overflow-hidden h-full">
+            <Card className="relative h-full">
               <CardHeader>
                 <CardTitle>Academic &amp; publications</CardTitle>
               </CardHeader>
-              <CardContent className="flex h-full flex-col gap-3 text-sm text-neutral-800">
+              <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
                   Programme, review, and publications teams coordinate submissions,
                   peer review, and the ICODE2026 proceedings.
                 </p>
-                <Link to="/governance#academic" className="block mt-auto pt-1">
+                <Link to="/governance#academic" className="block mt-auto pt-2">
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <AcademicCapIcon className="h-3.5 w-3.5 text-uom-maroon group-hover:text-uom-maroon" />
@@ -1016,16 +917,16 @@ function App() {
               </CardContent>
             </Card>
 
-            <Card className="relative overflow-hidden h-full">
+            <Card className="relative h-full">
               <CardHeader>
                 <CardTitle>Operations &amp; experience</CardTitle>
               </CardHeader>
-              <CardContent className="flex h-full flex-col gap-3 text-sm text-neutral-800">
+              <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
                   Dedicated committees handle finance, logistics, media, ethics,
                   risk, and volunteer coordination to ensure a smooth hybrid event.
                 </p>
-                <Link to="/governance#operations" className="block mt-auto pt-1">
+                <Link to="/governance#operations" className="block mt-auto pt-2">
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <CursorArrowRaysIcon className="h-3.5 w-3.5 text-uom-maroon group-hover:text-uom-maroon" />
@@ -1056,6 +957,93 @@ function App() {
             <Accordion items={faqItems} />
           </div>
         </section>
+
+        {/* About the host institution – moved under FAQs */}
+        <div className="mt-16 rounded-2xl border border-border bg-white/90 px-4 py-4 md:mt-20 md:px-5 md:py-5 space-y-4">
+          <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600">
+            <AcademicCapIcon className="h-4 w-4 text-uom-maroon" />
+            About the host institution
+          </h3>
+
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-uom-maroon/10 text-uom-maroon">
+              <InformationCircleIcon className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
+                CODL
+              </p>
+              <p className="mt-1 text-sm font-semibold text-neutral-900">
+                Centre for Open and Distance Learning
+              </p>
+              <p className="mt-1 text-xs text-neutral-700">
+                Over two decades of leadership in technology-enhanced higher
+                education, large-scale virtual learning environments, and national
+                and international collaborations in open education.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 border-t border-uom-gold/40 pt-3">
+            <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-uom-goldSoft/80 text-neutral-900">
+              <CursorArrowRaysIcon className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
+                BIT programme
+              </p>
+              <p className="mt-1 text-sm font-semibold text-neutral-900">
+                Bachelor of Information Technology (External)
+              </p>
+              <p className="mt-1 text-xs text-neutral-700">
+                A nationally recognised, industry-aligned computing degree that
+                has enabled thousands of learners to join Sri Lanka&apos;s digital
+                workforce.
+              </p>
+              <div className="mt-2">
+                <a
+                  href="https://bit.uom.lk/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-uom-maroon hover:underline"
+                >
+                  Visit BIT programme site
+                  <ChevronRightIcon className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 border-t border-border pt-3">
+            <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-neutral-900 text-neutral-50">
+              <GlobeAltIcon className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">
+                University of Moratuwa
+              </p>
+              <p className="mt-1 text-sm font-semibold text-neutral-900">
+                A leading technological university in South Asia
+              </p>
+              <p className="mt-1 text-xs text-neutral-700">
+                Known for engineering, architecture, and IT programmes, the
+                university has a strong track record in digital learning, industry
+                partnerships, and EdTech innovation across the region.
+              </p>
+              <div className="mt-2">
+                <a
+                  href="https://uom.lk/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-uom-maroon hover:underline"
+                >
+                  Visit University of Moratuwa site
+                  <ChevronRightIcon className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Contact */}
         <section id="contact" className="mt-16 md:mt-20 scroll-mt-24">
@@ -1093,10 +1081,10 @@ function App() {
                       Email
                     </p>
                     <a
-                      href="mailto:info@codl.lk"
+                      href="mailto:icode.codl.lk"
                       className="mt-1 inline-flex items-center text-sm font-medium text-uom-maroon hover:underline"
                     >
-                      info@codl.lk
+                      icode.codl.lk
                     </a>
                   </div>
                 </div>
@@ -1110,7 +1098,7 @@ function App() {
                       Phone (office hours)
                     </p>
                     <p className="mt-1 text-sm">
-                      +94 11 308 2787 / +94 11 308 2788
+                      +94 00 000 0000
                     </p>
                   </div>
                 </div>
@@ -1350,10 +1338,10 @@ function App() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:info@codl.lk"
+                          href="mailto:icode.codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          info@codl.lk
+                          icode.codl.lk
                         </a>
                       </div>
                     </li>

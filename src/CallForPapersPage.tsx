@@ -70,16 +70,13 @@ export default function CallForPapersPage() {
                 About
               </Link>
               <Link to="/#dates" className="hover:text-uom-maroon">
-                Timeline
+                Important Dates
               </Link>
-              <Link to="/#days" className="hover:text-uom-maroon">
-                3-day programme
+              <Link to="/#fees" className="hover:text-uom-maroon">
+                Fees
               </Link>
               <Link to="/#committees" className="hover:text-uom-maroon">
                 Committees
-              </Link>
-              <Link to="/#faq" className="hover:text-uom-maroon">
-                FAQs
               </Link>
               <Link to="/#contact" className="hover:text-uom-maroon">
                 Contact
@@ -120,18 +117,18 @@ export default function CallForPapersPage() {
                     About
                   </Link>
                   <Link
+                    to="/#fees"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="hover:text-uom-maroon"
+                  >
+                    Fees
+                  </Link>
+                  <Link
                     to="/#dates"
                     onClick={() => setMobileNavOpen(false)}
                     className="hover:text-uom-maroon"
                   >
-                    Timeline
-                  </Link>
-                  <Link
-                    to="/#days"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    3-day programme
+                    Important Dates
                   </Link>
                   <Link
                     to="/#committees"
@@ -139,13 +136,6 @@ export default function CallForPapersPage() {
                     className="hover:text-uom-maroon"
                   >
                     Committees
-                  </Link>
-                  <Link
-                    to="/#faq"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    FAQs
                   </Link>
                   <Link
                     to="/#contact"
@@ -204,37 +194,66 @@ export default function CallForPapersPage() {
             </div>
 
             <div className="mt-7 grid gap-6 md:grid-cols-2 md:items-start">
-              <div className="rounded-3xl border border-uom-gold/70 bg-white/95 px-4 py-4 shadow-sm md:px-5 md:py-5 flex flex-col h-full">
+              {/* Key submission dates – timeline-style card */}
+              <div className="flex h-full flex-col rounded-3xl border border-uom-gold/70 bg-white/95 px-4 py-4 shadow-sm md:px-5 md:py-5">
                 <h2 className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
                   <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
                   Key submission dates
                 </h2>
-                <ul className="mt-3 space-y-1.5 text-xs text-neutral-800 md:text-sm flex-1">
-                  <li>
-                    <span className="font-semibold">Abstracts open:</span> 1 April 2026
-                  </li>
-                  <li>
-                    <span className="font-semibold">Extended abstract deadline:</span> 20 May 2026{" "}
-                    <span className="text-neutral-600">(extended to 27 May 2026)</span>
-                  </li>
-                  <li>
-                    <span className="font-semibold">Reviews due:</span> 19 June 2026{" "}
-                    <span className="text-neutral-600">(final review: 24 June 2026)</span>
-                  </li>
-                  <li>
-                    <span className="font-semibold">Acceptance notification:</span> 1 July 2026
-                  </li>
-                  <li>
-                    <span className="font-semibold">Registration deadline:</span> 15 July 2026
-                  </li>
-                  <li>
-                    <span className="font-semibold">Conference date:</span> 6 August 2026
-                  </li>
-                </ul>
-                <div className="mt-4 flex items-center justify-between gap-3 pt-2 border-t border-neutral-200">
-                  <p className="text-[11px] text-neutral-600">
-                    Submit via the online abstract portal.
-                  </p>
+                <div className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      1
+                    </div>
+                    <p>
+                      <span className="font-semibold">Abstracts open:</span> 1 April 2026
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      2
+                    </div>
+                    <p>
+                      <span className="font-semibold">Extended abstract deadline:</span> 20 May 2026{" "}
+                      <span className="text-neutral-600">(extended to 27 May 2026)</span>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      3
+                    </div>
+                    <p>
+                      <span className="font-semibold">Reviews due:</span> 19 June 2026{" "}
+                      <span className="text-neutral-600">(final review: 24 June 2026)</span>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      4
+                    </div>
+                    <p>
+                      <span className="font-semibold">Acceptance notification:</span> 1 July 2026
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      5
+                    </div>
+                    <p>
+                      <span className="font-semibold">Registration deadline:</span> 15 July 2026
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      6
+                    </div>
+                    <p>
+                      <span className="font-semibold">Conference date:</span> 6 August 2026
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-3 text-[11px] text-neutral-600 md:flex-row md:items-center md:justify-between md:text-xs">
+                  <p>Submit via the online abstract portal.</p>
                   <Button
                     size="sm"
                     className="border border-uom-gold bg-uom-goldSoft/90 text-neutral-900 sm:whitespace-nowrap whitespace-normal"
@@ -247,22 +266,37 @@ export default function CallForPapersPage() {
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-uom-maroon/40 bg-white/95 px-4 py-5 shadow-sm md:px-6 md:py-6 flex flex-col h-full">
+              {/* Extended abstract – quick overview */}
+              <div className="flex h-full flex-col rounded-3xl border border-uom-maroon/40 bg-white/95 px-4 py-5 shadow-sm md:px-6 md:py-6">
                 <h2 className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
                   <DocumentTextIcon className="h-5 w-5 text-uom-maroon" />
                   Extended abstract – quick overview
                 </h2>
                 <p className="mt-2 text-xs text-neutral-700 md:text-sm">
                   Submit a{" "}
-                  <span className="font-semibold">2–4 page extended abstract (800–1,000 words)</span>{" "}
+                  <span className="font-semibold">2–4 page extended abstract (700–1,000 words)</span>{" "}
                   outlining your study, practice, or innovation in open and digital education.
                 </p>
-                <ul className="mt-2 space-y-1.5 text-xs text-neutral-800 md:text-sm">
-                  <li>• Background and objectives.</li>
-                  <li>• Methodology or innovation approach.</li>
-                  <li>• Key findings or expected outcomes.</li>
-                  <li>• Significance and implications for practice, policy, or research.</li>
+
+                <ul className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>Background and objectives.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>Methodology or innovation approach.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>Key findings or expected outcomes.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>Significance and implications for practice, policy, or research.</span>
+                  </li>
                 </ul>
+
                 <div className="mt-3 space-y-2 text-[11px] text-neutral-700 md:text-xs">
                   <p>
                     <span className="font-semibold">Who can submit?</span> Researchers,
@@ -290,14 +324,16 @@ export default function CallForPapersPage() {
               <p className="mt-2 text-sm text-neutral-700 md:text-base">
                 Submissions are invited under, but not limited to, the following themes.
               </p>
-              <div className="mt-6 grid gap-3 md:grid-cols-2">
-                {themes.map((theme) => (
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {themes.map((theme, index) => (
                   <div
                     key={theme}
-                    className="flex items-center gap-2 rounded-2xl border border-uom-gold/40 bg-uom-goldSoft/40 px-3 py-2.5 text-xs text-neutral-900 md:text-sm"
+                    className="flex items-center gap-3 rounded-2xl border border-uom-gold/50 bg-white/95 px-3 py-3 text-xs text-neutral-900 shadow-sm md:text-sm"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-uom-maroon flex-shrink-0" />
-                    <span>{theme}</span>
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                      {index + 1}
+                    </span>
+                    <p className="leading-snug">{theme}</p>
                   </div>
                 ))}
               </div>
@@ -308,36 +344,122 @@ export default function CallForPapersPage() {
           {/* Guidelines */}
           <section className="mt-16">
             <div className="mx-auto grid w-full max-w-5xl gap-8 md:grid-cols-2 md:items-stretch">
-            <div className="flex h-full w-full flex-col rounded-3xl border border-border bg-white/95 px-4 py-5 shadow-sm md:px-6 md:py-6">
-              <h3 className="flex items-center gap-2 text-sm font-semibold text-neutral-900 md:text-base">
-                <DocumentTextIcon className="h-5 w-5 text-uom-maroon" />
-                Submission guidelines
-              </h3>
-              <ul className="mt-3 space-y-1.5 text-xs text-neutral-800 md:text-sm">
-                <li>• Length: 800–1,000 words, within a 2–4 page extended abstract template.</li>
-                <li>• Clearly describe background, objectives, methodology/approach, and findings.</li>
-                <li>• Emphasise significance and implications for open and digital education.</li>
-                <li>• Use APA 7th edition for references (concise list only).</li>
-                <li>• Submit in MS Word (.docx) format via the online submission portal.</li>
-              </ul>
-              <p className="mt-4 text-[11px] text-neutral-600 md:text-xs">
-                Detailed template instructions and the submission link will be provided on the
-                official conference website.
-              </p>
-            </div>
+              {/* Submission guidelines – visual checklist */}
+              <div className="flex h-full w-full flex-col rounded-3xl border border-border bg-white/95 px-4 py-5 shadow-sm md:px-6 md:py-6">
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-neutral-900 md:text-base">
+                  <DocumentTextIcon className="h-5 w-5 text-uom-maroon" />
+                  Submission guidelines
+                </h3>
 
-            <div className="flex h-full w-full flex-col rounded-3xl border border-neutral-800 bg-neutral-950 text-neutral-50 px-4 py-5 shadow-sm md:px-6 md:py-6">
-              <h3 className="flex items-center gap-2 text-sm font-semibold md:text-base">
-                <CheckCircleIcon className="h-5 w-5 text-uom-goldSoft" />
-                Why participate?
-              </h3>
-              <ul className="mt-3 space-y-1.5 text-xs md:text-sm flex-1">
-                <li>• Share high-impact research and practice with an international audience.</li>
-                <li>• Build collaborations across institutions, sectors, and regions.</li>
-                <li>• Engage with policy and institutional leaders in digital education.</li>
-                <li>• Showcase innovations in open, distance, and online learning.</li>
-              </ul>
-            </div>
+                <div className="mt-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 text-xs md:text-sm">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                    Snapshot
+                  </p>
+                  <p className="mt-1 text-neutral-800">
+                    <span className="font-semibold">700–1,000 words</span> within a{" "}
+                    <span className="font-semibold">2–4 page extended abstract template</span>.
+                  </p>
+                </div>
+
+                <ul className="mt-4 space-y-2 text-xs text-neutral-800 md:text-sm">
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>
+                      Clearly explain{" "}
+                      <span className="font-semibold">
+                        background, objectives, methodology/approach, and findings
+                      </span>
+                      .
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>
+                      Emphasise{" "}
+                      <span className="font-semibold">
+                        significance and implications for open and digital education
+                      </span>
+                      .
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>
+                      Use <span className="font-semibold">APA 7th edition</span> for a concise reference
+                      list.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none shrink-0 text-emerald-600" />
+                    <span>
+                      Prepare your file in{" "}
+                      <span className="font-semibold">MS Word (.docx)</span> and upload it via the
+                      online submission portal.
+                    </span>
+                  </li>
+                </ul>
+
+                <p className="mt-4 text-[11px] text-neutral-600 md:text-xs">
+                  A downloadable template and the submission link will be available on the official
+                  conference website.
+                </p>
+              </div>
+
+              {/* Why participate – benefit tiles */}
+              <div className="flex h-full w-full flex-col rounded-3xl border border-neutral-800 bg-neutral-950 text-neutral-50 px-4 py-5 shadow-sm md:px-6 md:py-6">
+                <h3 className="flex items-center gap-2 text-sm font-semibold md:text-base">
+                  <CheckCircleIcon className="h-5 w-5 text-uom-goldSoft" />
+                  Why participate?
+                </h3>
+
+                <div className="mt-3 grid flex-1 grid-cols-1 gap-3 text-xs md:text-sm md:grid-cols-2">
+                  <div className="rounded-2xl border border-neutral-700 bg-neutral-900/80 px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                      Visibility
+                    </p>
+                    <p className="mt-1">
+                      Share high-impact research and practice with an{" "}
+                      <span className="font-semibold">international audience</span>.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-neutral-700 bg-neutral-900/80 px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                      Networks
+                    </p>
+                    <p className="mt-1">
+                      Build collaborations across{" "}
+                      <span className="font-semibold">institutions, sectors, and regions</span>.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-neutral-700 bg-neutral-900/80 px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                      Influence
+                    </p>
+                    <p className="mt-1">
+                      Engage with{" "}
+                      <span className="font-semibold">
+                        policy and institutional leaders in digital education
+                      </span>
+                      .
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-neutral-700 bg-neutral-900/80 px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                      Innovation
+                    </p>
+                    <p className="mt-1">
+                      Showcase{" "}
+                      <span className="font-semibold">
+                        innovations in open, distance, and online learning
+                      </span>
+                      .
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
