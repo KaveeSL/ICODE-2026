@@ -78,9 +78,9 @@ const faqItems = [
     question: "Who is ICODE2026 for?",
     answer: (
       <p>
-        ICODE2026 welcomes researchers, academics, instructional designers, policy
-        makers, EdTech developers, doctoral students, educational technologists,
-        and leaders in open, distance, and digital education from Sri Lanka and worldwide.
+        ICODE2026 welcomes researchers, academics, instructional designers, policy makers,
+        EdTech developers, doctoral students, educational technologists, and leaders in
+        open, distance, and digital education from Sri Lanka and worldwide.
       </p>
     )
   },
@@ -89,9 +89,9 @@ const faqItems = [
     question: "What is the conference format?",
     answer: (
       <ul className="list-disc pl-5 space-y-1">
-        <li>Day 1 – Policy &amp; Leadership Summit (5 August)</li>
-        <li>Day 2 – Academic Research Conference (6 August)</li>
-        <li>Day 3 – Practice, Innovation &amp; Capacity Building Workshops (7 August)</li>
+        <li>Day 1 – Policy &amp; Leadership Summit</li>
+        <li>Day 2 – Academic Research Conference</li>
+        <li>Day 3 – Practice, Innovation &amp; Capacity Building Workshops</li>
         <li>Hybrid participation with on-site and online options</li>
       </ul>
     )
@@ -101,10 +101,20 @@ const faqItems = [
     question: "What type of submissions are expected?",
     answer: (
       <p>
-        We invite extended abstracts (800–1,000 words) presenting empirical
-        research, design-based studies, innovative practices, policy analyses, or
-        case studies aligned with the conference themes. Detailed templates and
-        submission guidelines will be provided via the submission portal.
+        We invite 2–4 page extended abstracts (700–1,000 words) presenting empirical
+        research, design-based studies, innovative practices, policy analyses, or case
+        studies that align with the conference themes in open and digital education.
+      </p>
+    )
+  },
+  {
+    id: "how-to-submit",
+    question: "How do I submit my extended abstract?",
+    answer: (
+      <p>
+        Extended abstracts should be prepared using the ICODE2026 template and submitted
+        in MS Word (.docx) format via the online submission portal linked from the official
+        conference website. All submissions will undergo peer review.
       </p>
     )
   },
@@ -113,9 +123,21 @@ const faqItems = [
     question: "Will there be published proceedings?",
     answer: (
       <p>
-        Yes. All accepted and presented contributions will be included in the
-        peer-reviewed ICODE2026 Conference Proceedings. Selected papers may be
-        considered for extended publication in partnered outlets.
+        Yes. All accepted and presented contributions will be included in the peer‑reviewed
+        ICODE2026 Conference Proceedings. Selected papers may be considered for extended
+        publication in partnered outlets.
+      </p>
+    )
+  },
+  {
+    id: "fees",
+    question: "What are the registration fee options?",
+    answer: (
+      <p>
+        Fees differ for international and Sri Lankan participants, with separate rates for
+        academics and students and both physical and online participation options. Early
+        bird discounts and group or institutional rates are available – see the “Fees”
+        section on this page for the latest structure.
       </p>
     )
   },
@@ -124,9 +146,19 @@ const faqItems = [
     question: "Where will the conference take place?",
     answer: (
       <p>
-        The physical hub of ICODE2026 is the University of Moratuwa, Sri Lanka,
-        hosted by the Centre for Open and Distance Learning (CODL). A fully
-        supported virtual track will enable remote participation.
+        The physical hub of ICODE2026 is the University of Moratuwa, Sri Lanka, hosted by
+        the Centre for Open and Distance Learning (CODL). A fully supported virtual track
+        will enable remote participation.
+      </p>
+    )
+  },
+  {
+    id: "language",
+    question: "What is the language of the conference and submissions?",
+    answer: (
+      <p>
+        The working language of ICODE2026 is English. Extended abstracts, presentations,
+        and conference materials should be prepared in English.
       </p>
     )
   }
