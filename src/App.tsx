@@ -4,6 +4,7 @@ import {
   AcademicCapIcon,
   Bars3Icon,
   CalendarDaysIcon,
+  CalendarIcon,
   ChevronRightIcon,
   ClipboardDocumentListIcon,
   CursorArrowRaysIcon,
@@ -15,7 +16,6 @@ import {
   PhoneIcon,
   GlobeAltIcon,
   CheckCircleIcon,
-  CurrencyDollarIcon,
   XMarkIcon
 } from "@heroicons/react/24/outline";
 import { Button } from "./components/ui/button";
@@ -24,53 +24,120 @@ import { Badge } from "./components/ui/badge";
 import { Accordion } from "./components/ui/accordion";
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
+import anniversary20Logo from "./assets/20thAnniversarylogo.png";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
-
-const importantDates = [
-  {
-    label: "Abstracts open",
-    date: "1 April 2026",
-    note: "Extended abstracts portal opens"
-  },
-  {
-    label: "Extended abstract deadline",
-    date: "20 May 2026",
-    note: "Extended deadline: 27 May 2026"
-  },
-  {
-    label: "Reviews due",
-    date: "19 June 2026",
-    note: "Final review deadline: 24 June 2026"
-  },
-  {
-    label: "Acceptance notification",
-    date: "1 July 2026",
-    note: "Decision letters sent"
-  },
-  {
-    label: "Registration deadline",
-    date: "15 July 2026",
-    note: "Presenter & participant registration"
-  },
-  {
-    label: "Conference",
-    date: "5–7 August 2026",
-    note: "Hybrid – University of Moratuwa"
-  }
-];
+import { importantDates } from "./constants/importantDates";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 
 const themes = [
-  "Digital transformation in higher education",
-  "Open and distance learning systems and innovations",
-  "Artificial intelligence and emerging technologies in education",
+  "Digital transformation in education",
+  "Artificial Intelligence in education",
+  "Emerging methods, technologies and tools in education",
   "Online pedagogy, assessment, and learner engagement",
-  "Open educational resources (OER) and open practices",
+  "Open and distance learning systems and innovations",
   "Micro-credentials, credit transfer, and lifelong learning",
-  "Quality assurance and governance in digital education",
-  "Access, inclusion, and equity in online learning"
+  "Ethics, Quality Assurance, and Governance in digital education",
+  "Access, inclusion, and equity in digital education"
 ];
+
+type ImportantDateItem = (typeof importantDates)[number];
+
+const MONTH_INDEX: Record<string, number> = {
+  january: 0,
+  february: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11
+};
+
+function formatYMD(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}${m}${d}`;
+}
+
+function parseImportantDate(dateStr: string) {
+  // Supported formats:
+  // - "1 April 2026"
+  // - "5–7 August 2026"
+  const rangeMatch = dateStr.match(
+    /^(\d{1,2})\s*[–-]\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/
+  );
+  if (rangeMatch) {
+    const startDay = Number(rangeMatch[1]);
+    const endDay = Number(rangeMatch[2]);
+    const monthName = rangeMatch[3].toLowerCase();
+    const year = Number(rangeMatch[4]);
+    const monthIndex = MONTH_INDEX[monthName];
+    const start = new Date(year, monthIndex, startDay);
+    const endExclusive = new Date(year, monthIndex, endDay + 1);
+    return { start, endExclusive };
+  }
+
+  const singleMatch = dateStr.match(
+    /^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/
+  );
+  if (!singleMatch) return null;
+
+  const day = Number(singleMatch[1]);
+  const monthName = singleMatch[2].toLowerCase();
+  const year = Number(singleMatch[3]);
+  const monthIndex = MONTH_INDEX[monthName];
+  const start = new Date(year, monthIndex, day);
+  const endExclusive = new Date(year, monthIndex, day + 1);
+  return { start, endExclusive };
+}
+
+function addToCalendar(item: ImportantDateItem) {
+  const parsed = parseImportantDate(item.date);
+  if (!parsed) return;
+
+  const title = `ICODE2026 - ${item.label}`;
+  const details = item.note;
+  const location = "University of Moratuwa · Sri Lanka · Hybrid";
+
+  const googleUrl =
+    `https://www.google.com/calendar/render?action=TEMPLATE` +
+    `&text=${encodeURIComponent(title)}` +
+    `&dates=${formatYMD(parsed.start)}/${formatYMD(parsed.endExclusive)}` +
+    `&details=${encodeURIComponent(details)}` +
+    `&location=${encodeURIComponent(location)}`;
+
+  window.open(googleUrl, "_blank", "noopener,noreferrer");
+}
+
+function ImportantDateAddToCalendarButton({ item }: { item: ImportantDateItem }) {
+  const title = "Opens Google Calendar in a new tab with this date";
+
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        addToCalendar(item);
+      }}
+      title={title}
+      aria-label={`Add ${item.label} (${item.date}) to your calendar`}
+      className="group mt-2 inline-flex w-fit max-w-full items-center gap-1.5 rounded-md border border-emerald-300 bg-emerald-50/90 px-2 py-1 text-[11px] font-medium text-emerald-800 transition hover:border-emerald-400 hover:bg-emerald-100/90 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 md:mx-auto"
+    >
+      <CalendarIcon
+        className="h-3.5 w-3.5 shrink-0 text-emerald-700 group-hover:text-emerald-800"
+        aria-hidden
+      />
+      <span className="leading-tight">Add to calendar</span>
+    </button>
+  );
+}
 
 const faqItems = [
   {
@@ -86,7 +153,7 @@ const faqItems = [
   },
   {
     id: "format",
-    question: "What is the conference format?",
+    question: "What is the event format?",
     answer: (
       <ul className="list-disc pl-5 space-y-1">
         <li>Day 1 – Policy &amp; Leadership Summit</li>
@@ -101,9 +168,9 @@ const faqItems = [
     question: "What type of submissions are expected?",
     answer: (
       <p>
-        We invite 2–4 page extended abstracts (700–1,000 words) presenting empirical
+        We invite 2–3 page extended abstracts (700–1,000 words) presenting empirical
         research, design-based studies, innovative practices, policy analyses, or case
-        studies that align with the conference themes in open and digital education.
+        studies that align with the conference themes in open and digital education. All submissions must be in PDF format.
       </p>
     )
   },
@@ -112,32 +179,27 @@ const faqItems = [
     question: "How do I submit my extended abstract?",
     answer: (
       <p>
-        Extended abstracts should be prepared using the ICODE2026 template and submitted
-        in MS Word (.docx) format via the online submission portal linked from the official
-        conference website. All submissions will undergo peer review.
+        Extended abstracts should be submitted via the online submission portal. This can be found in the 'Submit Abstract' page. Any other method of submission will not be accepted.
       </p>
     )
   },
-  {
-    id: "proceedings",
-    question: "Will there be published proceedings?",
-    answer: (
-      <p>
-        Yes. All accepted and presented contributions will be included in the peer‑reviewed
-        ICODE2026 Conference Proceedings. Selected papers may be considered for extended
-        publication in partnered outlets.
-      </p>
-    )
-  },
+  // {
+  //   id: "proceedings",
+  //   question: "Will there be published proceedings?",
+  //   answer: (
+  //     <p>
+  //       Yes. All accepted and presented contributions will be included in the peer‑reviewed
+  //       ICODE2026 Conference Proceedings. Selected papers may be considered for extended
+  //       publication in partnered outlets.
+  //     </p>
+  //   )
+  // },
   {
     id: "fees",
-    question: "What are the registration fee options?",
+    question: "How do I register for the event?",
     answer: (
       <p>
-        Fees differ for international and Sri Lankan participants, with separate rates for
-        academics and students and both physical and online participation options. Early
-        bird discounts and group or institutional rates are available – see the “Fees”
-        section on this page for the latest structure.
+        Registration can be done via the online registration portal. This can be found in the 'Registration' page.
       </p>
     )
   },
@@ -146,8 +208,7 @@ const faqItems = [
     question: "Where will the conference take place?",
     answer: (
       <p>
-        The physical hub of ICODE2026 is the University of Moratuwa, Sri Lanka, hosted by
-        the Centre for Open and Distance Learning (CODL). A fully supported virtual track
+        The physical events of ICODE2026 will take place in Colombo, Sri Lanka. A fully supported virtual track
         will enable remote participation.
       </p>
     )
@@ -259,9 +320,9 @@ function App() {
               <a href="#dates" className="hover:text-uom-maroon">
                 Important Dates
               </a>
-              <a href="#fees" className="hover:text-uom-maroon">
-                Fees
-              </a>
+              <Link to="/registration" className="hover:text-uom-maroon">
+                Registration
+              </Link>
               <a href="#committees" className="hover:text-uom-maroon">
                 Committees
               </a>
@@ -300,18 +361,18 @@ function App() {
                   About
                 </Link>
                 <Link
-                  to="/#fees"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  Fees
-                </Link>
-                <Link
                   to="/#dates"
                   onClick={() => setMobileNavOpen(false)}
                   className="hover:text-uom-maroon"
                 >
                   Important Dates
+                </Link>
+                <Link
+                  to="/registration"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Registration
                 </Link>
                 <Link
                   to="/#committees"
@@ -377,14 +438,27 @@ function App() {
                       International Conference on Open and Digital Education
                     </span>
                   </h1>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-100 md:text-base">
-                    Proudly hosted by the{" "}
-                    <span className="font-semibold">
-                      Centre for Open and Distance Learning (CODL), University of
-                      Moratuwa
-                    </span>{" "}
-                    – celebrating 20 years of excellence in digital higher education.
-                  </p>
+                  <div className="mt-4 grid grid-cols-[auto,1fr] items-stretch gap-4">
+                    <div className="shrink-0">
+                      <div className="relative aspect-square h-full min-h-12 max-h-20 overflow-hidden rounded-full sm:h-14 sm:min-h-0 sm:max-h-none md:h-16">
+                        <img
+                          src={anniversary20Logo}
+                          alt="CODL 20th Anniversary"
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-sm leading-relaxed text-neutral-100 md:text-base">
+                      Proudly hosted by the{" "}
+                      <span className="font-semibold">
+                        Centre for Open and Distance Learning (CODL), University of
+                        Moratuwa
+                      </span>{" "}
+                      – celebrating 20 years of excellence in digital higher education.
+                    </p>
+                  </div>
 
                   <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-neutral-900 shadow-sm">
@@ -411,19 +485,21 @@ function App() {
                         </span>
                       </Button>
                     </Link>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <CursorArrowRaysIcon className="h-4 w-4 shrink-0" />
-                        <span className="flex-1 text-center whitespace-normal leading-snug">
-                          Register your interest
+                    <Link to="/registration">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <CursorArrowRaysIcon className="h-4 w-4 shrink-0" />
+                          <span className="flex-1 text-center whitespace-normal leading-snug">
+                            Get Registered
+                          </span>
+                          <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>
-                        <ChevronRightIcon className="h-4 w-4 shrink-0" />
-                      </span>
-                    </Button>
+                      </Button>
+                    </Link>
                     <Link to="/programme">
                       <Button
                         variant="outline"
@@ -462,7 +538,7 @@ function App() {
                   <span className="font-semibold">
                     Centre for Open and Distance Learning (CODL)
                   </span>{" "}
-                  of the University of Moratuwa. It was conceived as a space where
+                  of the University of Moratuwa. It is envisioned as a space where
                   policy makers, researchers, and practitioners could design the
                   next generation of{" "}
                   <span className="font-semibold">
@@ -512,6 +588,17 @@ function App() {
                     </Link>
                   </div>
                 </div>
+                <div className="mt-3 flex items-center justify-between gap-3 md:hidden">
+                  <Badge variant="solid">5–7 August 2026</Badge>
+                  <Link
+                    to="/programme"
+                    className="group inline-flex items-center gap-1.5 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-3 py-1.5 text-[11px] font-semibold text-neutral-900 shadow-sm transition hover:bg-uom-gold"
+                  >
+                    <CalendarDaysIcon className="h-3.5 w-3.5 text-uom-maroon" />
+                    <span>Schedule</span>
+                    <ChevronRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </div>
 
                 <div className="mt-6 grid gap-6 md:grid-cols-3">
                   <Card className="border border-uom-maroon/25 bg-white/95">
@@ -532,7 +619,7 @@ function App() {
                         <div className="space-y-2">
                           <p>
                             Governance, quality, and digital transformation in higher
-                            education – designed for ministries, UGC, QA bodies, and
+                            education – designed for ministries, UGC, Quality Assurance bodies, and
                             institutional leaders.
                           </p>
                           <ul className="space-y-1 text-xs text-neutral-700">
@@ -598,7 +685,7 @@ function App() {
                             Moodle administrators, faculty, and EdTech teams.
                           </p>
                           <ul className="space-y-1 text-xs text-neutral-800">
-                            <li>• Course design studios and LX labs</li>
+                            <li>• Course design studios</li>
                             <li>• Learning analytics and AI tools</li>
                             <li>• Case-based institutional showcases</li>
                             <li>• Micro-credential and recognition dialogues</li>
@@ -612,7 +699,96 @@ function App() {
             </div>
           </div>
 
-          <section id="why-participate" className="mt-12 md:mt-16 scroll-mt-24">
+          {/* Important dates timeline – moved under 3-day programme */}
+          <section id="dates" className="mt-16 md:mt-20 scroll-mt-24">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+                  <span className="inline-flex items-center gap-2">
+                    <CalendarDaysIcon className="h-6 w-6 text-uom-maroon" />
+                    Important Dates
+                  </span>
+                </h2>
+                <p className="mt-2 text-sm text-neutral-700 md:text-base">
+                  Plan your submissions and registration for ICODE2026.
+                </p>
+              </div>
+            </div>
+
+            {/* Mobile: vertical timeline */}
+            <div className="mt-8 md:hidden">
+              <ol className="relative space-y-4">
+                <div
+                  aria-hidden="true"
+                  className="absolute left-[19px] top-4 bottom-4 w-px bg-neutral-300"
+                />
+
+                {importantDates.map((item) => (
+                  <li key={item.label} className="relative flex items-start gap-4">
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
+                      <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
+                    </div>
+
+                    <div className="flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3 shadow-sm">
+                      <p className="text-base font-semibold text-neutral-900">
+                        {item.date}
+                      </p>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-neutral-700">
+                        {item.note}
+                      </p>
+                      <ImportantDateAddToCalendarButton item={item} />
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* Desktop: horizontal timeline */}
+            <div className="mt-8 hidden md:block">
+              <ol className="flex flex-row gap-8 md:flex-row md:items-stretch md:justify-between">
+                {importantDates.map((item, index) => (
+                  <li key={item.label} className="flex flex-1">
+                    <div className="flex w-full flex-col items-center text-center md:px-2">
+                      <div className="flex w-full items-center gap-2">
+                        <div
+                          className={`hidden h-px flex-1 md:block ${
+                            index === 0 ? "bg-transparent" : "bg-neutral-300"
+                          }`}
+                        />
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
+                          <CalendarDaysIcon className="h-4 w-4 text-uom-maroon" />
+                        </div>
+                        <div
+                          className={`hidden h-px flex-1 md:block ${
+                            index === importantDates.length - 1
+                              ? "bg-transparent"
+                              : "bg-neutral-300"
+                          }`}
+                        />
+                      </div>
+                      <div className="mt-3 flex w-full flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-3 py-4 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:justify-between md:px-4 md:py-4">
+                        <p className="text-sm font-semibold text-neutral-900 md:text-base">
+                          {item.date}
+                        </p>
+                        <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 text-xs text-neutral-700 md:text-sm">
+                          {item.note}
+                        </p>
+                        <ImportantDateAddToCalendarButton item={item} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          <section id="why-participate" className="mt-16 md:mt-20 scroll-mt-24">
             <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
               <AcademicCapIcon className="h-6 w-6 text-uom-maroon" />
               Why participate?
@@ -660,204 +836,6 @@ function App() {
             </Card>
           </section>
 
-          {/* Registration fee structure – sits under Why participate */}
-          <section id="fees" className="mt-16 md:mt-20 scroll-mt-24">
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 className="flex items-center justify-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-                <CurrencyDollarIcon className="h-7 w-7 text-uom-maroon" />
-                <span>Registration Fees</span>
-              </h2>
-              <p className="mt-2 flex items-start justify-center gap-2 text-sm text-neutral-700 md:items-center md:text-base">
-                <CheckCircleIcon className="mt-0.5 h-4 w-4 text-uom-maroon" />
-                <span>Choose the option that best fits how you plan to join ICODE2026.</span>
-              </p>
-            </div>
-
-            <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-              {/* International tier */}
-              <div className="relative flex flex-col rounded-3xl border border-uom-maroon/50 bg-white/90 p-6 shadow-sm md:p-7">
-                <p
-                  id="tier-international"
-                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-uom-maroon"
-                >
-                  International participants
-                </p>
-                <p className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-                    $150
-                  </span>
-                  <span className="text-xs text-neutral-500">from (physical academic)</span>
-                </p>
-                <p className="mt-2 text-xs text-neutral-600 md:text-sm">
-                  For academics and students based outside Sri Lanka, with physical and online options.
-                </p>
-                <ul className="mt-5 space-y-2 text-xs md:text-sm">
-                  <li className="flex gap-2 text-emerald-700">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                    <span>
-                      <span className="font-semibold">$150</span> – Physical (Academic)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-emerald-700">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                    <span>
-                      <span className="font-semibold">$100</span> – Physical (Student)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-sky-700">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
-                    <span>
-                      <span className="font-semibold">$75</span> – Online (Academic)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-sky-700">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-600" />
-                    <span>
-                      <span className="font-semibold">$50</span> – Online (Student)
-                    </span>
-                  </li>
-                </ul>
-                <p className="mt-3 text-[11px] text-neutral-500 md:text-xs">
-                  Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
-                </p>
-              </div>
-
-              {/* Local tier */}
-              <div className="relative flex flex-col rounded-3xl border border-uom-gold/60 bg-uom-goldSoft/80 p-6 shadow-sm md:p-7">
-                <p
-                  id="tier-local"
-                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-900"
-                >
-                  Sri Lanka participants
-                </p>
-                <p className="mt-3 flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-                    LKR ≈ $75
-                  </span>
-                  <span className="text-xs text-neutral-700">from (physical academic)</span>
-                </p>
-                <p className="mt-2 text-xs text-neutral-800 md:text-sm">
-                  Fees payable in LKR, calculated at the prevailing exchange rate.
-                </p>
-                <ul className="mt-5 space-y-2 text-xs md:text-sm">
-                  <li className="flex gap-2 text-emerald-800">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
-                    <span>
-                      <span className="font-semibold">LKR equivalent of $75</span> – Physical (Academic)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-emerald-800">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-700" />
-                    <span>
-                      <span className="font-semibold">LKR equivalent of $40</span> – Physical (Student)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-sky-800">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
-                    <span>
-                      <span className="font-semibold">LKR equivalent of $40</span> – Online (Academic)
-                    </span>
-                  </li>
-                  <li className="flex gap-2 text-sky-800">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-sky-700" />
-                    <span>
-                      <span className="font-semibold">LKR equivalent of $25</span> – Online (Student)
-                    </span>
-                  </li>
-                </ul>
-                <p className="mt-3 text-[11px] text-neutral-700 md:text-xs">
-                  Early bird (before 10 July) – 10–15% off the above rates. Group / institutional rates for multiple registrations.
-                </p>
-              </div>
-            </div>
-          </section>
-        </section>
-
-        {/* Important dates timeline */}
-        <section id="dates" className="mt-16 md:mt-20 scroll-mt-24">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-                <span className="inline-flex items-center gap-2">
-                  <CalendarDaysIcon className="h-6 w-6 text-uom-maroon" />
-                  Important Dates
-                </span>
-              </h2>
-              <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                Plan your submissions and registration for ICODE2026.
-              </p>
-            </div>
-          </div>
-
-          {/* Mobile: vertical timeline */}
-          <div className="mt-8 md:hidden">
-            <ol className="relative space-y-4">
-              <div
-                aria-hidden="true"
-                className="absolute left-[19px] top-4 bottom-4 w-px bg-neutral-300"
-              />
-
-              {importantDates.map((item) => (
-                <li key={item.label} className="relative flex items-start gap-4">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
-                    <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
-                  </div>
-
-                  <div className="flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3 shadow-sm">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
-                      {item.label}
-                    </p>
-                    <p className="mt-1 text-base font-semibold text-neutral-900">
-                      {item.date}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-neutral-700">
-                      {item.note}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* Desktop: horizontal timeline */}
-          <div className="mt-8 hidden md:block">
-            <ol className="flex flex-row gap-8 md:flex-row md:items-stretch md:justify-between">
-              {importantDates.map((item, index) => (
-                <li key={item.label} className="flex flex-1">
-                  <div className="flex w-full flex-col items-center text-center md:px-2">
-                    <div className="flex w-full items-center gap-2">
-                      <div
-                        className={`hidden h-px flex-1 md:block ${
-                          index === 0 ? "bg-transparent" : "bg-neutral-300"
-                        }`}
-                      />
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
-                        <CalendarDaysIcon className="h-4 w-4 text-uom-maroon" />
-                      </div>
-                      <div
-                        className={`hidden h-px flex-1 md:block ${
-                          index === importantDates.length - 1
-                            ? "bg-transparent"
-                            : "bg-neutral-300"
-                        }`}
-                      />
-                    </div>
-                    <div className="mt-3 flex w-full flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-3 py-4 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:justify-between md:px-4 md:py-4">
-                      <p className="text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-sm font-semibold text-neutral-900 md:text-base">
-                        {item.date}
-                      </p>
-                      <p className="mt-1 text-xs text-neutral-700 md:text-sm">
-                        {item.note}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
         </section>
 
 
@@ -881,12 +859,22 @@ function App() {
                 {Array.from({ length: 35 }).map((_, index) => (
                   <div
                     key={index}
-                    className="flex h-16 items-center justify-center md:h-20"
+                    className="flex h-16 items-center justify-center gap-8 md:h-20 md:gap-10"
                   >
                     <img
                       src={logo}
                       alt="University of Moratuwa logo"
-                      className="h-10 w-auto opacity-90 md:h-12"
+                      className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
+                    />
+                    <img
+                      src={codlLogo}
+                      alt="Centre for Open and Distance Learning (CODL) logo"
+                      className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
+                    />
+                    <img
+                      src={anniversary20Logo}
+                      alt="CODL 20th Anniversary logo"
+                      className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
                     />
                   </div>
                 ))}
@@ -909,7 +897,7 @@ function App() {
           <div className="mt-6 grid gap-6 md:grid-cols-3">
             <Card className="relative h-full">
               <CardHeader>
-                <CardTitle>Strategic leadership</CardTitle>
+                <CardTitle>Strategic Leadership</CardTitle>
               </CardHeader>
               <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
@@ -920,7 +908,7 @@ function App() {
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <UsersIcon className="h-3.5 w-3.5 text-uom-maroon" />
-                      <span>View strategic leadership</span>
+                      <span>View Strategic Leadership</span>
                     </span>
                     <ChevronRightIcon className="h-3.5 w-3.5 text-neutral-900 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </span>
@@ -930,7 +918,7 @@ function App() {
 
             <Card className="relative h-full">
               <CardHeader>
-                <CardTitle>Academic &amp; publications</CardTitle>
+                <CardTitle>Academic &amp; Publications</CardTitle>
               </CardHeader>
               <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
@@ -941,7 +929,7 @@ function App() {
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <AcademicCapIcon className="h-3.5 w-3.5 text-uom-maroon group-hover:text-uom-maroon" />
-                      <span>View academic &amp; publications</span>
+                      <span>View Academic &amp; Publications</span>
                     </span>
                     <ChevronRightIcon className="h-3.5 w-3.5 text-neutral-900 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </span>
@@ -951,7 +939,7 @@ function App() {
 
             <Card className="relative h-full">
               <CardHeader>
-                <CardTitle>Operations &amp; experience</CardTitle>
+                <CardTitle>Operations &amp; Experience</CardTitle>
               </CardHeader>
               <CardContent className="flex h-full flex-col gap-4 pb-7 text-sm text-neutral-800">
                 <p>
@@ -962,7 +950,7 @@ function App() {
                   <span className="group flex w-full min-h-[44px] items-center justify-between gap-2 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-4 text-[11px] font-semibold text-neutral-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-gradient-to-r hover:from-uom-goldSoft hover:to-white hover:shadow-md">
                     <span className="inline-flex items-center gap-1.5 sm:whitespace-nowrap whitespace-normal">
                       <CursorArrowRaysIcon className="h-3.5 w-3.5 text-uom-maroon group-hover:text-uom-maroon" />
-                      <span>View operations &amp; experience</span>
+                      <span>View Operations &amp; Experience</span>
                     </span>
                     <ChevronRightIcon className="h-3.5 w-3.5 text-neutral-900 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </span>
@@ -1113,10 +1101,10 @@ function App() {
                       Email
                     </p>
                     <a
-                      href="mailto:icode.codl.lk"
+                      href="mailto:icode@codl.lk"
                       className="mt-1 inline-flex items-center text-sm font-medium text-uom-maroon hover:underline"
                     >
-                      icode.codl.lk
+                      icode@codl.lk
                     </a>
                   </div>
                 </div>
@@ -1129,9 +1117,12 @@ function App() {
                     <p className="text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                       Phone (office hours)
                     </p>
-                    <p className="mt-1 text-sm">
-                      +94 00 000 0000
-                    </p>
+                    <a
+                      href={`tel:${CONTACT_PHONE_TEL}`}
+                      className="mt-1 inline-block text-sm font-medium text-neutral-900 hover:text-uom-maroon hover:underline"
+                    >
+                      {CONTACT_PHONE_DISPLAY}
+                    </a>
                   </div>
                 </div>
 
@@ -1319,7 +1310,7 @@ function App() {
                     </li>
                     <li>
                       <a href="#dates" className="hover:underline">
-                        Important dates
+                        Important Dates
                       </a>
                     </li>
                     <li>
@@ -1370,10 +1361,35 @@ function App() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:icode.codl.lk"
+                          href="mailto:icode@codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          icode.codl.lk
+                          icode@codl.lk
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="inline-flex items-center gap-2">
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className="h-3.5 w-3.5"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                            />
+                          </svg>
+                        </span>
+                        <a
+                          href={`tel:${CONTACT_PHONE_TEL}`}
+                          className="text-xs font-medium text-uom-gold hover:underline"
+                        >
+                          {CONTACT_PHONE_DISPLAY}
                         </a>
                       </div>
                     </li>

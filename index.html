@@ -9,9 +9,26 @@
       name="description"
       content="ICODE2026 – International Conference on Open and Digital Education hosted by CODL, University of Moratuwa, Sri Lanka."
     />
+    <style>
+      #cmt-ack {
+        display: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.3;
+        color: inherit;
+      }
+      body:has(#call-for-papers-page) #cmt-ack {
+        display: block;
+      }
+    </style>
   </head>
   <body class="bg-background text-foreground">
     <div id="root"></div>
+    <p id="cmt-ack">
+      The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.
+    </p>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

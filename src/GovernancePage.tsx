@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Bars3Icon,
   UsersIcon,
@@ -13,9 +13,21 @@ import mainBg from "./assets/bgmain.png";
 import womanAvatar from "./assets/woman.png";
 import manAvatar from "./assets/men.png";
 import { Footer } from "./Footer";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 import { Button } from "./components/ui/button";
 
-const people = [
+type CommitteeSection = { label: string; names: string[] };
+
+type CommitteeGroup = {
+  role: string;
+  /** Optional second line so long titles stay readable (e.g. parenthetical subtitle). */
+  roleSecondLine?: string;
+  names?: string[];
+  sections?: CommitteeSection[];
+};
+
+/** Order: strategic (0–1), academic (2), operations (3–end). */
+const committeeGroups: CommitteeGroup[] = [
   {
     role: "Event Patron",
     names: ["Prof Malik Ranasinghe"]
@@ -25,74 +37,399 @@ const people = [
     names: ["Prof Dileeka Dias", "Ms Vishaka Nanayakkara"]
   },
   {
-    role: "Publications & Proceedings Committee (incl. Programme & Review)",
-    names: [
-      "Dr Buddhika Karunarathne",
-      "Dr Thanuja Ambegoda",
-      "Ms Eshana Ranasinghe",
-      "Mr Savin Gunawardena",
-      "Mr Nadeesha Ranaweera"
+    role: "Publications & Proceedings Committee",
+    roleSecondLine: "",
+    sections: [
+      {
+        label: "Co-chairs",
+        names: ["Dr Buddhika Karunarathne", "Dr Thanuja Ambegoda"]
+      },
+      {
+        label: "Members",
+        names: [
+          "Ms Eshana Ranasinghe",
+          "Mr Savin Gunawardena",
+          "Mr Nadeesha Ranaweera",
+          "Ms Sumudu Wasana",
+          "Prof Tharaka Samarasinghe",
+          "Prof Uditha Ratnayake"
+        ]
+      }
     ]
   },
   {
     role: "Media, Communications & Branding Committee",
-    names: [
-      "Dr Nisansa de Silva",
-      "Dr Suranga Jayasena",
-      "Mr Nadeesha Ranaweera",
-      "Mr Kaveesha Nanayakkara"
+    sections: [
+      {
+        label: "Chairs",
+        names: ["Dr Nisansa de Silva", "Dr Suranga Jayasena"]
+      },
+      {
+        label: "Members",
+        names: [
+          "Mr Nadeesha Ranaweera",
+          "Mr Kaveesha Nanayakkara",
+          "Ms Malshi Tharuka",
+          "Ms Shazna Kamaldeen"
+        ]
+      }
     ]
   },
   {
-    role: "Policy & Leadership Summit Steering Group",
-    names: [
-      "Prof N D Gunawardena",
-      "Ms Vishaka Nanayakkara",
-      "Ms Tashini Rodrigo",
-      "Mr Jageshkar Sivahar"
+    role: "Policy & Leadership Summit",
+    sections: [
+      {
+        label: "Co-chairs",
+        names: ["Prof N D Gunawardena", "Ms Vishaka Nanayakkara"]
+      },
+      {
+        label: "Members",
+        names: [
+          "Ms Tashini Rodrigo",
+          "Mr Jageshkar Sivahar",
+          "Dr Uthayasanker Thayasivam",
+          "Mr Waruna Sri Danapala",
+          "Mr Hasith Yaggahavita"
+        ]
+      }
     ]
   },
   {
     role: "Finance & Sponsorship Committee",
-    names: ["Dr R M S Ratnayake", "Dr Tiloka de Silva", "Ms Dhanushima Gamage"]
+    sections: [
+      {
+        label: "Co-chairs",
+        names: ["Dr R M S Ratnayake", "Dr Tiloka de Silva"]
+      },
+      {
+        label: "Members",
+        names: [
+          "Ms Dhanushima Gamage",
+          "Dr Buddhika Karunarathne",
+          "Ms Vishaka Nanayakkara"
+        ]
+      }
+    ]
   },
   {
     role: "Logistics & Operations Committee",
-    names: [
-      "Ms Dineshi Nandasena",
-      "Dr Thilina Thanthriwatta",
-      "Dr Adeesha Wijayasiri",
-      "Ms Indika Samarasinghe",
-      "Ms Tharushi Kurukulasooriya",
-      "Ms Sanduli Tharuka"
+    sections: [
+      {
+        label: "Leads",
+        names: [
+          "Ms Dineshi Nandasena",
+          "Dr Thilina Thanthriwatta",
+          "Dr Adeesha Wijayasiri"
+        ]
+      },
+      {
+        label: "Members",
+        names: [
+          "Ms Indika Samarasinghe",
+          "Mr Jageshkar Sivahar",
+          "Ms Sanduli Tharuka"
+        ]
+      }
     ]
   },
   {
     role: "Ethics, Quality & Risk Management Committee",
-    names: ["Prof Nalin Wickramarachchi", "Dr Chathuranga Hettiarachchi"]
+    sections: [
+      {
+        label: "Co-chairs",
+        names: ["Prof Nalin Wickramarachchi", "Dr Chathuranga Hettiarachchi"]
+      },
+      {
+        label: "Members",
+        names: ["Dr Gayathri Kuruppu", "Ms Dulmi Fonseka"]
+      }
+    ]
   },
   {
     role: "Student & Volunteer Coordination Committee",
-    names: ["Prof D Chandrasekera", "Dr Sandareka Wikramanayake", "Mr B H Sudantha"]
+    sections: [
+      {
+        label: "Co-chairs",
+        names: [
+          "Prof D Chandrasekera",
+          "Dr Sandareka Wickramanayake",
+          "Mr B H Sudantha"
+        ]
+      },
+      {
+        label: "Members",
+        names: ["Ms Tharushi Kurukulasooriya"]
+      }
+    ]
   }
 ];
 
+function normalizeAvatarKey(value: string) {
+  // Strip everything except [a-z0-9] so "B H" and "BH" both become "bh".
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+const committeeAvatarModules = import.meta.glob("./assets/committee/*", {
+  eager: true,
+  import: "default"
+}) as Record<string, string>;
+
+const committeeAvatarByKey: Record<string, string> = Object.entries(
+  committeeAvatarModules
+).reduce((acc, [path, url]) => {
+  const filename = path.split("/").pop() ?? path;
+  const base = filename.replace(/\.[^.]+$/, "");
+  const key = normalizeAvatarKey(base);
+  acc[key] = url;
+  return acc;
+}, {} as Record<string, string>);
+
+function levenshteinDistance(a: string, b: string) {
+  const m = a.length;
+  const n = b.length;
+
+  const dp: number[][] = Array.from({ length: m + 1 }, () =>
+    Array(n + 1).fill(0)
+  );
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  return dp[m][n];
+}
+
+const avatarCache = new Map<string, string>();
+
 function getAvatarForName(name: string) {
+  const cached = avatarCache.get(name);
+  if (cached != null) return cached;
+
   const womenNames = [
     "Prof Dileeka Dias",
     "Ms Vishaka Nanayakkara",
     "Dr Tiloka de Silva",
-    "Dr Sandareka Wikramanayake",
+    "Dr Sandareka Wickramanayake",
     "Ms Eshana Ranasinghe",
     "Ms Dhanushima Gamage",
     "Ms Dineshi Nandasena",
     "Ms Indika Samarasinghe",
     "Ms Tharushi Kurukulasooriya",
     "Ms Sanduli Tharuka",
-    "Ms Tashini Rodrigo"
+    "Ms Tashini Rodrigo",
+    "Dr Thanuja Ambegoda",
+    "Ms Sumudu Wasana",
+    "Ms Malshi Tharuka",
+    "Ms Shazna Kamaldeen",
+    "Dr Gayathri Kuruppu",
+    "Ms Dulmi Fonseka"
   ];
 
-  return womenNames.includes(name) ? womanAvatar : manAvatar;
+  const normalizedName = normalizeAvatarKey(name);
+  const directMatch = committeeAvatarByKey[normalizedName];
+  if (directMatch != null) return directMatch;
+
+  // If filenames omit parts of the full name (e.g. "Dr Buddhika.jpg" for
+  // "Dr Buddhika Karunarathne"), fall back to the longest matching prefix.
+  let bestUrl: string | null = null;
+  let bestKeyLen = -1;
+
+  for (const [key, url] of Object.entries(committeeAvatarByKey)) {
+    if (
+      normalizedName.startsWith(key) ||
+      // Also allow reverse prefix (rare, but keeps matching robust)
+      key.startsWith(normalizedName)
+    ) {
+      if (key.length > bestKeyLen) {
+        bestKeyLen = key.length;
+        bestUrl = url;
+      }
+    }
+  }
+
+  if (bestUrl != null) return bestUrl;
+
+  // Last resort: fuzzy match for small spelling variants in filenames.
+  // (Keeps "Rathnayake" vs "Ratnayake", "Tashini" vs "Thashini" working.)
+  const normalizedNameForFuzzy = normalizeAvatarKey(name);
+  let bestFuzzyUrl: string | null = null;
+  let bestFuzzyRatio = Infinity;
+
+  for (const [key, url] of Object.entries(committeeAvatarByKey)) {
+    const dist = levenshteinDistance(normalizedNameForFuzzy, key);
+    const ratio = dist / Math.max(normalizedNameForFuzzy.length, key.length);
+    if (ratio < bestFuzzyRatio) {
+      bestFuzzyRatio = ratio;
+      bestFuzzyUrl = url;
+    }
+  }
+
+  // Keep it strict to avoid matching completely unrelated people.
+  const FUZZY_THRESHOLD = 0.18;
+
+  const resolved =
+    bestFuzzyUrl != null && bestFuzzyRatio <= FUZZY_THRESHOLD
+      ? bestFuzzyUrl
+      : womenNames.includes(name)
+        ? womanAvatar
+        : manAvatar;
+
+  avatarCache.set(name, resolved);
+  return resolved;
+}
+
+type PeopleEntry = { name: string; role: string };
+
+function getGroupPeople(group: CommitteeGroup): PeopleEntry[] {
+  if (group.sections) {
+    return group.sections.flatMap((section) =>
+      section.names.map((name) => ({
+        name,
+        role: section.label
+      }))
+    );
+  }
+
+  return (group.names ?? []).map((name) => ({
+    name,
+    role: group.role
+  }));
+}
+
+function PersonGridItem({ person }: { person: PeopleEntry }) {
+  return (
+    <li>
+      <div className="flex items-center gap-x-6">
+        <img
+          alt=""
+          src={getAvatarForName(person.name)}
+          aria-hidden
+          className="size-16 rounded-full outline-1 -outline-offset-1 outline-black/5 object-cover bg-neutral-100"
+        />
+        <div className="min-w-0">
+          <p className="text-sm font-semibold leading-snug text-neutral-900">
+            {person.name}
+          </p>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+type CommitteeCardTone = "onGold" | "default";
+
+function CommitteeCard({
+  group,
+  tone = "default"
+}: {
+  group: CommitteeGroup;
+  tone?: CommitteeCardTone;
+}) {
+  const people = getGroupPeople(group);
+
+  const accent =
+    tone === "onGold"
+      ? "border-l border-uom-gold/40"
+      : "border-l border-neutral-200/90";
+
+  return (
+    <article className={`min-w-0 pl-4 ${accent}`}>
+      <header className="mb-3">
+        <h3 className="text-base font-bold tracking-tight text-neutral-900">
+          {group.role}
+          {group.roleSecondLine ? (
+            <span className="mt-1 block text-sm font-semibold text-neutral-600">
+              {group.roleSecondLine}
+            </span>
+          ) : null}
+        </h3>
+      </header>
+
+      {group.sections ? (
+        <div className="space-y-6">
+          {group.sections.map((section) => {
+            const sectionPeople: PeopleEntry[] = section.names.map((name) => ({
+              name,
+              role: section.label
+            }));
+
+            return (
+              <div key={section.label}>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600">
+                  {section.label}
+                </p>
+                <ul
+                  role="list"
+                  className="mt-3 grid gap-x-8 gap-y-10 sm:grid-cols-2"
+                >
+                  {sectionPeople.map((person) => (
+                    <PersonGridItem
+                      key={`${group.role}-${section.label}-${person.name}`}
+                      person={person}
+                    />
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <ul
+          role="list"
+          className="grid gap-x-8 gap-y-10 sm:grid-cols-2"
+        >
+          {people.map((person) => (
+            <PersonGridItem
+              key={`${group.role}-${person.role}-${person.name}`}
+              person={person}
+            />
+          ))}
+        </ul>
+      )}
+    </article>
+  );
+}
+
+function GovernanceSectionLabel({
+  children,
+  variant
+}: {
+  children: ReactNode;
+  variant: "gold" | "slate" | "muted";
+}) {
+  const bar =
+    variant === "gold"
+      ? "bg-uom-maroon"
+      : variant === "slate"
+        ? "bg-neutral-900"
+        : "bg-neutral-400";
+  const text =
+    variant === "gold"
+      ? "text-uom-maroon"
+      : variant === "slate"
+        ? "text-neutral-900"
+        : "text-neutral-600";
+
+  return (
+    <div className="mb-5 flex items-stretch gap-3 md:mb-6">
+      <span className={`w-1 shrink-0 rounded-full ${bar}`} aria-hidden />
+      <p
+        className={`pt-0.5 text-[11px] font-bold uppercase tracking-[0.22em] ${text}`}
+      >
+        {children}
+      </p>
+    </div>
+  );
 }
 
 export default function GovernancePage() {
@@ -169,8 +506,8 @@ export default function GovernancePage() {
               <Link to="/#dates" className="hover:text-uom-maroon">
                 Important Dates
               </Link>
-              <Link to="/#fees" className="hover:text-uom-maroon">
-                Fees
+              <Link to="/registration" className="hover:text-uom-maroon">
+                Registration
               </Link>
               <Link to="/#committees" className="hover:text-uom-maroon">
                 Committees
@@ -214,18 +551,18 @@ export default function GovernancePage() {
                     About
                   </Link>
                   <Link
-                    to="/#fees"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Fees
-                  </Link>
-                  <Link
                     to="/#dates"
                     onClick={() => setMobileNavOpen(false)}
                     className="hover:text-uom-maroon"
                   >
                     Important Dates
+                  </Link>
+                  <Link
+                    to="/registration"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="hover:text-uom-maroon"
+                  >
+                    Registration
                   </Link>
                   <Link
                     to="/#committees"
@@ -267,121 +604,50 @@ export default function GovernancePage() {
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
               ICODE2026 is supported by a structured governance model that brings together
               strategic leadership, academic quality assurance, and operational excellence.
-              The committees below work together to ensure a seamless hybrid experience for
-              all participants.
+              The <span className="font-semibold">Main Organising Committee</span> and
+              specialist committees below work together to ensure a seamless hybrid
+              experience for all participants.
             </p>
           </section>
 
           <section
             id="strategic"
-            className="mt-10 rounded-3xl border border-uom-gold/60 bg-uom-goldSoft/80 px-4 py-5 md:px-6 md:py-6 shadow-sm"
+            className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <p className="text-[11px] uppercase tracking-[0.24em] text-uom-maroon">
-              Strategic leadership
-            </p>
-            <h2 className="mt-1 text-lg font-semibold text-neutral-900 md:text-xl">
-              Event Patron, Co‑chairs and Policy &amp; Leadership Summit Steering Group
-            </h2>
-            <div className="mt-4 grid gap-5 md:grid-cols-2">
-              {people.slice(0, 3).map((group) => (
-                <div key={group.role} className="space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    {group.role}
-                  </p>
-                  <div className="space-y-3">
-                    {group.names.map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 text-sm text-neutral-900"
-                      >
-                        <div className="h-12 w-12 overflow-hidden rounded-full border border-neutral-300 bg-neutral-100">
-                          <img
-                            src={getAvatarForName(name)}
-                            alt={name}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <span>{name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            <GovernanceSectionLabel variant="gold">
+              Main organising committee
+            </GovernanceSectionLabel>
+            <div className="grid gap-6 sm:grid-cols-2 sm:gap-7">
+              {committeeGroups.slice(0, 2).map((group) => (
+                <CommitteeCard key={group.role} group={group} tone="onGold" />
               ))}
             </div>
           </section>
 
           <section
             id="academic"
-            className="mt-10 rounded-3xl border border-border bg-white/95 px-4 py-5 md:px-6 md:py-6 shadow-sm"
+            className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-900">
+            <GovernanceSectionLabel variant="slate">
               Academic &amp; publications
-            </p>
-            <h2 className="mt-1 text-lg font-semibold text-neutral-900 md:text-xl">
-              Programme, Review, and Publications &amp; Proceedings
-            </h2>
-            <div className="mt-4 grid gap-5 md:grid-cols-2">
-              {people.slice(2, 3).map((group) => (
-                <div key={group.role} className="space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-700">
-                    {group.role}
-                  </p>
-                  <div className="space-y-3">
-                    {group.names.map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 text-sm text-neutral-900"
-                      >
-                        <div className="h-12 w-12 overflow-hidden rounded-full border border-neutral-300 bg-neutral-100">
-                          <img
-                            src={getAvatarForName(name)}
-                            alt={name}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <span>{name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            </GovernanceSectionLabel>
+            <div className="mx-auto max-w-3xl">
+              {committeeGroups.slice(2, 3).map((group) => (
+                <CommitteeCard key={group.role} group={group} />
               ))}
             </div>
           </section>
 
           <section
             id="operations"
-            className="mt-10 rounded-3xl border border-border bg-white/95 px-4 py-5 md:px-6 md:py-6 shadow-sm"
+            className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <p className="text-[11px] uppercase tracking-[0.24em] text-neutral-600">
+            <GovernanceSectionLabel variant="muted">
               Operations &amp; experience
-            </p>
-            <h2 className="mt-1 text-lg font-semibold text-neutral-900 md:text-xl">
-              Finance, Logistics, Media, Ethics, Risk, Students &amp; Volunteers
-            </h2>
-            <div className="mt-4 grid gap-5 md:grid-cols-2">
-              {people.slice(3).map((group) => (
-                <div key={group.role} className="space-y-2">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    {group.role}
-                  </p>
-                  <div className="space-y-3">
-                    {group.names.map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 text-sm text-neutral-900"
-                      >
-                        <div className="h-12 w-12 overflow-hidden rounded-full border border-neutral-300 bg-neutral-100">
-                          <img
-                            src={getAvatarForName(name)}
-                            alt={name}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <span>{name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            </GovernanceSectionLabel>
+            <div className="grid gap-6 md:grid-cols-2 md:gap-7">
+              {committeeGroups.slice(3).map((group) => (
+                <CommitteeCard key={group.role} group={group} />
               ))}
             </div>
           </section>
@@ -433,12 +699,17 @@ export default function GovernancePage() {
                     </li>
                     <li>
                       <a href="/#dates" className="hover:underline">
-                        Important dates
+                        Important Dates
                       </a>
                     </li>
                     <li>
                       <a href="/#days" className="hover:underline">
                         3-day programme
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/registration" className="hover:underline">
+                        Registration
                       </a>
                     </li>
                     <li>
@@ -484,10 +755,35 @@ export default function GovernancePage() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:icode.codl.lk"
+                          href="mailto:icode@codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          icode.codl.lk
+                          icode@codl.lk
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="inline-flex items-center gap-2">
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className="h-3.5 w-3.5"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                            />
+                          </svg>
+                        </span>
+                        <a
+                          href={`tel:${CONTACT_PHONE_TEL}`}
+                          className="text-xs font-medium text-uom-gold hover:underline"
+                        >
+                          {CONTACT_PHONE_DISPLAY}
                         </a>
                       </div>
                     </li>

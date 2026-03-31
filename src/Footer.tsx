@@ -1,6 +1,7 @@
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
 import { Link } from "react-router-dom";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 
 export function Footer() {
   return (
@@ -51,12 +52,17 @@ export function Footer() {
                     </li>
                     <li>
                       <Link to="/#dates" className="hover:underline">
-                        Important dates
+                        Important Dates
                       </Link>
                     </li>
                     <li>
                       <Link to="/#days" className="hover:underline">
                         3-day programme
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/registration" className="hover:underline">
+                        Registration
                       </Link>
                     </li>
                     <li>
@@ -102,10 +108,35 @@ export function Footer() {
                           </svg>
                         </span>
                         <a
-                          href="mailto:icode.codl.lk"
+                          href="mailto:icode@codl.lk"
                           className="text-xs font-medium text-uom-gold hover:underline"
                         >
-                          icode.codl.lk
+                          icode@codl.lk
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="inline-flex items-center gap-2">
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className="h-3.5 w-3.5"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                            />
+                          </svg>
+                        </span>
+                        <a
+                          href={`tel:${CONTACT_PHONE_TEL}`}
+                          className="text-xs font-medium text-uom-gold hover:underline"
+                        >
+                          {CONTACT_PHONE_DISPLAY}
                         </a>
                       </div>
                     </li>
