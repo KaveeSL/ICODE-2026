@@ -12,17 +12,21 @@ import codlLogo from "./assets/codllogo.png";
 import mainBg from "./assets/bgmain.png";
 import womanAvatar from "./assets/woman.png";
 import manAvatar from "./assets/men.png";
-import { Footer } from "./Footer";
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
+import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
+import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
 import { Button } from "./components/ui/button";
+import { Reveal } from "./components/Reveal";
 
-type CommitteeSection = { label: string; names: string[] };
+type PersonRecord = { name: string; designation?: string };
+type PersonInput = string | PersonRecord;
+
+type CommitteeSection = { label: string; people: PersonInput[] };
 
 type CommitteeGroup = {
   role: string;
   /** Optional second line so long titles stay readable (e.g. parenthetical subtitle). */
   roleSecondLine?: string;
-  names?: string[];
+  people?: PersonInput[];
   sections?: CommitteeSection[];
 };
 
@@ -30,29 +34,107 @@ type CommitteeGroup = {
 const committeeGroups: CommitteeGroup[] = [
   {
     role: "Event Patron",
-    names: ["Prof Malik Ranasinghe"]
+    people: [
+      {
+        name: "Prof Malik Ranasinghe",
+        designation:
+          "Chair, National Academy of Science (SL)\nFormer Vice‑Chancellor\nUniversity of Moratuwa"
+      }
+    ]
   },
   {
     role: "Event Co‑chairs",
-    names: ["Prof Dileeka Dias", "Ms Vishaka Nanayakkara"]
+    people: [
+      {
+        name: "Prof Dileeka Dias",
+        designation: "Deputy Vice‑Chancellor\nUniversity of Moratuwa"
+      },
+      {
+        name: "Ms Vishaka Nanayakkara",
+        designation:
+          "Senior Lecturer · Director, CODL\nUniversity of Moratuwa"
+      }
+    ]
   },
   {
-    role: "Publications & Proceedings Committee",
+    role: "Publications & Proceedings",
     roleSecondLine: "",
     sections: [
       {
         label: "Co-chairs",
-        names: ["Dr Buddhika Karunarathne", "Dr Thanuja Ambegoda"]
+        people: [
+          {
+            name: "Dr Buddhika Karunarathne",
+            designation:
+              "Senior Lecturer · Deputy Director, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Thanuja Ambegoda",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          }
+        ]
       },
       {
         label: "Members",
-        names: [
-          "Ms Eshana Ranasinghe",
-          "Mr Savin Gunawardena",
-          "Mr Nadeesha Ranaweera",
-          "Ms Sumudu Wasana",
-          "Prof Tharaka Samarasinghe",
-          "Prof Uditha Ratnayake"
+        people: [
+          {
+            name: "Ms Eshana Ranasinghe",
+            designation:
+              "Junior Consultant, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Savin Gunawardena",
+            designation:
+              "Junior Consultant, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Nadeesha Ranaweera",
+            designation: "Systems Engineer\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr. Janadari Wijesinghe",
+            designation: "Head of Academic Affairs\nUniversity Grants Commission\nSri Lanka"
+          },
+          {
+            name: "Ms Sumudu Wasana",
+            designation: "Deputy Director of Education\nMinistry of Education\nSri Lanka"
+          },
+          {
+            name: "Prof Tharaka Samarasinghe",
+            designation: "Professor\nUniversity of Moratuwa"
+          },
+          {
+            name: "Prof Uditha Ratnayake",
+            designation: "Professor, Open University of Sri Lanka"
+          },
+          {
+            name: "Dr Sureka Thiruchittappalam",
+            designation:
+              "Lecturer, Earth Resources Engineering\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Sumith Gopura",
+            designation:
+              "Senior Lecturer, Textile & Apparel Engineering\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Surangika Ranathunga",
+            designation:
+              "Senior Lecturer, School of Mathematical and Computational Sciences\nMassey University, New Zealand"
+          },
+          {
+            name: "Dr Srinath Perera",
+            designation: "Vice President · Head of Research, WSO2"
+          },
+          {
+            name: "Dr Dilum Bandara",
+            designation:
+              "Principal Research Scientist, CSIRO Data61 · Adjunct Senior Lecturer, UNSW Sydney"
+          },
+          {
+            name: "Prof Gominda Ponnamperuma",
+            designation: "Professor, University of Colombo"
+          }
         ]
       }
     ]
@@ -61,16 +143,40 @@ const committeeGroups: CommitteeGroup[] = [
     role: "Media, Communications & Branding Committee",
     sections: [
       {
-        label: "Chairs",
-        names: ["Dr Nisansa de Silva", "Dr Suranga Jayasena"]
+        label: "Co-chairs",
+        people: [
+          {
+            name: "Dr Nisansa de Silva",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Suranga Jayasena",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          }
+        ]
       },
       {
         label: "Members",
-        names: [
-          "Mr Nadeesha Ranaweera",
-          "Mr Kaveesha Nanayakkara",
-          "Ms Malshi Tharuka",
-          "Ms Shazna Kamaldeen"
+        people: [
+          {
+            name: "Mr Nadeesha Ranaweera",
+            designation: "Systems Engineer\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Kaveesha Nanayakkara",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Malshi Tharuka",
+            designation:
+              "Support Staff, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Shazna Kamaldeen",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          }
         ]
       }
     ]
@@ -80,16 +186,46 @@ const committeeGroups: CommitteeGroup[] = [
     sections: [
       {
         label: "Co-chairs",
-        names: ["Prof N D Gunawardena", "Ms Vishaka Nanayakkara"]
+        people: [
+          {
+            name: "Prof N D Gunawardena",
+            designation: "Vice‑Chancellor\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Vishaka Nanayakkara",
+            designation:
+              "Senior Lecturer · Director, CODL\nUniversity of Moratuwa"
+          }
+        ]
       },
       {
         label: "Members",
-        names: [
-          "Ms Tashini Rodrigo",
-          "Mr Jageshkar Sivahar",
-          "Dr Uthayasanker Thayasivam",
-          "Mr Waruna Sri Danapala",
-          "Mr Hasith Yaggahavita"
+        people: [
+          {
+            name: "Ms Tashini Rodrigo",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Jageshkar Sivahar",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Prof Uthayasanker Thayasivam",
+            designation:
+              "Professor · Head, CSE\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Waruna Sri Danapala",
+            designation: "Secretary, Ministry of Digital Economy (Sri Lanka)"
+          },
+          { name: "Mr Hasith Yaggahavita", designation: "CEO, 99x" },
+          {
+            name: "Prof Udeni Nawagamuwa",
+            designation:
+              "Professor · Head, Civil Engineering\nUniversity of Moratuwa"
+          }
         ]
       }
     ]
@@ -99,14 +235,35 @@ const committeeGroups: CommitteeGroup[] = [
     sections: [
       {
         label: "Co-chairs",
-        names: ["Dr R M S Ratnayake", "Dr Tiloka de Silva"]
+        people: [
+          {
+            name: "Dr Sunimal Ratnayake",
+            designation: "Senior Lecturer / Director, CITES\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Tiloka de Silva",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          }
+        ]
       },
       {
         label: "Members",
-        names: [
-          "Ms Dhanushima Gamage",
-          "Dr Buddhika Karunarathne",
-          "Ms Vishaka Nanayakkara"
+        people: [
+          {
+            name: "Ms Dhanushima Gamage",
+            designation:
+              "Junior Consultant, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Buddhika Karunarathne",
+            designation:
+              "Senior Lecturer · Deputy Director, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Vishaka Nanayakkara",
+            designation:
+              "Senior Lecturer · Director, CODL\nUniversity of Moratuwa"
+          }
         ]
       }
     ]
@@ -115,50 +272,102 @@ const committeeGroups: CommitteeGroup[] = [
     role: "Logistics & Operations Committee",
     sections: [
       {
-        label: "Leads",
-        names: [
-          "Ms Dineshi Nandasena",
-          "Dr Thilina Thanthriwatta",
-          "Dr Adeesha Wijayasiri"
+        label: "Co-chairs",
+        people: [
+          {
+            name: "Ms Dineshi Nandasena",
+            designation:
+              "Deputy Registrar, Examinations & Registrations\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Thilina Thanthriwatta",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Adeesha Wijayasiri",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          }
         ]
       },
       {
         label: "Members",
-        names: [
-          "Ms Indika Samarasinghe",
-          "Mr Jageshkar Sivahar",
-          "Ms Sanduli Tharuka"
+        people: [
+          {
+            name: "Ms Indika Samarasinghe",
+            designation: "Instructor, Faculty of IT\nUniversity of Moratuwa"
+          },
+          {
+            name: "Mr Jageshkar Sivahar",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Sanduli Tharuka",
+            designation:
+              "Management Assistant, CODL\nUniversity of Moratuwa"
+          }
         ]
       }
     ]
   },
   {
-    role: "Ethics, Quality & Risk Management Committee",
+    role: "Ethics Committee",
     sections: [
       {
         label: "Co-chairs",
-        names: ["Prof Nalin Wickramarachchi", "Dr Chathuranga Hettiarachchi"]
-      },
-      {
-        label: "Members",
-        names: ["Dr Gayathri Kuruppu", "Ms Dulmi Fonseka"]
-      }
-    ]
-  },
-  {
-    role: "Student & Volunteer Coordination Committee",
-    sections: [
-      {
-        label: "Co-chairs",
-        names: [
-          "Prof D Chandrasekera",
-          "Dr Sandareka Wickramanayake",
-          "Mr B H Sudantha"
+        people: [
+          {
+            name: "Prof Nalin Wickramarachchi",
+            designation: "Emeritus Professor\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Chathuranga Hettiarachchi",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          }
         ]
       },
       {
         label: "Members",
-        names: ["Ms Tharushi Kurukulasooriya"]
+        people: [
+          {
+            name: "Dr Gayathri Kuruppu",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          },
+          {
+            name: "Ms Dulmi Fonseka",
+            designation:
+              "Junior Consultant, CODL\nUniversity of Moratuwa"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    role: "Student Coordination Committee",
+    sections: [
+      {
+        label: "Co-chairs",
+        people: [
+          {
+            name: "Prof Dhammika P Chandrasekera",
+            designation: "Professor\nUniversity of Moratuwa"
+          },
+          {
+            name: "Dr Sandareka Wickramanayake",
+            designation: "Senior Lecturer\nUniversity of Moratuwa"
+          },
+          { name: "Mr B H Sudantha", designation: "Senior Lecturer\nUniversity of Moratuwa" }
+        ]
+      },
+      {
+        label: "Members",
+        people: [
+          {
+            name: "Ms Tharushi Kurukulasooriya",
+            designation:
+              "Instructor, CODL\nUniversity of Moratuwa"
+          }
+        ]
       }
     ]
   }
@@ -183,6 +392,15 @@ const committeeAvatarByKey: Record<string, string> = Object.entries(
   acc[key] = url;
   return acc;
 }, {} as Record<string, string>);
+
+// When the displayed committee member name doesn't exactly match the image filename,
+// map the normalized name to the normalized filename key.
+const committeeAvatarAliases: Record<string, string> = {
+  // Name includes initials/full name but the uploaded file is shorter.
+  [normalizeAvatarKey("Prof Dhammika P Chandrasekera")]: normalizeAvatarKey(
+    "Prof Chandrasekara"
+  )
+};
 
 function levenshteinDistance(a: string, b: string) {
   const m = a.length;
@@ -228,14 +446,23 @@ function getAvatarForName(name: string) {
     "Ms Sanduli Tharuka",
     "Ms Tashini Rodrigo",
     "Dr Thanuja Ambegoda",
+    "Dr. Janadari Wijesinghe",
     "Ms Sumudu Wasana",
     "Ms Malshi Tharuka",
+    "Ms Nadeesha Ranasinghe",
+    "Ms Nethmi Ranasinghe",
     "Ms Shazna Kamaldeen",
     "Dr Gayathri Kuruppu",
     "Ms Dulmi Fonseka"
   ];
 
   const normalizedName = normalizeAvatarKey(name);
+  const aliasKey = committeeAvatarAliases[normalizedName];
+  if (aliasKey != null && committeeAvatarByKey[aliasKey] != null) {
+    const resolved = committeeAvatarByKey[aliasKey];
+    avatarCache.set(name, resolved);
+    return resolved;
+  }
   const directMatch = committeeAvatarByKey[normalizedName];
   if (directMatch != null) return directMatch;
 
@@ -288,38 +515,92 @@ function getAvatarForName(name: string) {
   return resolved;
 }
 
-type PeopleEntry = { name: string; role: string };
+type PeopleEntry = { name: string; role: string; designation?: string };
+
+function toPersonRecord(input: PersonInput): PersonRecord {
+  return typeof input === "string" ? { name: input } : input;
+}
+
+function personSortKey(fullName: string) {
+  // Sort rule requested: use "surname" as the 2nd name, then first-name initial.
+  // Titles like Dr/Prof/Mr/Ms are ignored for sorting.
+  const withoutTitle = fullName.replace(/^(Prof|Dr|Mr|Ms)\.?\s+/i, "");
+  const parts = withoutTitle.trim().split(/\s+/).filter(Boolean);
+  const secondName = parts.length >= 2 ? parts[1] : parts[0] ?? "";
+  const firstInitial = (parts[0]?.[0] ?? "").toUpperCase();
+  return `${secondName.toLowerCase()}|${firstInitial}`;
+}
+
+function sortPeopleInputs(people: PersonInput[]) {
+  // Non-mutating stable-ish sort (tie-breaker by full name).
+  return [...people].sort((a, b) => {
+    const aName = toPersonRecord(a).name;
+    const bName = toPersonRecord(b).name;
+    const aKey = personSortKey(aName);
+    const bKey = personSortKey(bName);
+    if (aKey < bKey) return -1;
+    if (aKey > bKey) return 1;
+    return aName.localeCompare(bName);
+  });
+}
 
 function getGroupPeople(group: CommitteeGroup): PeopleEntry[] {
   if (group.sections) {
     return group.sections.flatMap((section) =>
-      section.names.map((name) => ({
-        name,
-        role: section.label
-      }))
+      sortPeopleInputs(section.people).map((person) => {
+        const record = toPersonRecord(person);
+        return {
+          name: record.name,
+          role: section.label,
+          designation: record.designation
+        };
+      })
     );
   }
 
-  return (group.names ?? []).map((name) => ({
-    name,
-    role: group.role
-  }));
+  return sortPeopleInputs(group.people ?? []).map((person) => {
+    const record = toPersonRecord(person);
+    return {
+      name: record.name,
+      role: group.role,
+      designation: record.designation
+    };
+  });
+}
+
+const AVATAR_FRAME =
+  "size-16 shrink-0 rounded-md outline-1 -outline-offset-1 outline-black/5 bg-neutral-100";
+
+function committeeAvatarObjectPosition(name: string): string {
+  if (name === "Dr Thanuja Ambegoda") {
+    // Higher vertical anchor than `object-top` / 6% — shifts the face upward in the tile.
+    return "object-[center_32%]";
+  }
+  return "object-[center_6%]";
 }
 
 function PersonGridItem({ person }: { person: PeopleEntry }) {
+  const src = getAvatarForName(person.name);
+  const objectPosition = committeeAvatarObjectPosition(person.name);
+
   return (
     <li>
-      <div className="flex items-center gap-x-6">
+      <div className="flex items-start gap-x-5">
         <img
           alt=""
-          src={getAvatarForName(person.name)}
+          src={src}
           aria-hidden
-          className="size-16 rounded-full outline-1 -outline-offset-1 outline-black/5 object-cover bg-neutral-100"
+          className={`${AVATAR_FRAME} object-cover ${objectPosition}`}
         />
-        <div className="min-w-0">
-          <p className="text-sm font-semibold leading-snug text-neutral-900">
+        <div className="min-w-0 pt-0.5">
+          <p className="text-sm font-semibold leading-snug text-neutral-900 break-words">
             {person.name}
           </p>
+          {person.designation ? (
+            <p className="mt-1 text-xs leading-snug text-neutral-600 break-words whitespace-pre-line">
+              {person.designation}
+            </p>
+          ) : null}
         </div>
       </div>
     </li>
@@ -358,10 +639,16 @@ function CommitteeCard({
       {group.sections ? (
         <div className="space-y-6">
           {group.sections.map((section) => {
-            const sectionPeople: PeopleEntry[] = section.names.map((name) => ({
-              name,
-              role: section.label
-            }));
+            const sectionPeople: PeopleEntry[] = sortPeopleInputs(
+              section.people
+            ).map((person) => {
+              const record = toPersonRecord(person);
+              return {
+                name: record.name,
+                role: section.label,
+                designation: record.designation
+              };
+            });
 
             return (
               <div key={section.label}>
@@ -464,7 +751,7 @@ export default function GovernancePage() {
 
   return (
     <div
-      className="min-h-screen bg-fixed bg-cover bg-center"
+      className="min-h-screen bg-fixed bg-cover bg-top"
       style={{ backgroundImage: `url(${mainBg})` }}
     >
       <div className="min-h-screen bg-white/80 backdrop-blur-xl">
@@ -597,29 +884,37 @@ export default function GovernancePage() {
 
         <main className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
           <section>
-            <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-              <UsersIcon className="h-7 w-7 text-uom-maroon" />
-              <span>Conference Governance and Organisation</span>
-            </h1>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
-              ICODE2026 is supported by a structured governance model that brings together
-              strategic leadership, academic quality assurance, and operational excellence.
-              The <span className="font-semibold">Main Organising Committee</span> and
-              specialist committees below work together to ensure a seamless hybrid
-              experience for all participants.
-            </p>
+            <Reveal variant="up">
+              <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+                <UsersIcon className="h-7 w-7 text-uom-maroon" />
+                <span>Conference Governance and Organisation</span>
+              </h1>
+            </Reveal>
+            <Reveal variant="up" delayMs={140}>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
+                ICODE2026 is supported by a structured governance model that brings together
+                strategic leadership, academic quality assurance, and operational excellence.
+                The <span className="font-semibold">Main Organising Committee</span> and
+                specialist committees below work together to ensure a seamless hybrid
+                experience for all participants.
+              </p>
+            </Reveal>
           </section>
 
           <section
             id="strategic"
             className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <GovernanceSectionLabel variant="gold">
-              Main organising committee
-            </GovernanceSectionLabel>
+            <Reveal variant="up">
+              <GovernanceSectionLabel variant="gold">
+                Main organising committee
+              </GovernanceSectionLabel>
+            </Reveal>
             <div className="grid gap-6 sm:grid-cols-2 sm:gap-7">
-              {committeeGroups.slice(0, 2).map((group) => (
-                <CommitteeCard key={group.role} group={group} tone="onGold" />
+              {committeeGroups.slice(0, 2).map((group, index) => (
+                <Reveal key={group.role} variant="up" delayMs={index * 120}>
+                  <CommitteeCard group={group} tone="onGold" />
+                </Reveal>
               ))}
             </div>
           </section>
@@ -628,12 +923,16 @@ export default function GovernancePage() {
             id="academic"
             className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <GovernanceSectionLabel variant="slate">
-              Academic &amp; publications
-            </GovernanceSectionLabel>
+            <Reveal variant="up">
+              <GovernanceSectionLabel variant="slate">
+                Academic &amp; publications
+              </GovernanceSectionLabel>
+            </Reveal>
             <div className="mx-auto max-w-3xl">
               {committeeGroups.slice(2, 3).map((group) => (
-                <CommitteeCard key={group.role} group={group} />
+                <Reveal key={group.role} variant="up" delayMs={120}>
+                  <CommitteeCard group={group} />
+                </Reveal>
               ))}
             </div>
           </section>
@@ -642,12 +941,16 @@ export default function GovernancePage() {
             id="operations"
             className="mt-10 border-t border-neutral-200 pt-8 px-4 md:px-0"
           >
-            <GovernanceSectionLabel variant="muted">
-              Operations &amp; experience
-            </GovernanceSectionLabel>
+            <Reveal variant="up">
+              <GovernanceSectionLabel variant="muted">
+                Operations &amp; experience
+              </GovernanceSectionLabel>
+            </Reveal>
             <div className="grid gap-6 md:grid-cols-2 md:gap-7">
-              {committeeGroups.slice(3).map((group) => (
-                <CommitteeCard key={group.role} group={group} />
+              {committeeGroups.slice(3).map((group, index) => (
+                <Reveal key={group.role} variant="up" delayMs={index * 110}>
+                  <CommitteeCard group={group} />
+                </Reveal>
               ))}
             </div>
           </section>
@@ -762,64 +1065,8 @@ export default function GovernancePage() {
                         </a>
                       </div>
                     </li>
-                    <li>
-                      <div className="inline-flex items-center gap-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="h-3.5 w-3.5"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-                            />
-                          </svg>
-                        </span>
-                        <a
-                          href={`tel:${CONTACT_PHONE_TEL}`}
-                          className="text-xs font-medium text-uom-gold hover:underline"
-                        >
-                          {CONTACT_PHONE_DISPLAY}
-                        </a>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="inline-flex items-center gap-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="h-3.5 w-3.5"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M5 6.5A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v11A1.5 1.5 0 0 1 17.5 19h-11A1.5 1.5 0 0 1 5 17.5v-11Z"
-                            />
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M9 12h6M9 9h6M9 15h3"
-                            />
-                          </svg>
-                        </span>
-                        <a
-                          href="https://bit.uom.lk/"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-xs font-medium text-uom-gold hover:underline"
-                        >
-                          bit.uom.lk
-                        </a>
-                      </div>
-                    </li>
+                    <ContactWhatsAppFooterItem />
+                    <ContactBitWebsiteFooterItem />
                   </ul>
                 </div>
                 <div>

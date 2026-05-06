@@ -4,8 +4,9 @@ import { Bars3Icon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outl
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
 import { Button } from "./components/ui/button";
-import { Footer } from "./Footer";
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
+import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
+import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
+import { Reveal } from "./components/Reveal";
 
 export default function ProgrammePage() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -126,72 +127,88 @@ export default function ProgrammePage() {
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-20 md:pt-14">
         <section className="space-y-5">
-          <div className="inline-flex items-center gap-2 rounded-full bg-uom-goldSoft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
-            Programme
-          </div>
-          <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-            Conference programme
-          </h1>
-          <p className="text-sm text-neutral-700 md:text-base">
-            The detailed day-by-day programme for ICODE2026 is{" "}
-            <span className="font-semibold">coming soon</span>. Closer to the
-            conference, this page will include keynote and plenary details,
-            parallel session titles, and workshop information, as well as a
-            downloadable PDF schedule.
-          </p>
+          <Reveal variant="up" delayMs={0}>
+            <div className="inline-flex items-center gap-2 rounded-full bg-uom-goldSoft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
+              Programme
+            </div>
+          </Reveal>
+          <Reveal variant="up" delayMs={120}>
+            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+              Conference programme
+            </h1>
+          </Reveal>
+          <Reveal variant="up" delayMs={220}>
+            <p className="text-sm text-neutral-700 md:text-base">
+              The detailed day-by-day programme for ICODE2026 is{" "}
+              <span className="font-semibold">coming soon</span>. Closer to the
+              conference, this page will include keynote and plenary details,
+              parallel session titles, and workshop information, as well as a
+              downloadable PDF schedule.
+            </p>
+          </Reveal>
         </section>
 
         <section className="mt-8 grid gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
-            <h2 className="text-sm font-semibold text-neutral-900">
-              Keynotes &amp; plenaries
-            </h2>
-            <p className="mt-2 text-xs text-neutral-700">
-              Profiles of keynote speakers and plenary panels highlighting major
-              themes in open, distance, and digital education.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
-            <h2 className="text-sm font-semibold text-neutral-900">
-              Parallel &amp; workshop sessions
-            </h2>
-            <p className="mt-2 text-xs text-neutral-700">
-              Track-wise listings of paper sessions, symposia, and hands-on
-              workshops, aligned with the conference themes.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
-            <h2 className="text-sm font-semibold text-neutral-900">
-              Policy &amp; leadership dialogues
-            </h2>
-            <p className="mt-2 text-xs text-neutral-700">
-              Information on ministerial and agency panels, vice-chancellors&apos;
-              roundtables, and other high-level discussions.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
-            <h2 className="text-sm font-semibold text-neutral-900">
-              Downloadable schedule
-            </h2>
-            <p className="mt-2 text-xs text-neutral-700">
-              A full programme booklet in PDF format will be available here once
-              the schedule is finalised.
-            </p>
-          </div>
+          <Reveal variant="up" delayMs={0}>
+            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+              <h2 className="text-sm font-semibold text-neutral-900">
+                Keynotes &amp; plenaries
+              </h2>
+              <p className="mt-2 text-xs text-neutral-700">
+                Profiles of keynote speakers and plenary panels highlighting major
+                themes in open, distance, and digital education.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal variant="up" delayMs={120}>
+            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+              <h2 className="text-sm font-semibold text-neutral-900">
+                Parallel &amp; workshop sessions
+              </h2>
+              <p className="mt-2 text-xs text-neutral-700">
+                Track-wise listings of paper sessions, symposia, and hands-on
+                workshops, aligned with the conference themes.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal variant="up" delayMs={240}>
+            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+              <h2 className="text-sm font-semibold text-neutral-900">
+                Policy &amp; leadership dialogues
+              </h2>
+              <p className="mt-2 text-xs text-neutral-700">
+                Information on ministerial and agency panels, vice-chancellors&apos;
+                roundtables, and other high-level discussions.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal variant="up" delayMs={360}>
+            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+              <h2 className="text-sm font-semibold text-neutral-900">
+                Downloadable schedule
+              </h2>
+              <p className="mt-2 text-xs text-neutral-700">
+                A full programme booklet in PDF format will be available here once
+                the schedule is finalised.
+              </p>
+            </div>
+          </Reveal>
         </section>
 
         <section className="mt-8">
-          <div className="rounded-2xl border border-dashed border-uom-gold/70 bg-uom-goldSoft/40 px-4 py-4 md:px-5 md:py-5 text-xs text-neutral-800">
-            <p className="font-semibold text-neutral-900">
-              Programme updates
-            </p>
-            <p className="mt-1">
-              Check back closer to August 2026 for the full schedule. Key updates
-              will also be shared via{" "}
-              <span className="font-semibold">official email</span> and CODL&apos;s{" "}
-              social media channels.
-            </p>
-          </div>
+          <Reveal variant="up" delayMs={0}>
+            <div className="rounded-2xl border border-dashed border-uom-gold/70 bg-uom-goldSoft/40 px-4 py-4 md:px-5 md:py-5 text-xs text-neutral-800">
+              <p className="font-semibold text-neutral-900">
+                Programme updates
+              </p>
+              <p className="mt-1">
+                Check back closer to August 2026 for the full schedule. Key updates
+                will also be shared via{" "}
+                <span className="font-semibold">official email</span> and CODL&apos;s{" "}
+                social media channels.
+              </p>
+            </div>
+          </Reveal>
         </section>
       </main>
 
@@ -304,64 +321,8 @@ export default function ProgrammePage() {
                         </a>
                       </div>
                     </li>
-                    <li>
-                      <div className="inline-flex items-center gap-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="h-3.5 w-3.5"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-                            />
-                          </svg>
-                        </span>
-                        <a
-                          href={`tel:${CONTACT_PHONE_TEL}`}
-                          className="text-xs font-medium text-uom-gold hover:underline"
-                        >
-                          {CONTACT_PHONE_DISPLAY}
-                        </a>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="inline-flex items-center gap-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-neutral-600 bg-neutral-900">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="h-3.5 w-3.5"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M5 6.5A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v11A1.5 1.5 0 0 1 17.5 19h-11A1.5 1.5 0 0 1 5 17.5v-11Z"
-                            />
-                            <path
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              d="M9 12h6M9 9h6M9 15h3"
-                            />
-                          </svg>
-                        </span>
-                        <a
-                          href="https://bit.uom.lk/"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-xs font-medium text-uom-gold hover:underline"
-                        >
-                          bit.uom.lk
-                        </a>
-                      </div>
-                    </li>
+                    <ContactWhatsAppFooterItem />
+                    <ContactBitWebsiteFooterItem />
                   </ul>
                 </div>
                 <div>

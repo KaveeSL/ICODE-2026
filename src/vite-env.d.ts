@@ -10,3 +10,13 @@ declare module "*.PNG" {
   export default src;
 }
 
+declare module "*.docx" {
+  const src: string;
+  export default src;
+}
+
+declare module "*.docx?url" {
+  const src: string;
+  export default src;
+}
+

@@ -4,6 +4,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: "solid" | "outline" | "soft";
 }
 
+
 const variants: Record<NonNullable<BadgeProps["variant"]>, string> = {
   solid:
     "bg-uom-maroon text-white border border-uom-maroon shadow-sm shadow-uom-maroon/20",
