@@ -1,131 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Bars3Icon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
-import { Button } from "./components/ui/button";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
 import { Reveal } from "./components/Reveal";
+import { SiteHeader } from "./components/SiteHeader";
+import { SitePageShell } from "./components/SitePageShell";
+import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
 
 export default function ProgrammePage() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      <header className="border-b border-white/60 bg-white/55 backdrop-blur-xl sticky top-0 z-40">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
-          <Link to="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
-            <div className="flex items-center gap-1.5">
-              <div className="h-10 w-10 overflow-hidden rounded-[18px] md:h-11 md:w-11">
-                <img
-                  src={logo}
-                  alt="University of Moratuwa logo"
-                  className="h-9 w-9 object-contain md:h-10 md:w-10"
-                />
-              </div>
-              <div className="h-10 w-10 overflow-hidden rounded-[18px] items-center justify-center flex">
-                <img
-                  src={codlLogo}
-                  alt="CODL logo"
-                  className="h-9 w-9 object-contain"
-                />
-              </div>
-            </div>
-            <div className="leading-tight">
-              <p className="text-[10px] uppercase tracking-[0.1em] text-neutral-500">
-                CODL
-              </p>
-              <p className="text-[11px] font-semibold text-neutral-900">
-                University of Moratuwa · Sri Lanka
-              </p>
-            </div>
-          </Link>
-          <nav className="hidden items-center gap-6 text-xs font-medium text-neutral-700 md:flex">
-            <a href="/#about" className="hover:text-uom-maroon">
-              About
-            </a>
-            <a href="/#dates" className="hover:text-uom-maroon">
-              Important Dates
-            </a>
-            <a href="/registration" className="hover:text-uom-maroon">
-              Registration
-            </a>
-            <a href="/#committees" className="hover:text-uom-maroon">
-              Committees
-            </a>
-            <a href="/#contact" className="hover:text-uom-maroon">
-              Contact
-            </a>
-            <Link to="/call-for-papers">
-              <Button size="sm" className="ml-2 border border-uom-gold bg-uom-goldSoft/90 text-neutral-900">
-                <span className="flex items-center gap-1">
-                  Submit Abstract
-                  <ChevronRightIcon className="h-3.5 w-3.5" />
-                </span>
-              </Button>
-            </Link>
-          </nav>
+    <SitePageShell>
+      <SiteHeader
+        mobileNavOpen={mobileNavOpen}
+        onMobileNavToggle={() => setMobileNavOpen((v) => !v)}
+        onMobileNavClose={() => setMobileNavOpen(false)}
+      />
 
-          <button
-            type="button"
-            onClick={() => setMobileNavOpen((v) => !v)}
-            className="md:hidden inline-flex items-center justify-center rounded-full border border-white/70 bg-white/65 p-2 text-uom-maroon"
-            aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileNavOpen ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
-          </button>
-        </div>
-
-        {mobileNavOpen && (
-          <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
-            <div className="mx-auto max-w-6xl px-4 py-4">
-              <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
-                <Link
-                  to="/#about"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  About
-                </Link>
-                <Link
-                  to="/#dates"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  Important Dates
-                </Link>
-                <Link
-                  to="/#committees"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  Committees
-                </Link>
-                <Link
-                  to="/#contact"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  Contact
-                </Link>
-                <Link to="/call-for-papers" onClick={() => setMobileNavOpen(false)}>
-                  <Button
-                    size="lg"
-                    className="w-full border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
-                  >
-                    <span className="flex items-center justify-center gap-1.5">
-                      Submit Abstract
-                      <ChevronRightIcon className="h-4 w-4" />
-                    </span>
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-10 md:px-6 md:pb-20 md:pt-14">
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-[calc(60px+2.5rem)] md:px-6 md:pb-20 md:pt-[calc(68px+3.5rem)]">
         <section className="space-y-5">
           <Reveal variant="up" delayMs={0}>
             <div className="inline-flex items-center gap-2 rounded-full bg-uom-goldSoft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
@@ -150,7 +44,7 @@ export default function ProgrammePage() {
 
         <section className="mt-8 grid gap-5 md:grid-cols-2">
           <Reveal variant="up" delayMs={0}>
-            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+            <div className="site-card rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
               <h2 className="text-sm font-semibold text-neutral-900">
                 Keynotes &amp; plenaries
               </h2>
@@ -161,7 +55,7 @@ export default function ProgrammePage() {
             </div>
           </Reveal>
           <Reveal variant="up" delayMs={120}>
-            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+            <div className="site-card rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
               <h2 className="text-sm font-semibold text-neutral-900">
                 Parallel &amp; workshop sessions
               </h2>
@@ -172,7 +66,7 @@ export default function ProgrammePage() {
             </div>
           </Reveal>
           <Reveal variant="up" delayMs={240}>
-            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+            <div className="site-card rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
               <h2 className="text-sm font-semibold text-neutral-900">
                 Policy &amp; leadership dialogues
               </h2>
@@ -183,7 +77,7 @@ export default function ProgrammePage() {
             </div>
           </Reveal>
           <Reveal variant="up" delayMs={360}>
-            <div className="rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
+            <div className="site-card rounded-2xl border border-border bg-white px-4 py-4 md:px-5 md:py-5">
               <h2 className="text-sm font-semibold text-neutral-900">
                 Downloadable schedule
               </h2>
@@ -197,7 +91,7 @@ export default function ProgrammePage() {
 
         <section className="mt-8">
           <Reveal variant="up" delayMs={0}>
-            <div className="rounded-2xl border border-dashed border-uom-gold/70 bg-uom-goldSoft/40 px-4 py-4 md:px-5 md:py-5 text-xs text-neutral-800">
+            <div className="site-callout rounded-2xl border border-dashed border-uom-gold/70 bg-uom-goldSoft/40 px-4 py-4 md:px-5 md:py-5 text-xs text-neutral-800">
               <p className="font-semibold text-neutral-900">
                 Programme updates
               </p>
@@ -250,43 +144,7 @@ export default function ProgrammePage() {
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
                     Conference
                   </h2>
-                  <ul className="space-y-1.5 list-disc list-inside">
-                    <li>
-                      <a href="/#about" className="hover:underline">
-                        About ICODE2026
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#dates" className="hover:underline">
-                        Important Dates
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#days" className="hover:underline">
-                        3-day programme
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/registration" className="hover:underline">
-                        Registration
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#committees" className="hover:underline">
-                        Committees
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#faq" className="hover:underline">
-                        FAQs
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#contact" className="hover:underline">
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
+                  <FooterConferenceLinks />
                 </div>
                 <div>
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
@@ -436,7 +294,7 @@ export default function ProgrammePage() {
             </div>
           </div>
         </footer>
-    </div>
+    </SitePageShell>
   );
 }
 

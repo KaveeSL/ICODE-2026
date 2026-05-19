@@ -2,20 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   AcademicCapIcon,
-  Bars3Icon,
   CalendarDaysIcon,
   ClipboardDocumentListIcon,
   DocumentTextIcon,
   EnvelopeIcon,
   MapPinIcon,
   CheckCircleIcon,
-  XMarkIcon,
   ChevronRightIcon,
   CodeBracketIcon
 } from "@heroicons/react/24/outline";
-import logo from "./assets/logo.png";
-import codlLogo from "./assets/codllogo.png";
-import mainBg from "./assets/bgmain.png";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
 import { importantDates } from "./constants/importantDates";
@@ -26,6 +21,10 @@ import {
 } from "./constants/contact";
 import extendedAbstractTemplateWord from "./assets/docs/ICODE2026-Extended Abstract Template.docx?url";
 import { Reveal } from "./components/Reveal";
+import { SiteHeader } from "./components/SiteHeader";
+import { SitePageShell } from "./components/SitePageShell";
+import { useSiteTheme } from "./context/SiteThemeProvider";
+import { submitAbstractInlineClass } from "./constants/ctaStyles";
 
 /** Bundled from `src/assets/docs/` so it works on all hosts. */
 const TEMPLATE_WORD_HREF = extendedAbstractTemplateWord;
@@ -44,6 +43,7 @@ const themes = [
 
 export default function CallForPapersPage() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { isDark } = useSiteTheme();
   const location = useLocation();
 
   useEffect(() => {
@@ -68,150 +68,16 @@ export default function CallForPapersPage() {
   };
 
   return (
-    <div
-      id="call-for-papers-page"
-      className="min-h-screen bg-fixed bg-cover bg-top"
-      style={{ backgroundImage: `url(${mainBg})` }}
-    >
-      <div className="min-h-screen bg-white/80 backdrop-blur-xl flex flex-col">
-        <header className="border-b border-white/60 bg-white/75 backdrop-blur-xl sticky top-0 z-40">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
-            <Link to="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
-              <div className="flex items-center gap-1.5">
-                <div className="h-10 w-10 overflow-hidden rounded-[18px] md:h-11 md:w-11">
-                  <img
-                    src={logo}
-                    alt="University of Moratuwa logo"
-                    className="h-9 w-9 object-contain md:h-10 md:w-10"
-                  />
-                </div>
-                <div className="h-10 w-10 overflow-hidden rounded-[18px] items-center justify-center flex">
-                  <img
-                    src={codlLogo}
-                    alt="CODL logo"
-                    className="h-9 w-9 object-contain"
-                  />
-                </div>
-              </div>
-              <div className="leading-tight">
-                <p className="text-[10px] uppercase tracking-[0.1em] text-neutral-500">
-                  CODL
-                </p>
-                <p className="text-[11px] font-semibold text-neutral-900">
-                  University of Moratuwa · Sri Lanka
-                </p>
-              </div>
-            </Link>
-            <nav className="hidden items-center gap-6 text-xs font-medium text-neutral-700 md:flex">
-              <Link to="/#about" className="hover:text-uom-maroon">
-                About
-              </Link>
-              <Link to="/#dates" className="hover:text-uom-maroon">
-                Important Dates
-              </Link>
-              <Link to="/registration" className="hover:text-uom-maroon">
-                Registration
-              </Link>
-              <Link to="/#committees" className="hover:text-uom-maroon">
-                Committees
-              </Link>
-              <Link to="/#contact" className="hover:text-uom-maroon">
-                Contact
-              </Link>
-              <a
-                href="https://cmt3.research.microsoft.com/ICODE2026"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Button
-                  size="sm"
-                  className="ml-2 border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
-                >
-                  <span className="flex items-center gap-1">
-                    Submit Abstract
-                    <ChevronRightIcon className="h-3.5 w-3.5" />
-                  </span>
-                </Button>
-              </a>
-            </nav>
+    <SitePageShell variant="glass" className="flex flex-col" id="call-for-papers-page">
+      <SiteHeader
+        mobileNavOpen={mobileNavOpen}
+        onMobileNavToggle={() => setMobileNavOpen((v) => !v)}
+        onMobileNavClose={() => setMobileNavOpen(false)}
+        submitAbstractHref="https://cmt3.research.microsoft.com/ICODE2026"
+        submitAbstractExternal
+      />
 
-            <button
-              type="button"
-              onClick={() => setMobileNavOpen((v) => !v)}
-              className="md:hidden inline-flex items-center justify-center rounded-full border border-white/70 bg-white/65 p-2 text-uom-maroon"
-              aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
-            >
-              {mobileNavOpen ? (
-                <XMarkIcon className="h-5 w-5" />
-              ) : (
-                <Bars3Icon className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-
-          {mobileNavOpen && (
-            <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
-              <div className="mx-auto max-w-6xl px-4 py-4">
-                <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
-                  <Link
-                    to="/#about"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/#dates"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Important Dates
-                  </Link>
-                  <Link
-                    to="/registration"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Registration
-                  </Link>
-                  <Link
-                    to="/#committees"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Committees
-                  </Link>
-                  <Link
-                    to="/#contact"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Contact
-                  </Link>
-                  <a
-                    href="https://cmt3.research.microsoft.com/ICODE2026"
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="w-full"
-                  >
-                    <Button
-                      size="lg"
-                      className="w-full border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
-                    >
-                      <span className="flex items-center justify-center gap-1.5">
-                        Submit Abstract
-                        <ChevronRightIcon className="h-4 w-4" />
-                      </span>
-                    </Button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-        </header>
-
-        <main className="mx-auto flex-1 w-full max-w-6xl px-4 pb-20 pt-10 md:px-6 md:pb-28 md:pt-16">
+      <main className="mx-auto flex-1 w-full max-w-6xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
           {/* Hero intro */}
           <section>
             <div className="max-w-3xl">
@@ -290,7 +156,7 @@ export default function CallForPapersPage() {
                   >
                     <Button
                       size="sm"
-                      className="border border-uom-gold bg-uom-goldSoft/90 text-neutral-900 sm:whitespace-nowrap whitespace-normal"
+                      className={submitAbstractInlineClass(isDark, "sm:whitespace-nowrap whitespace-normal")}
                     >
                       <span className="flex items-center gap-1.5">
                         Submit Abstract
@@ -812,8 +678,7 @@ export default function CallForPapersPage() {
         </main>
 
         <Footer />
-      </div>
-    </div>
+    </SitePageShell>
   );
 }
 

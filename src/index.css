@@ -88,6 +88,40 @@ body {
     linear-gradient(135deg, rgba(248, 250, 252, 0.96) 0, rgba(250, 250, 249, 0.9) 40%, rgba(248, 250, 252, 0.9) 100%);
 }
 
+/* Light graph-paper / ruler grid behind homepage content */
+.homepage-ruler-texture {
+  position: relative;
+  isolation: isolate;
+}
+
+.homepage-ruler-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(122, 0, 25, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(122, 0, 25, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(246, 168, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(246, 168, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size:
+    72px 72px,
+    72px 72px,
+    72px 72px,
+    72px 72px,
+    18px 18px,
+    18px 18px;
+  opacity: 0.42;
+}
+
+.homepage-ruler-texture > * {
+  position: relative;
+  z-index: 1;
+}
+
 .glass-panel {
   @apply bg-white/65 backdrop-blur-2xl border border-white/60 shadow-[0_24px_60px_rgba(15,23,42,0.22)];
 }
@@ -120,6 +154,38 @@ body {
   transition:
     opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* WhatsApp toast — dark theme variant (when homepage is in dark mode) */
+body:has(.homepage-dark) .wa-toast-shell > div {
+  background: rgba(40, 40, 48, 0.96) !important;
+  border-color: rgba(52, 211, 153, 0.55) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(16, 185, 129, 0.18) !important;
+}
+
+body:has(.homepage-dark) .wa-toast-shell .text-emerald-700 {
+  color: #6ee7b7 !important;
+}
+
+body:has(.homepage-dark) .wa-toast-shell .text-neutral-900 {
+  color: #f4f4f5 !important;
+}
+
+body:has(.homepage-dark) .wa-toast-shell button {
+  color: #71717a !important;
+}
+
+body:has(.homepage-dark) .wa-toast-shell button:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #e4e4e7 !important;
+}
+
+/* Arrow notch on the right edge of the toast */
+body:has(.homepage-dark) .wa-toast-shell span.bg-white {
+  background-color: rgba(40, 40, 48, 0.96) !important;
+  border-color: rgba(52, 211, 153, 0.55) !important;
 }
 
 .wa-toast-enter {
@@ -212,6 +278,891 @@ body {
   .wa-fab-shine::before {
     animation: none;
     opacity: 0;
+  }
+
+  .homepage-theme-toggle {
+    animation: none;
+  }
+
+  .homepage-dark .homepage-ambient-glow::after {
+    animation: none;
+  }
+}
+
+/* ─── Homepage dark neon theme (homepage only) ─── */
+@keyframes neon-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.homepage-dark {
+  --neon-maroon: #ff3d6b;
+  --neon-gold: #ffc84d;
+  --neon-gold-soft: #ffe9a8;
+  --matte-bg: #1c1c20;
+  --matte-surface: #24242a;
+  --matte-elevated: #2c2c33;
+  --text-primary: #f4f4f5;
+  --text-muted: #a1a1aa;
+  color: var(--text-primary);
+  background-color: var(--matte-bg) !important;
+  transition:
+    background-color 500ms ease,
+    color 400ms ease;
+}
+
+/* Ambient neon orbs behind content (GPU-promoted, opacity-only animation) */
+.homepage-dark.homepage-ambient-glow::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 40% at 8% 12%, rgba(246, 168, 0, 0.07), transparent 55%),
+    radial-gradient(ellipse 50% 45% at 92% 8%, rgba(246, 168, 0, 0.09), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(122, 0, 25, 0.07), transparent 55%);
+  opacity: 0.65;
+  transform: translateZ(0);
+  will-change: opacity;
+  animation: neon-glow-pulse 8s ease-in-out infinite;
+}
+
+.homepage-dark.homepage-ruler-texture::before {
+  background-image:
+    linear-gradient(to right, rgba(255, 200, 77, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 200, 77, 0.11) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 61, 107, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 61, 107, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  opacity: 0.5;
+  z-index: 0;
+  transform: translateZ(0);
+  will-change: opacity;
+  animation: ruler-grid-breathe 8s ease-in-out infinite;
+}
+
+@keyframes ruler-grid-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.62;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-dark.homepage-ruler-texture::before {
+    animation: none;
+  }
+}
+
+/* Theme toggle button */
+.homepage-theme-toggle {
+  border-color: rgba(122, 0, 25, 0.25);
+  background: rgba(255, 255, 255, 0.65);
+  color: #7a0019;
+}
+
+.homepage-theme-toggle:hover {
+  border-color: rgba(246, 168, 0, 0.55);
+  background: rgba(251, 228, 166, 0.5);
+}
+
+.homepage-dark .homepage-theme-toggle {
+  border-color: rgba(255, 200, 77, 0.35);
+  background: rgba(40, 40, 48, 0.9);
+  color: var(--neon-gold);
+  box-shadow:
+    0 0 16px rgba(246, 168, 0, 0.12),
+    inset 0 0 12px rgba(255, 61, 107, 0.06);
+}
+
+.homepage-dark .homepage-theme-toggle:hover {
+  border-color: rgba(246, 168, 0, 0.55);
+  background: rgba(28, 28, 36, 0.95);
+  box-shadow: 0 0 18px rgba(246, 168, 0, 0.18);
+}
+
+.homepage-dark header .text-neutral-500 {
+  color: #71717a !important;
+}
+
+.homepage-dark header .text-neutral-900,
+.homepage-dark header .text-neutral-800,
+.homepage-dark header .text-neutral-700 {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark header a:hover,
+.homepage-dark header .hover\:text-uom-maroon:hover {
+  color: var(--neon-gold) !important;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.homepage-dark header .border-white\/60,
+.homepage-dark header .border-white\/70 {
+  border-color: rgba(255, 200, 77, 0.2) !important;
+}
+
+.homepage-dark header .bg-white\/85,
+.homepage-dark header .bg-white\/65,
+.homepage-dark header .bg-white\/55 {
+  background-color: rgba(40, 40, 48, 0.95) !important;
+}
+
+.homepage-dark header .text-uom-maroon {
+  color: var(--neon-maroon) !important;
+}
+
+/* Typography */
+.homepage-dark .text-neutral-900 {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .text-neutral-800 {
+  color: #e4e4e7 !important;
+}
+
+.homepage-dark .text-neutral-700 {
+  color: var(--text-muted) !important;
+}
+
+.homepage-dark .text-neutral-600 {
+  color: #71717a !important;
+}
+
+.homepage-dark .text-neutral-500 {
+  color: #a1a1aa !important;
+}
+
+.homepage-dark .text-uom-maroon {
+  color: var(--neon-maroon) !important;
+  text-shadow: 0 0 10px rgba(255, 61, 107, 0.35);
+}
+
+.homepage-dark .text-uom-goldSoft {
+  color: var(--neon-gold-soft) !important;
+  text-shadow: 0 0 12px rgba(246, 168, 0, 0.35);
+}
+
+.homepage-dark h2 .text-uom-maroon,
+.homepage-dark h3 .text-uom-maroon {
+  filter: drop-shadow(0 0 6px rgba(255, 61, 107, 0.45));
+}
+
+/* Surfaces */
+.homepage-dark .bg-white\/95,
+.homepage-dark .bg-white\/90,
+.homepage-dark .bg-white\/85,
+.homepage-dark .bg-white\/80,
+.homepage-dark .bg-white\/70,
+.homepage-dark .bg-white\/60,
+.homepage-dark .bg-white\/5 {
+  background-color: var(--matte-elevated) !important;
+}
+
+.homepage-dark .bg-uom-goldSoft\/90,
+.homepage-dark .bg-uom-goldSoft\/80,
+.homepage-dark .bg-uom-goldSoft\/70,
+.homepage-dark .bg-uom-goldSoft\/40,
+.homepage-dark .bg-uom-goldSoft\/20 {
+  background-color: rgba(246, 168, 0, 0.12) !important;
+  color: var(--neon-gold-soft) !important;
+}
+
+/* Solid gold-soft pills (Contact pill, postal address icon) — keep cream bg
+   so the dark icon/text inside stays visible in dark mode */
+.homepage-dark .bg-uom-goldSoft {
+  background-color: #fbe4a6 !important;
+  color: #18181b !important;
+}
+
+.homepage-dark .bg-uom-goldSoft .text-neutral-900,
+.homepage-dark .bg-uom-goldSoft.text-neutral-900,
+.homepage-dark .bg-uom-goldSoft svg {
+  color: #18181b !important;
+}
+
+.homepage-dark .bg-uom-maroon\/10 {
+  background-color: rgba(255, 61, 107, 0.12) !important;
+}
+
+.homepage-dark .bg-uom-maroon\/5 {
+  background-color: rgba(255, 61, 107, 0.08) !important;
+}
+
+.homepage-dark .bg-uom-maroon\/90 {
+  background-color: rgba(122, 0, 25, 0.85) !important;
+  box-shadow: 0 0 16px rgba(255, 61, 107, 0.25);
+}
+
+.homepage-dark .bg-uom-gold\/80 {
+  background-color: rgba(246, 168, 0, 0.25) !important;
+  box-shadow: 0 0 12px rgba(246, 168, 0, 0.2);
+}
+
+.homepage-dark .bg-neutral-100 {
+  background-color: #1a1a22 !important;
+}
+
+.homepage-dark .bg-neutral-50 {
+  background-color: rgba(40, 40, 48, 0.92) !important;
+}
+
+.homepage-dark .bg-white {
+  background-color: var(--matte-elevated) !important;
+}
+
+.homepage-dark .bg-neutral-900 {
+  background-color: #2a2a32 !important;
+  box-shadow: 0 0 12px rgba(255, 61, 107, 0.12);
+}
+
+/* Meta chips (date, badges) — stand out from matte page background */
+.homepage-dark span.inline-flex.rounded-full.bg-neutral-900,
+.homepage-dark .inline-flex.items-center.rounded-full.bg-neutral-900 {
+  background-color: rgba(122, 0, 25, 0.92) !important;
+  border: 1px solid rgba(246, 168, 0, 0.45) !important;
+  box-shadow: 0 0 14px rgba(255, 61, 107, 0.22);
+  color: #fafafa !important;
+}
+
+.homepage-dark span.inline-flex.rounded-full.bg-neutral-900 .text-uom-goldSoft,
+.homepage-dark .inline-flex.items-center.rounded-full.bg-neutral-900 .text-uom-goldSoft {
+  color: var(--neon-gold-soft) !important;
+}
+
+.homepage-dark span.inline-flex.rounded-full.bg-white,
+.homepage-dark span.inline-flex.items-center.rounded-full.bg-white {
+  background-color: var(--matte-elevated) !important;
+  border: 1px solid rgba(255, 200, 77, 0.35) !important;
+  box-shadow: 0 0 12px rgba(246, 168, 0, 0.12);
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .bg-neutral-950\/95 {
+  background-color: #16161a !important;
+  border-top: 1px solid rgba(255, 200, 77, 0.12) !important;
+  box-shadow: 0 -8px 40px rgba(255, 61, 107, 0.08);
+}
+
+/* Inner pages — registration, programme, etc. (neon matte panels) */
+.homepage-dark .site-panel {
+  background: linear-gradient(
+    145deg,
+    var(--matte-elevated) 0%,
+    rgba(122, 0, 25, 0.14) 42%,
+    var(--matte-surface) 100%
+  ) !important;
+  border-color: rgba(255, 200, 77, 0.38) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 107, 0.08),
+    0 14px 36px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(246, 168, 0, 0.06) !important;
+}
+
+.homepage-dark .site-panel .bg-uom-goldSoft {
+  background-color: rgba(246, 168, 0, 0.18) !important;
+  border-color: rgba(246, 168, 0, 0.45) !important;
+  color: var(--neon-gold-soft) !important;
+}
+
+.homepage-dark .site-panel .bg-uom-goldSoft svg {
+  color: var(--neon-maroon) !important;
+}
+
+.homepage-dark .site-card {
+  background-color: rgba(36, 36, 44, 0.96) !important;
+  border-color: rgba(255, 200, 77, 0.28) !important;
+  box-shadow:
+    0 0 0 1px rgba(246, 168, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+.homepage-dark .site-card-muted {
+  background-color: rgba(32, 32, 40, 0.92) !important;
+  border-color: rgba(255, 61, 107, 0.28) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 107, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+.homepage-dark .site-callout {
+  background: linear-gradient(
+    135deg,
+    rgba(246, 168, 0, 0.14) 0%,
+    rgba(40, 40, 48, 0.95) 55%,
+    rgba(28, 28, 32, 0.98) 100%
+  ) !important;
+  border-color: rgba(255, 200, 77, 0.45) !important;
+  box-shadow: 0 0 18px rgba(246, 168, 0, 0.1);
+}
+
+.homepage-dark .site-card .text-neutral-900,
+.homepage-dark .site-card-muted .text-neutral-900,
+.homepage-dark .site-panel .text-neutral-900,
+.homepage-dark .site-callout .text-neutral-900 {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .site-card .text-neutral-700,
+.homepage-dark .site-card-muted .text-neutral-700,
+.homepage-dark .site-panel .text-neutral-700,
+.homepage-dark .site-callout .text-neutral-700,
+.homepage-dark .site-callout .text-neutral-800 {
+  color: var(--text-muted) !important;
+}
+
+/* Borders */
+.homepage-dark .border-white\/80,
+.homepage-dark .border-white\/60,
+.homepage-dark .border-white\/40,
+.homepage-dark .border-white\/10 {
+  border-color: rgba(255, 200, 77, 0.15) !important;
+}
+
+.homepage-dark .border-border,
+.homepage-dark .border-border\/70 {
+  border-color: rgba(255, 200, 77, 0.18) !important;
+}
+
+.homepage-dark .border-uom-gold,
+.homepage-dark .border-uom-gold\/80,
+.homepage-dark .border-uom-gold\/60,
+.homepage-dark .border-uom-gold\/45,
+.homepage-dark .border-uom-gold\/40,
+.homepage-dark .border-uom-gold\/30 {
+  border-color: rgba(246, 168, 0, 0.35) !important;
+  box-shadow: 0 0 12px rgba(246, 168, 0, 0.08);
+}
+
+.homepage-dark .border-uom-maroon,
+.homepage-dark .border-uom-maroon\/50,
+.homepage-dark .border-uom-maroon\/40,
+.homepage-dark .border-uom-maroon\/25,
+.homepage-dark .border-uom-maroon\/18 {
+  border-color: rgba(255, 61, 107, 0.35) !important;
+}
+
+.homepage-dark .border-neutral-300 {
+  border-color: rgba(255, 200, 77, 0.2) !important;
+}
+
+.homepage-dark .border-neutral-200 {
+  border-color: rgba(255, 200, 77, 0.22) !important;
+}
+
+.homepage-dark .text-emerald-600 {
+  color: #34d399 !important;
+}
+
+.homepage-dark .border-emerald-300 {
+  border-color: rgba(52, 211, 153, 0.35) !important;
+}
+
+/* Glass panels & cards */
+.homepage-dark .glass-panel {
+  background: rgba(40, 40, 48, 0.88) !important;
+  border-color: rgba(255, 200, 77, 0.2) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 107, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.homepage-dark .hover-lift {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+  transform: translateZ(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .homepage-dark .hover-lift:hover {
+    transform: translate3d(0, -2px, 0);
+    border-color: rgba(246, 168, 0, 0.45) !important;
+    box-shadow:
+      0 14px 32px rgba(0, 0, 0, 0.35),
+      0 0 14px rgba(246, 168, 0, 0.1) !important;
+  }
+}
+
+/* Hero — slightly darker than light mode, still clearly visible */
+.homepage-dark .homepage-hero-neon img {
+  opacity: 0.92;
+  filter: brightness(0.82) saturate(0.95) contrast(1.04);
+}
+
+.homepage-dark .inline-flex.rounded-full.bg-white\/95 {
+  background: rgba(40, 40, 48, 0.92) !important;
+  border: 1px solid rgba(255, 200, 77, 0.3);
+  box-shadow: 0 0 16px rgba(246, 168, 0, 0.12);
+  color: var(--text-primary) !important;
+}
+
+/* Buttons & CTAs */
+.homepage-dark .border-uom-gold.bg-uom-goldSoft\/90,
+.homepage-dark a.rounded-full.border.border-uom-gold.bg-uom-goldSoft\/90 {
+  background: rgba(246, 168, 0, 0.15) !important;
+  color: var(--neon-gold-soft) !important;
+  border-color: rgba(246, 168, 0, 0.5) !important;
+  box-shadow: 0 0 20px rgba(246, 168, 0, 0.15);
+}
+
+.homepage-dark .border-uom-gold.bg-uom-goldSoft\/90:hover,
+.homepage-dark a.rounded-full.border.border-uom-gold.bg-uom-goldSoft\/90:hover {
+  background: rgba(246, 168, 0, 0.22) !important;
+  border-color: rgba(246, 168, 0, 0.65) !important;
+  box-shadow: 0 0 16px rgba(246, 168, 0, 0.18);
+}
+
+.homepage-dark button.border.border-uom-gold,
+.homepage-dark .border-white\/80.bg-white\/5 {
+  border-color: rgba(255, 200, 77, 0.4) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark button.border.border-uom-gold:hover,
+.homepage-dark .border-white\/80.bg-white\/5:hover {
+  background: rgba(246, 168, 0, 0.12) !important;
+  border-color: rgba(246, 168, 0, 0.55) !important;
+  box-shadow: 0 0 14px rgba(246, 168, 0, 0.12);
+}
+
+/* Nav / text link hovers */
+.homepage-dark a.hover\:text-uom-maroon:hover,
+.homepage-dark .hover\:text-uom-maroon:hover {
+  color: var(--neon-gold) !important;
+  text-shadow: none;
+}
+
+.homepage-dark a.text-uom-maroon.hover\:underline:hover {
+  color: var(--neon-gold) !important;
+}
+
+/* Primary & outline buttons */
+.homepage-dark button.hover\:bg-uom-gold:hover,
+.homepage-dark .hover\:bg-uom-gold:hover {
+  background-color: rgba(246, 168, 0, 0.88) !important;
+  color: #1c1c20 !important;
+  border-color: rgba(246, 168, 0, 0.7) !important;
+  box-shadow: 0 0 14px rgba(246, 168, 0, 0.2);
+}
+
+.homepage-dark button.hover\:bg-uom-gold\/20:hover {
+  background: rgba(246, 168, 0, 0.14) !important;
+}
+
+.homepage-dark .hover\:bg-white\/15:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Committee / programme link pills */
+.homepage-dark .group.hover\:-translate-y-0\.5:hover,
+.homepage-dark a.group.flex.w-full.min-h-\[44px\]:hover {
+  transform: translateY(-2px);
+}
+
+.homepage-dark .group.hover\:bg-gradient-to-r.hover\:from-uom-goldSoft.hover\:to-white:hover,
+.homepage-dark span.group.flex.w-full:hover {
+  background: rgba(246, 168, 0, 0.18) !important;
+  border-color: rgba(246, 168, 0, 0.5) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 12px rgba(246, 168, 0, 0.1);
+}
+
+.homepage-dark a.group.inline-flex.hover\:-translate-y-0\.5:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 0 10px rgba(246, 168, 0, 0.1);
+}
+
+.homepage-dark a.group.inline-flex.hover\:bg-uom-gold:hover {
+  background: rgba(246, 168, 0, 0.25) !important;
+}
+
+/* Calendar add button */
+.homepage-dark .border-emerald-300.bg-emerald-50\/90:hover {
+  background: rgba(16, 185, 129, 0.18) !important;
+  border-color: rgba(52, 211, 153, 0.5) !important;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.12);
+}
+
+/* Accordion row */
+.homepage-dark .rounded-2xl.border button:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.homepage-dark .rounded-2xl.border button:hover span {
+  color: var(--neon-gold);
+}
+
+/* Timeline */
+.homepage-dark .bg-neutral-300 {
+  background-color: rgba(255, 200, 77, 0.25) !important;
+}
+
+.homepage-dark .shadow-\[0_12px_30px_rgba\(161\,98\,7\,0\.28\)\] {
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(246, 168, 0, 0.12) !important;
+}
+
+/* Calendar add button */
+.homepage-dark .border-emerald-300.bg-emerald-50\/90 {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(52, 211, 153, 0.4) !important;
+  color: #6ee7b7 !important;
+}
+
+.homepage-dark .text-emerald-800,
+.homepage-dark .text-emerald-700 {
+  color: #6ee7b7 !important;
+}
+
+/* Accordion */
+.homepage-dark .rounded-2xl.border.border-border\/70.bg-white\/70 {
+  background: rgba(40, 40, 48, 0.9) !important;
+  border-color: rgba(255, 200, 77, 0.2) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 107, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Badges */
+.homepage-dark .bg-uom-maroon.text-white {
+  background: rgba(255, 61, 107, 0.2) !important;
+  color: var(--neon-gold-soft) !important;
+  border-color: rgba(255, 61, 107, 0.5) !important;
+  box-shadow: 0 0 16px rgba(255, 61, 107, 0.2);
+}
+
+/* Footer links */
+.homepage-dark footer a:hover,
+.homepage-dark footer .hover\:text-uom-gold:hover {
+  color: var(--neon-gold) !important;
+  text-shadow: none;
+}
+
+.homepage-dark footer .text-uom-gold {
+  color: var(--neon-gold) !important;
+}
+
+/* Sponsor logos */
+.homepage-dark .sponsor-slider img {
+  filter: brightness(1.15) contrast(1.05);
+  opacity: 0.85;
+}
+
+/* Social chips in contact */
+.homepage-dark a.rounded-full.border.border-neutral-300 {
+  border-color: rgba(255, 200, 77, 0.25) !important;
+  background: rgba(40, 40, 48, 0.8);
+}
+
+.homepage-dark a.rounded-full.border.border-neutral-300:hover {
+  border-color: rgba(246, 168, 0, 0.45) !important;
+  background: rgba(28, 28, 36, 0.95) !important;
+  box-shadow: 0 0 12px rgba(246, 168, 0, 0.1);
+}
+
+/* Fixed site header — pinned to viewport, sibling of any blurred wrappers */
+.homepage-site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.homepage-site-header.homepage-dark,
+.homepage-dark .homepage-site-header {
+  background: rgba(28, 28, 32, 0.92) !important;
+  border-color: rgba(255, 200, 77, 0.12) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 1px 0 rgba(246, 168, 0, 0.08);
+}
+
+/* Dark header — text & nav colors */
+.homepage-site-header.homepage-dark .text-neutral-500 {
+  color: #71717a !important;
+}
+.homepage-site-header.homepage-dark .text-neutral-900,
+.homepage-site-header.homepage-dark .text-neutral-800,
+.homepage-site-header.homepage-dark .text-neutral-700 {
+  color: #f4f4f5 !important;
+}
+.homepage-site-header.homepage-dark a:hover,
+.homepage-site-header.homepage-dark .hover\:text-uom-maroon:hover {
+  color: #ffc84d !important;
+  text-shadow: none;
+}
+.homepage-site-header.homepage-dark .border-white\/60,
+.homepage-site-header.homepage-dark .border-white\/70 {
+  border-color: rgba(255, 200, 77, 0.2) !important;
+}
+.homepage-site-header.homepage-dark .bg-white\/85,
+.homepage-site-header.homepage-dark .bg-white\/65 {
+  background-color: rgba(40, 40, 48, 0.95) !important;
+}
+.homepage-site-header.homepage-dark .text-uom-maroon {
+  color: #ff3d6b !important;
+}
+
+/* Submit Abstract (hero + navbar in dark) — maroon bg + gold border; beats generic dark maroon overrides */
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary,
+.homepage-site-header.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary {
+  background-color: #7a0019 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: 2px solid #f6a800 !important;
+  box-shadow: 0 2px 8px rgba(122, 0, 25, 0.25) !important;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary:hover,
+.homepage-site-header.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary:hover {
+  background-color: #520013 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #ffc84d !important;
+  box-shadow:
+    0 4px 14px rgba(122, 0, 25, 0.35),
+    0 0 0 1px rgba(246, 168, 0, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Hero outline CTAs — same styling in both light and dark themes */
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--outline {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--outline:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   Extra neon glow / breathing effects (dark mode only)
+   ═════════════════════════════════════════════════════════════ */
+
+/* — Keyframes — */
+@keyframes neon-border-sweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes neon-divider-shimmer {
+  0%,
+  100% {
+    background-position: -120% 0;
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 220% 0;
+  }
+}
+
+@keyframes neon-cta-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 2px 8px rgba(122, 0, 25, 0.35),
+      0 0 12px rgba(246, 168, 0, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 4px 18px rgba(122, 0, 25, 0.45),
+      0 0 22px rgba(246, 168, 0, 0.3),
+      0 0 36px rgba(255, 61, 107, 0.16);
+  }
+}
+
+
+/* — Hero heading only: static gold glow (cheap, no animation) — */
+.homepage-dark h1#icode-hero-heading {
+  text-shadow:
+    0 0 8px rgba(255, 200, 77, 0.25),
+    0 0 18px rgba(255, 61, 107, 0.12);
+}
+
+/* — Section headings: static drop-shadow accent — */
+.homepage-dark h2 svg.text-uom-maroon,
+.homepage-dark h3 svg.text-uom-maroon {
+  filter: drop-shadow(0 0 6px rgba(255, 61, 107, 0.35));
+}
+
+/* — Important Dates timeline circles: static gold ring — */
+.homepage-dark .border-2.border-uom-gold.bg-uom-goldSoft\/80 {
+  background: rgba(246, 168, 0, 0.16) !important;
+  border-color: rgba(255, 200, 77, 0.55) !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 200, 77, 0.18),
+    0 0 12px rgba(246, 168, 0, 0.25);
+}
+
+.homepage-dark .border-2.border-uom-gold.bg-uom-goldSoft\/80 svg {
+  color: #ffc84d !important;
+}
+
+/* — Hero date / location chips: static subtle glow — */
+.homepage-dark .inline-flex.rounded-full.bg-white\/95 {
+  box-shadow: 0 0 16px rgba(246, 168, 0, 0.15);
+}
+
+/* — Submit Abstract CTAs (navbar + hero): breathing maroon glow — */
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary {
+  animation: neon-cta-breathe 3.8s ease-in-out infinite;
+}
+
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--primary:hover {
+  animation: none;
+}
+
+/* — Hero outline CTAs: subtle border shimmer — */
+.homepage-dark .homepage-hero-cta--outline {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.homepage-dark .homepage-hero-cta--outline::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 200, 77, 0.35) 25%,
+    rgba(255, 61, 107, 0.25) 50%,
+    rgba(255, 200, 77, 0.35) 75%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: neon-border-sweep 4.5s linear infinite;
+  opacity: 0.7;
+}
+
+/* — Theme toggle: breathing glow (gold) — */
+.homepage-dark .homepage-theme-toggle {
+  animation: neon-cta-breathe 4.2s ease-in-out infinite;
+}
+
+/* — Section dividers (hr) — animated gradient line — */
+.homepage-dark hr.border-white\/10 {
+  border: none !important;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(246, 168, 0, 0.5) 30%,
+    rgba(255, 61, 107, 0.55) 50%,
+    rgba(246, 168, 0, 0.5) 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: neon-divider-shimmer 6s linear infinite;
+}
+
+/* — Sponsor slider: edge fades only (no per-image filters) — */
+.homepage-dark .sponsor-slider {
+  position: relative;
+}
+
+.homepage-dark .sponsor-slider::before,
+.homepage-dark .sponsor-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.homepage-dark .sponsor-slider::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(28, 28, 32, 0.95), transparent);
+}
+
+.homepage-dark .sponsor-slider::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(28, 28, 32, 0.95), transparent);
+}
+
+.homepage-dark .sponsor-track img {
+  opacity: 0.9;
+  transition: opacity 250ms ease;
+}
+
+.homepage-dark .sponsor-track img:hover {
+  opacity: 1;
+}
+
+/* — Glass panel pulse on hover (extra emphasis) — */
+@media (hover: hover) and (pointer: fine) {
+  .homepage-dark .glass-panel:hover {
+    animation-duration: 2.4s;
+  }
+}
+
+/* — Footer email link: glow on hover — */
+.homepage-dark footer a[href^="mailto:"] {
+  transition: text-shadow 250ms ease, color 250ms ease;
+}
+
+.homepage-dark footer a[href^="mailto:"]:hover {
+  text-shadow:
+    0 0 8px rgba(246, 168, 0, 0.5),
+    0 0 16px rgba(246, 168, 0, 0.3);
+}
+
+/* — Reduced motion: kill all new animations — */
+@media (prefers-reduced-motion: reduce) {
+  .homepage-dark .homepage-hero-cta.homepage-hero-cta--primary,
+  .homepage-dark .homepage-hero-cta--outline::before,
+  .homepage-dark .homepage-theme-toggle,
+  .homepage-dark hr.border-white\/10,
+  .homepage-dark.homepage-ambient-glow::after {
+    animation: none !important;
   }
 }
 

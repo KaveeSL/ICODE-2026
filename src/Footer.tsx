@@ -1,8 +1,8 @@
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
-import { Link } from "react-router-dom";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
+import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
 
 export function Footer() {
   return (
@@ -45,43 +45,7 @@ export function Footer() {
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
                     Conference
                   </h2>
-                  <ul className="space-y-1.5 list-disc list-inside">
-                    <li>
-                      <Link to="/#about" className="hover:underline">
-                        About ICODE2026
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/#dates" className="hover:underline">
-                        Important Dates
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/#days" className="hover:underline">
-                        3-day programme
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/registration" className="hover:underline">
-                        Registration
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/#committees" className="hover:underline">
-                        Committees
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/#faq" className="hover:underline">
-                        FAQs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/#contact" className="hover:underline">
-                        Contact
-                      </Link>
-                    </li>
-                  </ul>
+                  <FooterConferenceLinks />
                 </div>
                 <div>
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">

@@ -7,6 +7,7 @@ import GovernancePage from "./GovernancePage";
 import CallForPapersPage from "./CallForPapersPage";
 import RegistrationPage from "./RegistrationPage";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
+import { SiteThemeProvider } from "./context/SiteThemeProvider";
 import "./index.css";
 
 function ScrollToTopOnRouteChange() {
@@ -22,15 +23,17 @@ function ScrollToTopOnRouteChange() {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ScrollToTopOnRouteChange />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/programme" element={<ProgrammePage />} />
-        <Route path="/governance" element={<GovernancePage />} />
-        <Route path="/call-for-papers" element={<CallForPapersPage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
-      </Routes>
-      <WhatsAppFloat />
+      <SiteThemeProvider>
+        <ScrollToTopOnRouteChange />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/programme" element={<ProgrammePage />} />
+          <Route path="/governance" element={<GovernancePage />} />
+          <Route path="/call-for-papers" element={<CallForPapersPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
+        </Routes>
+        <WhatsAppFloat />
+      </SiteThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  createElement,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ElementType,
+  type ReactNode
+} from "react";
 
 type RevealVariant = "up" | "down" | "left" | "right" | "scale";
 
@@ -6,7 +14,7 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   /** Which HTML element to render as (use `li` inside lists to preserve layout/semantics). */
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   /** Animation style. */
   variant?: RevealVariant;
   /** Delay in milliseconds (for stagger). */
@@ -62,21 +70,19 @@ export function Reveal({
   }, [once, threshold]);
 
   const delay = Math.max(0, delayMs);
-  return (
-    <Tag
-      ref={ref as any}
-      className={[
-        "reveal",
-        `reveal--${variant}`,
-        inView ? "reveal--in" : "",
-        className
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      style={{ ["--reveal-delay" as any]: `${delay}ms` }}
-    >
-      {children}
-    </Tag>
-  );
+  const revealClassName = [
+    "reveal",
+    `reveal--${variant}`,
+    inView ? "reveal--in" : "",
+    className
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const revealStyle = {
+    "--reveal-delay": `${delay}ms`
+  } as CSSProperties;
+
+  return createElement(Tag, { ref, className: revealClassName, style: revealStyle }, children);
 }
 

@@ -1,21 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState, type ReactNode } from "react";
-import {
-  Bars3Icon,
-  UsersIcon,
-  ArrowLeftIcon,
-  ChevronRightIcon,
-  XMarkIcon
-} from "@heroicons/react/24/outline";
+import { UsersIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
-import mainBg from "./assets/bgmain.png";
 import womanAvatar from "./assets/woman.png";
 import manAvatar from "./assets/men.png";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
-import { Button } from "./components/ui/button";
 import { Reveal } from "./components/Reveal";
+import { SiteHeader } from "./components/SiteHeader";
+import { SitePageShell } from "./components/SitePageShell";
+import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
 
 type PersonRecord = { name: string; designation?: string };
 type PersonInput = string | PersonRecord;
@@ -750,139 +745,14 @@ export default function GovernancePage() {
   }, [location.pathname, location.hash]);
 
   return (
-    <div
-      className="min-h-screen bg-fixed bg-cover bg-top"
-      style={{ backgroundImage: `url(${mainBg})` }}
-    >
-      <div className="min-h-screen bg-white/80 backdrop-blur-xl">
-        <header className="border-b border-white/60 bg-white/75 backdrop-blur-xl sticky top-0 z-40">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
-            <Link
-              to="/"
-              className="flex items-center gap-2.5 hover:opacity-90 transition-opacity"
-            >
-              <div className="flex items-center gap-1.5">
-                <div className="h-10 w-10 overflow-hidden rounded-[18px] md:h-11 md:w-11">
-                  <img
-                    src={logo}
-                    alt="University of Moratuwa logo"
-                    className="h-9 w-9 object-contain md:h-10 md:w-10"
-                  />
-                </div>
-                <div className="h-10 w-10 overflow-hidden rounded-[18px] items-center justify-center flex">
-                  <img
-                    src={codlLogo}
-                    alt="CODL logo"
-                    className="h-9 w-9 object-contain"
-                  />
-                </div>
-              </div>
-              <div className="leading-tight">
-                <p className="text-[10px] uppercase tracking-[0.1em] text-neutral-500">
-                  CODL
-                </p>
-                <p className="text-[11px] font-semibold text-neutral-900">
-                  University of Moratuwa · Sri Lanka
-                </p>
-              </div>
-            </Link>
-            <nav className="hidden items-center gap-6 text-xs font-medium text-neutral-700 md:flex">
-              <Link to="/#about" className="hover:text-uom-maroon">
-                About
-              </Link>
-              <Link to="/#dates" className="hover:text-uom-maroon">
-                Important Dates
-              </Link>
-              <Link to="/registration" className="hover:text-uom-maroon">
-                Registration
-              </Link>
-              <Link to="/#committees" className="hover:text-uom-maroon">
-                Committees
-              </Link>
-              <Link to="/#contact" className="hover:text-uom-maroon">
-                Contact
-              </Link>
-              <Link to="/call-for-papers">
-                <Button size="sm" className="ml-2 border border-uom-gold bg-uom-goldSoft/90 text-neutral-900">
-                  <span className="flex items-center gap-1">
-                    Submit Abstract
-                    <ChevronRightIcon className="h-3.5 w-3.5" />
-                  </span>
-                </Button>
-              </Link>
-            </nav>
+    <SitePageShell variant="glass">
+      <SiteHeader
+        mobileNavOpen={mobileNavOpen}
+        onMobileNavToggle={() => setMobileNavOpen((v) => !v)}
+        onMobileNavClose={() => setMobileNavOpen(false)}
+      />
 
-            <button
-              type="button"
-              onClick={() => setMobileNavOpen((v) => !v)}
-              className="md:hidden inline-flex items-center justify-center rounded-full border border-white/70 bg-white/65 p-2 text-uom-maroon"
-              aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
-            >
-              {mobileNavOpen ? (
-                <XMarkIcon className="h-5 w-5" />
-              ) : (
-                <Bars3Icon className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-
-          {mobileNavOpen && (
-            <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
-              <div className="mx-auto max-w-6xl px-4 py-4">
-                <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
-                  <Link
-                    to="/#about"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/#dates"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Important Dates
-                  </Link>
-                  <Link
-                    to="/registration"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Registration
-                  </Link>
-                  <Link
-                    to="/#committees"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Committees
-                  </Link>
-                  <Link
-                    to="/#contact"
-                    onClick={() => setMobileNavOpen(false)}
-                    className="hover:text-uom-maroon"
-                  >
-                    Contact
-                  </Link>
-                  <Link to="/call-for-papers" onClick={() => setMobileNavOpen(false)}>
-                    <Button
-                      size="lg"
-                      className="w-full border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
-                    >
-                      <span className="flex items-center justify-center gap-1.5">
-                        Submit Abstract
-                        <ChevronRightIcon className="h-4 w-4" />
-                      </span>
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-        </header>
-
-        <main className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
+      <main className="mx-auto max-w-6xl px-4 pb-10 pt-[calc(60px+2.5rem)] md:px-6 md:pb-14 md:pt-[calc(68px+3.5rem)]">
           <section>
             <Reveal variant="up">
               <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
@@ -954,6 +824,7 @@ export default function GovernancePage() {
               ))}
             </div>
           </section>
+
         </main>
 
         <footer className="bg-neutral-950/95 text-neutral-100 border-t border-white/10">
@@ -994,43 +865,7 @@ export default function GovernancePage() {
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
                     Conference
                   </h2>
-                  <ul className="space-y-1.5 list-disc list-inside">
-                    <li>
-                      <a href="/#about" className="hover:underline">
-                        About ICODE2026
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#dates" className="hover:underline">
-                        Important Dates
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#days" className="hover:underline">
-                        3-day programme
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/registration" className="hover:underline">
-                        Registration
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#committees" className="hover:underline">
-                        Committees
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#faq" className="hover:underline">
-                        FAQs
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/#contact" className="hover:underline">
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
+                  <FooterConferenceLinks />
                 </div>
                 <div>
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
@@ -1180,8 +1015,7 @@ export default function GovernancePage() {
             </div>
           </div>
         </footer>
-      </div>
-    </div>
+    </SitePageShell>
   );
 }
 

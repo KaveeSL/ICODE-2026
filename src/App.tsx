@@ -31,8 +31,11 @@ import { Footer } from "./Footer";
 import { importantDates } from "./constants/importantDates";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
+import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 import { Reveal } from "./components/Reveal";
+import { HomepageThemeToggle } from "./components/HomepageThemeToggle";
+import { useHomepageTheme } from "./hooks/useHomepageTheme";
 
 const themes = [
   "Digital transformation in education",
@@ -253,6 +256,7 @@ function App() {
   const countdown = useCountdown(conferenceStart);
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { theme, isDark, toggleTheme } = useHomepageTheme();
 
   // Smooth scroll to in-page anchors with header offset
   useEffect(() => {
@@ -284,11 +288,15 @@ function App() {
   return (
     <div
       id="top"
-      className="min-h-screen bg-fixed bg-cover bg-top"
-      style={{ backgroundImage: `url(${mainBg})` }}
+      className={
+        isDark ? "min-h-screen bg-[#1c1c20]" : "min-h-screen bg-background"
+      }
     >
-      <div className="min-h-screen bg-white/70 hero-gradient backdrop-blur-2xl">
-        <header className="border-b border-white/60 bg-white/55 backdrop-blur-xl sticky top-0 z-40">
+      <header
+        className={`homepage-site-header ${
+          isDark ? "homepage-dark" : ""
+        } border-b border-white/60 bg-white/55 backdrop-blur-xl`}
+      >
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
             <a href="#top" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
               <div className="flex items-center gap-1.5">
@@ -316,7 +324,7 @@ function App() {
                 </p>
               </div>
             </a>
-            <nav className="hidden items-center gap-6 text-xs font-medium text-neutral-700 md:flex">
+            <nav className="hidden items-center gap-4 text-xs font-medium text-neutral-700 md:flex">
               <a href="#about" className="hover:text-uom-maroon">
                 About
               </a>
@@ -332,8 +340,16 @@ function App() {
               <a href="#contact" className="hover:text-uom-maroon">
                 Contact
               </a>
+              <HomepageThemeToggle theme={theme} onToggle={toggleTheme} />
               <Link to="/call-for-papers">
-                <Button size="sm" className="ml-2 border border-uom-gold bg-uom-goldSoft/90 text-neutral-900">
+                <Button
+                  size="sm"
+                  className={
+                    isDark
+                      ? "homepage-hero-cta homepage-hero-cta--primary ml-2 border-2 border-uom-gold bg-uom-maroon text-white hover:bg-uom-maroonDark hover:text-white shadow-sm"
+                      : "ml-2 border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
+                  }
+                >
                   <span className="flex items-center gap-1">
                     Submit Abstract
                     <ChevronRightIcon className="h-3.5 w-3.5" />
@@ -342,14 +358,17 @@ function App() {
               </Link>
             </nav>
 
-            <button
-              type="button"
-              onClick={() => setMobileNavOpen((v) => !v)}
-              className="md:hidden inline-flex items-center justify-center rounded-full border border-white/70 bg-white/65 p-2 text-uom-maroon"
-              aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
-            >
-              {mobileNavOpen ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
-            </button>
+            <div className="flex items-center gap-2 md:hidden">
+              <HomepageThemeToggle theme={theme} onToggle={toggleTheme} />
+              <button
+                type="button"
+                onClick={() => setMobileNavOpen((v) => !v)}
+                className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/65 p-2 text-uom-maroon"
+                aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+              >
+                {mobileNavOpen ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
 
           {mobileNavOpen && (
@@ -395,7 +414,11 @@ function App() {
                     <Link to="/call-for-papers" onClick={() => setMobileNavOpen(false)}>
                       <Button
                         size="lg"
-                        className="w-full border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
+                        className={
+                          isDark
+                            ? "homepage-hero-cta homepage-hero-cta--primary w-full border-2 border-uom-gold bg-uom-maroon text-white hover:bg-uom-maroonDark hover:text-white shadow-sm"
+                            : "w-full border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
+                        }
                       >
                         <span className="flex items-center justify-center gap-1.5">
                           Submit Abstract
@@ -408,23 +431,44 @@ function App() {
               </div>
             </div>
           )}
-        </header>
+      </header>
 
+      <div
+        className={`pt-[60px] md:pt-[68px] ${
+          isDark
+            ? "homepage-dark homepage-ruler-texture homepage-ambient-glow min-h-screen transition-colors duration-500"
+            : "min-h-screen bg-white/70 hero-gradient homepage-ruler-texture transition-colors duration-500"
+        }`}
+      >
         {/* Top visual hero with main campus image using theme colours */}
         <section
-          className="relative overflow-visible border-b border-white/40 md:overflow-hidden"
+          className={`relative overflow-visible border-b md:overflow-hidden ${
+            isDark ? "border-uom-gold/20 homepage-hero-neon" : "border-white/40"
+          }`}
           aria-labelledby="icode-hero-heading"
         >
           <div
-            className="relative min-h-[600px] w-full md:h-[80vh] md:min-h-0 md:pt-0 md:pb-0 pt-[calc(7.5rem+env(safe-area-inset-top))] pb-[calc(3.5rem+env(safe-area-inset-bottom))]"
+            className="relative min-h-[560px] w-full md:h-[80vh] md:min-h-0 md:pt-0 md:pb-0 pt-10 pb-[calc(3.5rem+env(safe-area-inset-bottom))]"
           >
             <img
               src={mainBg}
               alt="University of Moratuwa main campus greenery"
               className="absolute inset-0 h-full w-full object-cover object-[center_18%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/75 via-neutral-900/45 to-uom-maroon/55 mix-blend-multiply animated-sheen" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+            <div
+              className={
+                isDark
+                  ? "absolute inset-0 bg-gradient-to-br from-neutral-950/60 via-neutral-900/40 to-uom-maroon/25"
+                  : "absolute inset-0 bg-gradient-to-br from-neutral-900/75 via-neutral-900/45 to-uom-maroon/55 mix-blend-multiply animated-sheen"
+              }
+            />
+            <div
+              className={
+                isDark
+                  ? "absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"
+                  : "absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
+              }
+            />
 
             <div className="relative z-10 flex items-start md:h-full md:items-center">
               <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
@@ -489,7 +533,7 @@ function App() {
                     <Link to="/call-for-papers">
                       <Button
                         size="lg"
-                        className="h-auto min-h-12 w-full sm:w-auto border border-uom-gold bg-uom-goldSoft/90 text-neutral-900"
+                        className="submit-abstract-cta homepage-hero-cta homepage-hero-cta--primary h-auto min-h-12 w-full sm:w-auto border-2 border-uom-gold bg-uom-maroon text-white hover:bg-uom-maroonDark hover:text-white shadow-sm"
                       >
                         <span className="flex items-center gap-1.5">
                           Submit Abstract
@@ -501,7 +545,7 @@ function App() {
                       <Button
                         size="lg"
                         variant="outline"
-                        className="h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
+                        className="homepage-hero-cta homepage-hero-cta--outline h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
                       >
                         <span className="flex items-center gap-1.5">
                           <CursorArrowRaysIcon className="h-4 w-4 shrink-0" />
@@ -516,7 +560,7 @@ function App() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
+                        className="homepage-hero-cta homepage-hero-cta--outline h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
                       >
                         <span className="flex items-center gap-1.5">
                           <CalendarDaysIcon className="h-4 w-4 shrink-0" />
@@ -1391,38 +1435,7 @@ function App() {
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
                     Conference
                   </h2>
-                  <ul className="space-y-1.5 list-disc list-inside">
-                    <li>
-                      <a href="#about" className="hover:underline">
-                        About ICODE2026
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#dates" className="hover:underline">
-                        Important Dates
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#days" className="hover:underline">
-                        3-day programme
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#committees" className="hover:underline">
-                        Committees
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#faq" className="hover:underline">
-                        FAQs
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#contact" className="hover:underline">
-                        Contact
-                      </a>
-                    </li>
-                  </ul>
+                  <FooterConferenceLinks samePage />
                 </div>
                 <div>
                   <h2 className="mb-3 text-sm font-semibold text-neutral-100 uppercase">
