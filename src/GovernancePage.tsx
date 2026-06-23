@@ -135,7 +135,7 @@ const committeeGroups: CommitteeGroup[] = [
     ]
   },
   {
-    role: "Media, Communications & Branding Committee",
+    role: "Publicity, Media & Communications Committee",
     sections: [
       {
         label: "Co-chairs",
@@ -306,7 +306,7 @@ const committeeGroups: CommitteeGroup[] = [
     ]
   },
   {
-    role: "Ethics Committee",
+    role: "Ethics, Quality & Risk Management Committee",
     sections: [
       {
         label: "Co-chairs",
@@ -338,7 +338,7 @@ const committeeGroups: CommitteeGroup[] = [
     ]
   },
   {
-    role: "Student Coordination Committee",
+    role: "Student & Volunteer Coordination Committee",
     sections: [
       {
         label: "Co-chairs",

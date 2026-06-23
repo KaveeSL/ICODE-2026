@@ -7,6 +7,7 @@ import GovernancePage from "./GovernancePage";
 import CallForPapersPage from "./CallForPapersPage";
 import RegistrationPage from "./RegistrationPage";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
+import { SiteDocumentHead } from "./components/SiteDocumentHead";
 import { SiteThemeProvider } from "./context/SiteThemeProvider";
 import "./index.css";
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <SiteThemeProvider>
         <ScrollToTopOnRouteChange />
+        <SiteDocumentHead />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/programme" element={<ProgrammePage />} />

@@ -16,7 +16,14 @@ import {
   PhoneIcon,
   GlobeAltIcon,
   CheckCircleIcon,
-  XMarkIcon
+  XMarkIcon,
+  SparklesIcon,
+  UserGroupIcon,
+  LightBulbIcon,
+  PresentationChartLineIcon,
+  RocketLaunchIcon,
+  BuildingLibraryIcon,
+  WrenchScrewdriverIcon
 } from "@heroicons/react/24/outline";
 import { Button } from "./components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
@@ -36,6 +43,47 @@ import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 import { Reveal } from "./components/Reveal";
 import { HomepageThemeToggle } from "./components/HomepageThemeToggle";
 import { useHomepageTheme } from "./hooks/useHomepageTheme";
+
+const WHY_PARTICIPATE_BENEFITS = [
+  {
+    icon: PresentationChartLineIcon,
+    text: "Present high-impact work to an international audience.",
+  },
+  {
+    icon: UserGroupIcon,
+    text: "Build collaborations across institutions and sectors.",
+  },
+  {
+    icon: RocketLaunchIcon,
+    text: "Showcase innovative digital learning initiatives.",
+  },
+  {
+    icon: GlobeAltIcon,
+    text: "Engage with regional and global leaders in Open and Digital Education.",
+  },
+  {
+    icon: LightBulbIcon,
+    text: "Help shape an inclusive, future-ready digital agenda.",
+  },
+] as const;
+
+const WHY_PARTICIPATE_AUDIENCES = [
+  {
+    icon: AcademicCapIcon,
+    title: "Early- & mid-career academics",
+    detail: "Seeking feedback, visibility, and cross-institutional networks.",
+  },
+  {
+    icon: WrenchScrewdriverIcon,
+    title: "Instructional designers & EdTech teams",
+    detail: "Scaling digital programmes with evidence and peer exchange.",
+  },
+  {
+    icon: BuildingLibraryIcon,
+    title: "Policy & quality leaders",
+    detail: "Planning national or institutional reforms with regional context.",
+  },
+] as const;
 
 const themes = [
   "Digital transformation in education",
@@ -133,15 +181,111 @@ function ImportantDateAddToCalendarButton({ item }: { item: ImportantDateItem })
         addToCalendar(item);
       }}
       title={title}
-      aria-label={`Add ${item.label} (${item.date}) to your calendar`}
-      className="group mt-2 inline-flex w-fit max-w-full items-center gap-1.5 rounded-md border border-emerald-300 bg-emerald-50/90 px-2 py-1 text-[11px] font-medium text-emerald-800 transition hover:border-emerald-400 hover:bg-emerald-100/90 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 md:mx-auto"
+      aria-label={`Mark date — add ${item.label} (${item.date}) to your calendar`}
+      className="group mt-2 inline-flex w-fit max-w-full items-center gap-1.5 rounded-md border border-emerald-300 bg-emerald-50/90 px-2 py-1.5 text-emerald-800 transition hover:border-emerald-400 hover:bg-emerald-100/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 md:mx-auto"
     >
       <CalendarIcon
-        className="h-3.5 w-3.5 shrink-0 text-emerald-700 group-hover:text-emerald-800"
+        className="h-4 w-4 shrink-0 text-emerald-700 group-hover:text-emerald-800"
         aria-hidden
       />
-      <span className="leading-tight">Add to calendar</span>
+      <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-800 group-hover:text-emerald-900">
+        Mark date
+      </span>
     </button>
+  );
+}
+
+function isExtendedSubmissionDeadlineSlot(item: ImportantDateItem) {
+  return item.label === "Submission Deadline" && item.date === "3 June 2026";
+}
+
+const programmeVenues = {
+  uom: {
+    label: "University of Moratuwa, Sri Lanka",
+    mapsUrl: "https://maps.app.goo.gl/mreWezR5WpEDyadU9",
+    embedSrc:
+      "https://maps.google.com/maps?q=University+of+Moratuwa,+Moratuwa,+Sri+Lanka&z=16&output=embed"
+  },
+  bmich: {
+    label: "BMICH Colombo, Sri Lanka",
+    mapsUrl: "https://maps.app.goo.gl/L1ukAoDeGpPrPxYB8",
+    embedSrc:
+      "https://maps.google.com/maps?q=BMICH,+Colombo,+Sri+Lanka&z=16&output=embed"
+  }
+} as const;
+
+type ProgrammeVenueId = keyof typeof programmeVenues;
+
+function ProgrammeDayVenue({ venueId }: { venueId: ProgrammeVenueId }) {
+  const venue = programmeVenues[venueId];
+
+  return (
+    <a
+      href={venue.mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="programme-day-map-mini group flex items-center gap-2.5 overflow-hidden rounded-xl border border-uom-gold/30 bg-transparent p-1.5 transition hover:border-uom-maroon/35 hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uom-gold focus-visible:ring-offset-2"
+      aria-label={`Open ${venue.label} in Google Maps`}
+    >
+      <span className="programme-day-map-mini__thumb relative h-10 w-[3.35rem] shrink-0 overflow-hidden rounded-lg border border-uom-gold/30 bg-transparent shadow-sm">
+        <iframe
+          src={venue.embedSrc}
+          title={`Map: ${venue.label}`}
+          className="programme-day-map-mini__iframe pointer-events-none absolute left-1/2 top-1/2 border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+        <span
+          className="pointer-events-none absolute bottom-0.5 right-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-uom-maroon text-white shadow-sm"
+          aria-hidden
+        >
+          <MapPinIcon className="h-2.5 w-2.5" />
+        </span>
+      </span>
+      <span className="min-w-0 flex-1 leading-tight">
+        <span className="block text-[11px] font-medium text-neutral-800">{venue.label}</span>
+        <span className="mt-0.5 block text-[10px] font-semibold text-uom-maroon group-hover:underline">
+          View on map
+        </span>
+      </span>
+    </a>
+  );
+}
+
+function ImportantDateStillAcceptingCard({
+  item,
+  variant = "mobile"
+}: {
+  item: ImportantDateItem;
+  variant?: "mobile" | "desktop";
+}) {
+  const cardWidth = "mx-auto w-full max-w-[11rem] md:max-w-[10.5rem] lg:max-w-[11.25rem]";
+
+  const cardClass =
+    variant === "desktop"
+      ? `hover-lift ${cardWidth} mt-3 flex flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-2.5 py-3 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:justify-between md:px-3 md:py-3.5`
+      : `hover-lift ${cardWidth} flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-3 py-3 shadow-sm`;
+
+  const dateClass =
+    variant === "desktop"
+      ? "text-sm font-semibold leading-snug text-neutral-500 line-through decoration-neutral-400 md:text-base"
+      : "text-base font-semibold leading-snug text-neutral-500 line-through decoration-neutral-400";
+
+  const stillAcceptingClass =
+    variant === "desktop"
+      ? "mt-1 text-sm font-semibold text-neutral-900 md:text-base"
+      : "mt-1 text-base font-semibold text-neutral-900";
+
+  return (
+    <div className={cardClass}>
+      <p className={dateClass}>{item.date}</p>
+      <p className={stillAcceptingClass}>Still Accepting</p>
+      <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">{item.label}</p>
+      <p className={`mt-1 leading-relaxed text-neutral-700 ${variant === "desktop" ? "text-xs md:text-sm" : "text-xs"}`}>
+        {item.note}
+      </p>
+      <ImportantDateAddToCalendarButton item={item} />
+    </div>
   );
 }
 
@@ -162,8 +306,8 @@ const faqItems = [
     question: "What is the event format?",
     answer: (
       <ul className="list-disc pl-5 space-y-1">
-        <li>Day 1 – Policy &amp; Leadership Summit</li>
-        <li>Day 2 – Academic Research Conference</li>
+        <li>Day 1 – Academic Research Conference</li>
+        <li>Day 2 – Policy &amp; Leadership Summit</li>
         <li>Day 3 – Practice, Innovation &amp; Capacity Building Workshops</li>
         <li>Hybrid participation with on-site and online options</li>
       </ul>
@@ -213,10 +357,26 @@ const faqItems = [
     id: "venue",
     question: "Where will the conference take place?",
     answer: (
-      <p>
-        The physical events of ICODE2026 will take place in Colombo, Sri Lanka. A fully supported virtual track
-        will enable remote participation.
-      </p>
+      <>
+        <p>
+          ICODE2026 is a hybrid conference with on-site sessions across Sri Lanka and a fully
+          supported virtual track for remote participation.
+        </p>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
+          <li>
+            <span className="font-semibold">Day 1 – Academic Research Conference (5 August 2026):</span>{" "}
+            University of Moratuwa, Sri Lanka
+          </li>
+          <li>
+            <span className="font-semibold">Day 2 – Policy &amp; Leadership Summit (6 August 2026):</span>{" "}
+            BMICH Colombo, Sri Lanka
+          </li>
+          <li>
+            <span className="font-semibold">Day 3 – Practice, Innovation &amp; Capacity Building Workshops (7 August 2026):</span>{" "}
+            University of Moratuwa, Sri Lanka
+          </li>
+        </ul>
+      </>
     )
   },
   {
@@ -297,7 +457,7 @@ function App() {
           isDark ? "homepage-dark" : ""
         } border-b border-white/60 bg-white/55 backdrop-blur-xl`}
       >
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 relative">
             <a href="#top" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
               <div className="flex items-center gap-1.5">
                 <div className="h-10 w-10 overflow-hidden rounded-[18px] md:h-11 md:w-11">
@@ -373,7 +533,7 @@ function App() {
 
           {mobileNavOpen && (
             <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
-              <div className="mx-auto max-w-6xl px-4 py-4">
+              <div className="mx-auto max-w-7xl px-4 py-4">
                 <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
                 <Link
                   to="/#about"
@@ -471,11 +631,12 @@ function App() {
             />
 
             <div className="relative z-10 flex items-start md:h-full md:items-center">
-              <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
-                <div className="max-w-xl text-white">
+              <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between md:px-6">
+                <div className="w-full min-w-0 text-white md:flex-1 md:min-h-0">
+                  <div className="max-w-xl md:max-w-2xl">
                   <Reveal variant="up" delayMs={0}>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-uom-goldSoft">
-                      ICODE2026 · International Conference
+                      ICODE2026 · UoM · CODL Research Conference
                     </p>
                   </Reveal>
                   <Reveal variant="up" delayMs={120}>
@@ -512,22 +673,26 @@ function App() {
                     </p>
                   </div>
                   </Reveal>
+                  </div>
 
                   <Reveal variant="up" delayMs={320}>
-                    <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-neutral-900 shadow-sm">
-                        <CalendarDaysIcon className="h-3.5 w-3.5 text-uom-maroon" />
-                        <span className="text-[11px] tracking-[0.22em]">
-                          5–7 August 2026
+                    <div className="mt-4 flex w-full min-w-0 flex-col gap-3">
+                      <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-neutral-900 shadow-sm">
+                          <CalendarDaysIcon className="h-3.5 w-3.5 text-uom-maroon" />
+                          <span className="text-[11px] tracking-[0.22em]">
+                            5–7 August 2026
+                          </span>
                         </span>
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[11px] tracking-[0.22em] text-neutral-900 shadow-sm">
-                        <MapPinIcon className="h-3 w-3 text-uom-maroon" />
-                        <span>Colombo · Sri Lanka · Hybrid</span>
-                      </span>
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3.5 py-1.5 text-[11px] tracking-[0.22em] text-neutral-900 shadow-sm">
+                          <MapPinIcon className="h-3 w-3 text-uom-maroon" />
+                          <span>Colombo · Sri Lanka · Hybrid</span>
+                        </span>
+                      </div>
                     </div>
                   </Reveal>
 
+                  <div className="max-w-xl md:max-w-2xl">
                   <Reveal variant="up" delayMs={420}>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-3">
                     <Link to="/call-for-papers">
@@ -573,13 +738,14 @@ function App() {
                     </Link>
                     </div>
                   </Reveal>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28 md:pt-10">
+        <main className="mx-auto max-w-7xl px-4 pb-20 pt-6 md:px-6 md:pb-28 md:pt-10">
         {/* About */}
         <section id="about" className="mt-10 md:mt-14 scroll-mt-24">
           <div className="flex h-full flex-col">
@@ -594,11 +760,13 @@ function App() {
               <Reveal variant="up" delayMs={120}>
                 <div className="mt-4 text-sm leading-relaxed text-neutral-700 md:text-base text-justify">
                   <p>
-                    ICODE2026 is an international conference curated by the{" "}
+                    ICODE2026 is an international research conference at the{" "}
+                    <span className="font-semibold">University of Moratuwa (UoM)</span>,
+                    curated by the{" "}
                     <span className="font-semibold">
                       Centre for Open and Distance Learning (CODL)
-                    </span>{" "}
-                    of the University of Moratuwa. It is envisioned as a space where
+                    </span>
+                    . It is envisioned as a space where
                     policy makers, researchers, and practitioners could design the
                     next generation of{" "}
                     <span className="font-semibold">
@@ -672,29 +840,31 @@ function App() {
                     <Card className="hover-lift h-full border border-uom-maroon/25 bg-white/95">
                     <CardHeader>
                       <div className="flex items-center justify-between gap-2">
-                        <CardTitle>Day 1 · Policy &amp; Leadership Summit</CardTitle>
-                        <span className="hidden rounded-full border border-uom-maroon/40 bg-uom-maroon/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-maroon md:inline-flex">
-                          Policy
+                        <CardTitle>Day 1 · Academic Research Conference</CardTitle>
+                        <span className="hidden rounded-full border border-uom-maroon/50 bg-uom-maroon/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-goldSoft md:inline-flex">
+                          Research
                         </span>
                       </div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                        5 August 2026
-                      </p>
+                      <div className="mt-1 space-y-2">
+                        <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                          5 August 2026
+                        </p>
+                        <ProgrammeDayVenue venueId="uom" />
+                      </div>
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-neutral-800">
                       <div className="flex gap-3">
                         <div className="mt-1 h-full w-1 rounded-full bg-uom-maroon" />
                         <div className="space-y-2">
                           <p>
-                            Governance, quality, and digital transformation in
-                            education designed for ministries, UGC, Quality Assurance bodies, and
-                            institutional leaders.
+                            A peer-reviewed research forum for scholars exploring the
+                            future of open, distance, and digital education.
                           </p>
                           <ul className="space-y-1 text-xs text-neutral-700">
-                            <li>• Ministerial and agency panels</li>
-                            <li>• Vice-Chancellors&apos; roundtables</li>
-                            <li>• Strategic policy dialogues</li>
-                            <li>• Leadership address</li>
+                            <li>• Keynote addresses and invited talks</li>
+                            <li>• Parallel abstract presentations and symposia</li>
+                            <li>• Interactive sessions and live demonstrations</li>
+                            <li>• Best presentation recognitions</li>
                           </ul>
                         </div>
                       </div>
@@ -706,28 +876,32 @@ function App() {
                     <Card className="hover-lift h-full border border-uom-gold/45 bg-uom-goldSoft/70">
                     <CardHeader>
                       <div className="flex items-center justify-between gap-2">
-                        <CardTitle>Day 2 · Academic Research Conference</CardTitle>
-                        <span className="hidden rounded-full border border-uom-maroon/50 bg-uom-maroon/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-goldSoft md:inline-flex">
-                          Research
+                        <CardTitle>Day 2 · Policy &amp; Leadership Summit</CardTitle>
+                        <span className="hidden rounded-full border border-uom-maroon/40 bg-uom-maroon/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-uom-maroon md:inline-flex">
+                          Policy
                         </span>
                       </div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                        6 August 2026
-                      </p>
+                      <div className="mt-1 space-y-2">
+                        <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                          6 August 2026
+                        </p>
+                        <ProgrammeDayVenue venueId="bmich" />
+                      </div>
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-neutral-900">
                       <div className="flex gap-3">
                         <div className="mt-1 h-full w-1 rounded-full bg-uom-gold" />
                         <div className="space-y-2">
                           <p>
-                            A peer-reviewed research forum for scholars exploring the
-                            future of open, distance, and digital education.
+                            Governance, quality, and digital transformation in
+                            education designed for ministries, UGC, Quality Assurance bodies, and
+                            institutional leaders.
                           </p>
                           <ul className="space-y-1 text-xs text-neutral-800">
-                            <li>• Keynote addresses and invited talks</li>
-                            <li>• Parallel abstract presentations and symposia</li>
-                            <li>• Interactive sessions and live demonstrations</li>
-                            <li>• Best presentation recognitions</li>
+                            <li>• Ministerial and agency panels</li>
+                            {/* <li>• Vice-Chancellors&apos; roundtables</li> */}
+                            <li>• Strategic policy dialogues</li>
+                            <li>• Leadership address</li>
                           </ul>
                         </div>
                       </div>
@@ -744,9 +918,12 @@ function App() {
                           Practice
                         </span>
                       </div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
-                        7 August 2026
-                      </p>
+                      <div className="mt-1 space-y-2">
+                        <p className="text-xs uppercase tracking-[0.2em] text-uom-maroon">
+                          7 August 2026
+                        </p>
+                        <ProgrammeDayVenue venueId="uom" />
+                      </div>
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-neutral-800">
                       <div className="flex gap-3">
@@ -802,28 +979,28 @@ function App() {
 
                 {importantDates.map((item, index) => (
                   <Reveal
-                    key={item.label}
+                    key={`${item.label}-${item.date}`}
                     as="li"
                     className="relative flex items-start gap-4"
                     variant="up"
                     delayMs={index * 90}
                   >
-                      <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
-                        <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
-                      </div>
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
+                      <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
+                    </div>
 
-                      <div className="hover-lift flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3 shadow-sm">
-                        <p className="text-base font-semibold text-neutral-900">
-                          {item.date}
-                        </p>
+                    {isExtendedSubmissionDeadlineSlot(item) ? (
+                      <ImportantDateStillAcceptingCard item={item} />
+                    ) : (
+                      <div className="hover-lift mx-auto w-full max-w-[11rem] flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-3 py-3 shadow-sm">
+                        <p className="text-base font-semibold text-neutral-900">{item.date}</p>
                         <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
                           {item.label}
                         </p>
-                        <p className="mt-1 text-xs leading-relaxed text-neutral-700">
-                          {item.note}
-                        </p>
+                        <p className="mt-1 text-xs leading-relaxed text-neutral-700">{item.note}</p>
                         <ImportantDateAddToCalendarButton item={item} />
                       </div>
+                    )}
                   </Reveal>
                 ))}
               </ol>
@@ -831,101 +1008,166 @@ function App() {
 
             {/* Desktop: horizontal timeline */}
             <div className="mt-8 hidden md:block">
-              <ol className="flex flex-row gap-8 md:flex-row md:items-stretch md:justify-between">
-                {importantDates.map((item, index) => (
-                  <Reveal
-                    key={item.label}
-                    as="li"
-                    className="flex flex-1"
-                    variant="up"
-                    delayMs={index * 110}
-                  >
+              <ol className="flex flex-row gap-4 md:flex-row md:items-stretch md:justify-between lg:gap-3">
+                {importantDates.map((item, index, arr) => {
+                  const lastIndex = arr.length - 1;
+                  return (
+                    <Reveal
+                      key={`${item.label}-${item.date}`}
+                      as="li"
+                      className="flex min-w-0 flex-1"
+                      variant="up"
+                      delayMs={index * 110}
+                    >
                       <div className="flex w-full flex-col items-center text-center md:px-2">
-                      <div className="flex w-full items-center gap-2">
-                        <div
-                          className={`hidden h-px flex-1 md:block ${
-                            index === 0 ? "bg-transparent" : "bg-neutral-300"
-                          }`}
-                        />
-                        <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
-                          <CalendarDaysIcon className="h-4 w-4 text-uom-maroon" />
+                        <div className="flex w-full items-center gap-2">
+                          <div
+                            className={`hidden h-px flex-1 md:block ${
+                              index === 0 ? "bg-transparent" : "bg-neutral-300"
+                            }`}
+                          />
+                          <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
+                            <CalendarDaysIcon className="h-4 w-4 text-uom-maroon" />
+                          </div>
+                          <div
+                            className={`hidden h-px flex-1 md:block ${
+                              index === lastIndex ? "bg-transparent" : "bg-neutral-300"
+                            }`}
+                          />
                         </div>
-                        <div
-                          className={`hidden h-px flex-1 md:block ${
-                            index === importantDates.length - 1
-                              ? "bg-transparent"
-                              : "bg-neutral-300"
-                          }`}
-                        />
+                        {isExtendedSubmissionDeadlineSlot(item) ? (
+                          <ImportantDateStillAcceptingCard item={item} variant="desktop" />
+                        ) : (
+                          <div className="hover-lift mx-auto mt-3 flex w-full max-w-[10.5rem] flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-2.5 py-3 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:max-w-[11.25rem] md:justify-between md:px-3 md:py-3.5">
+                            <p className="text-sm font-semibold text-neutral-900 md:text-base">
+                              {item.date}
+                            </p>
+                            <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
+                              {item.label}
+                            </p>
+                            <p className="mt-1 text-xs text-neutral-700 md:text-sm">{item.note}</p>
+                            <ImportantDateAddToCalendarButton item={item} />
+                          </div>
+                        )}
                       </div>
-                      <div className="hover-lift mt-3 flex w-full flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-3 py-4 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:justify-between md:px-4 md:py-4">
-                        <p className="text-sm font-semibold text-neutral-900 md:text-base">
-                          {item.date}
-                        </p>
-                        <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
-                          {item.label}
-                        </p>
-                        <p className="mt-1 text-xs text-neutral-700 md:text-sm">
-                          {item.note}
-                        </p>
-                        <ImportantDateAddToCalendarButton item={item} />
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
+                    </Reveal>
+                  );
+                })}
               </ol>
             </div>
           </section>
 
-          <section id="why-participate" className="mt-16 md:mt-20 scroll-mt-24">
+          <section
+            id="why-participate"
+            className="why-participate relative mt-16 scroll-mt-24 overflow-hidden md:mt-20"
+          >
             <Reveal variant="up">
               <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
                 <AcademicCapIcon className="h-6 w-6 text-uom-maroon" />
                 Why participate?
               </h2>
+              <p className="why-participate-lead mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base">
+                One conference bridging{" "}
+                <span className="why-participate-lead__pill">policy</span>,{" "}
+                <span className="why-participate-lead__pill">research</span>, and{" "}
+                <span className="why-participate-lead__pill">practice</span> in open and
+                digital education.
+              </p>
             </Reveal>
-            <Reveal variant="up" delayMs={140}>
-              <Card className="mt-5 w-full border border-uom-gold/40 bg-white/95">
-                <CardContent className="flex flex-col space-y-3 text-sm text-neutral-800 md:text-base">
-                  <div className="space-y-3">
-                    <p className="text-sm text-neutral-700 md:text-base">
-                      Join a focused community working at the intersection of{" "}
-                      <span className="font-semibold">
-                        policy, research, and practice
-                      </span>{" "}
-                      in open and digital education.
-                    </p>
 
-                    <div className="space-y-1.5 border-l border-uom-gold/60 pl-3">
-                      <p>• Present high-impact work to an international audience.</p>
-                      <p>• Build collaborations across institutions and sectors.</p>
-                      <p>• Showcase innovative digital learning initiatives.</p>
-                      <p>• Engage with regional and global leaders in Open and Digital Education.</p>
-                      <p>• Help shape an inclusive, future-ready digital agenda.</p>
-                    </div>
+            <div className="relative mt-8 grid gap-10 lg:grid-cols-12 lg:gap-12">
+              <Reveal variant="left" className="lg:col-span-5">
+                <p className="text-lg font-medium leading-relaxed text-neutral-900 md:text-xl md:leading-snug">
+                  Join a focused community working at the intersection of{" "}
+                  <span className="text-uom-maroon">policy, research, and practice</span> in
+                  open and digital education.
+                </p>
 
-                    <div className="mt-2 space-y-1 text-xs text-neutral-600 md:text-sm">
-                      <p className="font-semibold text-neutral-700">
-                        Especially valuable for:
-                      </p>
-                      <p>• Early- and mid-career academics seeking feedback and networks.</p>
-                      <p>• Instructional designers and EdTech teams scaling digital programmes.</p>
-                      <p>• Policy and quality leaders planning national or institutional reforms.</p>
-                    </div>
+                <div className="why-participate-pathway mt-8" aria-hidden>
+                  <div className="why-participate-pathway__track">
+                    <span className="why-participate-pathway__node">Policy</span>
+                    <span className="why-participate-pathway__node why-participate-pathway__node--mid">
+                      Research
+                    </span>
+                    <span className="why-participate-pathway__node">Practice</span>
                   </div>
+                </div>
 
-                  <div className="mt-4 rounded-2xl border border-uom-gold/30 bg-uom-goldSoft/20 p-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-700">
-                      What you can take home
-                    </p>
-                    <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                      Practical insights you can apply immediately, from governance and
-                      quality assurance to learning analytics, AI support tools, and
-                      sustainable Open and Digital Education models.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-uom-maroon">
+                  Especially valuable for
+                </p>
+                <ul className="mt-4 space-y-5">
+                  {WHY_PARTICIPATE_AUDIENCES.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <li
+                        key={item.title}
+                        className="why-participate-audience group flex gap-4"
+                        style={{ transitionDelay: `${index * 60}ms` }}
+                      >
+                        <span className="why-participate-audience__icon mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <div>
+                          <p className="font-semibold text-neutral-900">{item.title}</p>
+                          <p className="mt-0.5 text-sm leading-relaxed text-neutral-600">
+                            {item.detail}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+
+              <Reveal variant="right" delayMs={120} className="lg:col-span-7">
+                <ol className="why-participate-benefits divide-y divide-neutral-200/80">
+                  {WHY_PARTICIPATE_BENEFITS.map((item, index) => {
+                    const Icon = item.icon;
+                    const num = String(index + 1).padStart(2, "0");
+                    return (
+                      <li
+                        key={item.text}
+                        className="why-participate-benefit group flex gap-4 py-5 first:pt-0 last:pb-0 md:gap-5 md:py-6"
+                      >
+                        <span
+                          className="why-participate-benefit__num hidden text-3xl font-bold tabular-nums leading-none md:block"
+                          aria-hidden
+                        >
+                          {num}
+                        </span>
+                        <span className="why-participate-benefit__icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-uom-maroon text-uom-goldSoft shadow-sm">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <p className="min-w-0 flex-1 self-center text-sm leading-relaxed text-neutral-800 md:text-base">
+                          <span className="why-participate-benefit__num mr-2 font-bold md:hidden">
+                            {num}
+                          </span>
+                          {item.text}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </Reveal>
+            </div>
+
+            <Reveal variant="up" delayMs={220}>
+              <div className="why-participate-takehome mt-8 md:mt-10">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
+                  <p className="why-participate-takehome__label flex shrink-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em]">
+                    <span className="why-participate-takehome__label-icon flex h-8 w-8 items-center justify-center rounded-lg">
+                      <SparklesIcon className="h-4 w-4 shrink-0" aria-hidden />
+                    </span>
+                    What you can take home
+                  </p>
+                  <p className="why-participate-takehome__body text-sm leading-relaxed sm:border-l sm:pl-5">
+                    Practical insights you can apply immediately — from governance and quality
+                    assurance to learning analytics, AI support tools, and sustainable Open and
+                    Digital Education models.
+                  </p>
+                </div>
+              </div>
             </Reveal>
           </section>
 
@@ -934,7 +1176,7 @@ function App() {
 
         {/* Sponsors carousel */}
         <section className="mt-16 md:mt-20">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-7xl">
             <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
               <div>
                 <Reveal variant="up">
@@ -1183,7 +1425,7 @@ function App() {
         {/* Contact */}
         <section id="contact" className="mt-16 md:mt-20 scroll-mt-24">
           <Reveal variant="scale">
-            <div className="mx-auto max-w-6xl rounded-[28px] border border-uom-gold/60 bg-white/85 px-4 py-5 shadow-sm md:px-6 md:py-6">
+            <div className="mx-auto max-w-7xl rounded-[28px] border border-uom-gold/60 bg-white/85 px-4 py-5 shadow-sm md:px-6 md:py-6">
             <div className="grid gap-6 md:grid-cols-[minmax(0,2.2fr)_minmax(0,2.3fr)] md:items-start">
               <div>
                 <Reveal variant="up">
@@ -1398,7 +1640,7 @@ function App() {
         </main>
 
         <footer className="bg-neutral-950/95 text-neutral-100 border-t border-white/10">
-          <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6 lg:py-10">
+          <div className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6 lg:py-10">
             <div className="md:flex md:justify-between md:items-start">
               <div className="mb-6 md:mb-0">
                 <div className="flex items-center gap-2.5">

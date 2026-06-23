@@ -622,6 +622,313 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: var(--text-muted) !important;
 }
 
+.homepage-dark .registration-day-card .text-red-600 {
+  color: #f87171 !important;
+}
+
+.homepage-dark .registration-day-card {
+  background: linear-gradient(
+    145deg,
+    rgba(36, 36, 44, 0.98) 0%,
+    rgba(32, 32, 40, 0.96) 100%
+  ) !important;
+  border-color: rgba(255, 200, 77, 0.3) !important;
+  box-shadow:
+    0 0 0 1px rgba(246, 168, 0, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  opacity: 1 !important;
+}
+
+.homepage-dark .registration-day-card .text-neutral-900 {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .registration-day-card .text-neutral-600,
+.homepage-dark .registration-day-card .text-neutral-700,
+.homepage-dark .registration-day-card .text-neutral-800 {
+  color: var(--text-muted) !important;
+}
+
+.homepage-dark .registration-day-card .text-uom-maroon {
+  color: var(--neon-maroon) !important;
+}
+
+.homepage-dark .registration-day-card svg {
+  color: var(--neon-maroon) !important;
+}
+
+.homepage-dark .registration-day-card .bg-uom-maroon.text-uom-goldSoft {
+  background-color: rgba(122, 0, 25, 0.9) !important;
+  color: var(--neon-gold-soft) !important;
+}
+
+.homepage-dark .registration-day-card .bg-uom-goldSoft.text-neutral-900 {
+  background-color: rgba(246, 168, 0, 0.22) !important;
+  color: var(--neon-gold-soft) !important;
+  border: 1px solid rgba(246, 168, 0, 0.35);
+}
+
+.homepage-dark .registration-day-access--open {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+  color: #6ee7b7 !important;
+  --tw-ring-color: rgba(52, 211, 153, 0.35) !important;
+}
+
+.homepage-dark .registration-day-access--closed {
+  background-color: rgba(48, 48, 56, 0.95) !important;
+  color: var(--text-muted) !important;
+  --tw-ring-color: rgba(255, 200, 77, 0.22) !important;
+}
+
+.homepage-dark .registration-day-card.border-uom-gold\/70 {
+  border-color: rgba(255, 200, 77, 0.45) !important;
+}
+
+.homepage-dark .registration-day-card.border-uom-maroon\/30 {
+  border-color: rgba(255, 61, 107, 0.35) !important;
+}
+
+.homepage-dark .programme-day-map-mini {
+  background-color: transparent !important;
+  border-color: rgba(255, 200, 77, 0.28) !important;
+}
+
+.homepage-dark .programme-day-map-mini:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 200, 77, 0.42) !important;
+}
+
+.homepage-dark .programme-day-map-mini .text-neutral-800 {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .programme-day-map-mini .text-uom-maroon {
+  color: var(--neon-maroon) !important;
+}
+
+.homepage-dark .programme-day-map-mini__thumb {
+  border-color: rgba(255, 200, 77, 0.25) !important;
+  background-color: transparent !important;
+}
+
+.programme-day-map-mini__iframe {
+  height: 7.5rem;
+  width: 10rem;
+  transform: translate(-50%, -50%) scale(0.42);
+  transform-origin: center;
+}
+
+/* Registration fees — modern table */
+.registration-fee-table-wrap {
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.registration-fee-table__thead {
+  border-bottom: 1px solid rgba(255, 200, 77, 0.35);
+  background: linear-gradient(90deg, #7a0019 0%, #520013 100%);
+}
+
+.registration-fee-table__th {
+  padding: 0.9rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f8edd4;
+}
+
+@media (min-width: 768px) {
+  .registration-fee-table__th {
+    font-size: 0.9375rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.registration-fee-table__th--category {
+  text-align: left;
+}
+
+.registration-fee-table__th--fee {
+  text-align: right;
+}
+
+.registration-fee-table__body .registration-fee-table__row {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+  background-color: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.registration-fee-table__body .registration-fee-table__row:last-child {
+  border-bottom: none;
+}
+
+.registration-fee-table__row--authors {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(236, 253, 245, 0.95) 55%) !important;
+  border-bottom-color: rgba(16, 185, 129, 0.28) !important;
+}
+
+.registration-fee-table__row--authors .registration-fee-table__td--category {
+  color: #065f46;
+  font-weight: 600;
+}
+
+.registration-fee-table__row--authors:hover {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, rgba(236, 253, 245, 1) 55%) !important;
+}
+
+.registration-fee-table__row:not(.registration-fee-table__row--authors):hover {
+  background-color: rgba(245, 245, 245, 0.95) !important;
+}
+
+.registration-fee-table__td {
+  padding: 0.9rem 1rem;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .registration-fee-table__td {
+    font-size: 0.9375rem;
+  }
+}
+
+.registration-fee-table__td--category {
+  color: #262626;
+  font-weight: 500;
+}
+
+.registration-fee-table__td--fee {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #7a0019;
+}
+
+.registration-fee-table__fee--free {
+  display: inline-block;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #9a0020 0%, #7a0019 55%, #520013 100%);
+  color: #f8edd4;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(122, 0, 25, 0.25);
+}
+
+.registration-fee-table__td--muted {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #7a0019;
+  opacity: 0.82;
+}
+
+.registration-fee-table__footnote {
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.14), rgba(255, 255, 255, 0.9));
+  padding: 0.875rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #525252;
+}
+
+.registration-fee-table__footnote-label {
+  font-weight: 600;
+  color: #7a0019;
+}
+
+@media (min-width: 768px) {
+  .registration-fee-table__th,
+  .registration-fee-table__td {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .registration-fee-table__footnote {
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Registration fees — dark mode */
+.homepage-dark .registration-fee-table-wrap {
+  background-color: rgba(36, 36, 44, 0.96) !important;
+  border-color: rgba(255, 200, 77, 0.28) !important;
+}
+
+.homepage-dark .registration-fee-table__thead {
+  background: linear-gradient(90deg, #7a0019 0%, #3d000f 100%) !important;
+  border-bottom-color: rgba(255, 200, 77, 0.25) !important;
+}
+
+.homepage-dark .registration-fee-table__th {
+  color: var(--neon-gold-soft) !important;
+}
+
+.homepage-dark .registration-fee-table__body .registration-fee-table__row {
+  border-bottom-color: rgba(255, 200, 77, 0.12) !important;
+  background-color: rgba(36, 36, 44, 0.96) !important;
+}
+
+.homepage-dark .registration-fee-table__row--authors {
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.22) 0%,
+    rgba(36, 36, 44, 0.96) 60%
+  ) !important;
+  border-bottom-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.homepage-dark .registration-fee-table__row--authors .registration-fee-table__td--category {
+  color: #6ee7b7 !important;
+}
+
+.homepage-dark .registration-fee-table__row--authors:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.28) 0%,
+    rgba(36, 36, 44, 0.98) 60%
+  ) !important;
+}
+
+.homepage-dark .registration-fee-table__row:not(.registration-fee-table__row--authors):hover {
+  background-color: rgba(48, 48, 56, 0.98) !important;
+}
+
+.homepage-dark .registration-fee-table__td--category {
+  color: var(--text-primary) !important;
+}
+
+.homepage-dark .registration-fee-table__td--fee,
+.homepage-dark .registration-fee-table__td--muted {
+  color: var(--neon-maroon) !important;
+}
+
+.homepage-dark .registration-fee-table__td--muted {
+  opacity: 0.9 !important;
+}
+
+.homepage-dark .registration-fee-table__fee--free {
+  background: linear-gradient(135deg, #9a0020 0%, #7a0019 55%, #520013 100%) !important;
+  color: var(--neon-gold-soft) !important;
+}
+
+.homepage-dark .registration-fee-table__td--muted {
+  color: var(--text-muted) !important;
+}
+
+.homepage-dark .registration-fee-table__footnote {
+  background: linear-gradient(90deg, rgba(122, 0, 25, 0.2), rgba(32, 32, 40, 0.95)) !important;
+  border-top-color: rgba(255, 200, 77, 0.2) !important;
+  color: var(--text-muted) !important;
+}
+
+.homepage-dark .registration-fee-table__footnote-label {
+  color: var(--neon-gold-soft) !important;
+}
+
 /* Borders */
 .homepage-dark .border-white\/80,
 .homepage-dark .border-white\/60,
@@ -1032,9 +1339,79 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #ffc84d !important;
 }
 
-/* — Hero date / location chips: static subtle glow — */
-.homepage-dark .inline-flex.rounded-full.bg-white\/95 {
+/* — Hero date / location chips: static subtle glow (deadline chip uses its own animation) — */
+.homepage-dark .inline-flex.rounded-full.bg-white\/95:not(.homepage-hero-deadline-chip) {
   box-shadow: 0 0 16px rgba(246, 168, 0, 0.15);
+}
+
+@keyframes hero-deadline-chip-glow {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.38);
+    box-shadow:
+      0 0 0 0 rgba(59, 130, 246, 0.18),
+      0 1px 8px rgba(0, 0, 0, 0.12),
+      0 0 14px rgba(59, 130, 246, 0.34);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.48);
+    box-shadow:
+      0 0 0 3px rgba(59, 130, 246, 0.28),
+      0 2px 10px rgba(0, 0, 0, 0.14),
+      0 0 22px rgba(59, 130, 246, 0.58),
+      0 0 36px rgba(96, 165, 250, 0.38);
+  }
+}
+
+/* — Hero deadline extension chip: white border + soft blue pulsing glow — */
+.homepage-hero-deadline-chip {
+  border: 2px solid rgba(255, 255, 255, 0.38) !important;
+  animation: hero-deadline-chip-glow 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-hero-deadline-chip {
+    animation: none;
+    box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
+  }
+}
+
+/* — Important Dates: superseded submission card (flat, non-interactive) — */
+.important-date-superseded {
+  pointer-events: none;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.homepage-dark .important-date-superseded {
+  background: rgba(30, 30, 34, 0.82) !important;
+  border-color: rgba(82, 82, 91, 0.55) !important;
+}
+
+.homepage-dark .important-date-superseded p,
+.homepage-dark .important-date-superseded span {
+  color: #71717a !important;
+}
+
+.homepage-dark .important-date-superseded .line-through {
+  color: #52525b !important;
+  text-decoration-color: #71717a !important;
+}
+
+/* Superseded card — “Mark date” row: readable on dark matte panel */
+.homepage-dark .important-date-superseded .important-date-superseded-mark {
+  background: rgba(55, 55, 62, 0.95) !important;
+  border-color: rgba(212, 212, 216, 0.45) !important;
+  color: #e4e4e7 !important;
+}
+
+.homepage-dark .important-date-superseded .important-date-superseded-mark svg {
+  color: #f4f4f5 !important;
+  opacity: 1 !important;
+}
+
+.homepage-dark .important-date-superseded .important-date-superseded-mark-label {
+  color: #f4f4f5 !important;
 }
 
 /* — Submit Abstract CTAs (navbar + hero): breathing maroon glow — */
@@ -1153,6 +1530,378 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   text-shadow:
     0 0 8px rgba(246, 168, 0, 0.5),
     0 0 16px rgba(246, 168, 0, 0.3);
+}
+
+/* — Why participate: lead, pathway, benefits, glass take-home — */
+.why-participate-lead__pill {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  font-weight: 600;
+  color: #7a0019;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(122, 0, 25, 0.12);
+  border-radius: 0.35rem;
+  transition:
+    background-color 280ms ease,
+    border-color 280ms ease,
+    transform 280ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .why-participate-lead__pill:hover {
+    background: rgba(122, 0, 25, 0.08);
+    border-color: rgba(122, 0, 25, 0.22);
+    transform: translateY(-1px);
+  }
+}
+
+.homepage-dark .why-participate-lead {
+  color: rgba(212, 212, 216, 0.9) !important;
+}
+
+.homepage-dark .why-participate-lead__pill {
+  color: #fbe4a6;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.why-participate-pathway__track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  position: relative;
+  padding: 0.75rem 0;
+}
+
+.why-participate-pathway__track::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: rgba(115, 115, 122, 0.35);
+  border-radius: 999px;
+  z-index: 0;
+}
+
+.why-participate-pathway__node {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7a0019;
+  background: #fff;
+  border: 1px solid rgba(122, 0, 25, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.why-participate-pathway__node--mid {
+  background: #7a0019;
+  color: #fbe4a6;
+  border-color: #7a0019;
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(122, 0, 25, 0.18);
+}
+
+.why-participate-benefit__num {
+  color: rgba(122, 0, 25, 0.28);
+  transition: color 320ms ease, transform 320ms ease;
+}
+
+.why-participate-benefit {
+  transition:
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 380ms ease;
+}
+
+.why-participate-benefit__icon {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms ease,
+    background-color 320ms ease;
+}
+
+.why-participate-audience__icon {
+  border: 1px solid rgba(122, 0, 25, 0.22);
+  background: #fbe4a6;
+  color: #7a0019;
+  box-shadow: 0 2px 10px rgba(122, 0, 25, 0.1);
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.why-participate-audience__icon svg {
+  color: #7a0019;
+  stroke-width: 1.75;
+}
+
+.reveal--in .why-participate-pathway__node {
+  animation: why-participate-node-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.reveal--in .why-participate-pathway__node:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.reveal--in .why-participate-pathway__node:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.reveal--in .why-participate-pathway__node:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+@keyframes why-participate-node-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reveal--in .why-participate-pathway__node--mid {
+  animation-name: why-participate-node-in-mid;
+}
+
+@keyframes why-participate-node-in-mid {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+}
+
+.reveal--in .why-participate-benefit {
+  animation: why-participate-benefit-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.reveal--in .why-participate-benefit:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.reveal--in .why-participate-benefit:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.reveal--in .why-participate-benefit:nth-child(3) {
+  animation-delay: 0.19s;
+}
+.reveal--in .why-participate-benefit:nth-child(4) {
+  animation-delay: 0.26s;
+}
+.reveal--in .why-participate-benefit:nth-child(5) {
+  animation-delay: 0.33s;
+}
+
+@keyframes why-participate-benefit-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Glass take-home — cool frost + maroon accent (not solid block) */
+.why-participate-takehome {
+  border-radius: 1rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(122, 0, 25, 0.12);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 4px 24px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .why-participate-pathway__node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(122, 0, 25, 0.16);
+  }
+
+  .why-participate-pathway__node--mid:hover {
+    transform: scale(1.08) translateY(-2px);
+  }
+
+  .why-participate-benefit:hover {
+    transform: translateX(4px);
+  }
+
+  .why-participate-benefit:hover .why-participate-benefit__num {
+    color: rgba(122, 0, 25, 0.45);
+    transform: translateX(2px);
+  }
+
+  .why-participate-benefit:hover .why-participate-benefit__icon {
+    transform: scale(1.06);
+    box-shadow: 0 8px 20px rgba(122, 0, 25, 0.22);
+  }
+
+  .why-participate-benefit:hover .why-participate-benefit p {
+    color: #171717;
+  }
+
+  .why-participate-audience:hover .why-participate-audience__icon {
+    transform: scale(1.08);
+    border-color: rgba(122, 0, 25, 0.35);
+    background: #7a0019;
+    color: #fbe4a6;
+  }
+
+  .why-participate-audience:hover .why-participate-audience__icon svg {
+    color: #fbe4a6;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .homepage-dark .why-participate-audience:hover .why-participate-audience__icon {
+    background: #7a0019 !important;
+    border-color: rgba(251, 228, 166, 0.45) !important;
+    color: #fbe4a6 !important;
+    box-shadow: 0 0 16px rgba(122, 0, 25, 0.45);
+  }
+
+  .homepage-dark .why-participate-audience:hover .why-participate-audience__icon svg {
+    color: #fbe4a6 !important;
+  }
+}
+
+.why-participate-takehome__label {
+  color: #7a0019;
+}
+
+.why-participate-takehome__label-icon {
+  background: rgba(122, 0, 25, 0.08);
+  border: 1px solid rgba(122, 0, 25, 0.12);
+  color: #7a0019;
+}
+
+.why-participate-takehome__body {
+  color: rgba(38, 38, 42, 0.88);
+  border-color: rgba(122, 0, 25, 0.12) !important;
+}
+
+.homepage-dark .why-participate-pathway__node {
+  background: rgba(38, 38, 42, 0.95);
+  color: #fbe4a6;
+  border-color: rgba(163, 163, 163, 0.35);
+}
+
+.homepage-dark .why-participate-pathway__node--mid {
+  background: #7a0019;
+  color: #fbe4a6;
+  border-color: #7a0019;
+}
+
+.homepage-dark .why-participate-pathway__track::before {
+  background: rgba(163, 163, 163, 0.28);
+}
+
+.homepage-dark .why-participate-benefits {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.homepage-dark .why-participate-benefit__num {
+  color: rgba(251, 228, 166, 0.45);
+}
+
+.homepage-dark .why-participate-benefit p {
+  color: rgba(245, 245, 245, 0.88);
+}
+
+.homepage-dark .why-participate-audience .text-neutral-900 {
+  color: #f5f5f5 !important;
+}
+
+.homepage-dark .why-participate-audience .text-neutral-600 {
+  color: rgba(212, 212, 216, 0.85) !important;
+}
+
+/* Audience icons: solid cream + maroon (avoid goldSoft/60 + neon overrides) */
+.homepage-dark .why-participate-audience__icon {
+  background: #fbe4a6 !important;
+  border-color: rgba(251, 228, 166, 0.55) !important;
+  color: #520013 !important;
+  box-shadow:
+    0 0 0 1px rgba(251, 228, 166, 0.2),
+    0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.homepage-dark .why-participate-audience__icon svg {
+  color: #520013 !important;
+  filter: none;
+  text-shadow: none;
+}
+
+.homepage-dark .why-participate-takehome {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.homepage-dark .why-participate-takehome__label {
+  color: #fbe4a6;
+}
+
+.homepage-dark .why-participate-takehome__label-icon {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fbe4a6;
+}
+
+.homepage-dark .why-participate-takehome__body {
+  color: rgba(245, 245, 245, 0.9);
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .homepage-dark .why-participate-benefit:hover .why-participate-benefit p {
+    color: #fafafa;
+  }
+
+  .homepage-dark .why-participate-benefit:hover .why-participate-benefit__num {
+    color: rgba(251, 228, 166, 0.65);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-participate-pathway__node,
+  .why-participate-benefit,
+  .why-participate-benefit__icon,
+  .why-participate-audience__icon,
+  .why-participate-lead__pill,
+  .reveal--in .why-participate-pathway__node,
+  .reveal--in .why-participate-benefit {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* — Reduced motion: kill all new animations — */

@@ -3,6 +3,14 @@
  * Note: Call for Papers “Key submission dates” intentionally shows only 6 August 2026
  * for the final milestone.
  */
+
+/** Previous milestone — shown only on the home page next to the extended deadline. */
+export const supersededSubmissionDeadlineDisplay = {
+  date: "20 May 2026",
+  label: "Submission Deadline",
+  note: "Abstract submission deadline"
+} as const;
+
 export const importantDates = [
   {
     label: "Submissions Open",
@@ -11,8 +19,8 @@ export const importantDates = [
   },
   {
     label: "Submission Deadline",
-    date: "20 May 2026",
-    note: "Abstract submission deadline"
+    date: "3 June 2026",
+    note: "Extended abstract submission"
   },
   // {
   //   label: "Reviews Due",
@@ -32,6 +40,6 @@ export const importantDates = [
   {
     label: "ICODE2026",
     date: "5–7 August 2026",
-    note: "Hybrid / Colombo, Sri Lanka"
+    note: "Hybrid / University of Moratuwa, Sri Lanka"
   }
 ] as const;

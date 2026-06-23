@@ -59,13 +59,20 @@ export default function CallForPapersPage() {
   // Override only the final milestone to show the conference day (6 August 2026)
   // for "Key submission dates", while the home page keeps the full 5–7 August range.
   const keySubmissionDates = importantDates.map((item, index, arr) =>
-    index === arr.length - 1 ? { ...item, date: "6 August 2026" } : item
+    index === arr.length - 1 ? { ...item, date: "5 August 2026" } : item
   );
 
   const scrollToExtendedAbstractTemplate = () => {
     const el = document.getElementById("extended-abstract-template");
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  /** Hero row — date + location chips share the same brown / cream UoM styling. */
+  const cfpHeroBrownChipClass = isDark
+    ? "inline-flex box-border min-h-[2rem] items-center gap-1.5 rounded-full border border-uom-gold/45 bg-uom-maroon/90 px-3 py-1.5 text-uom-goldSoft shadow-sm backdrop-blur-sm"
+    : "inline-flex box-border min-h-[2rem] items-center gap-1.5 rounded-full border border-uom-maroon/30 bg-uom-goldSoft/85 px-3 py-1.5 text-neutral-900 shadow-sm";
+
+  const cfpHeroBrownChipIconClass = isDark ? "text-uom-goldSoft" : "text-uom-maroon";
 
   return (
     <SitePageShell variant="glass" className="flex flex-col" id="call-for-papers-page">
@@ -105,15 +112,19 @@ export default function CallForPapersPage() {
             </div>
 
             <Reveal variant="up" delayMs={320}>
-              <div className="mt-5 flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-900 text-neutral-50 px-3 py-1">
-                  <CalendarDaysIcon className="h-3.5 w-3.5 text-uom-goldSoft" />
-                  <span>6 August 2026</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-neutral-900 shadow-sm">
-                  <MapPinIcon className="h-3.5 w-3.5 text-uom-maroon" />
-                  <span>Colombo, Sri Lanka · Hybrid</span>
-                </span>
+              <div className="mt-5 flex flex-col gap-2.5">
+                <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.22em]">
+                  <span className={cfpHeroBrownChipClass}>
+                    <CalendarDaysIcon
+                      className={`h-3.5 w-3.5 shrink-0 ${cfpHeroBrownChipIconClass}`}
+                    />
+                    <span className="leading-snug">5 August 2026</span>
+                  </span>
+                  <span className={cfpHeroBrownChipClass}>
+                    <MapPinIcon className={`h-3.5 w-3.5 shrink-0 ${cfpHeroBrownChipIconClass}`} />
+                    <span className="leading-snug">University of Moratuwa, Sri Lanka · Hybrid</span>
+                  </span>
+                </div>
               </div>
             </Reveal>
 
@@ -128,24 +139,42 @@ export default function CallForPapersPage() {
                   Key Submission Dates
                 </h2>
                 <div className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
-                  {keySubmissionDates.map((item, index) => (
-                    <div
-                      key={`${item.label}-${item.date}`}
-                      className="flex items-start gap-3"
-                    >
-                      <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
-                        {index + 1}
+                  {keySubmissionDates.map((item, index) => {
+                    const isExtendedSubmissionDeadline =
+                      item.label === "Submission Deadline" && item.date === "3 June 2026";
+                    return (
+                      <div
+                        key={`${item.label}-${item.date}`}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-uom-goldSoft text-[11px] font-semibold text-neutral-900">
+                          {index + 1}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          {isExtendedSubmissionDeadline ? (
+                            <>
+                              <p>
+                                <span className="font-semibold">Submission Deadline:</span>{" "}
+                                <span className="font-bold text-uom-maroon">Still Accepting</span>
+                              </p>
+                              <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
+                                {item.note}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p>
+                                <span className="font-semibold">{item.label}:</span> {item.date}
+                              </p>
+                              <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
+                                {item.note}
+                              </p>
+                            </>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <p>
-                          <span className="font-semibold">{item.label}:</span> {item.date}
-                        </p>
-                        <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
-                          {item.note}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-3 text-[11px] text-neutral-600 md:flex-row md:items-center md:justify-between md:text-xs">
                   <p>Submit via the online abstract portal.</p>
