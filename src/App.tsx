@@ -42,6 +42,7 @@ import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "./constants/contact";
 import { Reveal } from "./components/Reveal";
 import { HomepageThemeToggle } from "./components/HomepageThemeToggle";
+import { WorkshopFlyerModal } from "./components/WorkshopFlyerModal";
 import { useHomepageTheme } from "./hooks/useHomepageTheme";
 
 const WHY_PARTICIPATE_BENEFITS = [
@@ -226,6 +227,7 @@ function ProgrammeDayVenue({ venueId }: { venueId: ProgrammeVenueId }) {
       rel="noopener noreferrer"
       className="programme-day-map-mini group flex items-center gap-2.5 overflow-hidden rounded-xl border border-uom-gold/30 bg-transparent p-1.5 transition hover:border-uom-maroon/35 hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uom-gold focus-visible:ring-offset-2"
       aria-label={`Open ${venue.label} in Google Maps`}
+      onClick={(event) => event.stopPropagation()}
     >
       <span className="programme-day-map-mini__thumb relative h-10 w-[3.35rem] shrink-0 overflow-hidden rounded-lg border border-uom-gold/30 bg-transparent shadow-sm">
         <iframe
@@ -259,12 +261,15 @@ function ImportantDateStillAcceptingCard({
   item: ImportantDateItem;
   variant?: "mobile" | "desktop";
 }) {
-  const cardWidth = "mx-auto w-full max-w-[11rem] md:max-w-[10.5rem] lg:max-w-[11.25rem]";
+  const cardWidth =
+    variant === "desktop"
+      ? "mx-auto w-full max-w-[10.5rem] md:max-w-[11.25rem]"
+      : "important-dates-mobile-card w-full min-w-0 flex-1";
 
   const cardClass =
     variant === "desktop"
       ? `hover-lift ${cardWidth} mt-3 flex flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-2.5 py-3 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:justify-between md:px-3 md:py-3.5`
-      : `hover-lift ${cardWidth} flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-3 py-3 shadow-sm`;
+      : `hover-lift ${cardWidth} rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3.5 shadow-sm`;
 
   const dateClass =
     variant === "desktop"
@@ -416,6 +421,7 @@ function App() {
   const countdown = useCountdown(conferenceStart);
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [workshopFlyerOpen, setWorkshopFlyerOpen] = useState(false);
   const { theme, isDark, toggleTheme } = useHomepageTheme();
 
   // Smooth scroll to in-page anchors with header offset
@@ -910,7 +916,19 @@ function App() {
                   </Reveal>
 
                   <Reveal variant="up" delayMs={240} className="h-full">
-                    <Card className="hover-lift h-full border border-uom-maroon/18 bg-white/95">
+                    <Card
+                      className="programme-day-card--workshops group/card hover-lift h-full cursor-pointer border border-uom-maroon/18 bg-white/95 transition hover:border-uom-maroon/35 hover:shadow-[0_14px_36px_rgba(122,31,58,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uom-gold focus-visible:ring-offset-2"
+                      role="button"
+                      tabIndex={0}
+                      aria-label="Open Call for Workshop Proposals flyer"
+                      onClick={() => setWorkshopFlyerOpen(true)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          setWorkshopFlyerOpen(true);
+                        }
+                      }}
+                    >
                     <CardHeader>
                       <div className="flex items-center justify-between gap-2">
                         <CardTitle>Day 3 · Practice &amp; Innovation Workshops</CardTitle>
@@ -939,6 +957,10 @@ function App() {
                             <li>• Case-based institutional showcases</li>
                             <li>• Micro-credential and recognition dialogues</li>
                           </ul>
+                          <p className="programme-day-card__cta mt-3 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-blue-600 group-hover/card:text-blue-700 group-hover/card:underline">
+                            View workshop call
+                            <ChevronRightIcon className="h-3.5 w-3.5 transition group-hover/card:translate-x-0.5" />
+                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -970,34 +992,35 @@ function App() {
             </div>
 
             {/* Mobile: vertical timeline */}
-            <div className="mt-8 md:hidden">
-              <ol className="relative space-y-4">
-                <div
-                  aria-hidden="true"
-                  className="absolute left-[19px] top-4 bottom-4 w-px bg-neutral-300"
-                />
+            <div className="important-dates-mobile mt-8 md:hidden">
+              <ol className="important-dates-mobile__list relative space-y-5">
+                <div aria-hidden="true" className="important-dates-mobile__rail" />
 
                 {importantDates.map((item, index) => (
                   <Reveal
                     key={`${item.label}-${item.date}`}
                     as="li"
-                    className="relative flex items-start gap-4"
+                    className="important-dates-mobile__item relative flex items-stretch gap-3"
                     variant="up"
                     delayMs={index * 90}
                   >
-                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
+                    <div className="important-dates-mobile__node relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-uom-gold bg-uom-goldSoft/80 shadow-sm">
                       <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
                     </div>
 
                     {isExtendedSubmissionDeadlineSlot(item) ? (
                       <ImportantDateStillAcceptingCard item={item} />
                     ) : (
-                      <div className="hover-lift mx-auto w-full max-w-[11rem] flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-3 py-3 shadow-sm">
-                        <p className="text-base font-semibold text-neutral-900">{item.date}</p>
+                      <div className="important-dates-mobile-card hover-lift min-w-0 flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3.5 shadow-sm">
+                        <p className="text-base font-semibold leading-snug text-neutral-900">
+                          {item.date}
+                        </p>
                         <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
                           {item.label}
                         </p>
-                        <p className="mt-1 text-xs leading-relaxed text-neutral-700">{item.note}</p>
+                        <p className="mt-1.5 text-xs leading-relaxed text-neutral-700">
+                          {item.note}
+                        </p>
                         <ImportantDateAddToCalendarButton item={item} />
                       </div>
                     )}
@@ -1828,6 +1851,12 @@ function App() {
           </div>
         </footer>
       </div>
+
+      <WorkshopFlyerModal
+        open={workshopFlyerOpen}
+        onClose={() => setWorkshopFlyerOpen(false)}
+        isDark={isDark}
+      />
     </div>
   );
 }

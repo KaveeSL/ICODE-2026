@@ -1339,6 +1339,184 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #ffc84d !important;
 }
 
+/* — Important Dates: mobile vertical timeline — */
+.important-dates-mobile__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.important-dates-mobile__rail {
+  position: absolute;
+  left: 19px;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 168, 0, 0.45) 0%,
+    rgba(122, 31, 58, 0.35) 100%
+  );
+}
+
+.important-dates-mobile__item {
+  min-width: 0;
+}
+
+.important-dates-mobile-card {
+  min-width: 0;
+}
+
+.homepage-dark .important-dates-mobile-card {
+  background: rgba(30, 30, 34, 0.92) !important;
+  border-color: rgba(255, 200, 77, 0.35) !important;
+}
+
+.homepage-dark .important-dates-mobile-card p {
+  color: #e4e4e7;
+}
+
+.homepage-dark .important-dates-mobile-card .text-uom-maroon {
+  color: #ffc84d !important;
+}
+
+.homepage-dark .important-dates-mobile-card .text-neutral-700 {
+  color: #a1a1aa !important;
+}
+
+.homepage-dark .important-dates-mobile__rail {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 200, 77, 0.4) 0%,
+    rgba(255, 61, 107, 0.28) 100%
+  );
+}
+
+/* — Workshop flyer modal — */
+@keyframes workshop-flyer-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes workshop-flyer-sheet-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes workshop-flyer-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes workshop-flyer-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes workshop-flyer-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes workshop-flyer-modal-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+}
+
+/* Mobile: bottom sheet swipe up / down */
+@media (max-width: 639px) {
+  .workshop-flyer-modal__panel--opening {
+    animation: workshop-flyer-sheet-up 0.38s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    will-change: transform;
+  }
+
+  .workshop-flyer-modal__panel--closing {
+    animation: workshop-flyer-sheet-down 0.34s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    will-change: transform;
+  }
+
+  .workshop-flyer-modal__backdrop--opening {
+    animation: workshop-flyer-backdrop-in 0.3s ease-out forwards;
+  }
+
+  .workshop-flyer-modal__backdrop--closing {
+    animation: workshop-flyer-backdrop-out 0.3s ease-in forwards;
+  }
+}
+
+/* Desktop: centered fade + scale */
+@media (min-width: 640px) {
+  .workshop-flyer-modal__panel--opening {
+    animation: workshop-flyer-modal-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .workshop-flyer-modal__panel--closing {
+    animation: workshop-flyer-modal-out 0.24s cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+
+  .workshop-flyer-modal__backdrop--opening {
+    animation: workshop-flyer-backdrop-in 0.22s ease-out forwards;
+  }
+
+  .workshop-flyer-modal__backdrop--closing {
+    animation: workshop-flyer-backdrop-out 0.22s ease-in forwards;
+  }
+
+  .workshop-flyer-modal__handle {
+    display: none;
+  }
+}
+
+.programme-day-card--workshops:active {
+  transform: scale(0.995);
+}
+
+.homepage-dark .programme-day-card__cta {
+  color: #60a5fa !important;
+}
+
+.homepage-dark .group\/card:hover .programme-day-card__cta {
+  color: #93c5fd !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workshop-flyer-modal__panel--opening,
+  .workshop-flyer-modal__panel--closing,
+  .workshop-flyer-modal__backdrop--opening,
+  .workshop-flyer-modal__backdrop--closing {
+    animation: none !important;
+  }
+}
+
 /* — Hero date / location chips: static subtle glow (deadline chip uses its own animation) — */
 .homepage-dark .inline-flex.rounded-full.bg-white\/95:not(.homepage-hero-deadline-chip) {
   box-shadow: 0 0 16px rgba(246, 168, 0, 0.15);
