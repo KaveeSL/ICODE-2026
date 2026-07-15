@@ -752,7 +752,7 @@ export default function GovernancePage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto max-w-6xl px-4 pb-10 pt-[calc(60px+2.5rem)] md:px-6 md:pb-14 md:pt-[calc(68px+3.5rem)]">
+      <main className="mx-auto max-w-7xl px-4 pb-10 pt-[calc(60px+2.5rem)] md:px-6 md:pb-14 md:pt-[calc(68px+3.5rem)]">
           <section>
             <Reveal variant="up">
               <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
@@ -828,7 +828,7 @@ export default function GovernancePage() {
         </main>
 
         <footer className="bg-neutral-950/95 text-neutral-100 border-t border-white/10">
-          <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6 lg:py-10">
+          <div className="mx-auto w-full max-w-7xl px-4 py-8 md:px-6 lg:py-10">
             <div className="md:flex md:justify-between md:items-start">
               <div className="mb-6 md:mb-0">
                 <div className="flex items-center gap-2.5">

@@ -84,7 +84,7 @@ export default function CallForPapersPage() {
         submitAbstractExternal
       />
 
-      <main className="mx-auto flex-1 w-full max-w-6xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
           {/* Hero intro */}
           <section>
             <div className="max-w-3xl">
@@ -141,7 +141,7 @@ export default function CallForPapersPage() {
                 <div className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
                   {keySubmissionDates.map((item, index) => {
                     const isExtendedSubmissionDeadline =
-                      item.label === "Submission Deadline" && item.date === "3 June 2026";
+                      item.label === "Submission Deadline" && item.date === "19 July 2026";
                     return (
                       <div
                         key={`${item.label}-${item.date}`}
@@ -155,7 +155,10 @@ export default function CallForPapersPage() {
                             <>
                               <p>
                                 <span className="font-semibold">Submission Deadline:</span>{" "}
-                                <span className="font-bold text-uom-maroon">Still Accepting</span>
+                                <span className="font-bold text-red-600">{item.date}</span>
+                              </p>
+                              <p className="mt-0.5 text-[11px] font-semibold text-neutral-800 md:text-xs">
+                                Still Accepting
                               </p>
                               <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
                                 {item.note}
@@ -246,7 +249,7 @@ export default function CallForPapersPage() {
 
           {/* Themes */}
           <section className="mt-16">
-            <div className="mx-auto w-full max-w-6xl">
+            <div className="mx-auto w-full max-w-7xl">
               <Reveal variant="up">
                 <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-neutral-900 md:text-2xl">
                   <ClipboardDocumentListIcon className="h-6 w-6 text-uom-maroon" />
@@ -276,7 +279,7 @@ export default function CallForPapersPage() {
 
           <section id="extended-abstract-template" className="mt-12">
             <Reveal variant="scale">
-              <div className="mx-auto w-full max-w-6xl rounded-3xl border border-border bg-white/95 px-4 py-6 shadow-sm md:px-6 md:py-7">
+              <div className="mx-auto w-full max-w-7xl rounded-3xl border border-border bg-white/95 px-4 py-6 shadow-sm md:px-6 md:py-7">
                 <Reveal variant="up">
                   <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-neutral-900 md:text-2xl">
                     <DocumentTextIcon className="h-6 w-6 text-uom-maroon" />
@@ -346,8 +349,7 @@ export default function CallForPapersPage() {
                 <div className="flex gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3">
                   <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
                   <p>
-                    <span className="font-semibold">8. References</span> – APA 7th edition, limited
-                    to works cited in the abstract.
+                    <span className="font-semibold">8. References</span> – IEEE style, numbered in the order of citation and limited to works cited in the abstract.
                   </p>
                 </div>
               </div>
@@ -363,7 +365,7 @@ export default function CallForPapersPage() {
 
           <section className="mt-12">
             <Reveal variant="scale">
-              <div className="mx-auto w-full max-w-6xl rounded-3xl border border-uom-gold/45 bg-white/95 px-4 py-6 shadow-sm md:px-6 md:py-7">
+              <div className="mx-auto w-full max-w-7xl rounded-3xl border border-uom-gold/45 bg-white/95 px-4 py-6 shadow-sm md:px-6 md:py-7">
               <Reveal variant="up">
                 <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-neutral-900 md:text-2xl">
                   <ClipboardDocumentListIcon className="h-6 w-6 text-uom-maroon" />

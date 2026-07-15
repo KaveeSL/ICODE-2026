@@ -197,7 +197,7 @@ function ImportantDateAddToCalendarButton({ item }: { item: ImportantDateItem })
 }
 
 function isExtendedSubmissionDeadlineSlot(item: ImportantDateItem) {
-  return item.label === "Submission Deadline" && item.date === "3 June 2026";
+  return item.label === "Submission Deadline" && item.date === "19 July 2026";
 }
 
 const programmeVenues = {
@@ -273,8 +273,8 @@ function ImportantDateStillAcceptingCard({
 
   const dateClass =
     variant === "desktop"
-      ? "text-sm font-semibold leading-snug text-neutral-500 line-through decoration-neutral-400 md:text-base"
-      : "text-base font-semibold leading-snug text-neutral-500 line-through decoration-neutral-400";
+      ? "text-sm font-semibold leading-snug text-red-600 md:text-base"
+      : "text-base font-semibold leading-snug text-red-600";
 
   const stillAcceptingClass =
     variant === "desktop"
@@ -721,7 +721,7 @@ function App() {
                         <span className="flex items-center gap-1.5">
                           <CursorArrowRaysIcon className="h-4 w-4 shrink-0" />
                           <span className="flex-1 text-center whitespace-normal leading-snug">
-                            Get Registered
+                            Register Now
                           </span>
                           <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>
@@ -736,7 +736,7 @@ function App() {
                         <span className="flex items-center gap-1.5">
                           <CalendarDaysIcon className="h-4 w-4 shrink-0" />
                           <span className="flex-1 text-center whitespace-normal leading-snug">
-                            View 3-day schedule (coming soon)
+                            View 3-Day Schedule
                           </span>
                           <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>

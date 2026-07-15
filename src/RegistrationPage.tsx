@@ -61,6 +61,8 @@ const registrationFeeRows = [
   }
 ];
 
+const registrationFormHref = "https://forms.gle/h9r752trrDBpsVi26";
+
 const registrationIncludes = [
   "Academic research sessions on 5 August 2026",
   "Practice and innovation workshops on 7 August 2026",
@@ -87,7 +89,7 @@ export default function RegistrationPage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto flex-1 w-full max-w-6xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
         {/* Hero */}
         <section className="site-panel rounded-3xl border border-uom-gold/50 bg-gradient-to-br from-white via-uom-goldSoft/25 to-white p-5 shadow-sm md:p-8">
           <Reveal variant="up" delayMs={0}>
@@ -105,12 +107,23 @@ export default function RegistrationPage() {
 
           <Reveal variant="up" delayMs={180}>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
-              Please read the registration details carefully before clicking the{" "}
-              <span className="font-semibold text-neutral-900">Register Now</span> button.
+              You can express your interest to register for ICODE2026{" "}
+              {/* <span className="font-semibold text-neutral-900">Register Now</span> button. */}
             </p>
+            <div className="mt-6 flex flex-col items-start">
+              <a
+                href={registrationFormHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-uom-gold bg-uom-maroon px-7 text-sm font-semibold tracking-tight text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold hover:text-neutral-900 md:text-base"
+              >
+                Register Now
+                <ChevronRightIcon className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
           </Reveal>
 
-          <Reveal variant="up" delayMs={240}>
+          {/* <Reveal variant="up" delayMs={240}>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
               <span className="font-semibold text-neutral-900">
                 ICODE2026 – International Conference on Open and Digital Education
@@ -119,24 +132,9 @@ export default function RegistrationPage() {
               <span className="font-semibold">5–7 August 2026</span> as a hybrid event in{" "}
               <span className="font-semibold">Colombo, Sri Lanka</span>.
             </p>
-          </Reveal>
+          </Reveal> */}
 
-          <Reveal variant="up" delayMs={300}>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <span className={heroChipClass}>
-                <CalendarDaysIcon className={`h-3.5 w-3.5 shrink-0 ${heroChipIconClass}`} />
-                5–7 August 2026
-              </span>
-              <span className={heroChipClass}>
-                <MapPinIcon className={`h-3.5 w-3.5 shrink-0 ${heroChipIconClass}`} />
-                University of Moratuwa · Hybrid
-              </span>
-              {/* <span className={heroChipClass}>
-                <GlobeAltIcon className={`h-3.5 w-3.5 shrink-0 ${heroChipIconClass}`} />
-                In-person &amp; Virtual
-              </span> */}
-            </div>
-          </Reveal>
+        
         </section>
 
         {/* Programme structure */}
@@ -311,28 +309,6 @@ export default function RegistrationPage() {
             </div>
           </Reveal>
         </section>
-
-        {/* CTA */}
-        <Reveal variant="up" delayMs={180}>
-          <section className="registration-cta mt-10 rounded-3xl border border-uom-gold/55 bg-gradient-to-r from-uom-maroon via-uom-maroon to-uom-maroonDark px-5 py-8 text-center shadow-lg md:px-8 md:py-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-uom-goldSoft">
-              Registration opens on 1 July 2026
-            </p>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/90 md:text-base">
-              Online registration will be activated on this date. Please return here to
-              complete your delegate registration.
-            </p>
-            <div className="mt-6 flex flex-col items-center justify-center">
-              <span
-                className="inline-flex min-h-12 min-w-[12rem] cursor-not-allowed select-none items-center justify-center gap-2 rounded-full border border-neutral-400 bg-neutral-300 px-7 text-sm font-semibold tracking-tight text-neutral-500 shadow-inner md:text-base"
-                aria-hidden="true"
-              >
-                REGISTER
-                <ChevronRightIcon className="h-4 w-4 opacity-60" aria-hidden />
-              </span>
-            </div>
-          </section>
-        </Reveal>
       </main>
 
       <Footer />

@@ -55,7 +55,7 @@ export function SiteHeader({
         isDark ? "homepage-dark" : ""
       } border-b border-white/60 bg-white/55 backdrop-blur-xl`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 relative">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 relative">
         <Link to="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
           <div className="flex items-center gap-1.5">
             <div className="h-10 w-10 overflow-hidden rounded-[18px] md:h-11 md:w-11">
@@ -118,7 +118,7 @@ export function SiteHeader({
 
       {mobileNavOpen && (
         <div className="md:hidden border-t border-white/60 bg-white/85 backdrop-blur-xl">
-          <div className="mx-auto max-w-6xl px-4 py-4">
+          <div className="mx-auto max-w-7xl px-4 py-4">
             <div className="flex flex-col gap-3 text-sm font-medium text-neutral-800">
               <Link to="/#about" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 About

@@ -19,7 +19,7 @@ export const importantDates = [
   },
   {
     label: "Submission Deadline",
-    date: "3 June 2026",
+    date: "19 July 2026",
     note: "Extended abstract submission"
   },
   // {
@@ -29,12 +29,12 @@ export const importantDates = [
   // },
   {
     label: "Acceptance notification",
-    date: "1 July 2026",
+    date: "20 July 2026",
     note: "Notification of Acceptance"
   },
   {
     label: "Registration deadline",
-    date: "15 July 2026",
+    date: "31 July 2026",
     note: "Participant registration"
   },
   {
