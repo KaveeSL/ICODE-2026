@@ -2614,6 +2614,14 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #a1a1aa !important;
 }
 
+.homepage-dark .important-dates-mobile-card .text-neutral-400 {
+  color: #71717a !important;
+}
+
+.homepage-dark .important-dates-mobile-card .text-red-600 {
+  color: #ef4444 !important;
+}
+
 .homepage-dark .important-dates-mobile__rail {
   background: linear-gradient(
     180deg,

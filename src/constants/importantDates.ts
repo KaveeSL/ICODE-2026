@@ -11,6 +11,10 @@ export const supersededSubmissionDeadlineDisplay = {
   note: "Abstract submission deadline"
 } as const;
 
+export const submissionDeadlineDate = "19 July 2026";
+
+export const submissionDeadlineClosedLabel = "SUBMISSION CLOSED";
+
 export const importantDates = [
   {
     label: "Submissions Open",
@@ -19,7 +23,7 @@ export const importantDates = [
   },
   {
     label: "Submission Deadline",
-    date: "19 July 2026",
+    date: submissionDeadlineDate,
     note: "Extended abstract submission"
   },
   // {

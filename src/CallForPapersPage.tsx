@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
-import { importantDates } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate } from "./constants/importantDates";
 import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
@@ -141,7 +141,7 @@ export default function CallForPapersPage() {
                 <div className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
                   {keySubmissionDates.map((item, index) => {
                     const isExtendedSubmissionDeadline =
-                      item.label === "Submission Deadline" && item.date === "19 July 2026";
+                      item.label === "Submission Deadline" && item.date === submissionDeadlineDate;
                     return (
                       <div
                         key={`${item.label}-${item.date}`}
@@ -155,10 +155,12 @@ export default function CallForPapersPage() {
                             <>
                               <p>
                                 <span className="font-semibold">Submission Deadline:</span>{" "}
-                                <span className="font-bold text-red-600">{item.date}</span>
+                                <span className="font-semibold text-neutral-400 line-through">
+                                  {item.date}
+                                </span>
                               </p>
-                              <p className="mt-0.5 text-[11px] font-semibold text-neutral-800 md:text-xs">
-                                Still Accepting
+                              <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-red-600 md:text-xs">
+                                {submissionDeadlineClosedLabel}
                               </p>
                               <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
                                 {item.note}

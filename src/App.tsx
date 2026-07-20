@@ -35,7 +35,7 @@ import anniversary20Logo from "./assets/20thAnniversarylogo.png";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
-import { importantDates } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate } from "./constants/importantDates";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
 import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
@@ -197,7 +197,7 @@ function ImportantDateAddToCalendarButton({ item }: { item: ImportantDateItem })
 }
 
 function isExtendedSubmissionDeadlineSlot(item: ImportantDateItem) {
-  return item.label === "Submission Deadline" && item.date === "19 July 2026";
+  return item.label === "Submission Deadline" && item.date === submissionDeadlineDate;
 }
 
 const programmeVenues = {
@@ -273,18 +273,18 @@ function ImportantDateStillAcceptingCard({
 
   const dateClass =
     variant === "desktop"
-      ? "text-sm font-semibold leading-snug text-red-600 md:text-base"
-      : "text-base font-semibold leading-snug text-red-600";
+      ? "text-sm font-semibold leading-snug text-neutral-400 line-through md:text-base"
+      : "text-base font-semibold leading-snug text-neutral-400 line-through";
 
-  const stillAcceptingClass =
+  const submissionClosedClass =
     variant === "desktop"
-      ? "mt-1 text-sm font-semibold text-neutral-900 md:text-base"
-      : "mt-1 text-base font-semibold text-neutral-900";
+      ? "mt-1 text-sm font-bold uppercase tracking-[0.12em] text-red-600 md:text-base"
+      : "mt-1 text-base font-bold uppercase tracking-[0.12em] text-red-600";
 
   return (
     <div className={cardClass}>
       <p className={dateClass}>{item.date}</p>
-      <p className={stillAcceptingClass}>Still Accepting</p>
+      <p className={submissionClosedClass}>{submissionDeadlineClosedLabel}</p>
       <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">{item.label}</p>
       <p className={`mt-1 leading-relaxed text-neutral-700 ${variant === "desktop" ? "text-xs md:text-sm" : "text-xs"}`}>
         {item.note}
