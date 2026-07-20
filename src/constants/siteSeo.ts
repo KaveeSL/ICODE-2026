@@ -72,6 +72,27 @@ export const PAGE_SEO: Record<string, PageSeo> = {
     keywords:
       `${DEFAULT_KEYWORDS}, ICODE programme, conference schedule August 2026, UoM conference agenda, policy summit digital education, academic research sessions`,
   },
+  "/programme/day1": {
+    title: "Day 1 Academic Research Conference | ICODE2026 Programme",
+    description:
+      "ICODE2026 Day 1 schedule — Academic Research Conference on 5 August 2026 at the University of Moratuwa.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 1, academic research conference schedule, UoM research sessions August 2026`,
+  },
+  "/programme/day2": {
+    title: "Day 2 Policy & Leadership Summit | ICODE2026 Programme",
+    description:
+      "ICODE2026 Day 2 schedule — Policy and Leadership Summit on 6 August 2026.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 2, policy leadership summit schedule, digital education policy Sri Lanka`,
+  },
+  "/programme/day3": {
+    title: "Day 3 Practice & Innovation Workshops | ICODE2026 Programme",
+    description:
+      "ICODE2026 Day 3 schedule — Practice and Innovation Workshops on 7 August 2026 at the University of Moratuwa.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 3, workshop schedule, practice innovation workshops UoM`,
+  },
   "/governance": {
     title: "Governance & Committee | ICODE2026 UoM CODL",
     description:

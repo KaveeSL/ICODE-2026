@@ -727,7 +727,7 @@ function App() {
                         </span>
                       </Button>
                     </Link>
-                    <Link to="/programme">
+                    <Link to="/programme/day1">
                       <Button
                         variant="outline"
                         size="lg"
@@ -821,7 +821,7 @@ function App() {
                   <div className="hidden items-center gap-4 md:flex">
                     <Badge variant="solid">5–7 August 2026</Badge>
                     <Link
-                      to="/programme"
+                      to="/programme/day1"
                       className="group inline-flex items-center gap-1.5 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-3 py-1.5 text-[11px] font-semibold text-neutral-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold"
                     >
                       <span>View full programme</span>
@@ -832,7 +832,7 @@ function App() {
                 <div className="mt-3 flex items-center justify-between gap-3 md:hidden">
                   <Badge variant="solid">5–7 August 2026</Badge>
                   <Link
-                    to="/programme"
+                    to="/programme/day1"
                     className="group inline-flex items-center gap-1.5 rounded-full border border-uom-gold bg-uom-goldSoft/90 px-3 py-1.5 text-[11px] font-semibold text-neutral-900 shadow-sm transition hover:bg-uom-gold"
                   >
                     <CalendarDaysIcon className="h-3.5 w-3.5 text-uom-maroon" />

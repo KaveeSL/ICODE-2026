@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
 import App from "./App";
 import ProgrammePage from "./ProgrammePage.tsx";
 import GovernancePage from "./GovernancePage";
@@ -29,7 +35,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <SiteDocumentHead />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/programme" element={<ProgrammePage />} />
+          <Route path="/programme" element={<Navigate to="/programme/day1" replace />} />
+          <Route path="/programme/:daySlug" element={<ProgrammePage />} />
           <Route path="/governance" element={<GovernancePage />} />
           <Route path="/call-for-papers" element={<CallForPapersPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
@@ -39,4 +46,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </BrowserRouter>
   </React.StrictMode>
 );
-

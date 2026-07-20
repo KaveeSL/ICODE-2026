@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
   AcademicCapIcon,
   CalendarDaysIcon,
+  ChevronRightIcon,
   ClockIcon,
   CursorArrowRaysIcon,
   UserGroupIcon
@@ -20,11 +22,39 @@ import {
 
 type ActiveDay = 1 | 2 | 3;
 
+const workshopRegistrationFormHref =
+  "https://docs.google.com/forms/d/e/1FAIpQLScRuIgWSXXABlJPju4kn_h6rI_k4QyGwBwPxlUbHGbUqeQWvg/viewform?usp=sharing&ouid=112433407747669958215";
+
 const dayIcons = {
   1: AcademicCapIcon,
   2: UserGroupIcon,
   3: CursorArrowRaysIcon
 } as const;
+
+const daySlugByDay: Record<ActiveDay, string> = {
+  1: "day1",
+  2: "day2",
+  3: "day3"
+};
+
+function dayFromSlug(slug: string | undefined): ActiveDay | null {
+  if (slug === "day1") return 1;
+  if (slug === "day2") return 2;
+  if (slug === "day3") return 3;
+  return null;
+}
+
+function getSpeakerLines(row: ProgrammeSession): string[] {
+  if (row.isBreak) return [];
+  if (row.speakers?.length) return row.speakers;
+  if (row.panelists?.length) return row.panelists;
+  if (row.detail) return [row.detail];
+  return [];
+}
+
+function isTentativeSpeaker(name: string) {
+  return /to be confirmed/i.test(name);
+}
 
 function SessionTimeline({
   caption,
@@ -34,10 +64,11 @@ function SessionTimeline({
   rows: ProgrammeSession[];
 }) {
   return (
-    <div className="w-full">
+    <div className="programme-day-panel__body">
       <ol className="programme-timeline" aria-label={caption}>
         {rows.map((row, index) => {
-          const hasSpeaker = Boolean(row.detail) && !row.isBreak;
+          const speakerLines = getSpeakerLines(row);
+          const isMulti = speakerLines.length > 1;
 
           return (
             <li
@@ -51,36 +82,50 @@ function SessionTimeline({
                 {index < rows.length - 1 && <span className="programme-timeline__line" />}
               </div>
 
-              <article className="programme-timeline__card">
-                <div className="programme-timeline__time">
-                  <ClockIcon className="h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
-                  <span>{row.time}</span>
+              <article
+                className={`programme-timeline__card${
+                  row.isBreak ? " programme-timeline__card--break" : ""
+                }`}
+              >
+                <div className="programme-timeline__time" aria-label={`Time: ${row.time}`}>
+                  <ClockIcon className="programme-timeline__time-icon" aria-hidden />
+                  <span className="programme-timeline__time-text">{row.time}</span>
                 </div>
-                <h3 className="programme-timeline__title">{row.session}</h3>
-                {row.halls && (
-                  <p className="programme-timeline__halls">
-                    Parallel session halls: <span>{row.halls}</span>
-                  </p>
-                )}
-                {hasSpeaker && (
-                  <p className="programme-timeline__speaker">{row.detail}</p>
-                )}
-                {row.panelists && row.panelists.length > 0 && (
-                  <ul className="programme-timeline__panelists">
-                    {row.panelists.map((name) => (
-                      <li
-                        key={name}
-                        className={
-                          name.toLowerCase().includes("to be confirmed")
-                            ? "programme-timeline__panelist programme-timeline__panelist--tentative"
-                            : "programme-timeline__panelist"
-                        }
-                      >
-                        {name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <div className="programme-timeline__content">
+                  <h3 className="programme-timeline__title">{row.session}</h3>
+                  {row.halls && (
+                    <p className="programme-timeline__halls">
+                      Location: <span>{row.halls}</span>
+                    </p>
+                  )}
+                  {speakerLines.length === 1 && (
+                    <p
+                      className={
+                        isTentativeSpeaker(speakerLines[0])
+                          ? "programme-timeline__speaker programme-timeline__speaker--tba"
+                          : "programme-timeline__speaker"
+                      }
+                    >
+                      {speakerLines[0]}
+                    </p>
+                  )}
+                  {isMulti && (
+                    <ul className="programme-timeline__panelists">
+                      {speakerLines.map((name) => (
+                        <li
+                          key={name}
+                          className={
+                            isTentativeSpeaker(name)
+                              ? "programme-timeline__panelist programme-timeline__panelist--tentative"
+                              : "programme-timeline__panelist"
+                          }
+                        >
+                          {name}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </article>
             </li>
           );
@@ -90,32 +135,49 @@ function SessionTimeline({
   );
 }
 
-function WorkshopGrid({
-  caption
-}: {
-  caption: string;
-}) {
+function WorkshopTimeline({ caption }: { caption: string }) {
   return (
-    <div aria-label={caption}>
-      <div className="programme-workshops__grid">
-        {day3Workshops.map((workshop, index) => (
-          <article key={workshop.title} className="programme-workshop-card">
-            <span className="programme-workshop-card__index" aria-hidden>
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 className="programme-workshop-card__title">{workshop.title}</h3>
-            <p className="programme-workshop-card__label">Target audience</p>
-            <p className="programme-workshop-card__audience">{workshop.audience}</p>
-          </article>
-        ))}
-      </div>
+    <div className="programme-day-panel__body">
+      <ol className="programme-timeline" aria-label={caption}>
+        {day3Workshops.map((workshop, index) => {
+          const timeLabel = workshop.time ?? "To be confirmed";
+
+          return (
+            <li key={workshop.title} className="programme-timeline__item">
+              <div className="programme-timeline__rail" aria-hidden>
+                <span className="programme-timeline__dot" />
+                {index < day3Workshops.length - 1 && (
+                  <span className="programme-timeline__line" />
+                )}
+              </div>
+
+              <article className="programme-timeline__card">
+                <div className="programme-timeline__time" aria-label={`Time: ${timeLabel}`}>
+                  <ClockIcon className="programme-timeline__time-icon" aria-hidden />
+                  <span className="programme-timeline__time-text">{timeLabel}</span>
+                </div>
+                <div className="programme-timeline__content">
+                  <h3 className="programme-timeline__title">{workshop.title}</h3>
+                  <p className="programme-timeline__audience-label">Target audience</p>
+                  <p className="programme-timeline__audience">{workshop.audience}</p>
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
 
 export default function ProgrammePage() {
+  const { daySlug } = useParams<{ daySlug: string }>();
+  const activeDay = dayFromSlug(daySlug);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [activeDay, setActiveDay] = useState<ActiveDay>(1);
+
+  if (!activeDay) {
+    return <Navigate to="/programme/day1" replace />;
+  }
 
   const activeMeta = programmeDaysMeta.find((item) => item.day === activeDay)!;
   const ActiveIcon = dayIcons[activeDay];
@@ -136,12 +198,12 @@ export default function ProgrammePage() {
               Programme
             </div>
           </Reveal>
-          <Reveal variant="up" delayMs={100}>
+          <Reveal variant="up" delayMs={80}>
             <h1 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
               3-Day Conference Schedule
             </h1>
           </Reveal>
-          <Reveal variant="up" delayMs={180}>
+          <Reveal variant="up" delayMs={140}>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
               ICODE2026 runs from{" "}
               <span className="font-semibold text-neutral-900">5–7 August 2026</span> — research,
@@ -152,22 +214,17 @@ export default function ProgrammePage() {
 
         <section className="mt-8 w-full md:mt-10">
           <Reveal variant="up" className="w-full">
-            <div
-              className="programme-day-tabs w-full"
-              role="tablist"
-              aria-label="Programme days"
-            >
+            <div className="programme-day-tabs w-full" role="tablist" aria-label="Programme days">
               {programmeDaysMeta.map((item) => {
                 const Icon = dayIcons[item.day as ActiveDay];
                 const isActive = activeDay === item.day;
-
+                const to = `/programme/${daySlugByDay[item.day as ActiveDay]}`;
                 return (
-                  <button
+                  <Link
                     key={item.day}
-                    type="button"
+                    to={to}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActiveDay(item.day as ActiveDay)}
                     className={`programme-day-tab${isActive ? " programme-day-tab--active" : ""}`}
                   >
                     <span className="programme-day-tab__top">
@@ -182,7 +239,7 @@ export default function ProgrammePage() {
                       ) : null}
                       <span className="programme-day-tab__access">{item.access}</span>
                     </span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -193,53 +250,64 @@ export default function ProgrammePage() {
             className="programme-day-panel mt-5 w-full overflow-hidden rounded-3xl border border-uom-gold/45 bg-white shadow-sm md:mt-6"
           >
             <div className="programme-day-panel__header">
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-uom-maroon">
                   Day {activeMeta.day} · {activeMeta.accent}
                 </p>
-                <h2 className="mt-1 flex items-start gap-2 text-base font-semibold leading-snug text-neutral-900 sm:items-center sm:text-lg md:text-xl">
-                  <ActiveIcon className="mt-0.5 h-5 w-5 shrink-0 text-uom-maroon sm:mt-0" aria-hidden />
-                  <span>{activeMeta.title}</span>
+                <h2 className="mt-1 flex items-center gap-2 text-lg font-semibold text-neutral-900 md:text-xl">
+                  <ActiveIcon className="h-5 w-5 shrink-0 text-uom-maroon" aria-hidden />
+                  {activeMeta.title}
                 </h2>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="programme-day-panel__chip">
-                  <CalendarDaysIcon className="h-3.5 w-3.5" aria-hidden />
+                <p className="mt-1.5 text-sm text-neutral-600">
                   {activeMeta.date}
-                </span>
-                {"timeNote" in activeMeta && activeMeta.timeNote ? (
-                  <span className="programme-day-panel__chip">
-                    <ClockIcon className="h-3.5 w-3.5" aria-hidden />
-                    {activeMeta.timeNote}
+                  <span className="mx-2 text-uom-gold" aria-hidden>
+                    ·
                   </span>
-                ) : null}
-                <span
-                  className={`programme-day-panel__access${
-                    activeMeta.day === 2 ? " programme-day-panel__access--invite" : ""
-                  }`}
-                >
                   {activeMeta.access}
-                </span>
+                  {"timeNote" in activeMeta && activeMeta.timeNote ? (
+                    <>
+                      <span className="mx-2 text-uom-gold" aria-hidden>
+                        ·
+                      </span>
+                      {activeMeta.timeNote}
+                    </>
+                  ) : null}
+                </p>
               </div>
             </div>
 
-            <div className="programme-day-panel__body">
-              {activeDay === 1 && (
-                <SessionTimeline
-                  caption="Day 1 Academic Research Conference schedule"
-                  rows={day1Schedule}
-                />
-              )}
-              {activeDay === 2 && (
-                <SessionTimeline
-                  caption="Day 2 Policy and Leadership Summit schedule"
-                  rows={day2Schedule}
-                />
-              )}
-              {activeDay === 3 && (
-                <WorkshopGrid caption="Day 3 Practice and Innovation Workshops" />
-              )}
-            </div>
+            {activeDay === 3 && (
+              <div className="programme-day-panel__cta">
+                <p className="programme-day-panel__cta-copy">
+                  Reserve your place for Day 3 workshops.
+                </p>
+                <a
+                  href={workshopRegistrationFormHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="programme-day-panel__cta-btn"
+                >
+                  Register for Workshops
+                  <ChevronRightIcon className="h-4 w-4" aria-hidden />
+                </a>
+              </div>
+            )}
+
+            {activeDay === 1 && (
+              <SessionTimeline
+                caption="Day 1 Academic Research Conference schedule"
+                rows={day1Schedule}
+              />
+            )}
+            {activeDay === 2 && (
+              <SessionTimeline
+                caption="Day 2 Policy and Leadership Summit schedule"
+                rows={day2Schedule}
+              />
+            )}
+            {activeDay === 3 && (
+              <WorkshopTimeline caption="Day 3 Practice and Innovation Workshops" />
+            )}
           </div>
         </section>
       </main>

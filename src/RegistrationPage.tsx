@@ -62,6 +62,8 @@ const registrationFeeRows = [
 ];
 
 const registrationFormHref = "https://forms.gle/h9r752trrDBpsVi26";
+const workshopRegistrationFormHref =
+  "https://docs.google.com/forms/d/e/1FAIpQLScRuIgWSXXABlJPju4kn_h6rI_k4QyGwBwPxlUbHGbUqeQWvg/viewform?usp=sharing&ouid=112433407747669958215";
 
 const registrationIncludes = [
   "Academic research sessions on 5 August 2026",
@@ -110,7 +112,7 @@ export default function RegistrationPage() {
               You can express your interest to register for ICODE2026{" "}
               {/* <span className="font-semibold text-neutral-900">Register Now</span> button. */}
             </p>
-            <div className="mt-6 flex flex-col items-start">
+            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={registrationFormHref}
                 target="_blank"
@@ -118,6 +120,15 @@ export default function RegistrationPage() {
                 className="inline-flex min-h-12 min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-uom-gold bg-uom-maroon px-7 text-sm font-semibold tracking-tight text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold hover:text-neutral-900 md:text-base"
               >
                 Register Now
+                <ChevronRightIcon className="h-4 w-4" aria-hidden />
+              </a>
+              <a
+                href={workshopRegistrationFormHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-uom-gold bg-uom-goldSoft px-7 text-sm font-semibold tracking-tight text-neutral-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold md:text-base"
+              >
+                Register for Workshops
                 <ChevronRightIcon className="h-4 w-4" aria-hidden />
               </a>
             </div>
