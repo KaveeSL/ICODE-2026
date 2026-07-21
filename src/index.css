@@ -1640,13 +1640,47 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #737373;
 }
 
+.programme-timeline__about {
+  margin-top: 0.55rem;
+  border-left: 3px solid #d4af37;
+  padding: 0.15rem 0 0.15rem 0.75rem;
+}
+
+.programme-timeline__description {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #525252;
+}
+
+.programme-timeline__audience-row {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
 .programme-timeline__audience-label {
-  margin-top: 0.65rem;
   font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #7a0019;
+}
+
+.programme-timeline__audience-pill {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: rgba(248, 237, 212, 0.55);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #404040;
 }
 
 .programme-timeline__audience {
@@ -1927,8 +1961,22 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #a3a3a3;
 }
 
+.homepage-dark .programme-timeline__description {
+  color: #a3a3a3;
+}
+
+.homepage-dark .programme-timeline__about {
+  border-left-color: rgba(255, 200, 77, 0.65);
+}
+
 .homepage-dark .programme-timeline__audience-label {
   color: var(--neon-gold-soft, #f8edd4);
+}
+
+.homepage-dark .programme-timeline__audience-pill {
+  border-color: rgba(255, 200, 77, 0.28);
+  background: rgba(48, 48, 58, 0.9);
+  color: #e5e5e5;
 }
 
 .homepage-dark .programme-timeline__audience {

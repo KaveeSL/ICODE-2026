@@ -158,8 +158,15 @@ function WorkshopTimeline({ caption }: { caption: string }) {
                 </div>
                 <div className="programme-timeline__content">
                   <h3 className="programme-timeline__title">{workshop.title}</h3>
-                  <p className="programme-timeline__audience-label">Target audience</p>
-                  <p className="programme-timeline__audience">{workshop.audience}</p>
+                  {workshop.description ? (
+                    <div className="programme-timeline__about">
+                      <p className="programme-timeline__description">{workshop.description}</p>
+                    </div>
+                  ) : null}
+                  <div className="programme-timeline__audience-row">
+                    <span className="programme-timeline__audience-label">Target audience</span>
+                    <span className="programme-timeline__audience-pill">{workshop.audience}</span>
+                  </div>
                 </div>
               </article>
             </li>
