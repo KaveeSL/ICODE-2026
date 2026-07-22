@@ -2,9 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
-  // Helps when deploying to a subfolder (e.g. InfinityFree paths).
-  // Use with a fresh `npm run build`.
-  base: "./",
+  // Absolute base so nested routes like /programme/day1 load assets correctly on refresh.
+  // Relative "./" breaks JS/CSS paths on multi-segment URLs after host deploy.
+  base: "/",
   plugins: [react()],
   server: {
     host: "127.0.0.1",
@@ -17,4 +17,3 @@ export default defineConfig({
     },
   },
 });
-
