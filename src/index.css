@@ -127,15 +127,28 @@ body {
 }
 
 .sponsor-slider {
+  position: relative;
   overflow: hidden;
+  min-height: 8.5rem;
+  padding: 1.25rem 0;
 }
 
 .sponsor-track {
   display: flex;
   width: max-content;
-  animation: sponsor-scroll 60s linear infinite;
+  align-items: center;
+  gap: 1.5rem;
+  animation: sponsor-scroll 85s linear infinite;
 }
 
+@media (min-width: 768px) {
+  .sponsor-track {
+    gap: 3.5rem;
+    animation-duration: 125s;
+  }
+}
+
+.sponsor-slider--paused .sponsor-track,
 .sponsor-track:hover {
   animation-play-state: paused;
 }
@@ -146,6 +159,137 @@ body {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+.sponsor-logo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.5rem;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sponsor-logo--wide {
+  min-width: 12rem;
+}
+
+.sponsor-logo__img {
+  display: block;
+  height: 4rem;
+  width: auto;
+  max-width: 11rem;
+  object-fit: contain;
+  opacity: 0.92;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.sponsor-logo--wide .sponsor-logo__img {
+  max-width: 20rem;
+}
+
+.sponsor-logo:hover .sponsor-logo__img,
+.sponsor-logo:focus-visible .sponsor-logo__img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+@media (min-width: 768px) {
+  .sponsor-slider {
+    min-height: 9.5rem;
+  }
+
+  .sponsor-logo__img {
+    height: 4.5rem;
+    max-width: 13rem;
+  }
+
+  .sponsor-logo--wide .sponsor-logo__img {
+    max-width: 25rem;
+  }
+}
+
+.sponsor-logo:focus-visible {
+  border-radius: 0.75rem;
+  outline: 2px solid rgba(212, 175, 55, 0.85);
+  outline-offset: 4px;
+}
+
+.partner-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.partner-spotlight__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.partner-spotlight__card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: min(92vw, 36rem);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+  animation: partner-spotlight-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.partner-spotlight__img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: min(42vh, 14rem);
+  max-width: min(78vw, 18rem);
+  object-fit: contain;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.45));
+}
+
+.partner-spotlight__img--wide {
+  max-width: min(92vw, 34rem);
+  max-height: min(36vh, 12rem);
+}
+
+.partner-spotlight__name {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #f8fafc;
+}
+
+.partner-spotlight__role {
+  margin: 0;
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffc84d;
+}
+
+@keyframes partner-spotlight-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -2441,9 +2585,15 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 }
 
 /* Sponsor logos */
-.homepage-dark .sponsor-slider img {
-  filter: brightness(1.15) contrast(1.05);
-  opacity: 0.85;
+.homepage-dark .sponsor-slider .sponsor-logo__img {
+  filter: brightness(1.12) contrast(1.05);
+  opacity: 0.9;
+}
+
+.homepage-dark .sponsor-logo:hover .sponsor-logo__img,
+.homepage-dark .sponsor-logo:focus-visible .sponsor-logo__img {
+  filter: none;
+  opacity: 1;
 }
 
 /* Social chips in contact */
@@ -2968,13 +3118,9 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   background: linear-gradient(to left, rgba(28, 28, 32, 0.95), transparent);
 }
 
-.homepage-dark .sponsor-track img {
+.homepage-dark .sponsor-track .sponsor-logo__img {
   opacity: 0.9;
   transition: opacity 250ms ease;
-}
-
-.homepage-dark .sponsor-track img:hover {
-  opacity: 1;
 }
 
 /* — Glass panel pulse on hover (extra emphasis) — */

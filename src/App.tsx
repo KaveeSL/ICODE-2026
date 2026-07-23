@@ -32,6 +32,8 @@ import { Accordion } from "./components/ui/accordion";
 import logo from "./assets/logo.png";
 import codlLogo from "./assets/codllogo.png";
 import anniversary20Logo from "./assets/20thAnniversarylogo.png";
+import modesLogo from "./assets/modesl.jpg";
+import emojotLogo from "./assets/emojot.png";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
@@ -44,6 +46,37 @@ import { Reveal } from "./components/Reveal";
 import { HomepageThemeToggle } from "./components/HomepageThemeToggle";
 import { WorkshopFlyerModal } from "./components/WorkshopFlyerModal";
 import { useHomepageTheme } from "./hooks/useHomepageTheme";
+
+const partnerSponsors = [
+  {
+    id: "uom",
+    src: logo,
+    name: "University of Moratuwa",
+    role: "Hosting Partner",
+    wide: false
+  },
+  {
+    id: "codl",
+    src: codlLogo,
+    name: "CODL",
+    role: "Organised by",
+    wide: false
+  },
+  {
+    id: "mode",
+    src: modesLogo,
+    name: "Ministry of Digital Economy",
+    role: "Government Partner",
+    wide: true
+  },
+  {
+    id: "emojot",
+    src: emojotLogo,
+    name: "Emojot",
+    role: "Engagement Partner",
+    wide: false
+  }
+] as const;
 
 const WHY_PARTICIPATE_BENEFITS = [
   {
@@ -422,6 +455,9 @@ function App() {
   const location = useLocation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [workshopFlyerOpen, setWorkshopFlyerOpen] = useState(false);
+  const [activePartner, setActivePartner] = useState<(typeof partnerSponsors)[number] | null>(
+    null
+  );
   const { theme, isDark, toggleTheme } = useHomepageTheme();
 
   // Smooth scroll to in-page anchors with header offset
@@ -1217,30 +1253,28 @@ function App() {
             </div>
 
             <Reveal variant="up" delayMs={220}>
-              <div className="mt-5 sponsor-slider">
-                <div className="sponsor-track gap-12 items-center">
-                  {Array.from({ length: 35 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="flex h-16 items-center justify-center gap-8 md:h-20 md:gap-10"
-                    >
-                      <img
-                        src={logo}
-                        alt="University of Moratuwa logo"
-                        className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
-                      />
-                      <img
-                        src={codlLogo}
-                        alt="Centre for Open and Distance Learning (CODL) logo"
-                        className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
-                      />
-                      <img
-                        src={anniversary20Logo}
-                        alt="CODL 20th Anniversary logo"
-                        className="h-10 w-auto max-w-[120px] object-contain opacity-90 md:h-12 md:max-w-[140px]"
-                      />
-                    </div>
-                  ))}
+              <div className={`mt-5 sponsor-slider${activePartner ? " sponsor-slider--paused" : ""}`}>
+                <div className="sponsor-track items-center">
+                  {Array.from({ length: 18 }).map((_, loopIndex) =>
+                    partnerSponsors.map((partner) => (
+                      <button
+                        key={`${partner.id}-${loopIndex}`}
+                        type="button"
+                        className={`sponsor-logo${partner.wide ? " sponsor-logo--wide" : ""}`}
+                        onMouseEnter={() => setActivePartner(partner)}
+                        onMouseLeave={() => setActivePartner(null)}
+                        onFocus={() => setActivePartner(partner)}
+                        onBlur={() => setActivePartner(null)}
+                        aria-label={`${partner.name} — ${partner.role}`}
+                      >
+                        <img
+                          src={partner.src}
+                          alt=""
+                          className="sponsor-logo__img"
+                        />
+                      </button>
+                    ))
+                  )}
                 </div>
               </div>
             </Reveal>
@@ -1851,6 +1885,23 @@ function App() {
           </div>
         </footer>
       </div>
+
+      {activePartner ? (
+        <div className="partner-spotlight" aria-live="polite">
+          <div className="partner-spotlight__backdrop" />
+          <div className="partner-spotlight__card">
+            <img
+              src={activePartner.src}
+              alt={`${activePartner.name} logo`}
+              className={`partner-spotlight__img${
+                activePartner.wide ? " partner-spotlight__img--wide" : ""
+              }`}
+            />
+            <p className="partner-spotlight__name">{activePartner.name}</p>
+            <p className="partner-spotlight__role">{activePartner.role}</p>
+          </div>
+        </div>
+      ) : null}
 
       <WorkshopFlyerModal
         open={workshopFlyerOpen}
