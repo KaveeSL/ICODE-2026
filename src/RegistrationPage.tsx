@@ -27,7 +27,8 @@ const programmeDays = [
     access: "Open for Registration",
     open: true,
     accent: "maroon" as const,
-    icon: AcademicCapIcon
+    icon: AcademicCapIcon,
+    focus: "Research presentations, keynotes, and peer exchange"
   },
   {
     day: 2,
@@ -36,7 +37,8 @@ const programmeDays = [
     access: "By Invitation Only",
     open: false,
     accent: "gold" as const,
-    icon: UserGroupIcon
+    icon: UserGroupIcon,
+    focus: "Invitation-only leadership summit — not open for public registration."
   },
   {
     day: 3,
@@ -45,7 +47,8 @@ const programmeDays = [
     access: "Open for Registration",
     open: true,
     accent: "maroon" as const,
-    icon: CursorArrowRaysIcon
+    icon: CursorArrowRaysIcon,
+    focus: "Hands-on workshops for practice, tools, and innovation"
   }
 ];
 
@@ -163,50 +166,38 @@ export default function RegistrationPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {programmeDays.map((item, index) => {
               const Icon = item.icon;
-              const borderAccent =
-                item.accent === "gold" ? "border-uom-gold/70" : "border-uom-maroon/30";
-              const dayBadge =
-                item.accent === "gold"
-                  ? "bg-uom-goldSoft text-neutral-900"
-                  : "bg-uom-maroon text-uom-goldSoft";
 
               return (
                 <Reveal key={item.day} variant="up" delayMs={index * 90} className="h-full">
                   <article
-                    className={`registration-day-card site-card hover-lift relative flex h-full flex-col overflow-hidden rounded-2xl border ${borderAccent} bg-white/95 p-4 shadow-sm md:p-5 ${
-                      item.open ? "" : "opacity-95"
+                    className={`registration-day-card registration-day-card--${item.accent}${
+                      item.open ? " registration-day-card--open" : " registration-day-card--invite"
                     }`}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <span
-                        className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold ${dayBadge}`}
-                      >
-                        {item.day}
-                      </span>
-                      <Icon className="h-6 w-6 shrink-0 text-uom-maroon/80" aria-hidden />
+                    <div className="registration-day-card__top">
+                      <span className="registration-day-card__daychip">Day {item.day}</span>
+                      <Icon className="registration-day-card__icon" aria-hidden />
                     </div>
-                    <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-uom-maroon">
-                      Day {item.day}
-                    </p>
-                    <h3 className="mt-1 text-base font-semibold leading-snug text-neutral-900 md:text-lg">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-600">
-                      {item.date}
-                    </p>
+
+                    <h3 className="registration-day-card__title">{item.title}</h3>
+                    <p className="registration-day-card__date">{item.date}</p>
+
                     <p
-                      className={`registration-day-access mt-3 inline-flex w-fit rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+                      className={`registration-day-access${
                         item.open
-                          ? "registration-day-access--open bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200"
-                          : "registration-day-access--closed bg-neutral-100 text-neutral-600 ring-1 ring-neutral-200"
+                          ? " registration-day-access--open"
+                          : " registration-day-access--closed"
                       }`}
                     >
                       {item.access}
                     </p>
-                    {!item.open && (
-                      <p className="mt-auto pt-4 text-xs font-medium leading-relaxed text-red-600">
-                        Invitation-only leadership summit — not open for public registration.
+
+                    {!item.open ? (
+                      <p className="registration-day-card__focus registration-day-card__focus--invite">
+                        {item.focus}
                       </p>
+                    ) : (
+                      <p className="registration-day-card__focus">{item.focus}</p>
                     )}
                   </article>
                 </Reveal>

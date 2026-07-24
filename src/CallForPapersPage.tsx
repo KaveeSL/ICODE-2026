@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
-import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel } from "./constants/importantDates";
 import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
@@ -142,6 +142,9 @@ export default function CallForPapersPage() {
                   {keySubmissionDates.map((item, index) => {
                     const isExtendedSubmissionDeadline =
                       item.label === "Submission Deadline" && item.date === submissionDeadlineDate;
+                    const isAcceptanceNotification =
+                      item.label === "Acceptance notification" &&
+                      item.date === acceptanceNotificationDate;
                     return (
                       <div
                         key={`${item.label}-${item.date}`}
@@ -164,6 +167,18 @@ export default function CallForPapersPage() {
                               </p>
                               <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
                                 {item.note}
+                              </p>
+                            </>
+                          ) : isAcceptanceNotification ? (
+                            <>
+                              <p>
+                                <span className="font-semibold">{item.label}:</span> {item.date}
+                              </p>
+                              <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
+                                {item.note}
+                              </p>
+                              <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-600 md:text-xs">
+                                {acceptanceNotificationSentLabel}
                               </p>
                             </>
                           ) : (

@@ -37,7 +37,7 @@ import emojotLogo from "./assets/emojot.png";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
-import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel } from "./constants/importantDates";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
 import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
@@ -231,6 +231,10 @@ function ImportantDateAddToCalendarButton({ item }: { item: ImportantDateItem })
 
 function isExtendedSubmissionDeadlineSlot(item: ImportantDateItem) {
   return item.label === "Submission Deadline" && item.date === submissionDeadlineDate;
+}
+
+function isAcceptanceNotificationSlot(item: ImportantDateItem) {
+  return item.label === "Acceptance notification" && item.date === acceptanceNotificationDate;
 }
 
 const programmeVenues = {
@@ -1057,6 +1061,11 @@ function App() {
                         <p className="mt-1.5 text-xs leading-relaxed text-neutral-700">
                           {item.note}
                         </p>
+                        {isAcceptanceNotificationSlot(item) ? (
+                          <p className="mt-1 text-sm font-bold uppercase tracking-[0.12em] text-emerald-600">
+                            {acceptanceNotificationSentLabel}
+                          </p>
+                        ) : null}
                         <ImportantDateAddToCalendarButton item={item} />
                       </div>
                     )}
@@ -1105,6 +1114,11 @@ function App() {
                               {item.label}
                             </p>
                             <p className="mt-1 text-xs text-neutral-700 md:text-sm">{item.note}</p>
+                            {isAcceptanceNotificationSlot(item) ? (
+                              <p className="mt-1 text-sm font-bold uppercase tracking-[0.12em] text-emerald-600 md:text-base">
+                                {acceptanceNotificationSentLabel}
+                              </p>
+                            ) : null}
                             <ImportantDateAddToCalendarButton item={item} />
                           </div>
                         )}

@@ -15,6 +15,10 @@ export const submissionDeadlineDate = "19 July 2026";
 
 export const submissionDeadlineClosedLabel = "SUBMISSION CLOSED";
 
+export const acceptanceNotificationDate = "20 July 2026";
+
+export const acceptanceNotificationSentLabel = "SENT";
+
 export const importantDates = [
   {
     label: "Submissions Open",
@@ -33,7 +37,7 @@ export const importantDates = [
   // },
   {
     label: "Acceptance notification",
-    date: "20 July 2026",
+    date: acceptanceNotificationDate,
     note: "Notification of Acceptance"
   },
   {

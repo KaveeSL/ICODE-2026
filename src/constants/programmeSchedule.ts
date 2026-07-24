@@ -163,7 +163,9 @@ export const day3Workshops: Day3Workshop[] = [
   {
     title: "Moodle Roundtable",
     audience: "MoE, CODLs",
-    time: "9:00 am – 12:00 pm"
+    time: "9:00 am – 12:00 pm",
+    description:
+      "Moodle Roundtable is an interactive discussion where educators and Moodle users share experiences, best practices, and practical solutions for online teaching and learning. Participants will exchange ideas on course design, assessment, and learner engagement while addressing common challenges. The session promotes collaboration and the sharing of actionable insights."
   },
   {
     title: "Digital Tools in Education",
