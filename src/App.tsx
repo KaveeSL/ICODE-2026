@@ -1011,6 +1011,120 @@ function App() {
             </div>
           </div>
 
+          <section
+            id="why-participate"
+            className="why-participate relative mt-16 scroll-mt-24 overflow-hidden md:mt-20"
+          >
+            <Reveal variant="up">
+              <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+                <AcademicCapIcon className="h-6 w-6 text-uom-maroon" />
+                Why participate?
+              </h2>
+              <p className="why-participate-lead mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base">
+                One conference bridging{" "}
+                <span className="why-participate-lead__pill">policy</span>,{" "}
+                <span className="why-participate-lead__pill">research</span>, and{" "}
+                <span className="why-participate-lead__pill">practice</span> in open and
+                digital education.
+              </p>
+            </Reveal>
+
+            <div className="relative mt-8 grid gap-10 lg:grid-cols-12 lg:gap-12">
+              <Reveal variant="left" className="lg:col-span-5">
+                <p className="text-lg font-medium leading-relaxed text-neutral-900 md:text-xl md:leading-snug">
+                  Join a focused community working at the intersection of{" "}
+                  <span className="text-uom-maroon">policy, research, and practice</span> in
+                  open and digital education.
+                </p>
+
+                <div className="why-participate-pathway mt-8" aria-hidden>
+                  <div className="why-participate-pathway__track">
+                    <span className="why-participate-pathway__node">Policy</span>
+                    <span className="why-participate-pathway__node why-participate-pathway__node--mid">
+                      Research
+                    </span>
+                    <span className="why-participate-pathway__node">Practice</span>
+                  </div>
+                </div>
+
+                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-uom-maroon">
+                  Especially valuable for
+                </p>
+                <ul className="mt-4 space-y-5">
+                  {WHY_PARTICIPATE_AUDIENCES.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <li
+                        key={item.title}
+                        className="why-participate-audience group flex gap-4"
+                        style={{ transitionDelay: `${index * 60}ms` }}
+                      >
+                        <span className="why-participate-audience__icon mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <div>
+                          <p className="font-semibold text-neutral-900">{item.title}</p>
+                          <p className="mt-0.5 text-sm leading-relaxed text-neutral-600">
+                            {item.detail}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+
+              <Reveal variant="right" delayMs={120} className="lg:col-span-7">
+                <ol className="why-participate-benefits divide-y divide-neutral-200/80">
+                  {WHY_PARTICIPATE_BENEFITS.map((item, index) => {
+                    const Icon = item.icon;
+                    const num = String(index + 1).padStart(2, "0");
+                    return (
+                      <li
+                        key={item.text}
+                        className="why-participate-benefit group flex gap-4 py-5 first:pt-0 last:pb-0 md:gap-5 md:py-6"
+                      >
+                        <span
+                          className="why-participate-benefit__num hidden text-3xl font-bold tabular-nums leading-none md:block"
+                          aria-hidden
+                        >
+                          {num}
+                        </span>
+                        <span className="why-participate-benefit__icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-uom-maroon text-uom-goldSoft shadow-sm">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <p className="min-w-0 flex-1 self-center text-sm leading-relaxed text-neutral-800 md:text-base">
+                          <span className="why-participate-benefit__num mr-2 font-bold md:hidden">
+                            {num}
+                          </span>
+                          {item.text}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </Reveal>
+            </div>
+
+            <Reveal variant="up" delayMs={220}>
+              <div className="why-participate-takehome mt-8 md:mt-10">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
+                  <p className="why-participate-takehome__label flex shrink-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em]">
+                    <span className="why-participate-takehome__label-icon flex h-8 w-8 items-center justify-center rounded-lg">
+                      <SparklesIcon className="h-4 w-4 shrink-0" aria-hidden />
+                    </span>
+                    What you can take home
+                  </p>
+                  <p className="why-participate-takehome__body text-sm leading-relaxed sm:border-l sm:pl-5">
+                    Practical insights you can apply immediately — from governance and quality
+                    assurance to learning analytics, AI support tools, and sustainable Open and
+                    Digital Education models.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
           {/* Important dates timeline – moved under 3-day programme */}
           <section id="dates" className="mt-16 md:mt-20 scroll-mt-24">
             <div className="flex items-center justify-between gap-4">
@@ -1128,120 +1242,6 @@ function App() {
                 })}
               </ol>
             </div>
-          </section>
-
-          <section
-            id="why-participate"
-            className="why-participate relative mt-16 scroll-mt-24 overflow-hidden md:mt-20"
-          >
-            <Reveal variant="up">
-              <h2 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-                <AcademicCapIcon className="h-6 w-6 text-uom-maroon" />
-                Why participate?
-              </h2>
-              <p className="why-participate-lead mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 md:text-base">
-                One conference bridging{" "}
-                <span className="why-participate-lead__pill">policy</span>,{" "}
-                <span className="why-participate-lead__pill">research</span>, and{" "}
-                <span className="why-participate-lead__pill">practice</span> in open and
-                digital education.
-              </p>
-            </Reveal>
-
-            <div className="relative mt-8 grid gap-10 lg:grid-cols-12 lg:gap-12">
-              <Reveal variant="left" className="lg:col-span-5">
-                <p className="text-lg font-medium leading-relaxed text-neutral-900 md:text-xl md:leading-snug">
-                  Join a focused community working at the intersection of{" "}
-                  <span className="text-uom-maroon">policy, research, and practice</span> in
-                  open and digital education.
-                </p>
-
-                <div className="why-participate-pathway mt-8" aria-hidden>
-                  <div className="why-participate-pathway__track">
-                    <span className="why-participate-pathway__node">Policy</span>
-                    <span className="why-participate-pathway__node why-participate-pathway__node--mid">
-                      Research
-                    </span>
-                    <span className="why-participate-pathway__node">Practice</span>
-                  </div>
-                </div>
-
-                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-uom-maroon">
-                  Especially valuable for
-                </p>
-                <ul className="mt-4 space-y-5">
-                  {WHY_PARTICIPATE_AUDIENCES.map((item, index) => {
-                    const Icon = item.icon;
-                    return (
-                      <li
-                        key={item.title}
-                        className="why-participate-audience group flex gap-4"
-                        style={{ transitionDelay: `${index * 60}ms` }}
-                      >
-                        <span className="why-participate-audience__icon mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
-                          <Icon className="h-5 w-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="font-semibold text-neutral-900">{item.title}</p>
-                          <p className="mt-0.5 text-sm leading-relaxed text-neutral-600">
-                            {item.detail}
-                          </p>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </Reveal>
-
-              <Reveal variant="right" delayMs={120} className="lg:col-span-7">
-                <ol className="why-participate-benefits divide-y divide-neutral-200/80">
-                  {WHY_PARTICIPATE_BENEFITS.map((item, index) => {
-                    const Icon = item.icon;
-                    const num = String(index + 1).padStart(2, "0");
-                    return (
-                      <li
-                        key={item.text}
-                        className="why-participate-benefit group flex gap-4 py-5 first:pt-0 last:pb-0 md:gap-5 md:py-6"
-                      >
-                        <span
-                          className="why-participate-benefit__num hidden text-3xl font-bold tabular-nums leading-none md:block"
-                          aria-hidden
-                        >
-                          {num}
-                        </span>
-                        <span className="why-participate-benefit__icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-uom-maroon text-uom-goldSoft shadow-sm">
-                          <Icon className="h-5 w-5" aria-hidden />
-                        </span>
-                        <p className="min-w-0 flex-1 self-center text-sm leading-relaxed text-neutral-800 md:text-base">
-                          <span className="why-participate-benefit__num mr-2 font-bold md:hidden">
-                            {num}
-                          </span>
-                          {item.text}
-                        </p>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </Reveal>
-            </div>
-
-            <Reveal variant="up" delayMs={220}>
-              <div className="why-participate-takehome mt-8 md:mt-10">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
-                  <p className="why-participate-takehome__label flex shrink-0 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em]">
-                    <span className="why-participate-takehome__label-icon flex h-8 w-8 items-center justify-center rounded-lg">
-                      <SparklesIcon className="h-4 w-4 shrink-0" aria-hidden />
-                    </span>
-                    What you can take home
-                  </p>
-                  <p className="why-participate-takehome__body text-sm leading-relaxed sm:border-l sm:pl-5">
-                    Practical insights you can apply immediately — from governance and quality
-                    assurance to learning analytics, AI support tools, and sustainable Open and
-                    Digital Education models.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
           </section>
 
         </section>

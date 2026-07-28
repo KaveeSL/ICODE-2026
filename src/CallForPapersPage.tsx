@@ -24,7 +24,6 @@ import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
 import { useSiteTheme } from "./context/SiteThemeProvider";
-import { submitAbstractInlineClass } from "./constants/ctaStyles";
 
 /** Bundled from `src/assets/docs/` so it works on all hosts. */
 const TEMPLATE_WORD_HREF = extendedAbstractTemplateWord;
@@ -198,21 +197,17 @@ export default function CallForPapersPage() {
                 </div>
                 <div className="mt-4 flex flex-col gap-2 border-t border-neutral-200 pt-3 text-[11px] text-neutral-600 md:flex-row md:items-center md:justify-between md:text-xs">
                   <p>Submit via the online abstract portal.</p>
-                  <a
-                    href="https://cmt3.research.microsoft.com/ICODE2026"
-                    target="_blank"
-                    rel="noreferrer"
+                  <Button
+                    type="button"
+                    size="sm"
+                    disabled
+                    aria-disabled="true"
+                    className="submission-closed-btn pointer-events-none cursor-not-allowed border border-neutral-300 bg-neutral-200 text-neutral-500 shadow-none hover:bg-neutral-200 hover:text-neutral-500 disabled:opacity-100 sm:whitespace-nowrap whitespace-normal"
                   >
-                    <Button
-                      size="sm"
-                      className={submitAbstractInlineClass(isDark, "sm:whitespace-nowrap whitespace-normal")}
-                    >
-                      <span className="flex items-center gap-1.5">
-                        Submit Abstract
-                        <ChevronRightIcon className="h-3.5 w-3.5" />
-                      </span>
-                    </Button>
-                  </a>
+                    <span className="font-bold uppercase tracking-[0.12em]">
+                      {submissionDeadlineClosedLabel}
+                    </span>
+                  </Button>
                 </div>
               </div>
 
@@ -462,14 +457,12 @@ export default function CallForPapersPage() {
                       <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
                       <p>
                         <span className="font-semibold">All extended abstract submissions</span> must be done through{" "}
-                        <a
-                          href="https://cmt3.research.microsoft.com/ICODE2026"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-semibold text-uom-maroon underline underline-offset-2"
+                        <span
+                          className="cursor-not-allowed font-semibold text-neutral-400 no-underline"
+                          aria-disabled="true"
                         >
                           CMT
-                        </a>
+                        </span>
                         .
                       </p>
                     </li>
@@ -477,14 +470,12 @@ export default function CallForPapersPage() {
                       <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
                       <p>
                         Please note that first time users are required to create a new{" "}
-                        <a
-                          href="https://cmt3.research.microsoft.com/ICODE2026"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-semibold text-uom-maroon underline underline-offset-2"
+                        <span
+                          className="cursor-not-allowed font-semibold text-neutral-400 no-underline"
+                          aria-disabled="true"
                         >
                           CMT
-                        </a>{" "}
+                        </span>{" "}
                         account. You are advised to use an email address that you access regularly when
                         registering.
                       </p>

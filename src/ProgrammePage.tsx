@@ -13,10 +13,12 @@ import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
 import {
+  day1OnlinePresentationProbables,
   day1Schedule,
   day2Schedule,
   day3Workshops,
   programmeDaysMeta,
+  type Day1Slot,
   type ProgrammeSession
 } from "./constants/programmeSchedule";
 
@@ -54,6 +56,111 @@ function getSpeakerLines(row: ProgrammeSession): string[] {
 
 function isTentativeSpeaker(name: string) {
   return /to be confirmed/i.test(name);
+}
+
+function Day1Timeline({ caption }: { caption: string }) {
+  return (
+    <div className="programme-day-panel__body">
+      <ol className="programme-timeline" aria-label={caption}>
+        {day1Schedule.map((slot: Day1Slot, index) => {
+          const isParallel = Boolean(slot.halls?.length);
+
+          return (
+            <li
+              key={`${slot.time}-${slot.title}`}
+              className={`programme-timeline__item${
+                slot.isBreak ? " programme-timeline__item--break" : ""
+              }${isParallel ? " programme-timeline__item--parallel" : ""}`}
+            >
+              <div className="programme-timeline__rail" aria-hidden>
+                <span className="programme-timeline__dot" />
+                {index < day1Schedule.length - 1 && (
+                  <span className="programme-timeline__line" />
+                )}
+              </div>
+
+              <article
+                className={`programme-timeline__card${
+                  slot.isBreak ? " programme-timeline__card--break" : ""
+                }${isParallel ? " programme-timeline__card--parallel" : ""}`}
+              >
+                <div className="programme-timeline__time" aria-label={`Time: ${slot.time}`}>
+                  <ClockIcon className="programme-timeline__time-icon" aria-hidden />
+                  <span className="programme-timeline__time-text">{slot.time}</span>
+                </div>
+
+                <div className="programme-timeline__content">
+                  <h3 className="programme-timeline__title">{slot.title}</h3>
+                  {slot.detail && !isParallel ? (
+                    <p className="programme-timeline__speaker">{slot.detail}</p>
+                  ) : null}
+
+                  {isParallel && slot.halls ? (
+                    <div className="programme-hall-grid">
+                      {slot.halls.map((hall) => (
+                        <section
+                          key={`${slot.time}-${hall.hall}`}
+                          className="programme-hall-card"
+                          aria-label={`${hall.hall}: ${hall.theme}`}
+                        >
+                          <header className="programme-hall-card__header">
+                            <span className="programme-hall-card__badge">{hall.hall}</span>
+                            <div className="programme-hall-card__meta">
+                              <p className="programme-hall-card__theme">{hall.theme}</p>
+                              <p className="programme-hall-card__chair">
+                                Chair: <span>{hall.chair}</span>
+                              </p>
+                            </div>
+                          </header>
+                          <ol className="programme-paper-list">
+                            {hall.papers.map((paper, paperIndex) => (
+                              <li
+                                key={`${hall.hall}-${paperIndex}-${paper.title}`}
+                                className={`programme-paper-list__item${
+                                  paper.onlinePresentation
+                                    ? " programme-paper-list__item--online"
+                                    : ""
+                                }${paper.tbc ? " programme-paper-list__item--tbc" : ""}`}
+                              >
+                                <span className="programme-paper-list__num" aria-hidden>
+                                  {paperIndex + 1}
+                                </span>
+                                <div className="programme-paper-list__body">
+                                  {paper.onlinePresentation ? (
+                                    <span className="programme-paper-list__tag">Online</span>
+                                  ) : null}
+                                  {paper.tbc ? (
+                                    <p className="programme-paper-list__title programme-paper-list__title--tbc">
+                                      TBC
+                                    </p>
+                                  ) : (
+                                    <p className="programme-paper-list__title">{paper.title}</p>
+                                  )}
+                                </div>
+                              </li>
+                            ))}
+                          </ol>
+                        </section>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
+
+      <aside className="programme-day1-online" aria-label="Online presentation notes">
+        <p className="programme-day1-online__label">Probables for online presentation</p>
+        <ul className="programme-day1-online__list">
+          {day1OnlinePresentationProbables.map((title) => (
+            <li key={title}>{title}</li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  );
 }
 
 function SessionTimeline({
@@ -301,10 +408,7 @@ export default function ProgrammePage() {
             )}
 
             {activeDay === 1 && (
-              <SessionTimeline
-                caption="Day 1 Academic Research Conference schedule"
-                rows={day1Schedule}
-              />
+              <Day1Timeline caption="Day 1 Academic Research Conference schedule" />
             )}
             {activeDay === 2 && (
               <SessionTimeline

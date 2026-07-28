@@ -2002,6 +2002,209 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: #b91c1c;
 }
 
+.programme-timeline__card--parallel {
+  align-items: start;
+}
+
+@media (max-width: 639px) {
+  .programme-timeline__card--parallel .programme-timeline__time {
+    white-space: normal;
+  }
+
+  .programme-timeline__card--parallel .programme-timeline__time-text {
+    white-space: normal;
+  }
+}
+
+.programme-hall-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+@media (min-width: 900px) {
+  .programme-hall-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+}
+
+.programme-hall-card {
+  min-width: 0;
+  border-radius: 1rem;
+  border: 1px solid rgba(122, 0, 25, 0.18);
+  background: linear-gradient(165deg, #ffffff 0%, rgba(248, 237, 212, 0.28) 100%);
+  padding: 0.85rem 0.9rem 0.95rem;
+}
+
+.programme-hall-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.programme-hall-card__badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.15rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.7rem;
+  background: #7a0019;
+  color: #f8edd4;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.programme-hall-card__meta {
+  min-width: 0;
+}
+
+.programme-hall-card__theme {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #171717;
+}
+
+.programme-hall-card__chair {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #525252;
+}
+
+.programme-hall-card__chair span {
+  font-weight: 600;
+  color: #7a0019;
+}
+
+.programme-paper-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.programme-paper-list__item {
+  display: grid;
+  grid-template-columns: 1.35rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.programme-paper-list__num {
+  display: inline-flex;
+  height: 1.35rem;
+  width: 1.35rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.35);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #3f1a00;
+}
+
+.programme-paper-list__body {
+  min-width: 0;
+}
+
+.programme-paper-list__title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #333333;
+}
+
+.programme-paper-list__tag {
+  display: inline-flex;
+  margin-bottom: 0.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(194, 65, 12, 0.35);
+  background: rgba(255, 237, 213, 0.95);
+  padding: 0.12rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.programme-paper-list__item--online .programme-paper-list__title {
+  color: #9a3412;
+}
+
+.programme-paper-list__item--online {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(234, 88, 12, 0.22);
+  background: rgba(255, 247, 237, 0.85);
+  padding: 0.45rem 0.5rem;
+  margin: 0 -0.15rem;
+}
+
+.programme-paper-list__tag--tbc {
+  border-color: rgba(113, 113, 122, 0.4);
+  background: rgba(244, 244, 245, 0.95);
+  color: #52525b;
+}
+
+.programme-paper-list__item--tbc {
+  border-radius: 0.7rem;
+  border: 1px dashed rgba(113, 113, 122, 0.45);
+  background: rgba(250, 250, 250, 0.9);
+  padding: 0.45rem 0.5rem;
+  margin: 0 -0.15rem;
+}
+
+.programme-paper-list__item--tbc .programme-paper-list__title {
+  font-style: italic;
+  font-weight: 600;
+  color: #71717a;
+}
+
+.programme-day1-online {
+  margin-top: 1.25rem;
+  border-radius: 1rem;
+  border: 1px dashed rgba(194, 65, 12, 0.4);
+  background: rgba(255, 247, 237, 0.75);
+  padding: 0.9rem 1rem;
+}
+
+.programme-day1-online__label {
+  margin: 0 0 0.45rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.programme-day1-online__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.programme-day1-online__list li {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #404040;
+}
+
 .programme-workshops__intro {
   margin: 0 0 1rem;
   font-size: 0.875rem;
@@ -2260,6 +2463,73 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   border-color: rgba(248, 113, 113, 0.4);
   background: rgba(127, 29, 29, 0.35);
   color: #fecaca;
+}
+
+.homepage-dark .programme-hall-card {
+  border-color: rgba(255, 200, 77, 0.22);
+  background: linear-gradient(165deg, rgba(32, 32, 40, 0.98) 0%, rgba(48, 40, 28, 0.55) 100%);
+}
+
+.homepage-dark .programme-hall-card__header {
+  border-bottom-color: rgba(255, 200, 77, 0.22);
+}
+
+.homepage-dark .programme-hall-card__theme {
+  color: #f5f5f5;
+}
+
+.homepage-dark .programme-hall-card__chair {
+  color: #a3a3a3;
+}
+
+.homepage-dark .programme-hall-card__chair span {
+  color: var(--neon-gold-soft, #f8edd4);
+}
+
+.homepage-dark .programme-paper-list__num {
+  background: rgba(255, 200, 77, 0.22);
+  color: #f8edd4;
+}
+
+.homepage-dark .programme-paper-list__title {
+  color: #d4d4d4;
+}
+
+.homepage-dark .programme-paper-list__item--online {
+  border-color: rgba(251, 146, 60, 0.35);
+  background: rgba(124, 45, 18, 0.28);
+}
+
+.homepage-dark .programme-paper-list__item--online .programme-paper-list__title {
+  color: #fed7aa;
+}
+
+.homepage-dark .programme-paper-list__tag--tbc {
+  border-color: rgba(161, 161, 170, 0.4);
+  background: rgba(63, 63, 70, 0.75);
+  color: #d4d4d8;
+}
+
+.homepage-dark .programme-paper-list__item--tbc {
+  border-color: rgba(161, 161, 170, 0.35);
+  background: rgba(39, 39, 42, 0.75);
+}
+
+.homepage-dark .programme-paper-list__item--tbc .programme-paper-list__title {
+  color: #a1a1aa;
+}
+
+.homepage-dark .programme-day1-online {
+  border-color: rgba(251, 146, 60, 0.4);
+  background: rgba(124, 45, 18, 0.22);
+}
+
+.homepage-dark .programme-day1-online__label {
+  color: #fdba74;
+}
+
+.homepage-dark .programme-day1-online__list li {
+  color: #d4d4d4;
 }
 
 .homepage-dark .programme-workshops__intro,
@@ -2945,6 +3215,18 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .homepage-dark .important-dates-mobile-card .text-emerald-600 {
   color: #34d399 !important;
+}
+
+.submission-closed-btn,
+.submission-closed-btn:disabled,
+.homepage-dark .submission-closed-btn,
+.homepage-dark .submission-closed-btn:disabled {
+  border-color: #d4d4d8 !important;
+  background: #e5e5e5 !important;
+  color: #737373 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
 }
 
 .homepage-dark .important-dates-mobile__rail {

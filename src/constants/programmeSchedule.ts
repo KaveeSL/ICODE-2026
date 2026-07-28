@@ -9,6 +9,27 @@ export type ProgrammeSession = {
   tentativeNote?: string;
 };
 
+export type Day1Paper = {
+  title: string;
+  onlinePresentation?: boolean;
+  tbc?: boolean;
+};
+
+export type Day1HallSession = {
+  hall: string;
+  theme: string;
+  chair: string;
+  papers: Day1Paper[];
+};
+
+export type Day1Slot = {
+  time: string;
+  title: string;
+  detail?: string;
+  isBreak?: boolean;
+  halls?: Day1HallSession[];
+};
+
 export type Day3Workshop = {
   title: string;
   audience: string;
@@ -16,35 +37,233 @@ export type Day3Workshop = {
   description?: string;
 };
 
-export const day1Schedule: ProgrammeSession[] = [
-  { time: "8:30 – 9:00 am", session: "Coffee and Networking", isBreak: true },
-  { time: "9:00 – 9:30 am", session: "Inauguration" },
-  { time: "9:30 – 10:00 am", session: "Plenary Session 1" },
+export const day1Schedule: Day1Slot[] = [
+  { time: "8:30 – 9:00 am", title: "Coffee and Networking", isBreak: true },
+  { time: "9:00 – 9:30 am", title: "Inauguration" },
   {
-    time: "10:00 – 10:45 am",
-    session: "Parallel Technical sessions",
-    halls: "Halls A & B"
+    time: "9:30 – 10:00 am",
+    title: "Plenary Session 1",
+    detail: "Welcome address by Prof Malik"
   },
-  { time: "10:45 – 11:00 am", session: "Tea Break", isBreak: true },
   {
-    time: "11:00 am – 12:45 pm",
-    session: "Parallel Technical sessions",
-    halls: "Halls C & D"
+    time: "10:00 – 11:00 am",
+    title: "Parallel Technical Sessions",
+    halls: [
+      {
+        hall: "Hall A",
+        theme: "Open Learning, Access & Inclusion",
+        chair: "Prof Ruwan Gopura",
+        papers: [
+          {
+            title:
+              "Continuation of Post-Pandemic Online Learning Preferences among children in Sri Lanka: A Qualitative Study"
+          },
+          {
+            title:
+              "Open and distance learning as a tool for inclusive higher education in Sri Lanka: opportunities and challenges"
+          },
+          {
+            title:
+              "Bridging the Liveware Gap: A Mixed-Methods Study on Digital Infrastructure Readiness and Pedagogical Awareness Among Lecturers and Prospective Teachers at Sri Lankan National Colleges of Education (NCOEs)"
+          },
+          {
+            title:
+              "Evaluating undergraduate preferences for online and blended learning in Sri Lanka"
+          }
+        ]
+      },
+      {
+        hall: "Hall B",
+        theme: "Artificial Intelligence in Education",
+        chair: "Dr Sandareka Wickramanayake",
+        papers: [
+          {
+            title:
+              "A Machine Learning-Based Framework for Predicting Academic Integrity Risk Among Undergraduate Students in Sri Lankan Universities"
+          },
+          {
+            title:
+              "Design of a Generative AI-Powered Programming Tutor for Personalized Learning in Higher Education"
+          },
+          {
+            title:
+              "AI-Driven Adaptive Learning Analytics Framework for Personalized Digital Education in Open and Distance Learning Environments"
+          },
+          {
+            title:
+              "Study of how the Large Language Models blend in Higher Education in Sri Lanka: Exploration of Perception and Experience among Educators"
+          }
+        ]
+      }
+    ]
   },
-  { time: "12:45 – 1:45 pm", session: "Lunch", isBreak: true },
-  { time: "1:45 – 2:15 pm", session: "Plenary Session 2" },
+  { time: "11:00 – 11:15 am", title: "Tea Break", isBreak: true },
+  {
+    time: "11:15 am – 12:45 pm",
+    title: "Parallel Technical Sessions",
+    halls: [
+      {
+        hall: "Hall C",
+        theme: "Digital Transformation & Learner Engagement",
+        chair: "Prof Dharshana Prasad",
+        papers: [
+          {
+            title:
+              "Digital Transformation of Teacher Administration and Pedagogy: An AI-Powered Cross-Platform Ecosystem for South Asian Educators"
+          },
+          {
+            title:
+              "Preparing Generation Alpha for an AI-Augmented Labour Market: Strategic Insights from Sri Lanka's Education System"
+          },
+          {
+            title:
+              "Digital Silence in Hybrid Higher Education: Learner Engagement Beyond Cameras, Chats, and Attendance Logs"
+          },
+          {
+            title:
+              "Evidence Based Design Principles for Student Centered Digital Learning in Higher Education Insights from Sri Lankan Undergraduates"
+          },
+          {
+            title:
+              "Behavioural Determinants of Learner Engagement Decay in Open and Distance Learning: The Role of Digital Learning Behaviours and Self-Regulated Learning"
+          },
+          {
+            title: "Digital Education in Sri Lanka: A Bibliometric Analysis"
+          }
+        ]
+      },
+      {
+        hall: "Hall D",
+        theme: "AI Pedagogy, Literacy & Collaborative Learning",
+        chair: "Dr Nisansa de Silva",
+        papers: [
+          {
+            title:
+              "Artificial Intelligence Literacy and Pedagogical Use of AI among Sri Lankan School Teachers: Implications for Digital Education"
+          },
+          {
+            title:
+              "The Impact of E-Learning on Soft Skills Development among Sri Lankan Management Undergraduates"
+          },
+          {
+            title:
+              "AI-Assisted Content and Language Integrated Learning (CLIL): Enhancing English Language Proficiency among Tamil-Medium Social Sciences Undergraduates"
+          },
+          {
+            title:
+              "CrossCampusAI for Multilingual Collaborative Learning in South Asian Higher Education"
+          },
+          {
+            title:
+              "Learning Style Prediction Using Natural Language Processing for Personalized Tutor Matching in Digital Education",
+            onlinePresentation: true
+          },
+          { title: "TBC", tbc: true }
+        ]
+      }
+    ]
+  },
+  { time: "12:45 – 1:45 pm", title: "Lunch", isBreak: true },
+  {
+    time: "1:45 – 2:15 pm",
+    title: "Plenary Session 2",
+    detail: "Dr Srinath Perera"
+  },
   {
     time: "2:15 – 3:15 pm",
-    session: "Parallel Technical sessions",
-    halls: "Halls E & F"
+    title: "Parallel Technical Sessions",
+    halls: [
+      {
+        hall: "Hall E",
+        theme: "Emerging Methods, Technologies & Tools",
+        chair: "Dr Gayathri Kuruppu",
+        papers: [
+          {
+            title:
+              "Design of a Novel Synergistic Digital Teaching and Learning Process for Higher Education"
+          },
+          {
+            title:
+              "Spatial Design and Facilities Management strategies for Optimizing Hybrid Learning Ecosystems in Universities"
+          },
+          {
+            title:
+              "Laboratory Disorganization and the Potential of Digital Chemistry Learning in Jaffna Schools"
+          },
+          {
+            title:
+              "A Low-Cost, Verifiable FPGA Resource for Embedded Machine-Learning Education in Open and Distance Learning"
+          }
+        ]
+      },
+      {
+        hall: "Hall F",
+        theme: "Ethics, Quality Assurance & Governance",
+        chair: "Prof Nalin Wickramarachchi",
+        papers: [
+          {
+            title:
+              "Governing Learner Analytics: Balancing Engagement Tracking with Privacy Rights"
+          },
+          {
+            title:
+              "Investigating the Impact of Generative AI on Undergraduate Students' Academic Writing Skills: Opportunities, Challenges, and Implications for Higher Education",
+            onlinePresentation: true
+          },
+          {
+            title:
+              "Enhancing Quality Education through e-Thaksalawa online platform: A Sustainable Learning Content Management System Approach for Blended Learning in Sri Lankan Schools"
+          },
+          { title: "TBC", tbc: true }
+        ]
+      }
+    ]
   },
-  { time: "3:15 – 3:30 pm", session: "Tea Break", isBreak: true },
+  { time: "3:15 – 3:30 pm", title: "Tea Break", isBreak: true },
   {
     time: "3:30 – 4:15 pm",
-    session: "Parallel Technical sessions",
-    halls: "Halls G & H"
+    title: "Parallel Technical Sessions",
+    halls: [
+      {
+        hall: "Hall G",
+        theme: "Online Pedagogy & Learner Engagement",
+        chair: "Dr Sureka Thiruchittappalam",
+        papers: [
+          {
+            title:
+              "Impact of a Pre-Mathematics Orientation Program on First-Year Academic Performance: A Comparative Study Across Gender, Province, and Age in Sri Lanka"
+          },
+          {
+            title:
+              "From Static to Adaptive Gamification in Learning Management Systems: A Conceptual Framework for Personalized Learning"
+          },
+          {
+            title:
+              "Evaluating the Role of Tutor-Mentor Sessions in Enhancing Student Engagement in an Asynchronous Open and Distance Learning Environment"
+          }
+        ]
+      },
+      {
+        hall: "Hall H",
+        theme: "Access, Inclusion & Equity in Digital Education",
+        chair: "Ms Eshana Ranasinghe",
+        papers: [
+          { title: "TBC", tbc: true },
+          { title: "TBC", tbc: true },
+          {
+            title:
+              "Barriers Affecting Ease of Access to Online Education Among Undergraduate Students in Sri Lanka",
+            onlinePresentation: true
+          }
+        ]
+      }
+    ]
   }
 ];
+
+export const day1OnlinePresentationProbables = [
+  "Awareness of Micro-Credentials among Final-Year Undergraduates in the Northern and Western Provinces of Sri Lanka."
+] as const;
 
 export const day2Schedule: ProgrammeSession[] = [
   { time: "9:00 – 9:15 am", session: "Morning Refreshments", isBreak: true },
