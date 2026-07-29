@@ -50,7 +50,7 @@ export const day1Schedule: Day1Slot[] = [
     title: "Parallel Technical Sessions",
     halls: [
       {
-        hall: "Hall A",
+        hall: "Session A",
         theme: "Open Learning, Access & Inclusion",
         chair: "Prof Ruwan Gopura",
         papers: [
@@ -73,7 +73,7 @@ export const day1Schedule: Day1Slot[] = [
         ]
       },
       {
-        hall: "Hall B",
+        hall: "Session B",
         theme: "Artificial Intelligence in Education",
         chair: "Dr Sandareka Wickramanayake",
         papers: [
@@ -103,7 +103,7 @@ export const day1Schedule: Day1Slot[] = [
     title: "Parallel Technical Sessions",
     halls: [
       {
-        hall: "Hall C",
+        hall: "Session C",
         theme: "Digital Transformation & Learner Engagement",
         chair: "Prof Dharshana Prasad",
         papers: [
@@ -133,7 +133,7 @@ export const day1Schedule: Day1Slot[] = [
         ]
       },
       {
-        hall: "Hall D",
+        hall: "Session D",
         theme: "AI Pedagogy, Literacy & Collaborative Learning",
         chair: "Dr Nisansa de Silva",
         papers: [
@@ -167,14 +167,14 @@ export const day1Schedule: Day1Slot[] = [
   {
     time: "1:45 – 2:15 pm",
     title: "Plenary Session 2",
-    detail: "Dr Srinath Perera"
+    detail: "Industry Research Vs/And Academic Research - Dr Srinath Perera"
   },
   {
     time: "2:15 – 3:15 pm",
     title: "Parallel Technical Sessions",
     halls: [
       {
-        hall: "Hall E",
+        hall: "Session E",
         theme: "Emerging Methods, Technologies & Tools",
         chair: "Dr Gayathri Kuruppu",
         papers: [
@@ -197,7 +197,7 @@ export const day1Schedule: Day1Slot[] = [
         ]
       },
       {
-        hall: "Hall F",
+        hall: "Session F",
         theme: "Ethics, Quality Assurance & Governance",
         chair: "Prof Nalin Wickramarachchi",
         papers: [
@@ -225,7 +225,7 @@ export const day1Schedule: Day1Slot[] = [
     title: "Parallel Technical Sessions",
     halls: [
       {
-        hall: "Hall G",
+        hall: "Session G",
         theme: "Online Pedagogy & Learner Engagement",
         chair: "Dr Sureka Thiruchittappalam",
         papers: [
@@ -244,7 +244,7 @@ export const day1Schedule: Day1Slot[] = [
         ]
       },
       {
-        hall: "Hall H",
+        hall: "Session H",
         theme: "Access, Inclusion & Equity in Digital Education",
         chair: "Ms Eshana Ranasinghe",
         papers: [
@@ -294,7 +294,6 @@ export const day2Schedule: ProgrammeSession[] = [
     speakers: [
       "e-Thaksalawa – Ms Sumudu Wasana",
       "SLASSCOM Academy – Ms. Sandra Rosayro",
-      "DP Education",
       "BIT – Ms Vishaka Nanayakkara",
       "SuhuruSara"
     ]
@@ -304,7 +303,7 @@ export const day2Schedule: ProgrammeSession[] = [
     session: "Human Resource Development for ODL",
     speakers: [
       "LEARN – Dr Asitha Bandaranayake",
-      "MoE",
+      "MoE - Ms Sumudu Wasana",
       "SLASS – Prof Udeni Nawagamuwa",
       "SLIDA"
     ]
@@ -339,12 +338,11 @@ export const day2Schedule: ProgrammeSession[] = [
     time: "3:10 – 4:15 pm",
     session: "Sri Lanka's unified digital transformation – way forward Panel Discussion",
     panelists: [
-      "Hon. Deputy Minister Eranga Weerarathne",
-      "Secretary / PM",
-      "Secretary / Digital Economy",
-      "Secretary / Education",
-      "Senior Advisor / Digital – Dr Hans",
-      "Dean FoE UoM"
+      "Eng. Eranga Weeraratne, Deputy Minister of Digital Economy",
+      "Mr. G. Pradeep Saputhanthri, Secretary to the Prime Minister, additional secretaries",
+      "Senior Prof. Kapila Seneviratne, Chairman, University Grants Commission",
+      "Dr. Hans Wijesuriya, Chairman, ICTA",
+      "Prof. JMA Manatunge, Dean/Engineering UoM"
     ]
   },
   { time: "4:30 pm onwards", session: "High tea and Networking", isBreak: true }
@@ -353,28 +351,21 @@ export const day2Schedule: ProgrammeSession[] = [
 export const day3Workshops: Day3Workshop[] = [
   {
     title: "How to Conduct Computer-Based Examinations",
-    audience: "Academics / MoE Moodle",
+    audience: "University Academics / Teachers",
     time: "9:00 am – 12:00 pm",
     description:
       "A workshop for academics which explores how to use MOODLE and other online tools to conduct computer-based examinations. The workshop will cover how to create online exams and assessments, creating question banks and best practices in conducting examinations including question randomisation and online proctoring to prevent cheating."
   },
   {
-    title: "Learner / Participant Experience",
-    audience: "Private / public officers / QA directors",
-    time: "9:00 am – 12:00 pm",
-    description:
-      "For private and public officers and quality assurance directors, this workshop focuses on the customer experience in digital services and how to refine the user’s journey across public digital learning channels."
-  },
-  {
     title: "Building Your Digital Future",
-    audience: "A/L students (ICT and Arts); O/L if needed",
+    audience: "A/L Students, O/L Students",
     time: "9:00 am – 12:00 pm",
     description:
       "For A/L students studying ICT and/or Arts, this workshop teaches essential skills needed to thrive in a technology-driven world. The workshop introduces emerging technologies, future career opportunities, and the importance of adaptability, problem-solving, and lifelong learning."
   },
   {
     title: "Applied AI in the Public Sector",
-    audience: "Government employees",
+    audience: "Government Employees",
     time: "9:00 am – 1:00 pm",
     description:
       "A workshop for government employees which explores how AI can be used in the public sector to; automate repetitive tasks, fraud detection, analyse complex data to assist in policy making, to engage with citizens using chatbots to answer queries and personalize services to citizens."
@@ -388,21 +379,28 @@ export const day3Workshops: Day3Workshop[] = [
   },
   {
     title: "Digital Tools in Education",
-    audience: "School / university teachers",
+    audience: "School / University Teachers",
     time: "1:00 – 4:00 pm",
     description:
       "For school and university educators this workshop covers various online platforms and digital tools that can be used in education such as tools for interactive instruction and engagement, formative assessment and quiz creation, and tools which encourage collaboration and idea sharing between students."
   },
   {
     title: "Leading the Digital Transformation",
-    audience: "Industry / school / university teachers",
+    audience: "Industry / School / University Teachers",
     time: "1:00 – 4:00 pm",
     description:
       "For school and university educators and industry professionals this workshop will explore strategies for driving digital innovation, integrating emerging technologies, fostering a culture of continuous learning, and developing the leadership skills needed to navigate transformation successfully"
   },
   {
+    title: "Learner / Participant Experience",
+    audience: "University Academics / Private / Public Officers",
+    time: "1:00 – 4:00 pm",
+    description:
+      "For private and public officers and quality assurance directors, this workshop focuses on the customer experience in digital services and how to refine the user’s journey across public digital learning channels."
+  },
+  {
     title: "AI and Its Derivatives",
-    audience: "UG / PG students",
+    audience: "UG / PG Students",
     time: "Online session",
     description:
       "A workshop of undergraduate and postgraduate students: exploring AI tools, trends and practical applications beyond ChatGPT with a special focus on generative AI, AI agents, automations, and emerging technologies."
