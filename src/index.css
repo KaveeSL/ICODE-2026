@@ -4029,10 +4029,10 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 .abstracts-card {
   height: 100%;
   border-radius: 1.2rem;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: linear-gradient(165deg, #ffffff 0%, rgba(248, 237, 212, 0.28) 100%);
-  padding: 1rem 1.05rem 1.1rem;
-  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.04);
+  border: 1px solid rgba(122, 0, 25, 0.22);
+  background: #ffffff;
+  padding: 1.1rem 1.15rem 1.2rem;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.07);
 }
 
 .abstracts-card__top {
@@ -4041,7 +4041,7 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
 }
 
 .abstracts-card__badges {
@@ -4052,29 +4052,32 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .abstracts-card__session {
   display: inline-flex;
-  align-items: center;
-  border-radius: 0.65rem;
-  background: #7a0019;
-  padding: 0.3rem 0.55rem;
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #f8edd4;
+  align-items: flex-start;
+  max-width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(122, 0, 25, 0.2);
+  background: rgba(248, 237, 212, 0.95);
+  padding: 0.4rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  text-transform: none;
+  color: #7a0019;
 }
 
 .abstracts-card__online {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  border: 1px solid rgba(194, 65, 12, 0.35);
-  background: rgba(255, 237, 213, 0.95);
-  padding: 0.2rem 0.55rem;
-  font-size: 0.625rem;
+  border: 1px solid rgba(194, 65, 12, 0.4);
+  background: #ffedd5;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.6875rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #c2410c;
+  color: #9a3412;
 }
 
 .abstracts-card__theme {
@@ -4087,23 +4090,23 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .abstracts-card__title {
   margin: 0;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  line-height: 1.4;
-  color: #171717;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.45;
+  color: #0a0a0a;
 }
 
 .abstracts-card__authors {
-  margin: 0.45rem 0 0;
-  font-size: 0.8125rem;
-  line-height: 1.45;
-  color: #525252;
+  margin: 0.55rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #404040;
 }
 
 .abstracts-card__country {
-  margin: 0.2rem 0 0;
-  font-size: 0.75rem;
-  font-weight: 600;
+  margin: 0.3rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
   line-height: 1.35;
   color: #7a0019;
 }
@@ -4112,19 +4115,19 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin-top: 0.85rem;
+  margin-top: 0.95rem;
 }
 
 .abstracts-card__btn {
   display: inline-flex;
-  min-height: 2.15rem;
+  min-height: 2.25rem;
   align-items: center;
   gap: 0.35rem;
   border-radius: 999px;
-  border: 1px solid rgba(212, 175, 55, 0.5);
+  border: 1px solid rgba(122, 0, 25, 0.35);
   background: #fff;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: #7a0019;
   transition:
@@ -4134,7 +4137,7 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .abstracts-card__btn:hover {
   border-color: #7a0019;
-  background: rgba(248, 237, 212, 0.65);
+  background: rgba(248, 237, 212, 0.85);
 }
 
 .abstracts-card__btn--muted {
@@ -4143,9 +4146,9 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .abstracts-card__btn--soon {
   border-style: dashed;
-  border-color: rgba(163, 163, 163, 0.55);
-  background: rgba(250, 250, 250, 0.9);
-  color: #737373;
+  border-color: rgba(115, 115, 115, 0.45);
+  background: #fafafa;
+  color: #525252;
   cursor: default;
 }
 
@@ -4197,43 +4200,55 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 }
 
 .homepage-dark .abstracts-card {
-  border-color: rgba(255, 200, 77, 0.22);
-  background: linear-gradient(165deg, rgba(32, 32, 40, 0.98) 0%, rgba(48, 40, 28, 0.55) 100%);
+  border-color: rgba(255, 200, 77, 0.4);
+  background: linear-gradient(165deg, rgba(42, 42, 52, 0.98) 0%, rgba(58, 48, 36, 0.72) 100%);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.homepage-dark .abstracts-card__session {
+  border-color: rgba(255, 200, 77, 0.45);
+  background: rgba(122, 0, 25, 0.85);
+  color: #f8edd4;
 }
 
 .homepage-dark .abstracts-card__title {
-  color: #f5f5f5;
+  color: #fafafa;
 }
 
 .homepage-dark .abstracts-card__authors,
 .homepage-dark .abstracts-card__theme,
 .homepage-dark .abstracts-count {
-  color: #a3a3a3;
+  color: #d4d4d8;
 }
 
 .homepage-dark .abstracts-card__country {
-  color: var(--neon-gold-soft, #f8edd4);
+  color: #ffc84d;
 }
 
 .homepage-dark .abstracts-card__btn {
-  border-color: rgba(255, 200, 77, 0.28);
-  background: rgba(48, 48, 58, 0.9);
-  color: var(--neon-gold-soft, #f8edd4);
+  border-color: rgba(255, 200, 77, 0.45);
+  background: rgba(55, 55, 66, 0.95);
+  color: #f8edd4;
+}
+
+.homepage-dark .abstracts-card__btn:hover {
+  border-color: rgba(255, 200, 77, 0.7);
+  background: rgba(122, 0, 25, 0.55);
 }
 
 .homepage-dark .abstracts-card__btn--soon {
-  border-color: rgba(161, 161, 170, 0.35);
-  background: rgba(39, 39, 42, 0.75);
-  color: #a1a1aa;
+  border-color: rgba(161, 161, 170, 0.45);
+  background: rgba(39, 39, 46, 0.9);
+  color: #c4c4c8;
 }
 
 .homepage-dark .abstracts-card__body {
-  border-top-color: rgba(255, 200, 77, 0.22);
+  border-top-color: rgba(255, 200, 77, 0.28);
 }
 
 .homepage-dark .abstracts-card__text,
 .homepage-dark .abstracts-card__placeholder {
-  color: #d4d4d4;
+  color: #e4e4e7;
 }
 
 .homepage-dark .abstracts-programme-link {
