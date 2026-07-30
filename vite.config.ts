@@ -6,6 +6,7 @@ export default defineConfig({
   // Relative "./" breaks JS/CSS paths on multi-segment URLs after host deploy.
   base: "/",
   plugins: [react()],
+  assetsInclude: ["**/*.pptx", "**/*.docx", "**/*.pdf"],
   server: {
     host: "127.0.0.1",
     port: 5173,

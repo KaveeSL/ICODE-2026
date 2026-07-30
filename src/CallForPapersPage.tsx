@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
-  AcademicCapIcon,
   CalendarDaysIcon,
   ClipboardDocumentListIcon,
   DocumentTextIcon,
@@ -9,7 +8,9 @@ import {
   MapPinIcon,
   CheckCircleIcon,
   ChevronRightIcon,
-  CodeBracketIcon
+  CodeBracketIcon,
+  PresentationChartBarIcon,
+  PhotoIcon
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
@@ -20,6 +21,8 @@ import {
   WHATSAPP_ICON_PATH
 } from "./constants/contact";
 import extendedAbstractTemplateWord from "./assets/docs/ICODE2026-Extended Abstract Template.docx?url";
+import slidesTemplatePptx from "./assets/docs/ICODE26 Slides template.pptx?url";
+import posterTemplatePdf from "./assets/docs/ICODE26 Poster Template.pdf?url";
 import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
@@ -28,6 +31,8 @@ import { useSiteTheme } from "./context/SiteThemeProvider";
 /** Bundled from `src/assets/docs/` so it works on all hosts. */
 const TEMPLATE_WORD_HREF = extendedAbstractTemplateWord;
 const TEMPLATE_LATEX_HREF = `${import.meta.env.BASE_URL}docs/ICODE26_template_latex.zip`;
+const TEMPLATE_PRESENTATION_HREF = slidesTemplatePptx;
+const TEMPLATE_POSTER_HREF = posterTemplatePdf;
 
 const themes = [
   "Digital transformation in education",
@@ -375,343 +380,435 @@ export default function CallForPapersPage() {
             </Reveal>
           </section>
 
-          <section className="mt-12">
+          <section className="mt-12" id="author-guidelines">
             <Reveal variant="scale">
-              <div className="mx-auto w-full max-w-7xl rounded-3xl border border-uom-gold/45 bg-white/95 px-4 py-6 shadow-sm md:px-6 md:py-7">
-              <Reveal variant="up">
-                <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-neutral-900 md:text-2xl">
-                  <ClipboardDocumentListIcon className="h-6 w-6 text-uom-maroon" />
-                  ICODE2026 Author Guidelines
-                </h2>
-              </Reveal>
-              <Reveal variant="up" delayMs={120}>
-                <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                  Follow these checkpoints to make your submission review-ready.
-                </p>
-              </Reveal>
-
-              <div className="mt-5 grid gap-4">
-                <Reveal variant="up" delayMs={0}>
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-4">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                    <DocumentTextIcon className="h-4 w-4 text-uom-maroon" />
-                    General Guidelines
+              <div className="mx-auto w-full max-w-7xl rounded-3xl border border-uom-gold/45 bg-white/95 px-4 py-5 shadow-sm md:px-5 md:py-6">
+                <Reveal variant="up">
+                  <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight text-neutral-900 md:text-2xl">
+                    <ClipboardDocumentListIcon className="h-6 w-6 text-uom-maroon" />
+                    ICODE2026 Author Guidelines
+                  </h2>
+                </Reveal>
+                <Reveal variant="up" delayMs={80}>
+                  <p className="mt-1.5 text-sm text-neutral-700 md:text-base">
+                    Follow these checkpoints to make your submission review-ready.
                   </p>
-                  <div className="mt-3 space-y-2 text-xs text-neutral-800 md:text-sm">
-                    <div className="flex items-start gap-2 rounded-xl border border-neutral-200 bg-white/70 px-3 py-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">Language:</span> English
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-2 rounded-xl border border-neutral-200 bg-white/70 px-3 py-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">Word limit:</span> 700-1000 words (excluding author block and
-                        references)
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-2 rounded-xl border border-neutral-200 bg-white/70 px-3 py-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">Camera-ready:</span> maximum 3 pages (including author blocks and references, appendices are not permitted)
-
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-2 rounded-xl border border-neutral-200 bg-white/70 px-3 py-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">Templates:</span> follow the official conference formats strictly
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                    <a
-                      href={TEMPLATE_WORD_HREF}
-                      download="ICODE2026-Extended Abstract Template.docx"
-                      className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-blue-700 bg-blue-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
-                    >
-                      <DocumentTextIcon className="h-4 w-4 text-white/90" />
-                      <span>Word template</span>
-                    </a>
-                    <a
-                      href={TEMPLATE_LATEX_HREF}
-                      download="ICODE26_template_latex.zip"
-                      className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1"
-                    >
-                      <CodeBracketIcon className="h-4 w-4 text-white/90" />
-                      <span>LaTeX template (.zip)</span>
-                    </a>
-                  </div>
-                  </div>
                 </Reveal>
 
                 <Reveal variant="up" delayMs={120}>
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-4">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                    <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                    Extended Abstract Submission
-                  </p>
-                  <ul className="mt-2 space-y-2 text-xs text-neutral-700 md:text-sm">
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">All extended abstract submissions</span> must be done through{" "}
-                        <span
-                          className="cursor-not-allowed font-semibold text-neutral-400 no-underline"
-                          aria-disabled="true"
-                        >
-                          CMT
-                        </span>
-                        .
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        Please note that first time users are required to create a new{" "}
-                        <span
-                          className="cursor-not-allowed font-semibold text-neutral-400 no-underline"
-                          aria-disabled="true"
-                        >
-                          CMT
-                        </span>{" "}
-                        account. You are advised to use an email address that you access regularly when
-                        registering.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>Submissions should be in Portable Document Format (PDF) only.</p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        Submissions must comply with the specified word limit and page limit. Submissions that do
-                        not meet these requirements will be desk rejected.
-                      </p>
-                    </li>
-                    {/* <li className="flex items-start gap-2">
-                      <DocumentTextIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>When submitting, select the most appropriate track for your paper.</p>
-                    </li> */}
-                  </ul>
-                  </div>
+                  <nav className="cfp-guide-nav mt-3.5" aria-label="Author guidelines sections">
+                    <a href="#cfp-guide-submission" className="cfp-guide-nav__chip">
+                      Submission
+                    </a>
+                    <a href="#cfp-guide-oral" className="cfp-guide-nav__chip">
+                      Oral presentation
+                    </a>
+                    <a href="#cfp-guide-poster" className="cfp-guide-nav__chip">
+                      Poster
+                    </a>
+                    <a href="#cfp-guide-policies" className="cfp-guide-nav__chip">
+                      Policies
+                    </a>
+                  </nav>
                 </Reveal>
 
-                <Reveal variant="up" delayMs={240}>
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-4">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                    <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                    Blind Review Policy and Compliance
-                  </p>
-                  <ul className="mt-2 space-y-2 text-xs text-neutral-700 md:text-sm">
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        <span className="font-semibold">The initial submission</span> must not contain any identifying information such as author names, affiliations, emails, or acknowledgements. However, author details must be entered in the correct order within the CMT before submission.
-                      </p>
-                    </li>
-                    {/* <li className="flex items-start gap-2">
-                      <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                      <p>
-                        Once accepted, all Camera-Ready extended abstracts should comply with the ICODE2026 
-                        template. The extended abstracts must conform to the word and page limits.
-                      </p>
-                    </li> */}
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                         We request all authors to carefully review the submissions for language and formatting.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>All submissions will undergo a plagiarism check.</p>
-                    </li>
-                  </ul>
-                  </div>
-                </Reveal>
-
-                <Reveal variant="up" delayMs={360}>
-                  <div className="rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-4">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                    <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                    Author Responsibilities
-                  </p>
-                  <ul className="mt-2 space-y-2 text-xs text-neutral-700 md:text-sm">
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        The submission must present original research conducted by the authors and must not infringe
-                        upon the intellectual property rights of any third party.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        The work must not have been previously published or be under consideration elsewhere, and
-                        should not be simultaneously submitted to another conference, journal, or publication venue.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        The list of authors must accurately include only those who have made significant intellectual
-                        contributions to the research.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        All data sources, images, figures, and other referenced materials must be properly
-                        acknowledged and cited.
-                      </p>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        Authors must also ensure that they have obtained the necessary permissions to reproduce any
-                        third-party material, including images and figures.
-                      </p>
-                    </li>
-                  </ul>
-                  <br></br>
-                  <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                    <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                    Ethics and Conduct
-                  </p>
-                  <ul className="mt-2 space-y-2 text-xs text-neutral-700 md:text-sm">
-                    <li className="flex items-start gap-2">
-                      <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                      <p>
-                        Authors are expected to adhere to the highest standards of research integrity. Any form of
-                        academic misconduct, including plagiarism, data fabrication, or falsification, will result
-                        in immediate rejection of the submission and potential reporting to the authors&apos;
-                        institutions.
-                      </p>
-                    </li>
-                  </ul>
-                  </div>
-                </Reveal>
-              </div>
-
-              <Reveal variant="up" delayMs={480}>
-                <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-4">
-                <p className="flex items-center gap-2 text-sm font-semibold text-neutral-900">
-                  <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                  Review Process and AI Policy
-                </p>
-                <ul className="mt-2 space-y-2 text-xs text-neutral-700 md:text-sm">
-                  <li className="flex items-start gap-2">
-                    <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                    <p>
-                      Submissions will undergo a rigorous double-blind peer-review
-                      process.
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                    <p>
-                      Program Committee members will review submissions based on research expertise and relevance.
-                      Authors may be given a brief period to address initial review comments and submit a revised
-                      version. Final decisions will be made by the program chairs.
-                    </p>
-                  </li>
-                  <br></br>
-                  <li className="flex items-start gap-2">
-                    <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-none text-emerald-600" />
-                    <p>
-                      <span className="font-semibold">Policy on Using Generative AI</span>
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                    <p>
-                      Authors are fully responsible for the submitted content. Generative AI tools must not be listed
-                      as authors, and any substantive use of such tools in content creation should be disclosed in the
-                      Acknowledgements section.
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                    <p>
-                      Use of generative AI for language assistance (e.g., paraphrasing, grammar or spell checking) does
-                      not require disclosure.
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-none text-uom-maroon" />
-                    <p>
-                      Any AI-generated or AI-assisted content related to ideas or text must be clearly indicated, properly
-                      cited where applicable, and disclosed when such ideas have been further developed by the authors.
-                    </p>
-                  </li>
-                </ul>
-                </div>
-              </Reveal>
-
-              <Reveal variant="up" delayMs={580}>
-                <div className="mt-4 rounded-2xl border border-neutral-200 bg-white/80 px-4 py-4 text-xs md:text-sm">
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-uom-gold/40 bg-uom-goldSoft/30">
-                    <ChevronRightIcon className="h-5 w-5 text-uom-maroon" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-uom-maroon">
-                      Warm regards,
-                    </p>
-                    <p className="mt-1.5 text-sm font-semibold text-neutral-900">
-                      Conference Secretariat
-                    </p>
-                    <p className="mt-3 font-semibold text-neutral-900">
-                      ICODE2026, Centre for Open and Distance Learning (CODL)
-                    </p>
-                    <p className="mt-1 text-neutral-900">
-                      University of Moratuwa, Sri Lanka
-                    </p>
-
-                    <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                      <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
-                        <p className="flex items-center gap-2 font-semibold text-neutral-900">
-                          <EnvelopeIcon className="h-4 w-4 text-uom-maroon" />
-                          Email:
-                        </p>
-                        <a
-                          href="mailto:icode@codl.lk"
-                          className="mt-1 block font-semibold text-uom-maroon hover:underline"
-                        >
-                          icode@codl.lk
-                        </a>
-                      </div>
-                      <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
-                        <p className="flex items-center gap-2 font-semibold text-neutral-900">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="h-4 w-4 flex-none text-uom-maroon"
-                            aria-hidden="true"
+                {/* Submission essentials */}
+                <div id="cfp-guide-submission" className="cfp-guide-block mt-4 scroll-mt-28">
+                  <p className="cfp-guide-block__label">1 · Submission essentials</p>
+                  <div className="mt-2.5 grid gap-3.5 lg:grid-cols-2">
+                    <Reveal variant="up">
+                      <article className="cfp-guide-card">
+                        <header className="cfp-guide-card__header">
+                          <DocumentTextIcon className="h-5 w-5 text-uom-maroon" />
+                          <h3>General Guidelines</h3>
+                        </header>
+                        <dl className="cfp-guide-specs">
+                          <div>
+                            <dt>Language</dt>
+                            <dd>English</dd>
+                          </div>
+                          <div>
+                            <dt>Word limit</dt>
+                            <dd>700–1000 words (excluding author block and references)</dd>
+                          </div>
+                          <div>
+                            <dt>Camera-ready</dt>
+                            <dd>
+                              Maximum 3 pages (including author blocks and references; appendices
+                              are not permitted)
+                            </dd>
+                          </div>
+                          <div>
+                            <dt>Templates</dt>
+                            <dd>Follow the official conference formats strictly</dd>
+                          </div>
+                        </dl>
+                        <div className="cfp-guide-downloads">
+                          <a
+                            href={TEMPLATE_WORD_HREF}
+                            download="ICODE2026-Extended Abstract Template.docx"
+                            className="cfp-guide-download cfp-guide-download--blue"
                           >
-                            <path fill="currentColor" d={WHATSAPP_ICON_PATH} />
-                          </svg>
-                          WhatsApp:
-                        </p>
-                        <a
-                          href={CONTACT_WHATSAPP_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="mt-1 block font-semibold text-uom-maroon hover:underline"
-                          aria-label={`WhatsApp ${CONTACT_PHONE_DISPLAY}`}
-                        >
-                          {CONTACT_PHONE_DISPLAY}
-                        </a>
-                      </div>
-                    </div>
+                            <DocumentTextIcon className="h-4 w-4" />
+                            Word template
+                          </a>
+                          <a
+                            href={TEMPLATE_LATEX_HREF}
+                            download="ICODE26_template_latex.zip"
+                            className="cfp-guide-download cfp-guide-download--green"
+                          >
+                            <CodeBracketIcon className="h-4 w-4" />
+                            LaTeX template (.zip)
+                          </a>
+                        </div>
+                      </article>
+                    </Reveal>
+
+                    <Reveal variant="up" delayMs={80}>
+                      <article className="cfp-guide-card">
+                        <header className="cfp-guide-card__header">
+                          <CheckCircleIcon className="h-5 w-5 text-emerald-600" />
+                          <h3>Extended Abstract Submission</h3>
+                        </header>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            <span className="font-semibold">All extended abstract submissions</span>{" "}
+                            must be done through{" "}
+                            <span
+                              className="cursor-not-allowed font-semibold text-neutral-400"
+                              aria-disabled="true"
+                            >
+                              CMT
+                            </span>
+                            .
+                          </li>
+                          <li>
+                            First-time users must create a new{" "}
+                            <span
+                              className="cursor-not-allowed font-semibold text-neutral-400"
+                              aria-disabled="true"
+                            >
+                              CMT
+                            </span>{" "}
+                            account. Use an email address you access regularly when registering.
+                          </li>
+                          <li>Submissions should be in Portable Document Format (PDF) only.</li>
+                          <li>
+                            Submissions must comply with the specified word limit and page limit.
+                            Submissions that do not meet these requirements will be desk rejected.
+                          </li>
+                        </ul>
+                      </article>
+                    </Reveal>
+                  </div>
+
+                  <Reveal variant="up" delayMs={100}>
+                    <article className="cfp-guide-card mt-3.5">
+                      <header className="cfp-guide-card__header">
+                        <CheckCircleIcon className="h-5 w-5 text-emerald-600" />
+                        <h3>Blind Review Policy and Compliance</h3>
+                      </header>
+                      <ul className="cfp-guide-list cfp-guide-list--row">
+                        <li>
+                          <span className="font-semibold">The initial submission</span> must not
+                          contain any identifying information such as author names, affiliations,
+                          emails, or acknowledgements. However, author details must be entered in
+                          the correct order within the CMT before submission.
+                        </li>
+                        <li>
+                          We request all authors to carefully review the submissions for language
+                          and formatting.
+                        </li>
+                        <li>All submissions will undergo a plagiarism check.</li>
+                      </ul>
+                    </article>
+                  </Reveal>
+                </div>
+
+                {/* Conference day */}
+                <div className="cfp-guide-block mt-6">
+                  <p className="cfp-guide-block__label">2 · Conference day</p>
+                  <div className="mt-2.5 grid gap-3.5 lg:grid-cols-2">
+                    <Reveal variant="up">
+                      <article id="cfp-guide-oral" className="cfp-guide-card scroll-mt-28">
+                        <header className="cfp-guide-card__header">
+                          <PresentationChartBarIcon className="h-5 w-5 text-uom-maroon" />
+                          <h3>Oral Presentation Instructions</h3>
+                        </header>
+                        <dl className="cfp-guide-specs cfp-guide-specs--compact">
+                          <div>
+                            <dt>Language</dt>
+                            <dd>English</dd>
+                          </div>
+                          <div>
+                            <dt>Time</dt>
+                            <dd>15 minutes (≈12 present + 3 Q&amp;A)</dd>
+                          </div>
+                          <div>
+                            <dt>Slides</dt>
+                            <dd>About 10–12 slides recommended</dd>
+                          </div>
+                          <div>
+                            <dt>Format</dt>
+                            <dd>PowerPoint or PDF</dd>
+                          </div>
+                        </dl>
+                        <ul className="cfp-guide-list mt-4">
+                          <li>
+                            All presentations must be delivered in English, the language of the
+                            conference.
+                          </li>
+                          <li>
+                            Each presentation is allocated <span className="font-semibold">15 minutes</span>.
+                            We recommend about 12 minutes for presenting and 3 minutes for discussion
+                            or questions.
+                          </li>
+                          <li>
+                            A PC, projector, and microphones will be available. The PC will have sound
+                            for videos and internet access.
+                          </li>
+                          <li>
+                            You may submit your slides online before the conference. Please also bring
+                            your file on a memory stick in case of technical issues. We recommend MS
+                            PowerPoint or PDF.
+                          </li>
+                          <li>
+                            If you have not submitted your slides beforehand, please upload your
+                            presentation to the session PC at least 15 minutes before the session
+                            starts.
+                          </li>
+                          <li>All presenters will be introduced to the audience by the session chair.</li>
+                          <li>
+                            For a 12-minute talk, around{" "}
+                            <span className="font-semibold">10–12 slides</span> is recommended.
+                          </li>
+                        </ul>
+
+                        <details className="cfp-guide-details">
+                          <summary>How to deliver a good oral presentation</summary>
+                          <ul className="cfp-guide-list">
+                            <li>
+                              Structure the presentation logically and include title, introduction,
+                              methods, results, discussion, and conclusions.
+                            </li>
+                            <li>Use bullet points rather than long paragraphs of text.</li>
+                            <li>Avoid small fonts that are hard for the audience to read.</li>
+                            <li>Limit graphics to about 1–3 per slide so the content stays clear.</li>
+                            <li>Avoid using all capital letters.</li>
+                            <li>Combine words, pictures, and graphics thoughtfully.</li>
+                            <li>
+                              Do not read the text word for word. Slides should support your talk, not
+                              replace it.
+                            </li>
+                            <li>
+                              Prepare a storyboard before building slides so the talk stays structured
+                              and on topic.
+                            </li>
+                            <li>Make eye contact with the audience.</li>
+                            <li>
+                              Use the laser pointer to highlight the most relevant parts of each slide.
+                            </li>
+                            <li>Speak loudly and clearly.</li>
+                          </ul>
+                        </details>
+
+                        <div className="cfp-guide-downloads">
+                          <a
+                            href={TEMPLATE_PRESENTATION_HREF}
+                            download="ICODE26-Slides-Template.pptx"
+                            className="cfp-guide-download cfp-guide-download--violet"
+                          >
+                            <PresentationChartBarIcon className="h-4 w-4" />
+                            Presentation template (.pptx)
+                          </a>
+                        </div>
+                      </article>
+                    </Reveal>
+
+                    <Reveal variant="up" delayMs={80}>
+                      <article id="cfp-guide-poster" className="cfp-guide-card scroll-mt-28">
+                        <header className="cfp-guide-card__header">
+                          <PhotoIcon className="h-5 w-5 text-uom-maroon" />
+                          <h3>Poster Guidelines</h3>
+                        </header>
+                        <dl className="cfp-guide-specs cfp-guide-specs--compact">
+                          <div>
+                            <dt>Size</dt>
+                            <dd>60 inches high × 30 inches wide</dd>
+                          </div>
+                          <div>
+                            <dt>Printing</dt>
+                            <dd>Bring your own poster (no venue printing)</dd>
+                          </div>
+                          <div>
+                            <dt>Readability</dt>
+                            <dd>Readable from about 2 metres</dd>
+                          </div>
+                        </dl>
+
+                        <p className="cfp-guide-subhead">Poster Preparation Guidelines</p>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            Authors should bring their poster to the conference. Printing services are
+                            not available at the venue.
+                          </li>
+                          <li>
+                            Poster size:{" "}
+                            <span className="font-semibold">60 inches high × 30 inches wide</span>.
+                          </li>
+                          <li>Include a clear mix of words, pictures, and graphics.</li>
+                          <li>Your poster should be readable from about 2 metres away.</li>
+                        </ul>
+
+                        <p className="cfp-guide-subhead">Poster Presentation Guidelines</p>
+                        <ul className="cfp-guide-list">
+                          <li>The poster should present the results and conclusions of the paper.</li>
+                          <li>
+                            Stay next to your poster while it is on display in case anyone has
+                            questions.
+                          </li>
+                        </ul>
+
+                        <div className="cfp-guide-downloads">
+                          <a
+                            href={TEMPLATE_POSTER_HREF}
+                            download="ICODE26-Poster-Template.pdf"
+                            className="cfp-guide-download cfp-guide-download--amber"
+                          >
+                            <PhotoIcon className="h-4 w-4" />
+                            Poster template (.pdf)
+                          </a>
+                        </div>
+                      </article>
+                    </Reveal>
                   </div>
                 </div>
+
+                {/* Policies */}
+                <div id="cfp-guide-policies" className="cfp-guide-block mt-6 scroll-mt-28">
+                  <p className="cfp-guide-block__label">3 · Policies &amp; integrity</p>
+                  <div className="mt-2.5 grid gap-3.5 lg:grid-cols-2">
+                    <Reveal variant="up">
+                      <article className="cfp-guide-card">
+                        <header className="cfp-guide-card__header">
+                          <CheckCircleIcon className="h-5 w-5 text-emerald-600" />
+                          <h3>Author Responsibilities</h3>
+                        </header>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            The submission must present original research conducted by the authors and
+                            must not infringe upon the intellectual property rights of any third party.
+                          </li>
+                          <li>
+                            The work must not have been previously published or be under consideration
+                            elsewhere, and should not be simultaneously submitted to another conference,
+                            journal, or publication venue.
+                          </li>
+                          <li>
+                            The list of authors must accurately include only those who have made
+                            significant intellectual contributions to the research.
+                          </li>
+                          <li>
+                            All data sources, images, figures, and other referenced materials must be
+                            properly acknowledged and cited.
+                          </li>
+                          <li>
+                            Authors must also ensure that they have obtained the necessary permissions
+                            to reproduce any third-party material, including images and figures.
+                          </li>
+                        </ul>
+                      </article>
+                    </Reveal>
+
+                    <Reveal variant="up" delayMs={80}>
+                      <article className="cfp-guide-card">
+                        <header className="cfp-guide-card__header">
+                          <CheckCircleIcon className="h-5 w-5 text-emerald-600" />
+                          <h3>Ethics and Conduct</h3>
+                        </header>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            Authors are expected to adhere to the highest standards of research
+                            integrity. Any form of academic misconduct, including plagiarism, data
+                            fabrication, or falsification, will result in immediate rejection of the
+                            submission and potential reporting to the authors&apos; institutions.
+                          </li>
+                        </ul>
+
+                        <p className="cfp-guide-subhead">Review Process and AI Policy</p>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            Submissions will undergo a rigorous double-blind peer-review process.
+                          </li>
+                          <li>
+                            Program Committee members will review submissions based on research
+                            expertise and relevance. Authors may be given a brief period to address
+                            initial review comments and submit a revised version. Final decisions will
+                            be made by the program chairs.
+                          </li>
+                        </ul>
+
+                        <p className="cfp-guide-subhead">Policy on Using Generative AI</p>
+                        <ul className="cfp-guide-list">
+                          <li>
+                            Authors are fully responsible for the submitted content. Generative AI
+                            tools must not be listed as authors, and any substantive use of such tools
+                            in content creation should be disclosed in the Acknowledgements section.
+                          </li>
+                          <li>
+                            Use of generative AI for language assistance (e.g., paraphrasing, grammar or
+                            spell checking) does not require disclosure.
+                          </li>
+                          <li>
+                            Any AI-generated or AI-assisted content related to ideas or text must be
+                            clearly indicated, properly cited where applicable, and disclosed when such
+                            ideas have been further developed by the authors.
+                          </li>
+                        </ul>
+                      </article>
+                    </Reveal>
+                  </div>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <section className="mt-8 md:mt-10" id="cfp-secretariat" aria-label="Conference secretariat">
+            <Reveal variant="up">
+              <aside className="cfp-signoff">
+                <p className="cfp-signoff__greeting">Warm regards,</p>
+                <p className="cfp-signoff__title">Conference Secretariat</p>
+                <p className="cfp-signoff__org">
+                  ICODE2026, Centre for Open and Distance Learning (CODL)
+                  <br />
+                  University of Moratuwa, Sri Lanka
+                </p>
+                <div className="cfp-signoff__contacts">
+                  <a href="mailto:icode@codl.lk">
+                    <EnvelopeIcon className="h-4 w-4" aria-hidden />
+                    icode@codl.lk
+                  </a>
+                  <span className="cfp-signoff__dot" aria-hidden>
+                    ·
+                  </span>
+                  <a
+                    href={CONTACT_WHATSAPP_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`WhatsApp ${CONTACT_PHONE_DISPLAY}`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="h-4 w-4 flex-none"
+                      aria-hidden="true"
+                    >
+                      <path fill="currentColor" d={WHATSAPP_ICON_PATH} />
+                    </svg>
+                    {CONTACT_PHONE_DISPLAY}
+                  </a>
+                </div>
+              </aside>
             </Reveal>
           </section>
         </main>

@@ -4255,3 +4255,364 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
   color: var(--neon-gold-soft, #f8edd4);
 }
 
+
+/* —— Call for Papers: Author Guidelines layout —— */
+.cfp-guide-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.cfp-guide-nav__chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 0, 25, 0.22);
+  background: rgba(248, 237, 212, 0.7);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #7a0019;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.cfp-guide-nav__chip:hover {
+  border-color: #7a0019;
+  background: #f8edd4;
+}
+
+.cfp-guide-block__label {
+  margin: 0 0 0.15rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7a0019;
+}
+
+.cfp-guide-card {
+  height: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  background: #fff;
+  padding: 0.95rem 1rem 1.05rem;
+}
+
+.cfp-guide-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.cfp-guide-card__header h3 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #171717;
+}
+
+.cfp-guide-specs {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 0.85rem;
+}
+
+.cfp-guide-specs--compact {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cfp-guide-specs > div {
+  border-radius: 0.65rem;
+  border: 1px solid rgba(229, 229, 229, 0.95);
+  background: #fafafa;
+  padding: 0.55rem 0.7rem;
+}
+
+.cfp-guide-specs dt {
+  margin: 0;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7a0019;
+}
+
+.cfp-guide-specs dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #262626;
+}
+
+.cfp-guide-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.cfp-guide-list--split {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .cfp-guide-list--split {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+.cfp-guide-list--row {
+  display: grid;
+  gap: 0.7rem;
+}
+
+@media (min-width: 900px) {
+  .cfp-guide-list--row {
+    grid-template-columns: 1.6fr 1fr 0.9fr;
+    gap: 0.95rem;
+  }
+}
+
+.cfp-guide-list li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #404040;
+}
+
+.cfp-guide-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: #7a0019;
+}
+
+.cfp-guide-subhead {
+  margin: 0.9rem 0 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #171717;
+}
+
+.cfp-guide-details {
+  margin-top: 0.7rem;
+  border-radius: 0.7rem;
+  border: 1px dashed rgba(122, 0, 25, 0.25);
+  background: rgba(248, 237, 212, 0.3);
+  padding: 0.55rem 0.7rem;
+}
+
+.cfp-guide-details summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #7a0019;
+  list-style: none;
+}
+
+.cfp-guide-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.cfp-guide-details summary::after {
+  content: " +";
+  font-weight: 800;
+}
+
+.cfp-guide-details[open] summary::after {
+  content: " −";
+}
+
+.cfp-guide-details .cfp-guide-list {
+  margin-top: 0.55rem;
+}
+
+.cfp-guide-downloads {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+@media (min-width: 480px) {
+  .cfp-guide-downloads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cfp-guide-download {
+  display: inline-flex;
+  width: 100%;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.55rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  transition: filter 0.15s ease;
+}
+
+.cfp-guide-download:hover {
+  filter: brightness(1.06);
+}
+
+.cfp-guide-download--blue {
+  border: 1px solid #1d4ed8;
+  background: #2563eb;
+}
+
+.cfp-guide-download--green {
+  border: 1px solid #047857;
+  background: #059669;
+}
+
+.cfp-guide-download--violet {
+  border: 1px solid #6d28d9;
+  background: #7c3aed;
+}
+
+.cfp-guide-download--amber {
+  border: 1px solid #b45309;
+  background: #d97706;
+}
+
+/* Separate secretariat sign-off — clean letter style */
+.cfp-signoff {
+  border-radius: 1.1rem;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: #fff;
+  padding: 1.15rem 1.25rem 1.2rem;
+}
+
+.cfp-signoff__greeting {
+  margin: 0;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #525252;
+}
+
+.cfp-signoff__title {
+  margin: 0.5rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #171717;
+}
+
+.cfp-signoff__org {
+  margin: 0.6rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #404040;
+}
+
+.cfp-signoff__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin-top: 1rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.cfp-signoff__contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #7a0019;
+}
+
+.cfp-signoff__contacts a:hover {
+  text-decoration: underline;
+}
+
+.cfp-signoff__dot {
+  color: #a3a3a3;
+}
+
+.homepage-dark .cfp-guide-nav__chip {
+  border-color: rgba(255, 200, 77, 0.3);
+  background: rgba(122, 0, 25, 0.45);
+  color: #f8edd4;
+}
+
+.homepage-dark .cfp-guide-block__label {
+  color: #ffc84d;
+}
+
+.homepage-dark .cfp-guide-card {
+  border-color: rgba(255, 200, 77, 0.28);
+  background: rgba(36, 36, 44, 0.96);
+}
+
+.homepage-dark .cfp-guide-card__header {
+  border-bottom-color: rgba(255, 200, 77, 0.22);
+}
+
+.homepage-dark .cfp-guide-card__header h3,
+.homepage-dark .cfp-guide-subhead {
+  color: #f5f5f5;
+}
+
+.homepage-dark .cfp-guide-specs > div {
+  border-color: rgba(255, 200, 77, 0.18);
+  background: rgba(28, 28, 34, 0.95);
+}
+
+.homepage-dark .cfp-guide-specs dt {
+  color: #ffc84d;
+}
+
+.homepage-dark .cfp-guide-specs dd,
+.homepage-dark .cfp-guide-list li {
+  color: #d4d4d8;
+}
+
+.homepage-dark .cfp-guide-details {
+  border-color: rgba(255, 200, 77, 0.28);
+  background: rgba(122, 0, 25, 0.28);
+}
+
+.homepage-dark .cfp-guide-details summary {
+  color: #f8edd4;
+}
+
+.homepage-dark .cfp-signoff {
+  border-color: rgba(255, 200, 77, 0.28);
+  background: rgba(36, 36, 44, 0.96);
+}
+
+.homepage-dark .cfp-signoff__greeting {
+  color: #a3a3a3;
+}
+
+.homepage-dark .cfp-signoff__title {
+  color: #f5f5f5;
+}
+
+.homepage-dark .cfp-signoff__org {
+  color: #d4d4d8;
+}
+
+.homepage-dark .cfp-signoff__contacts {
+  border-top-color: rgba(255, 200, 77, 0.25);
+}
+
+.homepage-dark .cfp-signoff__contacts a {
+  color: #ffc84d;
+}

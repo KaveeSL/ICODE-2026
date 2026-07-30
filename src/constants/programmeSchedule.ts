@@ -273,8 +273,8 @@ export const day2Schedule: ProgrammeSession[] = [
   },
   {
     time: "9:30 – 9:45 am",
-    session: "Digital Transformation of Sri Lankan Education",
-    detail: "To be confirmed"
+    session: "Digital Transformation of Sri Lanka",
+    detail: "Dr. Hans Wijesuriya, Chief Advisor to the President on the Digital Economy"
   },
   {
     time: "9:45 – 10:25 am",
@@ -340,7 +340,7 @@ export const day2Schedule: ProgrammeSession[] = [
       "Eng. Eranga Weeraratne, Deputy Minister of Digital Economy",
       "Mr. G. Pradeep Saputhanthri, Secretary to the Prime Minister, additional secretaries",
       "Senior Prof. Kapila Seneviratne, Chairman, University Grants Commission",
-      "Dr. Hans Wijesuriya, Chairman, ICTA",
+      "Dr. Hans Wijesuriya, Chief Advisor to the President on the Digital Economy",
       "Prof. JMA Manatunge, Dean/Engineering UoM"
     ]
   },
