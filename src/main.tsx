@@ -8,6 +8,7 @@ import {
   useLocation
 } from "react-router-dom";
 import App from "./App";
+import AbstractsPage from "./AbstractsPage";
 import ProgrammePage from "./ProgrammePage.tsx";
 import GovernancePage from "./GovernancePage";
 import CallForPapersPage from "./CallForPapersPage";
@@ -37,6 +38,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/" element={<App />} />
           <Route path="/programme" element={<Navigate to="/programme/day1" replace />} />
           <Route path="/programme/:daySlug" element={<ProgrammePage />} />
+          <Route path="/proceedings" element={<AbstractsPage />} />
+          <Route path="/abstracts" element={<Navigate to="/proceedings" replace />} />
           <Route path="/governance" element={<GovernancePage />} />
           <Route path="/call-for-papers" element={<CallForPapersPage />} />
           <Route path="/registration" element={<RegistrationPage />} />

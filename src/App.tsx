@@ -8,6 +8,7 @@ import {
   ChevronRightIcon,
   ClipboardDocumentListIcon,
   CursorArrowRaysIcon,
+  DocumentTextIcon,
   InformationCircleIcon,
   MapPinIcon,
   QuestionMarkCircleIcon,
@@ -540,6 +541,9 @@ function App() {
               <Link to="/registration" className="hover:text-uom-maroon">
                 Registration
               </Link>
+              <Link to="/proceedings" className="hover:text-uom-maroon">
+                Proceedings
+              </Link>
               <a href="#committees" className="hover:text-uom-maroon">
                 Committees
               </a>
@@ -601,6 +605,13 @@ function App() {
                   className="hover:text-uom-maroon"
                 >
                   Registration
+                </Link>
+                <Link
+                  to="/proceedings"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Proceedings
                 </Link>
                 <Link
                   to="/#committees"
@@ -777,6 +788,21 @@ function App() {
                           <CalendarDaysIcon className="h-4 w-4 shrink-0" />
                           <span className="flex-1 text-center whitespace-normal leading-snug">
                             View 3-Day Schedule
+                          </span>
+                          <ChevronRightIcon className="h-4 w-4 shrink-0" />
+                        </span>
+                      </Button>
+                    </Link>
+                    <Link to="/proceedings">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="homepage-hero-cta homepage-hero-cta--outline h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <DocumentTextIcon className="h-4 w-4 shrink-0" />
+                          <span className="flex-1 text-center whitespace-normal leading-snug">
+                            Conference Papers
                           </span>
                           <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>
@@ -1275,10 +1301,7 @@ function App() {
                         key={`${partner.id}-${loopIndex}`}
                         type="button"
                         className={`sponsor-logo${partner.wide ? " sponsor-logo--wide" : ""}`}
-                        onMouseEnter={() => setActivePartner(partner)}
-                        onMouseLeave={() => setActivePartner(null)}
-                        onFocus={() => setActivePartner(partner)}
-                        onBlur={() => setActivePartner(null)}
+                        onClick={() => setActivePartner(partner)}
                         aria-label={`${partner.name} — ${partner.role}`}
                       >
                         <img
@@ -1901,8 +1924,18 @@ function App() {
       </div>
 
       {activePartner ? (
-        <div className="partner-spotlight" aria-live="polite">
-          <div className="partner-spotlight__backdrop" />
+        <div
+          className="partner-spotlight"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activePartner.name} — ${activePartner.role}`}
+        >
+          <button
+            type="button"
+            className="partner-spotlight__backdrop"
+            aria-label="Close partner details"
+            onClick={() => setActivePartner(null)}
+          />
           <div className="partner-spotlight__card">
             <img
               src={activePartner.src}

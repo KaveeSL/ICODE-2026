@@ -44,6 +44,11 @@ export function FooterConferenceLinks({ samePage = false }: FooterConferenceLink
         <NavItem to={path("#days")}>3-day programme</NavItem>
       </li>
       <li>
+        <Link to="/proceedings" className={itemClass}>
+          Proceedings
+        </Link>
+      </li>
+      <li>
         <Link to="/registration" className={itemClass}>
           Registration
         </Link>

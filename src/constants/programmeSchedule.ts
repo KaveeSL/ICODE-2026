@@ -39,11 +39,14 @@ export type Day3Workshop = {
 
 export const day1Schedule: Day1Slot[] = [
   { time: "8:30 – 9:00 am", title: "Coffee and Networking", isBreak: true },
-  { time: "9:00 – 9:30 am", title: "Inauguration" },
+  {
+    time: "9:00 – 9:30 am",
+    title: "Inauguration",
+    detail: "Welcome address by Prof Malik Ranasinghe"
+  },
   {
     time: "9:30 – 10:00 am",
-    title: "Plenary Session 1",
-    detail: "Welcome address by Prof Malik"
+    title: "Plenary Session 1"
   },
   {
     time: "10:00 – 11:00 am",

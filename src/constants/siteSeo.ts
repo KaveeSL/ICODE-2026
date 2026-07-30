@@ -107,6 +107,13 @@ export const PAGE_SEO: Record<string, PageSeo> = {
     keywords:
       `${DEFAULT_KEYWORDS}, ICODE registration, register UoM conference, delegate registration Colombo, hybrid conference registration Sri Lanka`,
   },
+  "/proceedings": {
+    title: "Proceedings | ICODE2026 University of Moratuwa",
+    description:
+      "Browse ICODE2026 Day 1 proceedings by session. Paper titles, authors, and post-conference slides and videos from the University of Moratuwa CODL conference.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE proceedings, conference proceedings, conference papers, research presentations, UoM proceedings`,
+  },
 };
 
 export function seoForPath(pathname: string): PageSeo {

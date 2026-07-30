@@ -6,6 +6,7 @@ import {
   ChevronRightIcon,
   ClockIcon,
   CursorArrowRaysIcon,
+  DocumentTextIcon,
   UserGroupIcon
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
@@ -389,6 +390,19 @@ export default function ProgrammePage() {
                 </p>
               </div>
             </div>
+
+            {activeDay === 1 && (
+              <div className="programme-day-panel__cta">
+                <p className="programme-day-panel__cta-copy">
+                  Browse accepted Day 1 papers, authors, and proceedings.
+                </p>
+                <Link to="/proceedings" className="programme-day-panel__cta-btn">
+                  <DocumentTextIcon className="h-4 w-4" aria-hidden />
+                  View Proceedings
+                  <ChevronRightIcon className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            )}
 
             {activeDay === 3 && (
               <div className="programme-day-panel__cta">
