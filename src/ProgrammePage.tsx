@@ -14,7 +14,6 @@ import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
 import {
-  day1OnlinePresentationProbables,
   day1Schedule,
   day2Schedule,
   day3Workshops,
@@ -151,15 +150,6 @@ function Day1Timeline({ caption }: { caption: string }) {
           );
         })}
       </ol>
-
-      <aside className="programme-day1-online" aria-label="Online presentation notes">
-        <p className="programme-day1-online__label">Probables for online presentation</p>
-        <ul className="programme-day1-online__list">
-          {day1OnlinePresentationProbables.map((title) => (
-            <li key={title}>{title}</li>
-          ))}
-        </ul>
-      </aside>
     </div>
   );
 }

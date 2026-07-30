@@ -264,10 +264,6 @@ export const day1Schedule: Day1Slot[] = [
   }
 ];
 
-export const day1OnlinePresentationProbables = [
-  "Awareness of Micro-Credentials among Final-Year Undergraduates in the Northern and Western Provinces of Sri Lanka."
-] as const;
-
 export const day2Schedule: ProgrammeSession[] = [
   { time: "9:00 – 9:15 am", session: "Morning Refreshments", isBreak: true },
   {
