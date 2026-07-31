@@ -752,7 +752,7 @@ export default function GovernancePage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto max-w-7xl px-4 pb-10 pt-[calc(60px+2.5rem)] md:px-6 md:pb-14 md:pt-[calc(68px+3.5rem)]">
+      <main className="mx-auto max-w-7xl min-w-0 overflow-x-hidden px-4 pb-10 pt-[calc(60px+2.5rem)] md:px-6 md:pb-14 md:pt-[calc(68px+3.5rem)]">
           <section>
             <Reveal variant="up">
               <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">

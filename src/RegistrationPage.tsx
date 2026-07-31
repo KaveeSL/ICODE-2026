@@ -94,7 +94,7 @@ export default function RegistrationPage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl min-w-0 overflow-x-hidden px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
         {/* Hero */}
         <section className="site-panel rounded-3xl border border-uom-gold/50 bg-gradient-to-br from-white via-uom-goldSoft/25 to-white p-5 shadow-sm md:p-8">
           <Reveal variant="up" delayMs={0}>

@@ -542,7 +542,7 @@ function App() {
                 Registration
               </Link>
               <Link to="/proceedings" className="hover:text-uom-maroon">
-                Proceedings
+                Programme
               </Link>
               <a href="#committees" className="hover:text-uom-maroon">
                 Committees
@@ -611,7 +611,7 @@ function App() {
                   onClick={() => setMobileNavOpen(false)}
                   className="hover:text-uom-maroon"
                 >
-                  Proceedings
+                  Programme
                 </Link>
                 <Link
                   to="/#committees"
@@ -802,7 +802,7 @@ function App() {
                         <span className="flex items-center gap-1.5">
                           <DocumentTextIcon className="h-4 w-4 shrink-0" />
                           <span className="flex-1 text-center whitespace-normal leading-snug">
-                            Conference Papers
+                            Conference Programme
                           </span>
                           <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>

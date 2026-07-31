@@ -30,6 +30,11 @@ function prefersReducedMotion() {
   return window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 }
 
+function isNarrowViewport() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia?.("(max-width: 767px)")?.matches ?? false;
+}
+
 export function Reveal({
   children,
   className = "",
@@ -37,13 +42,13 @@ export function Reveal({
   variant = "up",
   delayMs = 0,
   once = true,
-  threshold = 0.15
+  threshold = 0.05
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
+    if (prefersReducedMotion() || isNarrowViewport()) {
       setInView(true);
       return;
     }
@@ -51,22 +56,36 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    let done = false;
+    const markVisible = () => {
+      if (done) return;
+      done = true;
+      setInView(true);
+    };
+
+    // Fail-open so nested/tall content never stays invisible if IO misses.
+    const fallbackId = window.setTimeout(markVisible, 900);
+
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
         if (entry.isIntersecting) {
-          setInView(true);
+          markVisible();
           if (once) observer.disconnect();
         } else if (!once) {
+          done = false;
           setInView(false);
         }
       },
-      { threshold }
+      { threshold, rootMargin: "64px 0px 64px 0px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(fallbackId);
+      observer.disconnect();
+    };
   }, [once, threshold]);
 
   const delay = Math.max(0, delayMs);
@@ -85,4 +104,3 @@ export function Reveal({
 
   return createElement(Tag, { ref, className: revealClassName, style: revealStyle }, children);
 }
-

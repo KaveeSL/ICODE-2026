@@ -45,7 +45,7 @@ export function FooterConferenceLinks({ samePage = false }: FooterConferenceLink
       </li>
       <li>
         <Link to="/proceedings" className={itemClass}>
-          Proceedings
+          Programme
         </Link>
       </li>
       <li>

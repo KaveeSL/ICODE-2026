@@ -5,6 +5,7 @@ import {
   MagnifyingGlassIcon,
   PlayCircleIcon,
   PresentationChartBarIcon,
+  PhotoIcon,
   CalendarDaysIcon
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
@@ -32,11 +33,10 @@ function AbstractCard({ item }: { item: ConferenceAbstract }) {
       <div className="abstracts-card__top">
         <div className="abstracts-card__badges">
           <span className="abstracts-card__session">
-            Session {item.session}: {item.sessionLabel}
+            {item.session === "P"
+              ? item.sessionLabel
+              : `Session ${item.session}: ${item.sessionLabel}`}
           </span>
-          {item.onlinePresentation ? (
-            <span className="abstracts-card__online">Online</span>
-          ) : null}
         </div>
       </div>
 
@@ -57,38 +57,47 @@ function AbstractCard({ item }: { item: ConferenceAbstract }) {
           {open ? "Hide abstract" : "Abstract"}
         </button>
 
-        {item.slidesUrl ? (
-          <a
-            href={item.slidesUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="abstracts-card__btn"
-          >
-            <PresentationChartBarIcon className="h-4 w-4" aria-hidden />
-            Slides
-          </a>
-        ) : (
-          <span className="abstracts-card__btn abstracts-card__btn--soon" title="Available after the conference">
-            <PresentationChartBarIcon className="h-4 w-4" aria-hidden />
-            Slides soon
+        {item.session === "P" ? (
+          <span className="abstracts-card__btn abstracts-card__btn--soon" title="Poster file available after the conference">
+            <PhotoIcon className="h-4 w-4" aria-hidden />
+            Poster soon
           </span>
-        )}
+        ) : (
+          <>
+            {item.slidesUrl ? (
+              <a
+                href={item.slidesUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="abstracts-card__btn"
+              >
+                <PresentationChartBarIcon className="h-4 w-4" aria-hidden />
+                Slides
+              </a>
+            ) : (
+              <span className="abstracts-card__btn abstracts-card__btn--soon" title="Available after the conference">
+                <PresentationChartBarIcon className="h-4 w-4" aria-hidden />
+                Slides soon
+              </span>
+            )}
 
-        {item.videoUrl ? (
-          <a
-            href={item.videoUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="abstracts-card__btn"
-          >
-            <PlayCircleIcon className="h-4 w-4" aria-hidden />
-            Video
-          </a>
-        ) : (
-          <span className="abstracts-card__btn abstracts-card__btn--soon" title="Available after the conference">
-            <PlayCircleIcon className="h-4 w-4" aria-hidden />
-            Video soon
-          </span>
+            {item.videoUrl ? (
+              <a
+                href={item.videoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="abstracts-card__btn"
+              >
+                <PlayCircleIcon className="h-4 w-4" aria-hidden />
+                Video
+              </a>
+            ) : (
+              <span className="abstracts-card__btn abstracts-card__btn--soon" title="Available after the conference">
+                <PlayCircleIcon className="h-4 w-4" aria-hidden />
+                Video soon
+              </span>
+            )}
+          </>
         )}
       </div>
 
@@ -141,17 +150,17 @@ export default function AbstractsPage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-16 pt-[calc(60px+2.5rem)] md:px-6 md:pb-20 md:pt-[calc(68px+3.5rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl min-w-0 overflow-x-hidden px-4 pb-16 pt-[calc(60px+2.5rem)] md:px-6 md:pb-20 md:pt-[calc(68px+3.5rem)]">
         <section className="site-panel w-full rounded-3xl border border-uom-gold/50 bg-gradient-to-br from-white via-uom-goldSoft/25 to-white p-5 shadow-sm md:p-8">
           <Reveal variant="up" delayMs={0}>
             <div className="inline-flex items-center gap-2 rounded-full border border-uom-gold/40 bg-uom-goldSoft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
               <DocumentTextIcon className="h-3.5 w-3.5 text-uom-maroon" />
-              Proceedings
+              Programme
             </div>
           </Reveal>
           <Reveal variant="up" delayMs={80}>
             <h1 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-              Conference Proceedings
+              Conference Programme
             </h1>
           </Reveal>
           <Reveal variant="up" delayMs={140}>
@@ -172,7 +181,7 @@ export default function AbstractsPage() {
         <section className="abstracts-toolbar mt-6 md:mt-8">
           <label className="abstracts-search">
             <MagnifyingGlassIcon className="abstracts-search__icon" aria-hidden />
-            <span className="sr-only">Search proceedings</span>
+            <span className="sr-only">Search programme</span>
             <input
               type="search"
               value={query}
@@ -201,7 +210,7 @@ export default function AbstractsPage() {
                 className={`abstracts-filter${sessionFilter === id ? " abstracts-filter--active" : ""}`}
                 onClick={() => setSessionFilter(id)}
               >
-                Session {id}: {theme}
+                {id === "P" ? theme : `Session ${id}: ${theme}`}
               </button>
             ))}
           </div>

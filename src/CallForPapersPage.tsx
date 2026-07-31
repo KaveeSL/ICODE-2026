@@ -10,7 +10,8 @@ import {
   ChevronRightIcon,
   CodeBracketIcon,
   PresentationChartBarIcon,
-  PhotoIcon
+  PhotoIcon,
+  LightBulbIcon
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
@@ -23,6 +24,7 @@ import {
 import extendedAbstractTemplateWord from "./assets/docs/ICODE2026-Extended Abstract Template.docx?url";
 import slidesTemplatePptx from "./assets/docs/ICODE26 Slides template.pptx?url";
 import posterTemplatePdf from "./assets/docs/ICODE26 Poster Template.pdf?url";
+import posterGuidelinesImg from "./assets/posterguidelines.jpg";
 import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
@@ -88,7 +90,7 @@ export default function CallForPapersPage() {
         submitAbstractExternal
       />
 
-      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl min-w-0 overflow-x-hidden px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">
           {/* Hero intro */}
           <section>
             <div className="max-w-3xl">
@@ -584,33 +586,60 @@ export default function CallForPapersPage() {
                           </li>
                         </ul>
 
-                        <details className="cfp-guide-details">
-                          <summary>How to deliver a good oral presentation</summary>
-                          <ul className="cfp-guide-list">
-                            <li>
-                              Structure the presentation logically and include title, introduction,
-                              methods, results, discussion, and conclusions.
-                            </li>
-                            <li>Use bullet points rather than long paragraphs of text.</li>
-                            <li>Avoid small fonts that are hard for the audience to read.</li>
-                            <li>Limit graphics to about 1–3 per slide so the content stays clear.</li>
-                            <li>Avoid using all capital letters.</li>
-                            <li>Combine words, pictures, and graphics thoughtfully.</li>
-                            <li>
-                              Do not read the text word for word. Slides should support your talk, not
-                              replace it.
-                            </li>
-                            <li>
-                              Prepare a storyboard before building slides so the talk stays structured
-                              and on topic.
-                            </li>
-                            <li>Make eye contact with the audience.</li>
-                            <li>
-                              Use the laser pointer to highlight the most relevant parts of each slide.
-                            </li>
-                            <li>Speak loudly and clearly.</li>
-                          </ul>
-                        </details>
+                        <div className="cfp-guide-tips">
+                          <div className="cfp-guide-tips__header">
+                            <LightBulbIcon className="h-4 w-4 text-uom-maroon" aria-hidden />
+                            <h4>How to deliver a good oral presentation</h4>
+                          </div>
+                          <div className="cfp-guide-tips__grid">
+                            <section className="cfp-guide-tips__group" aria-labelledby="cfp-tips-structure">
+                              <p id="cfp-tips-structure" className="cfp-guide-tips__label">
+                                Structure
+                              </p>
+                              <ol className="cfp-guide-tips__list">
+                                <li>
+                                  Structure the presentation logically and include title,
+                                  introduction, methods, results, discussion, and conclusions.
+                                </li>
+                                <li>
+                                  Prepare a storyboard before building slides so the talk stays
+                                  structured and on topic.
+                                </li>
+                              </ol>
+                            </section>
+                            <section className="cfp-guide-tips__group" aria-labelledby="cfp-tips-slides">
+                              <p id="cfp-tips-slides" className="cfp-guide-tips__label">
+                                Slides
+                              </p>
+                              <ol className="cfp-guide-tips__list">
+                                <li>Use bullet points rather than long paragraphs of text.</li>
+                                <li>Avoid small fonts that are hard for the audience to read.</li>
+                                <li>
+                                  Limit graphics to about 1–3 per slide so the content stays clear.
+                                </li>
+                                <li>Avoid using all capital letters.</li>
+                                <li>Combine words, pictures, and graphics thoughtfully.</li>
+                              </ol>
+                            </section>
+                            <section className="cfp-guide-tips__group" aria-labelledby="cfp-tips-delivery">
+                              <p id="cfp-tips-delivery" className="cfp-guide-tips__label">
+                                Delivery
+                              </p>
+                              <ol className="cfp-guide-tips__list">
+                                <li>
+                                  Do not read the text word for word. Slides should support your
+                                  talk, not replace it.
+                                </li>
+                                <li>Make eye contact with the audience.</li>
+                                <li>
+                                  Use the laser pointer to highlight the most relevant parts of each
+                                  slide.
+                                </li>
+                                <li>Speak loudly and clearly.</li>
+                              </ol>
+                            </section>
+                          </div>
+                        </div>
 
                         <div className="cfp-guide-downloads">
                           <a
@@ -658,7 +687,25 @@ export default function CallForPapersPage() {
                           </li>
                           <li>Include a clear mix of words, pictures, and graphics.</li>
                           <li>Your poster should be readable from about 2 metres away.</li>
+                          <li>
+                            There has to be eyelets (as shown in the image) in each of the four
+                            corners of the poster. This is for attaching the poster on to the stand.
+                            Poster stands will be available at the venue.
+                          </li>
                         </ul>
+
+                        <figure className="cfp-guide-figure">
+                          <img
+                            src={posterGuidelinesImg}
+                            alt="ICODE2026 poster on an X-frame stand, with eyelets in each of the four corners for mounting"
+                            className="cfp-guide-figure__img"
+                          />
+                          <figcaption className="cfp-guide-figure__caption">
+                            Authors are requested to affix eyelets or holes at each of the four
+                            corners of the poster to facilitate mounting on the display stand
+                            provided at the venue.
+                          </figcaption>
+                        </figure>
 
                         <p className="cfp-guide-subhead">Poster Presentation Guidelines</p>
                         <ul className="cfp-guide-list">

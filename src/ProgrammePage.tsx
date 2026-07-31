@@ -64,6 +64,7 @@ function Day1Timeline({ caption }: { caption: string }) {
       <ol className="programme-timeline" aria-label={caption}>
         {day1Schedule.map((slot: Day1Slot, index) => {
           const isParallel = Boolean(slot.halls?.length);
+          const hasPapers = Boolean(slot.papers?.length);
 
           return (
             <li
@@ -95,6 +96,32 @@ function Day1Timeline({ caption }: { caption: string }) {
                     <p className="programme-timeline__speaker">{slot.detail}</p>
                   ) : null}
 
+                  {hasPapers && slot.papers ? (
+                    <ol className="programme-paper-list programme-paper-list--slot">
+                      {slot.papers.map((paper, paperIndex) => (
+                        <li
+                          key={`poster-${paperIndex}-${paper.title}`}
+                          className={`programme-paper-list__item${
+                            paper.tbc ? " programme-paper-list__item--tbc" : ""
+                          }`}
+                        >
+                          <span className="programme-paper-list__num" aria-hidden>
+                            {paperIndex + 1}
+                          </span>
+                          <div className="programme-paper-list__body">
+                            {paper.tbc ? (
+                              <p className="programme-paper-list__title programme-paper-list__title--tbc">
+                                TBC
+                              </p>
+                            ) : (
+                              <p className="programme-paper-list__title">{paper.title}</p>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : null}
+
                   {isParallel && slot.halls ? (
                     <div className="programme-hall-grid">
                       {slot.halls.map((hall) => (
@@ -117,18 +144,13 @@ function Day1Timeline({ caption }: { caption: string }) {
                               <li
                                 key={`${hall.hall}-${paperIndex}-${paper.title}`}
                                 className={`programme-paper-list__item${
-                                  paper.onlinePresentation
-                                    ? " programme-paper-list__item--online"
-                                    : ""
-                                }${paper.tbc ? " programme-paper-list__item--tbc" : ""}`}
+                                  paper.tbc ? " programme-paper-list__item--tbc" : ""
+                                }`}
                               >
                                 <span className="programme-paper-list__num" aria-hidden>
                                   {paperIndex + 1}
                                 </span>
                                 <div className="programme-paper-list__body">
-                                  {paper.onlinePresentation ? (
-                                    <span className="programme-paper-list__tag">Online</span>
-                                  ) : null}
                                   {paper.tbc ? (
                                     <p className="programme-paper-list__title programme-paper-list__title--tbc">
                                       TBC
@@ -295,7 +317,7 @@ export default function ProgrammePage() {
         onMobileNavClose={() => setMobileNavOpen(false)}
       />
 
-      <main className="mx-auto flex-1 w-full max-w-7xl px-4 pb-16 pt-[calc(60px+2.5rem)] md:px-6 md:pb-20 md:pt-[calc(68px+3.5rem)]">
+      <main className="mx-auto flex-1 w-full max-w-7xl min-w-0 overflow-x-hidden px-4 pb-16 pt-[calc(60px+2.5rem)] md:px-6 md:pb-20 md:pt-[calc(68px+3.5rem)]">
         <section className="site-panel w-full rounded-3xl border border-uom-gold/50 bg-gradient-to-br from-white via-uom-goldSoft/25 to-white p-5 shadow-sm md:p-8">
           <Reveal variant="up" delayMs={0}>
             <div className="inline-flex items-center gap-2 rounded-full border border-uom-gold/40 bg-uom-goldSoft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-900">
@@ -384,11 +406,11 @@ export default function ProgrammePage() {
             {activeDay === 1 && (
               <div className="programme-day-panel__cta">
                 <p className="programme-day-panel__cta-copy">
-                  Browse accepted Day 1 papers, authors, and proceedings.
+                  Browse accepted Day 1 papers, authors, and programme.
                 </p>
                 <Link to="/proceedings" className="programme-day-panel__cta-btn">
                   <DocumentTextIcon className="h-4 w-4" aria-hidden />
-                  View Proceedings
+                  View Programme
                   <ChevronRightIcon className="h-4 w-4" aria-hidden />
                 </Link>
               </div>

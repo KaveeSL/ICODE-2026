@@ -9,7 +9,6 @@ export type ConferenceAbstract = {
   session: string;
   sessionLabel: string;
   theme: string;
-  onlinePresentation?: boolean;
   /** Plain-text abstract when no PDF is available yet */
   abstractText?: string;
   /** Path under /public, e.g. /abstracts/d1-a-01.pdf */
@@ -26,7 +25,7 @@ function authorLabel(name: string) {
   return name.replace(/\s+/g, " ").trim();
 }
 
-/** Presenter name first, then co-authors; country stored separately. */
+/** Presenter name first, then co-authors; country stored separately. No Mr/Ms/Dr titles. */
 function paperPeople(
   presenter: { name: string; country?: string },
   coAuthors: string[] = []
@@ -42,7 +41,7 @@ function paperPeople(
 
 /**
  * Author enrichment by paper id (e.g. "d1-a-01").
- * Only attending presenters matched to Day 1 schedule papers.
+ * Keeps earlier author lists; adds new papers from later attendance sheets.
  */
 const abstractOverrides: Partial<
   Record<string, Partial<Omit<ConferenceAbstract, "id" | "title" | "session" | "sessionLabel" | "theme">>>
@@ -50,7 +49,7 @@ const abstractOverrides: Partial<
   // Session A — Open Learning, Access & Inclusion
   "d1-a-01": paperPeople(
     {
-      name: "Muthuwadura Lakna Ravihari",
+      name: "Muthuwadura Lakma Ravihari",
       country: "Sri Lanka"
     },
     ["A. L. A. Rahman"]
@@ -65,13 +64,6 @@ const abstractOverrides: Partial<
       country: "Sri Lanka"
     },
     ["R. M. A. T. Udawattegedara"]
-  ),
-  "d1-a-04": paperPeople(
-    {
-      name: "Malavi Pathirannehelage Danindu Sandeepa Pathirana",
-      country: "Sri Lanka"
-    },
-    ["Panduwawala Kankanamalage Laksarani Panduwawala"]
   ),
 
   // Session B — Artificial Intelligence in Education
@@ -149,29 +141,19 @@ const abstractOverrides: Partial<
   ),
   "d1-d-02": paperPeople(
     {
-      name: "W. Venura Deshan Perera",
-      country: "Sri Lanka"
-    },
-    ["Chrishankar Janarthanan"]
-  ),
-  "d1-d-03": paperPeople(
-    {
       name: "Luxika Raguram",
       country: "Sri Lanka"
     },
     ["Sharmi Shanmuganathan"]
   ),
-  "d1-d-04": paperPeople({
+  "d1-d-03": paperPeople({
     name: "Sheraz Kaleem",
     country: "Pakistan"
   }),
-  "d1-d-05": paperPeople(
-    {
-      name: "P. I. V. Wijewardhane",
-      country: "Sri Lanka"
-    },
-    ["D. A. Kaludewa", "P. M. K. L. Y. Kapugamage"]
-  ),
+  "d1-d-04": paperPeople({
+    name: "Dulashi Kongahawaththa",
+    country: "Sri Lanka"
+  }),
 
   // Session E — Emerging Methods, Technologies & Tools
   "d1-e-01": paperPeople({
@@ -202,15 +184,12 @@ const abstractOverrides: Partial<
     name: "Galle Pathiranage Vishwadharsha Udara Bandara Pathirana",
     country: "Sri Lanka"
   }),
-  "d1-f-02": paperPeople(
-    {
-      name: "Doluwala Gedara Sathsarani Nuwandhara Samarakoon",
-      country: "Sri Lanka"
-    },
-    ["Doluwala Gedara Samarakoon"]
-  ),
-  "d1-f-03": paperPeople({
+  "d1-f-02": paperPeople({
     name: "Sumudu Wasana",
+    country: "Sri Lanka"
+  }),
+  "d1-f-03": paperPeople({
+    name: "Abdul Razack Irsha Farwin",
     country: "Sri Lanka"
   }),
 
@@ -233,20 +212,73 @@ const abstractOverrides: Partial<
     name: "Jageshkar Sivahar",
     country: "Sri Lanka"
   }),
+  "d1-g-04": paperPeople({
+    name: "Weerakkodige Ayesha Kalhari Jayasinghe",
+    country: "Sri Lanka"
+  }),
 
   // Session H — Access, Inclusion & Equity in Digital Education
-  "d1-h-01": paperPeople({
+  "d1-h-01": paperPeople(
+    {
+      name: "Sayuri Withana",
+      country: "Sri Lanka"
+    },
+    ["Tiloka De Silva"]
+  ),
+  "d1-h-02": paperPeople(
+    {
+      name: "Haritha Weerathunga",
+      country: "Sri Lanka"
+    },
+    ["Lakmina Gamage"]
+  ),
+  "d1-h-03": paperPeople(
+    {
+      name: "Rajendran Adshayan",
+      country: "Sri Lanka"
+    },
+    ["Rubakumar Dibarshan"]
+  ),
+  "d1-h-04": paperPeople(
+    {
+      name: "Stephen Koralalage Don Chethiya Hasaruwan Korala",
+      country: "Sri Lanka"
+    },
+    ["K. D. L. H. Jayarathna"]
+  ),
+
+  // Poster Session — authors kept from earlier lists after papers moved here
+  "d1-p-01": paperPeople(
+    {
+      name: "Doluwala Gedara Sathsarani Nuwandhara Samarakoon",
+      country: "Sri Lanka"
+    },
+    ["Doluwala Gedara Samarakoon"]
+  ),
+  "d1-p-02": paperPeople(
+    {
+      name: "P. I. V. Wijewardhane",
+      country: "Sri Lanka"
+    },
+    ["D. A. Kaludewa", "P. M. K. L. Y. Kapugamage"]
+  ),
+  "d1-p-03": paperPeople(
+    {
+      name: "W. Venura Deshan Perera",
+      country: "Sri Lanka"
+    },
+    ["Chrishankar Janarthanan"]
+  ),
+  "d1-p-04": paperPeople({
     name: "Wannakuwaththa Mitibaduge Gihan Udayanga",
     country: "Sri Lanka"
   })
 };
 
 /** Day 1 accepted papers — titles sync from the programme; enrich via overrides. */
-export const conferenceAbstracts: ConferenceAbstract[] = day1Schedule
-  .flatMap((slot) => {
-    if (!slot.halls?.length) return [];
-
-    return slot.halls.flatMap((hall) => {
+export const conferenceAbstracts: ConferenceAbstract[] = day1Schedule.flatMap((slot) => {
+  const fromHalls =
+    slot.halls?.flatMap((hall) => {
       const letter = sessionLetter(hall.hall);
       return hall.papers
         .filter((paper) => !paper.tbc)
@@ -258,13 +290,30 @@ export const conferenceAbstracts: ConferenceAbstract[] = day1Schedule
             authors: [],
             session: letter,
             sessionLabel: hall.theme,
-            theme: hall.theme,
-            onlinePresentation: paper.onlinePresentation
+            theme: hall.theme
           };
           return { ...base, ...abstractOverrides[id] };
         });
-    });
-  });
+    }) ?? [];
+
+  const fromSlotPapers =
+    slot.papers
+      ?.filter((paper) => !paper.tbc)
+      .map((paper, index) => {
+        const id = `d1-p-${String(index + 1).padStart(2, "0")}`;
+        const base: ConferenceAbstract = {
+          id,
+          title: paper.title,
+          authors: [],
+          session: "P",
+          sessionLabel: "Poster Session",
+          theme: "Poster Session"
+        };
+        return { ...base, ...abstractOverrides[id] };
+      }) ?? [];
+
+  return [...fromHalls, ...fromSlotPapers];
+});
 
 /** Filter chips: session letter + theme title from the Day 1 schedule. */
 export const abstractSessionOptions = Array.from(

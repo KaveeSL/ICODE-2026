@@ -88,7 +88,7 @@ export function SiteHeader({
             Registration
           </Link>
           <Link to="/proceedings" className="hover:text-uom-maroon">
-            Proceedings
+            Programme
           </Link>
           <Link to="/#committees" className="hover:text-uom-maroon">
             Committees
@@ -133,7 +133,7 @@ export function SiteHeader({
                 Registration
               </Link>
               <Link to="/proceedings" onClick={onMobileNavClose} className="hover:text-uom-maroon">
-                Proceedings
+                Programme
               </Link>
               <Link to="/#committees" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 Committees

@@ -11,7 +11,6 @@ export type ProgrammeSession = {
 
 export type Day1Paper = {
   title: string;
-  onlinePresentation?: boolean;
   tbc?: boolean;
 };
 
@@ -28,6 +27,8 @@ export type Day1Slot = {
   detail?: string;
   isBreak?: boolean;
   halls?: Day1HallSession[];
+  /** Non-parallel paper list (e.g. poster session) */
+  papers?: Day1Paper[];
 };
 
 export type Day3Workshop = {
@@ -39,14 +40,16 @@ export type Day3Workshop = {
 
 export const day1Schedule: Day1Slot[] = [
   { time: "8:30 – 9:00 am", title: "Coffee and Networking", isBreak: true },
+  { time: "9:00 – 9:10 am", title: "Inauguration" },
   {
-    time: "9:00 – 9:30 am",
-    title: "Inauguration",
-    detail: "Welcome address by Prof Malik Ranasinghe"
+    time: "9:10 – 9:30 am",
+    title: "Welcome address",
+    detail: "Prof Malik Ranasinghe"
   },
   {
     time: "9:30 – 10:00 am",
-    title: "Plenary Session 1"
+    title: "Plenary Speech",
+    detail: "Professor Chan-Yun Yang"
   },
   {
     time: "10:00 – 11:00 am",
@@ -69,10 +72,7 @@ export const day1Schedule: Day1Slot[] = [
             title:
               "Bridging the Liveware Gap: A Mixed-Methods Study on Digital Infrastructure Readiness and Pedagogical Awareness Among Lecturers and Prospective Teachers at Sri Lankan National Colleges of Education (NCOEs)"
           },
-          {
-            title:
-              "Evaluating undergraduate preferences for online and blended learning in Sri Lanka"
-          }
+          { title: "TBC", tbc: true }
         ]
       },
       {
@@ -108,7 +108,7 @@ export const day1Schedule: Day1Slot[] = [
       {
         hall: "Session C",
         theme: "Digital Transformation & Learner Engagement",
-        chair: "Prof Dharshana Prasad",
+        chair: "Prof WD Prasad",
         papers: [
           {
             title:
@@ -146,10 +146,6 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "The Impact of E-Learning on Soft Skills Development among Sri Lankan Management Undergraduates"
-          },
-          {
-            title:
               "AI-Assisted Content and Language Integrated Learning (CLIL): Enhancing English Language Proficiency among Tamil-Medium Social Sciences Undergraduates"
           },
           {
@@ -158,9 +154,9 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Learning Style Prediction Using Natural Language Processing for Personalized Tutor Matching in Digital Education",
-            onlinePresentation: true
+              "AI in Fashion Design Practice: A Review of Designer adaptation to Artificial Intelligence"
           },
+          { title: "TBC", tbc: true },
           { title: "TBC", tbc: true }
         ]
       }
@@ -169,8 +165,9 @@ export const day1Schedule: Day1Slot[] = [
   { time: "12:45 – 1:45 pm", title: "Lunch", isBreak: true },
   {
     time: "1:45 – 2:15 pm",
-    title: "Plenary Session 2",
-    detail: "Industry Research Vs/And Academic Research - Dr Srinath Perera"
+    title: "Plenary Speech",
+    detail:
+      "Research in the age of large language models\nDr Srinath Perera\nVice President/ Head of Research, WSO2 Inc."
   },
   {
     time: "2:15 – 3:15 pm",
@@ -179,7 +176,7 @@ export const day1Schedule: Day1Slot[] = [
       {
         hall: "Session E",
         theme: "Emerging Methods, Technologies & Tools",
-        chair: "Dr Gayathri Kuruppu",
+        chair: "Prof Gayathri Kuruppu",
         papers: [
           {
             title:
@@ -210,12 +207,11 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Investigating the Impact of Generative AI on Undergraduate Students' Academic Writing Skills: Opportunities, Challenges, and Implications for Higher Education",
-            onlinePresentation: true
+              "Enhancing Quality Education through e-Thaksalawa online platform: A Sustainable Learning Content Management System Approach for Blended Learning in Sri Lankan Schools"
           },
           {
             title:
-              "Enhancing Quality Education through e-Thaksalawa online platform: A Sustainable Learning Content Management System Approach for Blended Learning in Sri Lankan Schools"
+              "AI-Powered University and Career Guidance Platform for Equitable Access in Sri Lanka"
           },
           { title: "TBC", tbc: true }
         ]
@@ -224,7 +220,29 @@ export const day1Schedule: Day1Slot[] = [
   },
   { time: "3:15 – 3:30 pm", title: "Tea Break", isBreak: true },
   {
-    time: "3:30 – 4:15 pm",
+    time: "3:30 – 4:00 pm",
+    title: "Poster Session",
+    papers: [
+      {
+        title:
+          "Investigating the Impact of Generative AI on Undergraduate Students' Academic Writing Skills: Opportunities, Challenges, and Implications for Higher Education"
+      },
+      {
+        title:
+          "Learning Style Prediction Using Natural Language Processing for Personalized Tutor Matching in Digital Education"
+      },
+      {
+        title:
+          "The Impact of E-Learning on Soft Skills Development among Sri Lankan Management Undergraduates"
+      },
+      {
+        title:
+          "Barriers Affecting Ease of Access to Online Education Among Undergraduate Students in Sri Lanka"
+      }
+    ]
+  },
+  {
+    time: "4:00 – 4:45 pm",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -243,6 +261,10 @@ export const day1Schedule: Day1Slot[] = [
           {
             title:
               "Evaluating the Role of Tutor-Mentor Sessions in Enhancing Student Engagement in an Asynchronous Open and Distance Learning Environment"
+          },
+          {
+            title:
+              "Synthesis of AI Integration Strategies in Open and Digital Education: A Global Policy and Practice Review"
           }
         ]
       },
@@ -251,17 +273,27 @@ export const day1Schedule: Day1Slot[] = [
         theme: "Access, Inclusion & Equity in Digital Education",
         chair: "Ms Eshana Ranasinghe",
         papers: [
-          { title: "TBC", tbc: true },
-          { title: "TBC", tbc: true },
           {
             title:
-              "Barriers Affecting Ease of Access to Online Education Among Undergraduate Students in Sri Lanka",
-            onlinePresentation: true
+              "A Group-Stratified Reliability Framework for Trustworthy Early-GPA Prediction in Higher Education"
+          },
+          {
+            title:
+              "A Scalable, Cost-Effective Biometric Verification Ecosystem for High-Volume Examinations in Open and Distance Learning"
+          },
+          {
+            title:
+              "The Impact of AI-Enhanced YouTube Features on Undergraduate Academic Outcomes"
+          },
+          {
+            title:
+              "PreProd SE: A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
           }
         ]
       }
     ]
-  }
+  },
+  { time: "4:45 – 5:00 pm", title: "Conclusion", isBreak: true }
 ];
 
 export const day2Schedule: ProgrammeSession[] = [
