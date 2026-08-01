@@ -65,6 +65,10 @@ const abstractOverrides: Partial<
     },
     ["R. M. A. T. Udawattegedara"]
   ),
+  "d1-a-04": paperPeople({
+    name: "Don Bosco Prashanth",
+    country: "Sri Lanka"
+  }),
 
   // Session B — Artificial Intelligence in Education
   "d1-b-01": paperPeople({
@@ -154,6 +158,14 @@ const abstractOverrides: Partial<
     name: "Dulashi Kongahawaththa",
     country: "Sri Lanka"
   }),
+  "d1-d-05": paperPeople({
+    name: "Harishrene Hariyendiran",
+    country: "Sri Lanka"
+  }),
+  "d1-d-06": paperPeople({
+    name: "Prasanthika Balage",
+    country: "Sri Lanka"
+  }),
 
   // Session E — Emerging Methods, Technologies & Tools
   "d1-e-01": paperPeople({
@@ -178,6 +190,10 @@ const abstractOverrides: Partial<
     name: "R. D. M. K. Thivanka Wimalachandra",
     country: "Sri Lanka"
   }),
+  "d1-e-05": paperPeople({
+    name: "A. L. I. Mihirini De Silva",
+    country: "Sri Lanka"
+  }),
 
   // Session F — Ethics, Quality Assurance & Governance
   "d1-f-01": paperPeople({
@@ -190,6 +206,14 @@ const abstractOverrides: Partial<
   }),
   "d1-f-03": paperPeople({
     name: "Abdul Razack Irsha Farwin",
+    country: "Sri Lanka"
+  }),
+  "d1-f-04": paperPeople({
+    name: "Mohammadu Abdul Rahman Pathima Rikaza",
+    country: "Sri Lanka"
+  }),
+  "d1-f-05": paperPeople({
+    name: "Mahinda Bandara Sakalasoriya",
     country: "Sri Lanka"
   }),
 
@@ -271,6 +295,10 @@ const abstractOverrides: Partial<
   ),
   "d1-p-04": paperPeople({
     name: "Wannakuwaththa Mitibaduge Gihan Udayanga",
+    country: "Sri Lanka"
+  }),
+  "d1-p-05": paperPeople({
+    name: "Rathnayake Mudiyanselage Shelton Indika Wijebandara",
     country: "Sri Lanka"
   })
 };

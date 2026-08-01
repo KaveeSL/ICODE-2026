@@ -12,6 +12,7 @@ export type ProgrammeSession = {
 export type Day1Paper = {
   title: string;
   tbc?: boolean;
+  onlinePresentation?: boolean;
 };
 
 export type Day1HallSession = {
@@ -48,8 +49,9 @@ export const day1Schedule: Day1Slot[] = [
   },
   {
     time: "9:30 – 10:00 am",
-    title: "Plenary Speech",
-    detail: "Professor Chan-Yun Yang"
+    title: "Keynote Speech",
+    detail:
+      "Higher Learning, Higher Standards: CEO Educational Background and Corporate ESG Performance\nProf. Sherry Chan\nDean, International College of Sustainability Innovations\nNational Taipei University\n\nProf. Chan-Yun Yang\nNational Taipei University"
   },
   {
     time: "10:00 – 11:00 am",
@@ -72,13 +74,16 @@ export const day1Schedule: Day1Slot[] = [
             title:
               "Bridging the Liveware Gap: A Mixed-Methods Study on Digital Infrastructure Readiness and Pedagogical Awareness Among Lecturers and Prospective Teachers at Sri Lankan National Colleges of Education (NCOEs)"
           },
-          { title: "TBC", tbc: true }
+          {
+            title:
+              "SCOApp: A Multi-Tenant Platform for End-to-End Digitalization of Government Services in Sri Lanka"
+          }
         ]
       },
       {
         hall: "Session B",
         theme: "Artificial Intelligence in Education",
-        chair: "Dr Sandareka Wickramanayake",
+        chair: "Prof Thanuja Sandanayake",
         papers: [
           {
             title:
@@ -156,21 +161,27 @@ export const day1Schedule: Day1Slot[] = [
             title:
               "AI in Fashion Design Practice: A Review of Designer adaptation to Artificial Intelligence"
           },
-          { title: "TBC", tbc: true },
-          { title: "TBC", tbc: true }
+          {
+            title:
+              "An Artificial Intelligence Driven Adaptive Learning Platform for Equitable and Multilingual ICT Education in Sri Lanka"
+          },
+          {
+            title:
+              "A Financial Market Data Access Architecture for Inclusive Data Science Education"
+          }
         ]
       }
     ]
   },
-  { time: "12:45 – 1:45 pm", title: "Lunch", isBreak: true },
+  { time: "12:45 – 1:30 pm", title: "Lunch", isBreak: true },
   {
-    time: "1:45 – 2:15 pm",
+    time: "1:30 – 2:00 pm",
     title: "Plenary Speech",
     detail:
       "Research in the age of large language models\nDr Srinath Perera\nVice President/ Head of Research, WSO2 Inc."
   },
   {
-    time: "2:15 – 3:15 pm",
+    time: "2:00 – 3:15 pm",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -193,6 +204,10 @@ export const day1Schedule: Day1Slot[] = [
           {
             title:
               "A Low-Cost, Verifiable FPGA Resource for Embedded Machine-Learning Education in Open and Distance Learning"
+          },
+          {
+            title:
+              "From Novice to Digital Expert: Insights of the Learning Journeys of Fashion Design Professionals in Sri Lanka"
           }
         ]
       },
@@ -213,7 +228,14 @@ export const day1Schedule: Day1Slot[] = [
             title:
               "AI-Powered University and Career Guidance Platform for Equitable Access in Sri Lanka"
           },
-          { title: "TBC", tbc: true }
+          {
+            title:
+              "Open and distance learning as a tool for inclusive higher education in Sri Lanka: opportunities and challenges"
+          },
+          {
+            title:
+              "Understanding School Leavers' Perceptions of Open and Distance Learning Institutions: A 7Ps Marketing Mix Analysis from Sri Lanka"
+          }
         ]
       }
     ]
@@ -238,11 +260,15 @@ export const day1Schedule: Day1Slot[] = [
       {
         title:
           "Barriers Affecting Ease of Access to Online Education Among Undergraduate Students in Sri Lanka"
+      },
+      {
+        title:
+          "Enhancing Vocational Orientation for Inclusive Career Development Among Open School Learners in Sri Lanka"
       }
     ]
   },
   {
-    time: "4:00 – 4:45 pm",
+    time: "4:00 – 5:00 pm",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -293,7 +319,7 @@ export const day1Schedule: Day1Slot[] = [
       }
     ]
   },
-  { time: "4:45 – 5:00 pm", title: "Conclusion", isBreak: true }
+  { time: "5:00 – 5:10 pm", title: "Conclusion", isBreak: true }
 ];
 
 export const day2Schedule: ProgrammeSession[] = [

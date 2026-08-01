@@ -144,13 +144,18 @@ function Day1Timeline({ caption }: { caption: string }) {
                               <li
                                 key={`${hall.hall}-${paperIndex}-${paper.title}`}
                                 className={`programme-paper-list__item${
-                                  paper.tbc ? " programme-paper-list__item--tbc" : ""
-                                }`}
+                                  paper.onlinePresentation
+                                    ? " programme-paper-list__item--online"
+                                    : ""
+                                }${paper.tbc ? " programme-paper-list__item--tbc" : ""}`}
                               >
                                 <span className="programme-paper-list__num" aria-hidden>
                                   {paperIndex + 1}
                                 </span>
                                 <div className="programme-paper-list__body">
+                                  {paper.onlinePresentation ? (
+                                    <span className="programme-paper-list__tag">Online</span>
+                                  ) : null}
                                   {paper.tbc ? (
                                     <p className="programme-paper-list__title programme-paper-list__title--tbc">
                                       TBC
