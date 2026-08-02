@@ -327,12 +327,12 @@ export const day2Schedule: ProgrammeSession[] = [
   {
     time: "9:15 – 9:30 am",
     session: "Welcome address",
-    detail: "Vice Chancellor, University of Moratuwa"
+    detail: "Acting Vice Chancellor – Prof Dileeka Dias, University of Moratuwa"
   },
   {
     time: "9:30 – 9:45 am",
-    session: "Digital Transformation of Sri Lanka",
-    detail: "Dr. Hans Wijesuriya, Chief Advisor to the President on the Digital Economy"
+    session: "Digital Transformation of Sri Lankan Education",
+    detail: "Dr. Hans Wijesuriya"
   },
   {
     time: "9:45 – 10:25 am",
@@ -346,23 +346,23 @@ export const day2Schedule: ProgrammeSession[] = [
   },
   { time: "10:45 – 11:00 am", session: "Tea Break", isBreak: true },
   {
-    time: "11:00 am – 12:15 pm",
+    time: "11:00 am – 12:00 pm",
     session: "Digital Content – Sri Lankan Success stories",
     speakers: [
       "e-Thaksalawa – Ms Sumudu Wasana",
       "SLASSCOM Academy – Ms. Sandra Rosayro",
       "BIT – Ms Vishaka Nanayakkara",
-      "SuhuruSara"
+      "SuhuruSara – Ms. Sandamini Karunarathne"
     ]
   },
   {
-    time: "12:15 – 1:00 pm",
+    time: "12:00 – 1:00 pm",
     session: "Human Resource Development for ODL",
     speakers: [
       "LEARN – Dr Asitha Bandaranayake",
-      "MoE - Ms Sumudu Wasana",
+      "MoE – Ms Sumudu Wasana",
       "SLASS – Prof Udeni Nawagamuwa",
-      "SLIDA"
+      "SLIDA – Ms Anusha Batawalagamage"
     ]
   },
   { time: "1:00 – 1:45 pm", session: "Lunch", isBreak: true },
@@ -392,17 +392,22 @@ export const day2Schedule: ProgrammeSession[] = [
     detail: "Mr Hasith Yaggahavita"
   },
   {
-    time: "3:10 – 4:15 pm",
+    time: "3:10 – 3:20 pm",
+    session: "Future of Education – Agentic AI",
+    detail: "Dr Sandareka Wickramanayake"
+  },
+  {
+    time: "3:20 – 4:25 pm",
     session: "Sri Lanka's unified digital transformation – way forward Panel Discussion",
     panelists: [
       "Eng. Eranga Weeraratne, Deputy Minister of Digital Economy",
       "Mr. G. Pradeep Saputhanthri, Secretary to the Prime Minister, additional secretaries",
+      "Secretary / Digital Economy – Mr. Waruna Sri Danapala",
       "Senior Prof. Kapila Seneviratne, Chairman, University Grants Commission",
-      "Dr. Hans Wijesuriya, Chief Advisor to the President on the Digital Economy",
-      "Prof. JMA Manatunge, Dean/Engineering UoM"
+      "Prof. Jagath Manathunge, Dean/Engineering UoM"
     ]
   },
-  { time: "4:30 pm onwards", session: "High tea and Networking", isBreak: true }
+  { time: "4:30 pm onwards", session: "High tea and Networking – Ruby", isBreak: true }
 ];
 
 export const day3Workshops: Day3Workshop[] = [
