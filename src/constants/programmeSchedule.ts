@@ -187,7 +187,7 @@ export const day1Schedule: Day1Slot[] = [
       {
         hall: "Session E",
         theme: "Emerging Methods, Technologies & Tools",
-        chair: "Prof Gayathri Kuruppu",
+        chair: "Dr Kengatharaiyar Sarveswaran",
         papers: [
           {
             title:

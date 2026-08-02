@@ -49,22 +49,19 @@ const abstractOverrides: Partial<
   // Session A — Open Learning, Access & Inclusion
   "d1-a-01": paperPeople(
     {
-      name: "Muthuwadura Lakma Ravihari",
+      name: "Muthuwadure Lakma Ravihari",
       country: "Sri Lanka"
     },
-    ["A. L. A. Rahman"]
+    ["Muthuwadura Udeni Thakshila"]
   ),
   "d1-a-02": paperPeople({
-    name: "Mohammadu Abdul Rahman Pathima Rikaza",
+    name: "Mohammadhu Abdul Rahman Pathima Rikasa",
     country: "Sri Lanka"
   }),
-  "d1-a-03": paperPeople(
-    {
-      name: "Cletus Florentine Rodrigo",
-      country: "Sri Lanka"
-    },
-    ["R. M. A. T. Udawattegedara"]
-  ),
+  "d1-a-03": paperPeople({
+    name: "Cletus Florentine Rodrigo",
+    country: "Sri Lanka"
+  }),
   "d1-a-04": paperPeople({
     name: "Don Bosco Prashanth",
     country: "Sri Lanka"
@@ -72,22 +69,25 @@ const abstractOverrides: Partial<
 
   // Session B — Artificial Intelligence in Education
   "d1-b-01": paperPeople({
-    name: "Kurugama Arachchillage Shehan Dilmika",
+    name: "Kurugama Arachchilage Shehan Dilmika",
     country: "Sri Lanka"
   }),
-  "d1-b-02": paperPeople(
-    {
-      name: "S. M. Basuri Lamindu Senanayake",
-      country: "Sri Lanka"
-    },
-    ["A. V. Chamal Sandhana Senarathne"]
-  ),
+  "d1-b-02": paperPeople({
+    name: "S. M. Basuri Larnandu Senanayake",
+    country: "Sri Lanka"
+  }),
   "d1-b-03": paperPeople(
     {
       name: "Jitendra Alaparthi",
       country: "India"
     },
-    ["Velegapudi Sreenivas"]
+    [
+      "M. V. Vijaya Saradhi",
+      "Sreenivas Velagapudi",
+      "Venkataramana Bandaru",
+      "Devi Gujjula",
+      "Arunajyothi Sajja"
+    ]
   ),
   "d1-b-04": paperPeople({
     name: "Weerakoon Mudiyanselage Dilki Anuradha Weerakoon",
@@ -97,37 +97,33 @@ const abstractOverrides: Partial<
   // Session C — Digital Transformation & Learner Engagement
   "d1-c-01": paperPeople(
     {
-      name: "Jayasingha Mudiyanselage Gamith Dilshan Thimira Bandara",
+      name: "Jayasingha Mudiyanselage Gamith Dilshan Thimira Bandara Jayasingha",
       country: "Sri Lanka"
     },
-    ["Gayani Wickramarathne", "Janani Rasanjali"]
+    ["Gayani Wickramarathne"]
   ),
-  "d1-c-02": paperPeople(
-    {
-      name: "Pasan Wijayawardhene",
-      country: "Sri Lanka"
-    },
-    ["Nazardeen Farhath Nuha"]
-  ),
+  "d1-c-02": paperPeople({
+    name: "Pasan Wijayawardhana",
+    country: "Sri Lanka"
+  }),
   "d1-c-03": paperPeople({
     name: "Ashmini Kalika Karunarathne",
     country: "Sri Lanka"
   }),
-  "d1-c-04": paperPeople(
-    {
-      name: "Malavi Pathirannehelage Danindu Sandeepa Pathirana",
-      country: "Sri Lanka"
-    },
-    ["Panduwawala Kankanamalage Laksarani Panduwawala"]
-  ),
+  "d1-c-04": paperPeople({
+    name: "Malavi Pathirannehelage Danindu Sandeepa Pathirana",
+    country: "Sri Lanka"
+  }),
   "d1-c-05": paperPeople(
     {
       name: "Kalansuriya Arachchige Praveen Madhusanka Perera",
       country: "Sri Lanka"
     },
     [
-      "Athukoralage Ashan Lakshitha",
-      "Kumarapeli Arachchige Dona Chethani Upeksha"
+      "Ashan Lakshitha",
+      "Chethani Kumarapeli",
+      "Mathivathanan Yokenthira",
+      "Chathurika Welliwita"
     ]
   ),
   "d1-c-06": paperPeople({
@@ -141,15 +137,12 @@ const abstractOverrides: Partial<
       name: "Fareed Mohamed Nawastheen",
       country: "Sri Lanka"
     },
-    ["N. G. L. S. J. Liyanage", "K. S. P. Silindra"]
+    ["N. G. L. S. J. Liyanage", "K. S. P. Sisindra", "Shajehan Shifaan"]
   ),
-  "d1-d-02": paperPeople(
-    {
-      name: "Luxika Raguram",
-      country: "Sri Lanka"
-    },
-    ["Sharmi Shanmuganathan"]
-  ),
+  "d1-d-02": paperPeople({
+    name: "Luxika Raguram",
+    country: "Sri Lanka"
+  }),
   "d1-d-03": paperPeople({
     name: "Sheraz Kaleem",
     country: "Pakistan"
@@ -159,11 +152,11 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
   "d1-d-05": paperPeople({
-    name: "Harishrene Hariyendiran",
+    name: "Harisshiene Hariyendiran",
     country: "Sri Lanka"
   }),
   "d1-d-06": paperPeople({
-    name: "Prasanthika Balage",
+    name: "Prasandika Balage",
     country: "Sri Lanka"
   }),
 
@@ -172,19 +165,16 @@ const abstractOverrides: Partial<
     name: "Vindya Vimani Senadheera",
     country: "Sri Lanka"
   }),
-  "d1-e-02": paperPeople(
-    {
-      name: "Arewa Waththage Rusin Thathsara Aenarathna",
-      country: "Sri Lanka"
-    },
-    ["Yohan Kavinda"]
-  ),
+  "d1-e-02": paperPeople({
+    name: "Arawa Waththage Rusin Thathsara Senarathna",
+    country: "Sri Lanka"
+  }),
   "d1-e-03": paperPeople(
     {
       name: "Ehanathan Shanmuganathan",
       country: "Sri Lanka"
     },
-    ["Shanathan Shanmuganathan"]
+    ["Krishnakumar Mahalingam", "Raagulan Kanthasamy"]
   ),
   "d1-e-04": paperPeople({
     name: "R. D. M. K. Thivanka Wimalachandra",
@@ -209,28 +199,25 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
   "d1-f-04": paperPeople({
-    name: "Mohammadu Abdul Rahman Pathima Rikaza",
+    name: "Mohammadhu Abdul Rahman Pathima Rikasa",
     country: "Sri Lanka"
   }),
   "d1-f-05": paperPeople({
-    name: "Mahinda Bandara Sakalasoriya",
+    name: "Mahinda Bandara Sakalasooriya",
     country: "Sri Lanka"
   }),
 
   // Session G — Online Pedagogy & Learner Engagement
-  "d1-g-01": paperPeople(
-    {
-      name: "Panduwawala Kankanamalage Laksarani Panduwawala",
-      country: "Sri Lanka"
-    },
-    ["Malavi Pathirannehelage Danindu Sandeepa Pathirana"]
-  ),
+  "d1-g-01": paperPeople({
+    name: "Panduwawala Kankanamalage Laksarani Panduwawala",
+    country: "Sri Lanka"
+  }),
   "d1-g-02": paperPeople(
     {
       name: "Jayalath Pathirannehelage Dulanjali Wijesekara",
       country: "Sri Lanka"
     },
-    ["Mohammed Nawfal Mohammed Afsaan", "B. H. Sudantha"]
+    ["B. H. Sudantha", "Afsaan Mohammed"]
   ),
   "d1-g-03": paperPeople({
     name: "Jageshkar Sivahar",
@@ -244,7 +231,7 @@ const abstractOverrides: Partial<
   // Session H — Access, Inclusion & Equity in Digital Education
   "d1-h-01": paperPeople(
     {
-      name: "Sayuri Withana",
+      name: "Sayuri Witharana",
       country: "Sri Lanka"
     },
     ["Tiloka De Silva"]
@@ -254,44 +241,51 @@ const abstractOverrides: Partial<
       name: "Haritha Weerathunga",
       country: "Sri Lanka"
     },
-    ["Lakmina Gamage"]
+    [
+      "Lakmina Gamage",
+      "B. H. Sudantha",
+      "Vishaka Nanayakkara",
+      "Buddhika Karunaratne"
+    ]
   ),
   "d1-h-03": paperPeople(
     {
       name: "Rajendran Adshayan",
       country: "Sri Lanka"
     },
-    ["Rubakumar Dibarshan"]
+    ["Jeevathas Ushalini"]
   ),
   "d1-h-04": paperPeople(
     {
       name: "Stephen Koralalage Don Chethiya Hasaruwan Korala",
       country: "Sri Lanka"
     },
-    ["K. D. L. H. Jayarathna"]
+    ["Lakshika Jayarathna"]
   ),
 
-  // Poster Session — authors kept from earlier lists after papers moved here
-  "d1-p-01": paperPeople(
-    {
-      name: "Doluwala Gedara Sathsarani Nuwandhara Samarakoon",
-      country: "Sri Lanka"
-    },
-    ["Doluwala Gedara Samarakoon"]
-  ),
+  // Poster Session
+  "d1-p-01": paperPeople({
+    name: "Doluwala Gedara Sathsarani Nuwandhara Samarakoon",
+    country: "Sri Lanka"
+  }),
   "d1-p-02": paperPeople(
     {
-      name: "P. I. V. Wijewardhane",
+      name: "P. I. V. Wijewardhana",
       country: "Sri Lanka"
     },
-    ["D. A. Kaludewa", "P. M. K. L. Y. Kapugamage"]
+    [
+      "Dulami Kaludewa",
+      "Lakindu Yasomith",
+      "Tharupathi Vihasa",
+      "Asheela Shehani"
+    ]
   ),
   "d1-p-03": paperPeople(
     {
       name: "W. Venura Deshan Perera",
       country: "Sri Lanka"
     },
-    ["Chrishankar Janarthanan"]
+    ["Chrishankar Janathanan"]
   ),
   "d1-p-04": paperPeople({
     name: "Wannakuwaththa Mitibaduge Gihan Udayanga",
