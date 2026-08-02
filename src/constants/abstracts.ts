@@ -103,7 +103,7 @@ const abstractOverrides: Partial<
     ["Gayani Wickramarathne"]
   ),
   "d1-c-02": paperPeople({
-    name: "Pasan Wijayawardhana",
+    name: "Luxika Raguram",
     country: "Sri Lanka"
   }),
   "d1-c-03": paperPeople({
@@ -140,7 +140,7 @@ const abstractOverrides: Partial<
     ["N. G. L. S. J. Liyanage", "K. S. P. Sisindra", "Shajehan Shifaan"]
   ),
   "d1-d-02": paperPeople({
-    name: "Luxika Raguram",
+    name: "Pasan Wijayawardhana",
     country: "Sri Lanka"
   }),
   "d1-d-03": paperPeople({

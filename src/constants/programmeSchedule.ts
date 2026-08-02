@@ -121,7 +121,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Preparing Generation Alpha for an AI-Augmented Labour Market: Strategic Insights from Sri Lanka's Education System"
+              "AI-Assisted Content and Language Integrated Learning (CLIL): Enhancing English Language Proficiency among Tamil-Medium Social Sciences Undergraduates"
           },
           {
             title:
@@ -151,7 +151,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "AI-Assisted Content and Language Integrated Learning (CLIL): Enhancing English Language Proficiency among Tamil-Medium Social Sciences Undergraduates"
+              "Preparing Generation Alpha for an AI-Augmented Labour Market: Strategic Insights from Sri Lanka's Education System"
           },
           {
             title:
