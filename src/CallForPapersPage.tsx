@@ -23,7 +23,7 @@ import {
 } from "./constants/contact";
 import extendedAbstractTemplateWord from "./assets/docs/ICODE2026-Extended Abstract Template.docx?url";
 import slidesTemplatePptx from "./assets/docs/ICODE26 Slides template.pptx?url";
-import posterTemplatePdf from "./assets/docs/ICODE26 Poster Template.pdf?url";
+import posterTemplatePdf from "./assets/docs/Poster Template.pdf?url";
 import posterGuidelinesImg from "./assets/posterguidelines.jpg";
 import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";

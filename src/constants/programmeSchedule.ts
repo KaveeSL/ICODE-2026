@@ -39,21 +39,21 @@ export type Day3Workshop = {
 };
 
 export const day1Schedule: Day1Slot[] = [
-  { time: "8:30 – 9:00 am", title: "Coffee and Networking", isBreak: true },
-  { time: "9:00 – 9:10 am", title: "Inauguration" },
+  { time: "08:30 – 09:00", title: "Coffee and Networking", isBreak: true },
+  { time: "09:00 – 09:10", title: "Inauguration" },
   {
-    time: "9:10 – 9:30 am",
+    time: "09:10 – 09:30",
     title: "Welcome address",
     detail: "Prof Malik Ranasinghe"
   },
   {
-    time: "9:30 – 10:00 am",
+    time: "09:30 – 10:00",
     title: "Keynote Speech",
     detail:
       "Higher Learning, Higher Standards: CEO Educational Background and Corporate ESG Performance\nProf. Sherry Chan\nDean, International College of Sustainability Innovations\nNational Taipei University\n\nProf. Chan-Yun Yang\nNational Taipei University"
   },
   {
-    time: "10:00 – 11:00 am",
+    time: "10:00 – 11:00",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -104,9 +104,9 @@ export const day1Schedule: Day1Slot[] = [
       }
     ]
   },
-  { time: "11:00 – 11:15 am", title: "Tea Break", isBreak: true },
+  { time: "11:00 – 11:15", title: "Tea Break", isBreak: true },
   {
-    time: "11:15 am – 12:45 pm",
+    time: "11:15 – 12:45",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -135,7 +135,8 @@ export const day1Schedule: Day1Slot[] = [
               "Behavioural Determinants of Learner Engagement Decay in Open and Distance Learning: The Role of Digital Learning Behaviours and Self-Regulated Learning"
           },
           {
-            title: "Digital Education in Sri Lanka: A Bibliometric Analysis"
+            title:
+              "An Artificial Intelligence Driven Adaptive Learning Platform for Equitable and Multilingual ICT Education in Sri Lanka"
           }
         ]
       },
@@ -161,8 +162,7 @@ export const day1Schedule: Day1Slot[] = [
               "AI in Fashion Design Practice: A Review of Designer adaptation to AI"
           },
           {
-            title:
-              "An Artificial Intelligence Driven Adaptive Learning Platform for Equitable and Multilingual ICT Education in Sri Lanka"
+            title: "Digital Education in Sri Lanka: A Bibliometric Analysis"
           },
           {
             title:
@@ -172,15 +172,15 @@ export const day1Schedule: Day1Slot[] = [
       }
     ]
   },
-  { time: "12:45 – 1:30 pm", title: "Lunch", isBreak: true },
+  { time: "12:45 – 13:30", title: "Lunch", isBreak: true },
   {
-    time: "1:30 – 2:00 pm",
+    time: "13:30 – 14:00",
     title: "Plenary Speech",
     detail:
       "Research in the age of large language models\nDr Srinath Perera\nVice President/ Head of Research, WSO2 Inc."
   },
   {
-    time: "2:00 – 3:15 pm",
+    time: "14:00 – 15:15",
     title: "Parallel Technical Sessions",
     halls: [
       {
@@ -239,9 +239,9 @@ export const day1Schedule: Day1Slot[] = [
       }
     ]
   },
-  { time: "3:15 – 3:30 pm", title: "Tea Break", isBreak: true },
+  { time: "15:15 – 15:30", title: "Tea Break", isBreak: true },
   {
-    time: "3:30 – 4:00 pm",
+    time: "15:30 – 16:00",
     title: "Poster Session",
     papers: [
       {
@@ -267,12 +267,12 @@ export const day1Schedule: Day1Slot[] = [
     ]
   },
   {
-    time: "4:00 – 5:00 pm",
+    time: "16:00 – 17:15",
     title: "Parallel Technical Sessions",
     halls: [
       {
         hall: "Session G",
-        theme: "Online Pedagogy & Learner Engagement",
+        theme: "Pedagogy & Learner Engagement",
         chair: "Dr Sureka Thiruchittampalam",
         papers: [
           {
@@ -289,7 +289,11 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Synthesis of AI Integration Strategies in Open and Digital Education: A Global Policy and Practice Review"
+              "Student Negotiations of Authorship and Ethics in AI-Assisted Visual Production: A Case Study of Undergraduate Film Education at the Department of Drama, Cinema and Television, University of Kelaniya"
+          },
+          {
+            title:
+              "An Explainable AI Framework for Academic Article Classification to Support Research and Learning"
           }
         ]
       },
@@ -313,12 +317,16 @@ export const day1Schedule: Day1Slot[] = [
           {
             title:
               "A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
+          },
+          {
+            title:
+              "Synthesis of AI Integration Strategies in Open and Digital Education: A Global Policy and Practice Review"
           }
         ]
       }
     ]
   },
-  { time: "5:00 – 5:10 pm", title: "Conclusion", isBreak: true }
+  { time: "17:15 – 17:30", title: "Conclusion", isBreak: true }
 ];
 
 export const day2Schedule: ProgrammeSession[] = [
@@ -425,25 +433,11 @@ export const day3Workshops: Day3Workshop[] = [
       "For A/L students studying ICT and/or Arts, this workshop teaches essential skills needed to thrive in a technology-driven world. The workshop introduces emerging technologies, future career opportunities, and the importance of adaptability, problem-solving, and lifelong learning."
   },
   {
-    title: "Applied AI in the Public Sector",
-    audience: "Government Employees",
-    time: "9:00 am – 1:00 pm",
-    description:
-      "A workshop for government employees which explores how AI can be used in the public sector to; automate repetitive tasks, fraud detection, analyse complex data to assist in policy making, to engage with citizens using chatbots to answer queries and personalize services to citizens."
-  },
-  {
     title: "Moodle Roundtable",
     audience: "MoE, CODLs",
     time: "9:00 am – 12:00 pm",
     description:
       "Moodle Roundtable is an interactive discussion where educators and Moodle users share experiences, best practices, and practical solutions for online teaching and learning. Participants will exchange ideas on course design, assessment, and learner engagement while addressing common challenges. The session promotes collaboration and the sharing of actionable insights."
-  },
-  {
-    title: "Digital Tools in Education",
-    audience: "School / University Teachers",
-    time: "1:00 – 4:00 pm",
-    description:
-      "For school and university educators this workshop covers various online platforms and digital tools that can be used in education such as tools for interactive instruction and engagement, formative assessment and quiz creation, and tools which encourage collaboration and idea sharing between students."
   },
   {
     title: "Leading the Digital Transformation",
@@ -458,13 +452,6 @@ export const day3Workshops: Day3Workshop[] = [
     time: "1:00 – 4:00 pm",
     description:
       "For private and public officers and quality assurance directors, this workshop focuses on the customer experience in digital services and how to refine the user’s journey across public digital learning channels."
-  },
-  {
-    title: "AI and Its Derivatives",
-    audience: "UG / PG Students",
-    time: "Online session",
-    description:
-      "A workshop of undergraduate and postgraduate students: exploring AI tools, trends and practical applications beyond ChatGPT with a special focus on generative AI, AI agents, automations, and emerging technologies."
   }
 ];
 

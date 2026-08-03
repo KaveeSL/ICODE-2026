@@ -133,7 +133,7 @@ const abstractOverrides: Partial<
     ]
   ),
   "d1-c-06": paperPeople({
-    name: "Uditha Gunasekara",
+    name: "Harisshiene Hariyendiran",
     country: "Sri Lanka"
   }),
 
@@ -158,7 +158,7 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
   "d1-d-05": paperPeople({
-    name: "Harisshiene Hariyendiran",
+    name: "Uditha Gunasekara",
     country: "Sri Lanka"
   }),
   "d1-d-06": paperPeople({
@@ -213,7 +213,7 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
 
-  // Session G — Online Pedagogy & Learner Engagement
+  // Session G — Pedagogy & Learner Engagement
   "d1-g-01": paperPeople({
     name: "Panduwawala Kankanamalage Laksarani Panduwawala",
     country: "Sri Lanka"
@@ -230,7 +230,7 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
   "d1-g-04": paperPeople({
-    name: "Weerakkodige Ayesha Kalhari Jayasinghe",
+    name: "Pabasari Paranamana",
     country: "Sri Lanka"
   }),
 
@@ -268,6 +268,10 @@ const abstractOverrides: Partial<
     },
     ["Lakshika Jayarathna"]
   ),
+  "d1-h-05": paperPeople({
+    name: "Weerakkodige Ayesha Kalhari Jayasinghe",
+    country: "Sri Lanka"
+  }),
 
   // Poster Session
   "d1-p-01": paperPeople({
