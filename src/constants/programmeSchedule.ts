@@ -12,7 +12,6 @@ export type ProgrammeSession = {
 export type Day1Paper = {
   title: string;
   tbc?: boolean;
-  onlinePresentation?: boolean;
 };
 
 export type Day1HallSession = {
@@ -159,7 +158,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "AI in Fashion Design Practice: A Review of Designer adaptation to Artificial Intelligence"
+              "AI in Fashion Design Practice: A Review of Designer adaptation to AI"
           },
           {
             title:
@@ -274,7 +273,7 @@ export const day1Schedule: Day1Slot[] = [
       {
         hall: "Session G",
         theme: "Online Pedagogy & Learner Engagement",
-        chair: "Dr Sureka Thiruchittappalam",
+        chair: "Dr Sureka Thiruchittampalam",
         papers: [
           {
             title:
@@ -313,7 +312,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "PreProd SE: A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
+              "A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
           }
         ]
       }
@@ -402,12 +401,12 @@ export const day2Schedule: ProgrammeSession[] = [
     panelists: [
       "Eng. Eranga Weeraratne, Deputy Minister of Digital Economy",
       "Mr. G. Pradeep Saputhanthri, Secretary to the Prime Minister, additional secretaries",
-      "Secretary / Digital Economy – Mr. Waruna Sri Danapala",
+      "Mr. Waruna Sri Danapala, Secretary / Digital Economy",
       "Senior Prof. Kapila Seneviratne, Chairman, University Grants Commission",
       "Prof. Jagath Manathunge, Dean/Engineering UoM"
     ]
   },
-  { time: "4:30 pm onwards", session: "High tea and Networking – Ruby", isBreak: true }
+  { time: "4:30 pm onwards", session: "High tea and Networking", isBreak: true }
 ];
 
 export const day3Workshops: Day3Workshop[] = [

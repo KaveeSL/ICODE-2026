@@ -1,4 +1,6 @@
 import { day1Schedule } from "./programmeSchedule";
+import { presentationSlidesByPaperId } from "./presentationSlides";
+import { abstractContentById } from "./abstractContent";
 
 export type ConferenceAbstract = {
   id: string;
@@ -11,6 +13,7 @@ export type ConferenceAbstract = {
   theme: string;
   /** Plain-text abstract when no PDF is available yet */
   abstractText?: string;
+  keywords?: string[];
   /** Path under /public, e.g. /abstracts/d1-a-01.pdf */
   abstractPdfUrl?: string;
   slidesUrl?: string;
@@ -102,10 +105,13 @@ const abstractOverrides: Partial<
     },
     ["Gayani Wickramarathne"]
   ),
-  "d1-c-02": paperPeople({
-    name: "Luxika Raguram",
-    country: "Sri Lanka"
-  }),
+  "d1-c-02": paperPeople(
+    {
+      name: "Luxika Raguram",
+      country: "Sri Lanka"
+    },
+    ["Sharmi Shanmuganathan"]
+  ),
   "d1-c-03": paperPeople({
     name: "Ashmini Kalika Karunarathne",
     country: "Sri Lanka"
@@ -306,15 +312,26 @@ export const conferenceAbstracts: ConferenceAbstract[] = day1Schedule.flatMap((s
         .filter((paper) => !paper.tbc)
         .map((paper, index) => {
           const id = `d1-${letter.toLowerCase()}-${String(index + 1).padStart(2, "0")}`;
+          const content = abstractContentById[id];
           const base: ConferenceAbstract = {
             id,
             title: paper.title,
             authors: [],
             session: letter,
             sessionLabel: hall.theme,
-            theme: hall.theme
+            theme: hall.theme,
+            abstractText: content?.abstractText,
+            keywords: content?.keywords
           };
-          return { ...base, ...abstractOverrides[id] };
+          return {
+            ...base,
+            ...abstractOverrides[id],
+            abstractText:
+              abstractOverrides[id]?.abstractText ?? content?.abstractText,
+            keywords: abstractOverrides[id]?.keywords ?? content?.keywords,
+            slidesUrl:
+              abstractOverrides[id]?.slidesUrl ?? presentationSlidesByPaperId[id]
+          };
         });
     }) ?? [];
 
@@ -323,15 +340,24 @@ export const conferenceAbstracts: ConferenceAbstract[] = day1Schedule.flatMap((s
       ?.filter((paper) => !paper.tbc)
       .map((paper, index) => {
         const id = `d1-p-${String(index + 1).padStart(2, "0")}`;
+        const content = abstractContentById[id];
         const base: ConferenceAbstract = {
           id,
           title: paper.title,
           authors: [],
           session: "P",
           sessionLabel: "Poster Session",
-          theme: "Poster Session"
+          theme: "Poster Session",
+          abstractText: content?.abstractText,
+          keywords: content?.keywords
         };
-        return { ...base, ...abstractOverrides[id] };
+        return {
+          ...base,
+          ...abstractOverrides[id],
+          abstractText:
+            abstractOverrides[id]?.abstractText ?? content?.abstractText,
+          keywords: abstractOverrides[id]?.keywords ?? content?.keywords
+        };
       }) ?? [];
 
   return [...fromHalls, ...fromSlotPapers];

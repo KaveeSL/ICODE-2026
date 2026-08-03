@@ -84,14 +84,14 @@ export function SiteHeader({
           <Link to="/#dates" className="hover:text-uom-maroon">
             Important Dates
           </Link>
+          <Link to="/programme/day1" className="hover:text-uom-maroon">
+            Schedule
+          </Link>
           <Link to="/registration" className="hover:text-uom-maroon">
             Registration
           </Link>
           <Link to="/proceedings" className="hover:text-uom-maroon">
             Programme
-          </Link>
-          <Link to="/#committees" className="hover:text-uom-maroon">
-            Committees
           </Link>
           <Link to="/#contact" className="hover:text-uom-maroon">
             Contact
@@ -129,14 +129,14 @@ export function SiteHeader({
               <Link to="/#dates" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 Important Dates
               </Link>
+              <Link to="/programme/day1" onClick={onMobileNavClose} className="hover:text-uom-maroon">
+                Schedule
+              </Link>
               <Link to="/registration" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 Registration
               </Link>
               <Link to="/proceedings" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 Programme
-              </Link>
-              <Link to="/#committees" onClick={onMobileNavClose} className="hover:text-uom-maroon">
-                Committees
               </Link>
               <Link to="/#contact" onClick={onMobileNavClose} className="hover:text-uom-maroon">
                 Contact

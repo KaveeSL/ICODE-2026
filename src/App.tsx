@@ -538,15 +538,15 @@ function App() {
               <a href="#dates" className="hover:text-uom-maroon">
                 Important Dates
               </a>
+              <Link to="/programme/day1" className="hover:text-uom-maroon">
+                Schedule
+              </Link>
               <Link to="/registration" className="hover:text-uom-maroon">
                 Registration
               </Link>
               <Link to="/proceedings" className="hover:text-uom-maroon">
                 Programme
               </Link>
-              <a href="#committees" className="hover:text-uom-maroon">
-                Committees
-              </a>
               <a href="#contact" className="hover:text-uom-maroon">
                 Contact
               </a>
@@ -600,6 +600,13 @@ function App() {
                   Important Dates
                 </Link>
                 <Link
+                  to="/programme/day1"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-uom-maroon"
+                >
+                  Schedule
+                </Link>
+                <Link
                   to="/registration"
                   onClick={() => setMobileNavOpen(false)}
                   className="hover:text-uom-maroon"
@@ -612,13 +619,6 @@ function App() {
                   className="hover:text-uom-maroon"
                 >
                   Programme
-                </Link>
-                <Link
-                  to="/#committees"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-uom-maroon"
-                >
-                  Committees
                 </Link>
                 <Link
                   to="/#contact"

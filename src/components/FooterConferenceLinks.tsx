@@ -41,11 +41,8 @@ export function FooterConferenceLinks({ samePage = false }: FooterConferenceLink
         <NavItem to={path("#dates")}>Important Dates</NavItem>
       </li>
       <li>
-        <NavItem to={path("#days")}>3-day programme</NavItem>
-      </li>
-      <li>
-        <Link to="/proceedings" className={itemClass}>
-          Programme
+        <Link to="/programme/day1" className={itemClass}>
+          Schedule
         </Link>
       </li>
       <li>
@@ -54,7 +51,9 @@ export function FooterConferenceLinks({ samePage = false }: FooterConferenceLink
         </Link>
       </li>
       <li>
-        <NavItem to={path("#committees")}>Committees</NavItem>
+        <Link to="/proceedings" className={itemClass}>
+          Programme
+        </Link>
       </li>
       <li>
         <NavItem to={path("#faq")}>FAQs</NavItem>

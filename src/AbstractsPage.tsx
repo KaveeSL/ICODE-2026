@@ -22,8 +22,15 @@ function hasAbstract(item: ConferenceAbstract) {
   return Boolean(item.abstractText?.trim() || item.abstractPdfUrl);
 }
 
-function AbstractCard({ item }: { item: ConferenceAbstract }) {
-  const [open, setOpen] = useState(false);
+function AbstractCard({
+  item,
+  open,
+  onToggle
+}: {
+  item: ConferenceAbstract;
+  open: boolean;
+  onToggle: () => void;
+}) {
   const authorsLabel =
     item.authors.length > 0 ? item.authors.join(", ") : "Authors TBA";
   const abstractReady = hasAbstract(item);
@@ -50,7 +57,7 @@ function AbstractCard({ item }: { item: ConferenceAbstract }) {
         <button
           type="button"
           className={`abstracts-card__btn${abstractReady ? "" : " abstracts-card__btn--muted"}`}
-          onClick={() => setOpen((v) => !v)}
+          onClick={onToggle}
           aria-expanded={open}
         >
           <DocumentTextIcon className="h-4 w-4" aria-hidden />
@@ -114,7 +121,20 @@ function AbstractCard({ item }: { item: ConferenceAbstract }) {
             </a>
           ) : null}
           {item.abstractText ? (
-            <p className="abstracts-card__text">{item.abstractText}</p>
+            <p className="abstracts-card__text">
+              <span className="abstracts-card__abstract-label">Abstract—</span>
+              {item.abstractText}
+            </p>
+          ) : null}
+          {item.keywords?.length ? (
+            <div className="abstracts-card__keywords">
+              <span className="abstracts-card__keywords-label">Keywords</span>
+              <ul className="abstracts-card__keywords-list">
+                {item.keywords.map((keyword) => (
+                  <li key={keyword}>{keyword}</li>
+                ))}
+              </ul>
+            </div>
           ) : null}
           {!abstractReady ? (
             <p className="abstracts-card__placeholder">
@@ -131,16 +151,31 @@ export default function AbstractsPage() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [sessionFilter, setSessionFilter] = useState<string>("all");
+  const [openAbstractId, setOpenAbstractId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return conferenceAbstracts.filter((item) => {
       if (sessionFilter !== "all" && item.session !== sessionFilter) return false;
       if (!q) return true;
-      const haystack = `${item.title} ${item.authors.join(" ")} ${item.country ?? ""} ${item.theme} ${item.sessionLabel}`.toLowerCase();
+      const haystack = `${item.title} ${item.authors.join(" ")} ${item.country ?? ""} ${item.theme} ${item.sessionLabel} ${(item.keywords ?? []).join(" ")} ${item.abstractText ?? ""}`.toLowerCase();
       return haystack.includes(q);
     });
   }, [query, sessionFilter]);
+
+  const toggleAbstract = (id: string) => {
+    setOpenAbstractId((current) => (current === id ? null : id));
+  };
+
+  const openIndex = openAbstractId
+    ? filtered.findIndex((item) => item.id === openAbstractId)
+    : -1;
+  const peerIndex =
+    openIndex >= 0
+      ? openIndex % 2 === 0
+        ? openIndex + 1
+        : openIndex - 1
+      : -1;
 
   return (
     <SitePageShell className="flex flex-col">
@@ -221,9 +256,23 @@ export default function AbstractsPage() {
         </p>
 
         <div className="abstracts-grid mt-4">
-          {filtered.map((item) => (
-            <Reveal key={item.id} variant="up">
-              <AbstractCard item={item} />
+          {filtered.map((item, index) => (
+            <Reveal
+              key={item.id}
+              variant="up"
+              className={[
+                "abstracts-grid__item",
+                openAbstractId === item.id ? "abstracts-grid__item--open" : "",
+                index === peerIndex ? "abstracts-grid__item--peer" : ""
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <AbstractCard
+                item={item}
+                open={openAbstractId === item.id}
+                onToggle={() => toggleAbstract(item.id)}
+              />
             </Reveal>
           ))}
         </div>
