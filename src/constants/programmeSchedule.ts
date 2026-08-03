@@ -229,12 +229,9 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Open and distance learning as a tool for inclusive higher education in Sri Lanka: opportunities and challenges"
-          },
-          {
-            title:
               "Understanding School Leavers' Perceptions of Open and Distance Learning Institutions: A 7Ps Marketing Mix Analysis from Sri Lanka"
-          }
+          },
+          { title: "TBC", tbc: true }
         ]
       }
     ]
@@ -263,6 +260,34 @@ export const day1Schedule: Day1Slot[] = [
       {
         title:
           "Enhancing Vocational Orientation for Inclusive Career Development Among Open School Learners in Sri Lanka"
+      },
+      {
+        title:
+          "Innovation Avoidance and Authenticity Gaps in First-Year ICT Capstone Projects: A Study Design Proposal"
+      },
+      {
+        title:
+          "Evaluating the Effectiveness of Online and Distance Learning Approaches for Final-Year Software Development Projects"
+      },
+      {
+        title:
+          "Exploring the Convenience and Equitable Access Advantages of Open and Distance Learning Over Traditional Education Systems"
+      },
+      {
+        title:
+          "The Impact of Virtual Workshops and Supervisor Guidance on Final Year Project Success in Open and Distance Learning"
+      },
+      {
+        title:
+          "Balancing Collaboration and Accountability in Open and Distance Learning"
+      },
+      {
+        title:
+          "Developing Employability Skills in Open Distance Learning: A Comparison to Industry-Engaged and Traditional Learning Approaches"
+      },
+      {
+        title:
+          "Enhancing Learner Engagement in Open and Distance Learning Through Moodle Digital Badges: Evidence from the University of Moratuwa BIT Programme"
       }
     ]
   },

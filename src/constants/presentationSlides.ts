@@ -6,8 +6,11 @@ import slideFpga from "../assets/slides/A Low-Cost, Verifiable FPGA Resource for
 import slideFashionJourneys from "../assets/slides/Insights of the Learning Journeys of Fashion Design Professionals.pdf?url";
 import slideStudentNegotiations from "../assets/slides/Student Negotiations of Authorship and Ethics in AI Assisted Visual ProductionD 11.pdf?url";
 
+/** Flip to true when presentations should be publicly available. */
+export const SHOW_PRESENTATION_SLIDES = false;
+
 /** Presentation slides (PDF) keyed by Day 1 paper id (e.g. d1-a-01). */
-export const presentationSlidesByPaperId: Record<string, string> = {
+const slidesByPaperId: Record<string, string> = {
   "d1-a-01": slideContinuation,
   "d1-a-02": slideOdlInclusive,
   "d1-c-02": slideClil,
@@ -16,3 +19,6 @@ export const presentationSlidesByPaperId: Record<string, string> = {
   "d1-e-05": slideFashionJourneys,
   "d1-g-04": slideStudentNegotiations
 };
+
+export const presentationSlidesByPaperId: Record<string, string> =
+  SHOW_PRESENTATION_SLIDES ? slidesByPaperId : {};

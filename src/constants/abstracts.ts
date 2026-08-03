@@ -205,10 +205,6 @@ const abstractOverrides: Partial<
     country: "Sri Lanka"
   }),
   "d1-f-04": paperPeople({
-    name: "Mohammadhu Abdul Rahman Pathima Rikasa",
-    country: "Sri Lanka"
-  }),
-  "d1-f-05": paperPeople({
     name: "Mahinda Bandara Sakalasooriya",
     country: "Sri Lanka"
   }),
