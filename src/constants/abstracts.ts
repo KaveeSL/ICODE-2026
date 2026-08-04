@@ -52,10 +52,15 @@ const abstractOverrides: Partial<
   // Session A — Open Learning, Access & Inclusion
   "d1-a-01": paperPeople(
     {
-      name: "Muthuwadure Lakma Ravihari",
+      name: "Haritha Weerathunga",
       country: "Sri Lanka"
     },
-    ["Muthuwadura Udeni Thakshila"]
+    [
+      "Lakmina Gamage",
+      "B. H. Sudantha",
+      "Vishaka Nanayakkara",
+      "Buddhika Karunaratne"
+    ]
   ),
   "d1-a-02": paperPeople({
     name: "Mohammadhu Abdul Rahman Pathima Rikasa",
@@ -65,10 +70,13 @@ const abstractOverrides: Partial<
     name: "Cletus Florentine Rodrigo",
     country: "Sri Lanka"
   }),
-  "d1-a-04": paperPeople({
-    name: "Don Bosco Prashanth",
-    country: "Sri Lanka"
-  }),
+  "d1-a-04": paperPeople(
+    {
+      name: "Sayuri Witharana",
+      country: "Sri Lanka"
+    },
+    ["Tiloka De Silva"]
+  ),
 
   // Session B — Artificial Intelligence in Education
   "d1-b-01": paperPeople({
@@ -217,13 +225,10 @@ const abstractOverrides: Partial<
     name: "Panduwawala Kankanamalage Laksarani Panduwawala",
     country: "Sri Lanka"
   }),
-  "d1-g-02": paperPeople(
-    {
-      name: "Jayalath Pathirannehelage Dulanjali Wijesekara",
-      country: "Sri Lanka"
-    },
-    ["B. H. Sudantha", "Afsaan Mohammed"]
-  ),
+  "d1-g-02": paperPeople({
+    name: "Don Bosco Prashanth",
+    country: "Sri Lanka"
+  }),
   "d1-g-03": paperPeople({
     name: "Jageshkar Sivahar",
     country: "Sri Lanka"
@@ -243,22 +248,17 @@ const abstractOverrides: Partial<
   // Session H — Access, Inclusion & Equity in Digital Education
   "d1-h-01": paperPeople(
     {
-      name: "Sayuri Witharana",
+      name: "Muthuwadure Lakma Ravihari",
       country: "Sri Lanka"
     },
-    ["Tiloka De Silva"]
+    ["Muthuwadura Udeni Thakshila"]
   ),
   "d1-h-02": paperPeople(
     {
-      name: "Haritha Weerathunga",
+      name: "Jayalath Pathirannehelage Dulanjali Wijesekara",
       country: "Sri Lanka"
     },
-    [
-      "Lakmina Gamage",
-      "B. H. Sudantha",
-      "Vishaka Nanayakkara",
-      "Buddhika Karunaratne"
-    ]
+    ["B. H. Sudantha", "Afsaan Mohammed"]
   ),
   "d1-h-03": paperPeople(
     {

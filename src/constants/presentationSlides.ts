@@ -21,8 +21,8 @@ export const SHOW_PRESENTATION_SLIDES = false;
 
 /** Presentation slides (PDF) keyed by Day 1 paper id (e.g. d1-a-01). */
 const slidesByPaperId: Record<string, string> = {
-  "d1-a-01": slideContinuation,
   "d1-a-02": slideOdlInclusive,
+  "d1-a-04": slideEarlyGpa,
   "d1-c-02": slideClil,
   "d1-c-05": slideBehavioural,
   "d1-d-01": slideAiLiteracy,
@@ -35,7 +35,7 @@ const slidesByPaperId: Record<string, string> = {
   "d1-f-03": slideCareerGuidance,
   "d1-g-04": slideStudentNegotiations,
   "d1-g-05": slideExplainableAi,
-  "d1-h-01": slideEarlyGpa,
+  "d1-h-01": slideContinuation,
   "d1-h-03": slideYoutube,
   "d1-h-04": slidePreProdSandbox
 };

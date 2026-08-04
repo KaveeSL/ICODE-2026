@@ -88,7 +88,7 @@ export const day1Schedule: Day1Slot[] = [
         papers: [
           {
             title:
-              "Continuation of Post-Pandemic Online Learning Preferences among children in Sri Lanka: A Qualitative Study"
+              "A Scalable, Cost-Effective Biometric Verification Ecosystem for High-Volume Examinations in Open and Distance Learning"
           },
           {
             title:
@@ -100,7 +100,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "SCOApp: A Multi-Tenant Platform for End-to-End Digitalization of Government Services in Sri Lanka"
+              "A Group-Stratified Reliability Framework for Trustworthy Early-GPA Prediction in Higher Education"
           }
         ]
       },
@@ -331,7 +331,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "From Static to Adaptive Gamification in Learning Management Systems: A Conceptual Framework for Personalized Learning"
+              "SCOApp: A Multi-Tenant Platform for End-to-End Digitalization of Government Services in Sri Lanka"
           },
           {
             title:
@@ -354,11 +354,11 @@ export const day1Schedule: Day1Slot[] = [
         papers: [
           {
             title:
-              "A Group-Stratified Reliability Framework for Trustworthy Early-GPA Prediction in Higher Education"
+              "Continuation of Post-Pandemic Online Learning Preferences among children in Sri Lanka: A Qualitative Study"
           },
           {
             title:
-              "A Scalable, Cost-Effective Biometric Verification Ecosystem for High-Volume Examinations in Open and Distance Learning"
+              "From Static to Adaptive Gamification in Learning Management Systems: A Conceptual Framework for Personalized Learning"
           },
           {
             title:
