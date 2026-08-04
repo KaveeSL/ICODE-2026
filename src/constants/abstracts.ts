@@ -300,6 +300,34 @@ const abstractOverrides: Partial<
   "d1-p-05": paperPeople({
     name: "Rathnayake Mudiyanselage Shelton Indika Wijebandara",
     country: "Sri Lanka"
+  }),
+  "d1-p-06": paperPeople({
+    name: "Shazna Kamaldeen",
+    country: "Sri Lanka"
+  }),
+  "d1-p-07": paperPeople({
+    name: "Dulmi Fonseka",
+    country: "Sri Lanka"
+  }),
+  "d1-p-08": paperPeople({
+    name: "Kaveesha Umayangani",
+    country: "Sri Lanka"
+  }),
+  "d1-p-09": paperPeople({
+    name: "Senuwi Silva",
+    country: "Sri Lanka"
+  }),
+  "d1-p-10": paperPeople({
+    name: "Tharushi Kurukulasuriya",
+    country: "Sri Lanka"
+  }),
+  "d1-p-11": paperPeople({
+    name: "Thashini Ambalawana",
+    country: "Sri Lanka"
+  }),
+  "d1-p-12": paperPeople({
+    name: "Kaveesha Nanayakkara",
+    country: "Sri Lanka"
   })
 };
 

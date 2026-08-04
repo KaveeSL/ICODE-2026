@@ -14,6 +14,12 @@ export type Day1Paper = {
   tbc?: boolean;
 };
 
+export type Day1Speaker = {
+  name: string;
+  role?: string;
+  affiliation?: string;
+};
+
 export type Day1HallSession = {
   hall: string;
   theme: string;
@@ -25,6 +31,9 @@ export type Day1Slot = {
   time: string;
   title: string;
   detail?: string;
+  /** Featured talk title (e.g. keynote) */
+  talkTitle?: string;
+  speakers?: Day1Speaker[];
   isBreak?: boolean;
   halls?: Day1HallSession[];
   /** Non-parallel paper list (e.g. poster session) */
@@ -49,8 +58,24 @@ export const day1Schedule: Day1Slot[] = [
   {
     time: "09:30 – 10:00",
     title: "Keynote Speech",
-    detail:
-      "Higher Learning, Higher Standards: CEO Educational Background and Corporate ESG Performance\nProf. Sherry Chan\nDean, International College of Sustainability Innovations\nNational Taipei University\n\nProf. Chan-Yun Yang\nNational Taipei University"
+    talkTitle:
+      "Higher Learning, Higher Standards: CEO Educational Background and Corporate ESG Performance",
+    speakers: [
+      {
+        name: "Prof. Sherry Chan",
+        role: "Dean, International College of Sustainability Innovations",
+        affiliation: "National Taipei University"
+      },
+      {
+        name: "Prof. Chan-Yun Yang",
+        affiliation: "National Taipei University"
+      },
+      {
+        name: "Prof. Min-Yuh Day",
+        role: "Professor and Director, Graduate Institute of Information Management",
+        affiliation: "National Taipei University"
+      }
+    ]
   },
   {
     time: "10:00 – 11:00",

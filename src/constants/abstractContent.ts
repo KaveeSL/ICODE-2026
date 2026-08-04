@@ -1,6 +1,6 @@
 /** Abstract text + keywords imported from conference PDF (matched by title). */
 export type AbstractContent = {
-  abstractText: string;
+  abstractText?: string;
   keywords?: string[];
 };
 
@@ -145,6 +145,83 @@ export const abstractContentById: Record<string, AbstractContent> = {
   "d1-p-05": {
     abstractText: `Access to education serves as a crucial factor in social mobility. Individuals leaving mainstream education become vulnerable NEET individuals. This study explored whether vocational orientation was facilitated within the context of Open School for disadvantaged groups in Sri Lanka. This research uses convergent mixed-methods, and quantitative data were gathered from 70 learners using structured surveys, alongside qualitative insights from 7 educators and coordinators. Statistical analysis was conducted using RStudio to compute descriptive statistics, frequency distributions, and chi-square tests, complemented by qualitative analysis using Braun and Clarke's thematic analysis. The results, generated through both quantitative data analysis using statistical methods and qualitative data analysis via theme generation, revealed a considerable lack of career awareness, where more than 70% of learners failed to know of any career guidance facilities available, while just 28.5% of learners enrolled in technical and vocational education and training programs due to economic, geographical, and institutional barriers. Perhaps most importantly, 64.3% were engaged in digital career guidance. The findings of the research suggest that transitioning from a fragmented approach to an integrated one, incorporating digital career guidance, would greatly enhance career readiness and inclusiveness.`,
     keywords: ["Open schooling", "vocational orientation", "digital career guidance", "inclusive education", "non- formal learning."]
+  },
+  "d1-p-06": {
+    abstractText: `The Bachelor of Information Technology (BIT) External Degree, administered by the Centre for Open and Distance Learning (CODL) at the University of Moratuwa, is designed for working adults and distance learners. The first capstone module first-year students are assigned requires them to design and implement an original desktop application of their own choice. Despite this freedom, two semesters of module coordination revealed that most students repeatedly select the same low-novelty topics, such as library, inventory, and school management systems. A likely explanation is that these topics offer abundant tutorials and source code online, making them feel safe. More strikingly, some students who select these well-resourced topics still cannot explain their own application's functionality at the Viva voce examination, raising serious questions about whether the work was genuinely original, copied from previous cohorts, heavily adapted from online resources, or outsourced entirely. This paper presents these observations as a study design proposal and outlines a mixed-methods investigation to identify the factors driving topic repetition and its relationship to authentic student understanding, with the aim of informing future module design and academic integrity practices in distance-learning ICT programmes.`,
+    keywords: [
+      "project-based learning",
+      "academic integrity",
+      "innovation in education",
+      "capstone projects",
+      "Viva voce assessment",
+      "distance learning"
+    ]
+  },
+  "d1-p-07": {
+    abstractText: `This study examines the effectiveness of online and distance learning approaches in coordinating final-year software development projects undertaken by Bachelor of Information Technology (BIT) students. The four-stage project lifecycle — proposal, interim, prototype, and final evaluation — is delivered predominantly through Zoom-based supervision and breakout-room assessments. Drawing on quantitative analysis of supervision attendance and evaluation scores across 155 eligible students, supplemented by supervisor and examiner feedback, findings indicate that consistent supervision attendance is associated with stronger performance at the technically demanding Prototype stage. Online breakout-room evaluations are effective for presentation-based assessment but present limitations for live code and database verification. Recommendations are proposed to strengthen the online supervision and evaluation framework.`,
+    keywords: [
+      "online learning",
+      "distance education",
+      "final-year projects",
+      "software development",
+      "project supervision",
+      "online assessment"
+    ]
+  },
+  "d1-p-08": {
+    abstractText: `This study empirically investigates the convenience, accessibility, and academic performance outcomes of Open and Distance Learning (ODL) systems compared with traditional face-to-face education. Utilizing dataset analysis across two core Information Technology modules (N=719) alongside comparative qualitative evaluation, the research examines how online degree delivery accommodates adult learners balancing employment, family responsibilities, and concurrent studies. Findings reveal that 67.3% of enrolled ODL students reside in distant, non-metropolitan regions across 22 national districts, achieving academic performance comparable to or exceeding urban peers (e.g., Jaffna pass rate 64.3% vs. Colombo 48.8%). Furthermore, flexible asynchronous evaluation structures enabled substantial grade progression (+37 to +46 pass conversions across repeat attempts). By eliminating travel costs, spatial constraints, and rigid scheduling, ODL democratizes higher education access while sustaining strong educational outcomes. The implications extend to institutional policy and digital education access.`,
+    keywords: [
+      "Open and Distance Learning",
+      "Geographic Equity",
+      "Work-Life-Study Balance",
+      "Asynchronous Assessment",
+      "Educational Access",
+      "Online Education"
+    ]
+  },
+  "d1-p-09": {
+    abstractText: `The Bachelor of Information Technology (BIT) Final Year Project (FYP) at the University of Moratuwa is a year-long capstone module delivered entirely in open and distance learning (ODL) mode, in which students develop software applications across domains such as business process automation, IoT, and machine learning. The programme has historically shown inconsistent proposal quality prior to supervisor allocation. To address this, the Centre for Open and Distance Learning (CODL) introduced a structured pre-proposal programme of fifteen to twenty virtual sessions and one physical workshop, covering problem formulation, literature review, stakeholder analysis, tool selection, proposal writing, and project management. This study examines how this combined intervention, pre-proposal workshops and subsequent monthly supervisor guidance closely monitored by CODL, influences student outcomes across the proposal, interim, and prototype evaluation stages. Of 305 students who submitted proposals, 296 passed (97.0%), with a mean score of 66.2%. Interim (n = 317) and prototype (n = 304) evaluation data further indicate that students who maintained consistent supervisor engagement and met stage deadlines tended to perform better. Findings will inform improvements to workshop design and supervisor monitoring in ODL capstone programmes.`,
+    keywords: [
+      "Open and distance learning",
+      "final year project",
+      "virtual workshops",
+      "supervisor guidance",
+      "project-based learning",
+      "BIT"
+    ]
+  },
+  "d1-p-10": {
+    abstractText: `Group work is widely adopted in higher education to promote collaboration, communication, and peer learning. In Open and Distance Learning (ODL), it also helps reduce learner isolation; however, group-based assessment often raises concerns regarding free-riding, unequal contribution, and the fair evaluation of individual performance. This study compares two project assessment models implemented in an undergraduate programming project module delivered through ODL. The conventional model relied on shared group submissions, whereas the redesigned model retained collaborative learning while requiring all assessed deliverables to be completed individually. Structured peer learning was facilitated through the Moodle Workshop module, enabling students to review peer work and refine their own submissions. Using an action research, mixed-methods approach, the study compares student participation, assessment progression, and learning outcomes across the two models. The findings indicate that the redesigned assessment model improves accountability by introducing multiple assessment checkpoints, enabling continuous monitoring of individual progress while preserving the benefits of peer collaboration. The study demonstrates that balancing collaboration with individual accountability can enhance fairness and transparency in project-based assessment within ODL environments.`,
+    keywords: [
+      "Open and Distance Learning",
+      "Group Work",
+      "Peer Learning",
+      "Assessment Integrity",
+      "Moodle Workshop",
+      "Project-Based Learning"
+    ]
+  },
+  "d1-p-11": {
+    abstractText: `Employability skill development remains a persistent challenge in Open and Distance Learning (ODL), where traditional pedagogical approaches often lack the industry engagement required to prepare graduates for professional settings. This study presents students following a traditional learning pathway and those enrolled in the Industry Mentoring Programme (IMP), an industry-engaged, digitally assessed module within the Bachelor of Information Technology (BIT) external degree at the University of Moratuwa, Sri Lanka. Constructive alignment principles and findings from six student cohorts demonstrate that industry-engaged approaches yield higher participation, satisfaction, and attainment of competencies in key soft skills, including communication, teamwork, leadership, critical thinking, and self-directed learning.`,
+    keywords: [
+      "Employability skills",
+      "Industry Mentoring Programme",
+      "Open and Distance Learning",
+      "Digital Assessment",
+      "Comparative Study",
+      "Constructive Alignment"
+    ]
+  },
+  "d1-p-12": {
+    abstractText: `Learner engagement in open and distance learning (ODL) is difficult to sustain, particularly among working adults studying through an LMS with limited instructor contact. The Bachelor of Information Technology (BIT) External Degree Programme, offered by the Centre for Open and Distance Learning (CODL) at the University of Moratuwa, Sri Lanka, observed low voluntary participation in the Industry Mentoring Programme (IMP) module. To address this, a five-badge framework was introduced using Moodle’s native badge functionality, combining automated awarding based on activity completion and manual recognition by the module coordinator. Badge design was grounded in Self-Determination Theory. Drawing on semester enrolment data from 2020 to 2025 and Moodle badge records, findings show that badge introduction in Semester 23S2 coincided with a 105% increase in enrolment and sustained participation growth in subsequent semesters. Badge notifications also prompted inactive students to return to the platform. The study demonstrates that Moodle’s built-in badge system is a practical, no-plugin intervention for improving engagement in large-scale ODL programmes, and offers a replicable implementation model for similar institutions.`,
+    keywords: [
+      "Moodle badges",
+      "gamification",
+      "learner engagement",
+      "open distance learning",
+      "BIT programme",
+      "self-determination theory"
+    ]
   },
 };
 

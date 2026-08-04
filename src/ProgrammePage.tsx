@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   AcademicCapIcon,
+  ArrowTopRightOnSquareIcon,
   CalendarDaysIcon,
   ChevronRightIcon,
   ClockIcon,
@@ -21,6 +22,8 @@ import {
   type Day1Slot,
   type ProgrammeSession
 } from "./constants/programmeSchedule";
+import { day1LiveFeedbackTracks } from "./constants/day1LiveFeedback";
+import { day2LiveFeedbackTracks } from "./constants/day2LiveFeedback";
 
 type ActiveDay = 1 | 2 | 3;
 
@@ -58,9 +61,111 @@ function isTentativeSpeaker(name: string) {
   return /to be confirmed/i.test(name);
 }
 
+function Day1LiveFeedbackPanel() {
+  return (
+    <section className="programme-feedback-board" id="day1-live-feedback" aria-labelledby="day1-live-feedback-heading">
+      <div className="programme-feedback-board__intro">
+        <p className="programme-feedback-board__eyebrow">During Day 1 sessions</p>
+        <h3 id="day1-live-feedback-heading" className="programme-feedback-board__heading">
+          Live questions &amp; feedback
+        </h3>
+        <p className="programme-feedback-board__lede">
+          Keynote for opening talks; pick the Session QR that matches your session letters.
+        </p>
+      </div>
+
+      <div className="programme-feedback-board__tracks">
+        {day1LiveFeedbackTracks.map((track) => (
+          <article
+            key={track.id}
+            className={`programme-feedback-track${
+              track.featured ? " programme-feedback-track--featured" : ""
+            }`}
+          >
+            <img
+              className="programme-feedback-track__qr"
+              src={track.qrSrc}
+              alt={`QR code for ${track.title} live feedback`}
+              width={176}
+              height={176}
+              loading="lazy"
+            />
+            <div className="programme-feedback-track__body">
+              <p className="programme-feedback-track__label">{track.title}</p>
+              <ul className="programme-feedback-track__sessions" aria-label={`${track.title} sessions`}>
+                {track.sessions.map((letter) => (
+                  <li key={letter}>{letter}</li>
+                ))}
+              </ul>
+              <a
+                href={track.url}
+                target="_blank"
+                rel="noreferrer"
+                className="programme-feedback-track__cta"
+              >
+                <span>Open form</span>
+                <ArrowTopRightOnSquareIcon className="programme-feedback-track__cta-icon" aria-hidden />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Day2LiveFeedbackPanel() {
+  return (
+    <section className="programme-feedback-board" id="day2-live-feedback" aria-labelledby="day2-live-feedback-heading">
+      <div className="programme-feedback-board__intro">
+        <p className="programme-feedback-board__eyebrow">During Day 2 sessions</p>
+        <h3 id="day2-live-feedback-heading" className="programme-feedback-board__heading">
+          Live questions &amp; feedback
+        </h3>
+        <p className="programme-feedback-board__lede">
+          Use this QR for guest speeches and panel discussions.
+        </p>
+      </div>
+
+      <div className="programme-feedback-board__tracks programme-feedback-board__tracks--single">
+        {day2LiveFeedbackTracks.map((track) => (
+          <article key={track.id} className="programme-feedback-track programme-feedback-track--featured">
+            <img
+              className="programme-feedback-track__qr"
+              src={track.qrSrc}
+              alt={`QR code for ${track.title} live feedback`}
+              width={176}
+              height={176}
+              loading="lazy"
+            />
+            <div className="programme-feedback-track__body">
+              <p className="programme-feedback-track__label">{track.title}</p>
+              <ul className="programme-feedback-track__sessions" aria-label={`${track.title} sessions`}>
+                {track.sessions.map((label) => (
+                  <li key={label}>{label}</li>
+                ))}
+              </ul>
+              <a
+                href={track.url}
+                target="_blank"
+                rel="noreferrer"
+                className="programme-feedback-track__cta"
+              >
+                <span>Open form</span>
+                <ArrowTopRightOnSquareIcon className="programme-feedback-track__cta-icon" aria-hidden />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Day1Timeline({ caption }: { caption: string }) {
   return (
     <div className="programme-day-panel__body">
+      <Day1LiveFeedbackPanel />
       <ol className="programme-timeline" aria-label={caption}>
         {day1Schedule.map((slot: Day1Slot, index) => {
           const isParallel = Boolean(slot.halls?.length);
@@ -92,7 +197,27 @@ function Day1Timeline({ caption }: { caption: string }) {
 
                 <div className="programme-timeline__content">
                   <h3 className="programme-timeline__title">{slot.title}</h3>
-                  {slot.detail && !isParallel ? (
+                  {slot.talkTitle ? (
+                    <p className="programme-keynote__talk">{slot.talkTitle}</p>
+                  ) : null}
+                  {slot.speakers?.length ? (
+                    <ul className="programme-keynote__speakers" aria-label="Keynote speakers">
+                      {slot.speakers.map((speaker) => (
+                        <li key={speaker.name} className="programme-keynote__speaker">
+                          <p className="programme-keynote__name">{speaker.name}</p>
+                          {speaker.role ? (
+                            <p className="programme-keynote__role">{speaker.role}</p>
+                          ) : null}
+                          {speaker.affiliation ? (
+                            <p className="programme-keynote__affiliation">
+                              {speaker.affiliation}
+                            </p>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {slot.detail && !isParallel && !slot.speakers?.length ? (
                     <p className="programme-timeline__speaker">{slot.detail}</p>
                   ) : null}
 
@@ -178,13 +303,16 @@ function Day1Timeline({ caption }: { caption: string }) {
 
 function SessionTimeline({
   caption,
-  rows
+  rows,
+  lead
 }: {
   caption: string;
   rows: ProgrammeSession[];
+  lead?: ReactNode;
 }) {
   return (
     <div className="programme-day-panel__body">
+      {lead}
       <ol className="programme-timeline" aria-label={caption}>
         {rows.map((row, index) => {
           const speakerLines = getSpeakerLines(row);
@@ -440,6 +568,7 @@ export default function ProgrammePage() {
               <SessionTimeline
                 caption="Day 2 Policy and Leadership Summit schedule"
                 rows={day2Schedule}
+                lead={<Day2LiveFeedbackPanel />}
               />
             )}
             {activeDay === 3 && (
