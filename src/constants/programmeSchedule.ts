@@ -62,16 +62,16 @@ export const day1Schedule: Day1Slot[] = [
       "Higher Learning, Higher Standards: CEO Educational Background and Corporate ESG Performance",
     speakers: [
       {
-        name: "Prof. Sherry Chan",
+        name: "Prof Sherry Chan",
         role: "Dean, International College of Sustainability Innovations",
         affiliation: "National Taipei University"
       },
       {
-        name: "Prof. Chan-Yun Yang",
+        name: "Prof Chan-Yun Yang",
         affiliation: "National Taipei University"
       },
       {
-        name: "Prof. Min-Yuh Day",
+        name: "Prof Min-Yuh Day",
         role: "Professor and Director, Graduate Institute of Information Management",
         affiliation: "National Taipei University"
       }
@@ -380,40 +380,45 @@ export const day1Schedule: Day1Slot[] = [
 ];
 
 export const day2Schedule: ProgrammeSession[] = [
-  { time: "9:00 – 9:15 am", session: "Morning Refreshments", isBreak: true },
+  { time: "09:00 – 09:15", session: "Morning Refreshments", isBreak: true },
   {
-    time: "9:15 – 9:30 am",
+    time: "09:15 – 09:30",
     session: "Welcome address",
-    detail: "Acting Vice Chancellor – Prof Dileeka Dias, University of Moratuwa"
+    detail: "Acting Vice Chancellor, UoM"
   },
   {
-    time: "9:30 – 9:45 am",
+    time: "09:30 – 09:45",
     session: "Digital Transformation of Sri Lankan Education",
-    detail: "Dr. Hans Wijesuriya"
+    detail: "Dr Hans Wijesuriya"
   },
   {
-    time: "9:45 – 10:25 am",
+    time: "09:45 – 10:25",
     session: "How digitalisation helped education in SL",
-    detail: "Prof. Gihan Dias"
+    detail: "Prof Gihan Dias"
   },
   {
-    time: "10:25 – 10:45 am",
+    time: "10:25 – 10:35",
+    session: "Digital Transformation in Government",
+    detail: "Mr Waruna Sri Dhanapala"
+  },
+  { time: "10:35 – 10:50", session: "Tea Break", isBreak: true },
+  {
+    time: "10:50 – 11:15",
     session: "Inclusive Open Digital Education – open.uom.lk",
-    detail: "Prof. Malik Ranasinghe"
-  },
-  { time: "10:45 – 11:00 am", session: "Tea Break", isBreak: true },
-  {
-    time: "11:00 am – 12:00 pm",
-    session: "Digital Content – Sri Lankan Success stories",
-    speakers: [
-      "e-Thaksalawa – Ms Sumudu Wasana",
-      "SLASSCOM Academy – Ms. Sandra Rosayro",
-      "BIT – Ms Vishaka Nanayakkara",
-      "SuhuruSara – Ms. Sandamini Karunarathne"
-    ]
+    detail: "Prof Malik Ranasinghe"
   },
   {
-    time: "12:00 – 1:00 pm",
+    time: "11:15 – 11:25",
+    session: "Transforming Sri Lanka's Digital Economy",
+    detail: "Mr Sanjay Kumar/Hon Deputy Minister Eranga Weeraratne"
+  },
+  {
+    time: "11:25 – 12:10",
+    session: "Lessons from International Practices",
+    detail: "Mr Sanjay Kumar"
+  },
+  {
+    time: "12:10 – 12:55",
     session: "Human Resource Development for ODL",
     speakers: [
       "LEARN – Dr Asitha Bandaranayake",
@@ -422,49 +427,62 @@ export const day2Schedule: ProgrammeSession[] = [
       "SLIDA – Ms Anusha Batawalagamage"
     ]
   },
-  { time: "1:00 – 1:45 pm", session: "Lunch", isBreak: true },
+  { time: "12:55 – 13:45", session: "Lunch", isBreak: true },
   {
-    time: "1:45 – 2:30 pm",
-    session: "Lessons from International Practices",
-    detail: "Mr Sanjay Kumar"
+    time: "13:45 – 14:30",
+    session: "Digital Content – Sri Lankan Success stories",
+    speakers: [
+      "e-Thaksalawa – Ms Sumudu Wasana",
+      "SLASSCOM Academy – Ms Sandra Rosayro",
+      "BIT – Ms Vishaka Nanayakkara",
+      "SuhuruSara – Ms Sandamini Karunarathne"
+    ]
   },
   {
-    time: "2:30 – 2:40 pm",
+    time: "14:30 – 14:40",
     session: "Developing a comprehensive Education MIS",
-    detail: "Dr. Sunimal Ratnayake"
+    detail: "Dr Sunimal Ratnayake"
   },
   {
-    time: "2:40 – 2:50 pm",
+    time: "14:40 – 14:50",
     session: "Biometric Verification",
     detail: "UoM Development Team"
   },
   {
-    time: "2:50 – 3:00 pm",
+    time: "14:50 – 15:00",
     session: "Learner feedback",
     detail: "Dr Shahani Markus"
   },
   {
-    time: "3:00 – 3:10 pm",
+    time: "15:00 – 15:10",
     session: "Digital native employee – Industry Expectations",
-    detail: "Mr Hasith Yaggahavita"
+    detail: "Mr Hasith Yaggahawita"
   },
   {
-    time: "3:10 – 3:20 pm",
+    time: "15:10 – 15:20",
     session: "Future of Education – Agentic AI",
     detail: "Dr Sandareka Wickramanayake"
   },
   {
-    time: "3:20 – 4:25 pm",
-    session: "Sri Lanka's unified digital transformation – way forward Panel Discussion",
+    time: "15:20 – 15:40",
+    session: "Sri Lanka's digital transformation way forward for higher education",
     panelists: [
-      "Eng. Eranga Weeraratne, Deputy Minister of Digital Economy",
-      "Mr. G. Pradeep Saputhanthri, Secretary to the Prime Minister, additional secretaries",
-      "Mr. Waruna Sri Danapala, Secretary / Digital Economy",
-      "Senior Prof. Kapila Seneviratne, Chairman, University Grants Commission",
-      "Prof. Jagath Manathunge, Dean/Engineering UoM"
+      "Mr Pradeep Saputhanthri, Secretary to the Prime Minister",
+      "Prof Kapila Seneviratne, Chairman, University Grants Commission",
+      "Prof Jagath Manathunge, Dean, Faculty of Engineering, UoM"
     ]
   },
-  { time: "4:30 pm onwards", session: "High tea and Networking", isBreak: true }
+  {
+    time: "15:40 – 15:50",
+    session: "Vote of Thanks",
+    detail:
+      "Ms Vishaka Nanayakkara – Director, Centre for Open and Distance Learning, University of Moratuwa"
+  },
+  {
+    time: "16:00 onwards",
+    session: "High tea and Networking",
+    isBreak: true
+  }
 ];
 
 export const day3Workshops: Day3Workshop[] = [
