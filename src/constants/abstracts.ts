@@ -196,6 +196,13 @@ const abstractOverrides: Partial<
     name: "Galle Pathiranage Vishwadharsha Udara Bandara Pathirana",
     country: "Sri Lanka"
   }),
+  "d1-f-02": paperPeople(
+    {
+      name: "Akurupitiyage Sewwandi",
+      country: "Sri Lanka"
+    },
+    ["Umanthri Samarawickrama", "G.I.U.S. Perera"]
+  ),
   "d1-f-03": paperPeople({
     name: "Abdul Razack Irsha Farwin",
     country: "Sri Lanka"
@@ -225,6 +232,13 @@ const abstractOverrides: Partial<
     name: "Pabasari Paranamana",
     country: "Sri Lanka"
   }),
+  "d1-g-05": paperPeople(
+    {
+      name: "Gangadari Gunasekara",
+      country: "Sri Lanka"
+    },
+    ["Kumudu Kaushalya"]
+  ),
 
   // Session H — Access, Inclusion & Equity in Digital Education
   "d1-h-01": paperPeople(

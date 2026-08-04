@@ -35,6 +35,7 @@ import codlLogo from "./assets/codllogo.png";
 import anniversary20Logo from "./assets/20thAnniversarylogo.png";
 import modesLogo from "./assets/modesl.jpg";
 import emojotLogo from "./assets/emojot.png";
+import servoLogo from "./assets/SERVO.jpg";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
@@ -76,6 +77,13 @@ const partnerSponsors = [
     name: "Emojot",
     role: "Engagement Partner",
     wide: false
+  },
+  {
+    id: "servo",
+    src: servoLogo,
+    name: "Lanka IOC/ SERVO",
+    role: "Hospitality partner",
+    wide: true
   }
 ] as const;
 

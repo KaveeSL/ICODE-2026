@@ -410,7 +410,7 @@ export const day2Schedule: ProgrammeSession[] = [
   {
     time: "11:15 – 11:25",
     session: "Transforming Sri Lanka's Digital Economy",
-    detail: "Mr Sanjay Kumar/Hon Deputy Minister Eranga Weeraratne"
+    detail: "Hon Deputy Minister Eranga Weeraratne"
   },
   {
     time: "11:25 – 12:10",
