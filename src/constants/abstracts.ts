@@ -196,10 +196,6 @@ const abstractOverrides: Partial<
     name: "Galle Pathiranage Vishwadharsha Udara Bandara Pathirana",
     country: "Sri Lanka"
   }),
-  "d1-f-02": paperPeople({
-    name: "Sumudu Wasana",
-    country: "Sri Lanka"
-  }),
   "d1-f-03": paperPeople({
     name: "Abdul Razack Irsha Farwin",
     country: "Sri Lanka"

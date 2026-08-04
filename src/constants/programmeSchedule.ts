@@ -246,7 +246,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "Enhancing Quality Education through e-Thaksalawa online platform: A Sustainable Learning Content Management System Approach for Blended Learning in Sri Lankan Schools"
+              "Representing Visual Concepts in Multisensory Storybooks for Blind and Visually Impaired Children: Methods, Techniques, and Media."
           },
           {
             title:
