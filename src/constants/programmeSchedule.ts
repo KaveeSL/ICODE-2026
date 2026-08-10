@@ -366,7 +366,7 @@ export const day1Schedule: Day1Slot[] = [
           },
           {
             title:
-              "A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
+              "PreProd SE: A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research"
           },
           {
             title:
@@ -384,7 +384,7 @@ export const day2Schedule: ProgrammeSession[] = [
   {
     time: "09:15 – 09:30",
     session: "Welcome address",
-    detail: "Acting Vice Chancellor, UoM"
+    detail: "Acting Vice Chancellor, UoM - Prof Dileeka Dias"
   },
   {
     time: "09:30 – 09:45",
