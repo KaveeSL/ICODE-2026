@@ -87,8 +87,7 @@ export default function CallForPapersPage() {
         mobileNavOpen={mobileNavOpen}
         onMobileNavToggle={() => setMobileNavOpen((v) => !v)}
         onMobileNavClose={() => setMobileNavOpen(false)}
-        submitAbstractHref="https://cmt3.research.microsoft.com/ICODE2026"
-        submitAbstractExternal
+        submitAbstractClosed
       />
 
       <main className="mx-auto flex-1 w-full max-w-7xl min-w-0 overflow-x-hidden px-4 pb-20 pt-[calc(60px+2.5rem)] md:px-6 md:pb-28 md:pt-[calc(68px+4rem)]">

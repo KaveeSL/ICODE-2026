@@ -3440,12 +3440,21 @@ body:has(.homepage-dark) .wa-toast-shell span.bg-white {
 
 .homepage-hero-cta.homepage-hero-cta--closed,
 .homepage-hero-cta.homepage-hero-cta--closed:hover,
+.homepage-hero-cta.homepage-hero-cta--closed:disabled,
 .homepage-dark .homepage-hero-cta.homepage-hero-cta--outline.homepage-hero-cta--closed,
-.homepage-dark .homepage-hero-cta.homepage-hero-cta--outline.homepage-hero-cta--closed:hover {
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--outline.homepage-hero-cta--closed:hover,
+.homepage-dark .homepage-hero-cta.homepage-hero-cta--outline.homepage-hero-cta--closed:disabled,
+.homepage-site-header .homepage-hero-cta.homepage-hero-cta--closed,
+.homepage-site-header.homepage-dark .homepage-hero-cta.homepage-hero-cta--closed,
+.homepage-site-header.homepage-dark .homepage-hero-cta.homepage-hero-cta--closed:disabled {
   background: #fef2f2 !important;
   color: #dc2626 !important;
   border: 1px solid #fca5a5 !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  filter: none !important;
 }
 
 .homepage-hero-cta.homepage-hero-cta--closed:hover,

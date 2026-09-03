@@ -11,20 +11,29 @@ type SiteHeaderProps = {
   mobileNavOpen: boolean;
   onMobileNavToggle: () => void;
   onMobileNavClose: () => void;
-  submitAbstractHref?: string;
-  submitAbstractExternal?: boolean;
+  /** Post-conference: do not send visitors to CMT. */
+  submitAbstractClosed?: boolean;
 };
 
 export function SiteHeader({
   mobileNavOpen,
   onMobileNavToggle,
   onMobileNavClose,
-  submitAbstractHref = "/call-for-papers",
-  submitAbstractExternal = false
+  submitAbstractClosed = false
 }: SiteHeaderProps) {
   const { theme, isDark, toggleTheme } = useSiteTheme();
 
-  const submitButton = (
+  const submitButton = submitAbstractClosed ? (
+    <Button
+      type="button"
+      size="sm"
+      disabled
+      aria-disabled="true"
+      className="homepage-hero-cta homepage-hero-cta--outline homepage-hero-cta--closed ml-2 pointer-events-none cursor-not-allowed font-semibold shadow-sm disabled:opacity-100"
+    >
+      Submission Closed
+    </Button>
+  ) : (
     <Button size="sm" className={submitAbstractNavClass(isDark)}>
       <span className="flex items-center gap-1">
         Submit Abstract
@@ -33,7 +42,17 @@ export function SiteHeader({
     </Button>
   );
 
-  const mobileSubmitButton = (
+  const mobileSubmitButton = submitAbstractClosed ? (
+    <Button
+      type="button"
+      size="lg"
+      disabled
+      aria-disabled="true"
+      className="homepage-hero-cta homepage-hero-cta--outline homepage-hero-cta--closed w-full pointer-events-none cursor-not-allowed font-semibold shadow-sm disabled:opacity-100"
+    >
+      Submission Closed
+    </Button>
+  ) : (
     <Button
       size="lg"
       className={
@@ -97,12 +116,10 @@ export function SiteHeader({
             Contact
           </Link>
           <HomepageThemeToggle theme={theme} onToggle={toggleTheme} />
-          {submitAbstractExternal ? (
-            <a href={submitAbstractHref} target="_blank" rel="noreferrer">
-              {submitButton}
-            </a>
+          {submitAbstractClosed ? (
+            submitButton
           ) : (
-            <Link to={submitAbstractHref}>{submitButton}</Link>
+            <Link to="/call-for-papers">{submitButton}</Link>
           )}
         </nav>
 
@@ -142,17 +159,10 @@ export function SiteHeader({
                 Contact
               </Link>
               <div className="pt-2">
-                {submitAbstractExternal ? (
-                  <a
-                    href={submitAbstractHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={onMobileNavClose}
-                  >
-                    {mobileSubmitButton}
-                  </a>
+                {submitAbstractClosed ? (
+                  mobileSubmitButton
                 ) : (
-                  <Link to={submitAbstractHref} onClick={onMobileNavClose}>
+                  <Link to="/call-for-papers" onClick={onMobileNavClose}>
                     {mobileSubmitButton}
                   </Link>
                 )}
