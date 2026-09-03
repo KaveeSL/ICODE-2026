@@ -4,12 +4,10 @@ import {
   BanknotesIcon,
   CalendarDaysIcon,
   CheckCircleIcon,
-  ChevronRightIcon,
   ClipboardDocumentCheckIcon,
   ComputerDesktopIcon,
   CursorArrowRaysIcon,
   GlobeAltIcon,
-  MapPinIcon,
   UserGroupIcon,
   VideoCameraIcon
 } from "@heroicons/react/24/outline";
@@ -18,14 +16,16 @@ import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
 import { useSiteTheme } from "./context/SiteThemeProvider";
+import { registrationClosedLabel } from "./constants/importantDates";
 
 const programmeDays = [
   {
     day: 1,
     title: "Academic Research Conference",
     date: "5 August 2026",
-    access: "Open for Registration",
-    open: true,
+    access: "Registration Closed",
+    open: false,
+    invite: false,
     accent: "maroon" as const,
     icon: AcademicCapIcon,
     focus: "Research presentations, keynotes, and peer exchange"
@@ -36,6 +36,7 @@ const programmeDays = [
     date: "6 August 2026",
     access: "By Invitation Only",
     open: false,
+    invite: true,
     accent: "gold" as const,
     icon: UserGroupIcon,
     focus: "Invitation-only leadership summit — not open for public registration."
@@ -44,8 +45,9 @@ const programmeDays = [
     day: 3,
     title: "Practice & Innovation Workshops",
     date: "7 August 2026",
-    access: "Open for Registration",
-    open: true,
+    access: "Registration Closed",
+    open: false,
+    invite: false,
     accent: "maroon" as const,
     icon: CursorArrowRaysIcon,
     focus: "Hands-on workshops for practice, tools, and innovation"
@@ -63,10 +65,6 @@ const registrationFeeRows = [
     secondaryFee: "$20 (Virtual)"
   }
 ];
-
-const registrationFormHref = "https://forms.gle/h9r752trrDBpsVi26";
-const workshopRegistrationFormHref =
-  "https://docs.google.com/forms/d/e/1FAIpQLScRuIgWSXXABlJPju4kn_h6rI_k4QyGwBwPxlUbHGbUqeQWvg/viewform?usp=sharing&ouid=112433407747669958215";
 
 const registrationIncludes = [
   "Academic research sessions on 5 August 2026",
@@ -106,34 +104,21 @@ export default function RegistrationPage() {
 
           <Reveal variant="up" delayMs={100}>
             <h1 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-              Register for ICODE2026
+              Registration is closed
             </h1>
           </Reveal>
 
           <Reveal variant="up" delayMs={180}>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
-              You can express your interest to register for ICODE2026{" "}
-              {/* <span className="font-semibold text-neutral-900">Register Now</span> button. */}
+              ICODE2026 has concluded. Conference and workshop registration is no longer open.
             </p>
-            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={registrationFormHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-uom-gold bg-uom-maroon px-7 text-sm font-semibold tracking-tight text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold hover:text-neutral-900 md:text-base"
-              >
-                Register Now
-                <ChevronRightIcon className="h-4 w-4" aria-hidden />
-              </a>
-              <a
-                href={workshopRegistrationFormHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-uom-gold bg-uom-goldSoft px-7 text-sm font-semibold tracking-tight text-neutral-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-uom-gold md:text-base"
-              >
-                Register for Workshops
-                <ChevronRightIcon className="h-4 w-4" aria-hidden />
-              </a>
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <span className="registration-day-access registration-day-access--closed !mt-0">
+                {registrationClosedLabel}
+              </span>
+              <span className="registration-day-access registration-day-access--closed !mt-0">
+                Workshops closed
+              </span>
             </div>
           </Reveal>
 
@@ -159,7 +144,7 @@ export default function RegistrationPage() {
               Three Connected Programme Components
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-neutral-700 md:text-base">
-              Choose the days that match your role — public registration applies to Days 1 and 3.
+              Choose the days that match your role — public registration applied to Days 1 and 3.
             </p>
           </Reveal>
 
@@ -171,7 +156,7 @@ export default function RegistrationPage() {
                 <Reveal key={item.day} variant="up" delayMs={index * 90} className="h-full">
                   <article
                     className={`registration-day-card registration-day-card--${item.accent}${
-                      item.open ? " registration-day-card--open" : " registration-day-card--invite"
+                      item.invite ? " registration-day-card--invite" : ""
                     }`}
                   >
                     <div className="registration-day-card__top">
@@ -192,7 +177,7 @@ export default function RegistrationPage() {
                       {item.access}
                     </p>
 
-                    {!item.open ? (
+                    {item.invite ? (
                       <p className="registration-day-card__focus registration-day-card__focus--invite">
                         {item.focus}
                       </p>
@@ -262,7 +247,7 @@ export default function RegistrationPage() {
               </div>
               <p className="registration-fee-table__footnote">
                 <span className="registration-fee-table__footnote-label">Accepted authors:</span>{" "}
-                Registration is free for all accepted authors. However, accepted authors must
+                Registration was free for all accepted authors. However, accepted authors had to
                 complete the registration process by the deadline to confirm their presentation
                 slot.
               </p>
@@ -278,7 +263,7 @@ export default function RegistrationPage() {
               Registration Includes
             </h2>
             <p className="mt-2 text-sm text-neutral-700">
-              Registration provides access to the public components of ICODE2026, including:
+              Registration provided access to the public components of ICODE2026, including:
             </p>
             <ul className="mt-4 space-y-3">
               {registrationIncludes.map((item) => (

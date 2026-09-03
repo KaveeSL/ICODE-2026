@@ -19,6 +19,14 @@ export const acceptanceNotificationDate = "20 July 2026";
 
 export const acceptanceNotificationSentLabel = "SENT";
 
+export const registrationDeadlineDate = "31 July 2026";
+
+export const registrationClosedLabel = "REGISTRATION CLOSED";
+
+export const conferenceDates = "5–7 August 2026";
+
+export const conferenceConcludedLabel = "CONCLUDED";
+
 export const importantDates = [
   {
     label: "Submissions Open",
@@ -42,12 +50,12 @@ export const importantDates = [
   },
   {
     label: "Registration deadline",
-    date: "31 July 2026",
+    date: registrationDeadlineDate,
     note: "Participant registration"
   },
   {
     label: "ICODE2026",
-    date: "5–7 August 2026",
+    date: conferenceDates,
     note: "Hybrid / University of Moratuwa, Sri Lanka"
   }
 ] as const;

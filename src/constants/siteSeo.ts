@@ -103,9 +103,37 @@ export const PAGE_SEO: Record<string, PageSeo> = {
   "/registration": {
     title: "Registration | ICODE2026 Hybrid Conference Colombo",
     description:
-      "Register for ICODE2026 in Colombo, Sri Lanka (5–7 August 2026). View fees, programme access, registration includes, and online participation options. Registration opens 1 July 2026.",
+      "ICODE2026 registration is closed. View fees, programme access, and what registration included for the University of Moratuwa CODL conference in Colombo, Sri Lanka (5–7 August 2026).",
     keywords:
       `${DEFAULT_KEYWORDS}, ICODE registration, register UoM conference, delegate registration Colombo, hybrid conference registration Sri Lanka`,
+  },
+  "/gallery": {
+    title: "Gallery | ICODE2026 University of Moratuwa",
+    description:
+      "ICODE2026 conference photo gallery from the University of Moratuwa CODL event, 5–7 August 2026.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE gallery, ICODE2026 photos, UoM conference photos, CODL gallery`,
+  },
+  "/gallery/day1": {
+    title: "Day 1 Gallery | ICODE2026 University of Moratuwa",
+    description:
+      "ICODE2026 Day 1 photos — Academic Research Conference on 5 August 2026 at the University of Moratuwa.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 1 photos, academic research conference gallery`,
+  },
+  "/gallery/day2": {
+    title: "Day 2 Gallery | ICODE2026 University of Moratuwa",
+    description:
+      "ICODE2026 Day 2 photos — Policy and Leadership Summit on 6 August 2026.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 2 photos, policy leadership summit gallery`,
+  },
+  "/gallery/day3": {
+    title: "Day 3 Gallery | ICODE2026 University of Moratuwa",
+    description:
+      "ICODE2026 Day 3 photos — Practice and Innovation Workshops on 7 August 2026 at the University of Moratuwa.",
+    keywords:
+      `${DEFAULT_KEYWORDS}, ICODE Day 3 photos, workshop gallery UoM`,
   },
   "/proceedings": {
     title: "Conference Programme | ICODE2026 University of Moratuwa",

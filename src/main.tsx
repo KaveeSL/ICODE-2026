@@ -13,6 +13,7 @@ import ProgrammePage from "./ProgrammePage.tsx";
 import GovernancePage from "./GovernancePage";
 import CallForPapersPage from "./CallForPapersPage";
 import RegistrationPage from "./RegistrationPage";
+import GalleryPage from "./GalleryPage";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
 import { SiteDocumentHead } from "./components/SiteDocumentHead";
 import { SiteThemeProvider } from "./context/SiteThemeProvider";
@@ -43,6 +44,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/governance" element={<GovernancePage />} />
           <Route path="/call-for-papers" element={<CallForPapersPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/gallery" element={<Navigate to="/gallery/day1" replace />} />
+          <Route path="/gallery/:daySlug" element={<GalleryPage />} />
         </Routes>
         <WhatsAppFloat />
       </SiteThemeProvider>

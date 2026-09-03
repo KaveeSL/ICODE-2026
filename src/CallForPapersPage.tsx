@@ -15,7 +15,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Footer } from "./Footer";
 import { Button } from "./components/ui/button";
-import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel, conferenceConcludedLabel } from "./constants/importantDates";
 import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
@@ -29,6 +29,7 @@ import { Reveal } from "./components/Reveal";
 import { SiteHeader } from "./components/SiteHeader";
 import { SitePageShell } from "./components/SitePageShell";
 import { useSiteTheme } from "./context/SiteThemeProvider";
+import { closedCtaClass } from "./constants/ctaStyles";
 
 /** Bundled from `src/assets/docs/` so it works on all hosts. */
 const TEMPLATE_WORD_HREF = extendedAbstractTemplateWord;
@@ -151,6 +152,7 @@ export default function CallForPapersPage() {
                     const isAcceptanceNotification =
                       item.label === "Acceptance notification" &&
                       item.date === acceptanceNotificationDate;
+                    const isConferenceDate = item.label === "ICODE2026";
                     return (
                       <div
                         key={`${item.label}-${item.date}`}
@@ -187,6 +189,21 @@ export default function CallForPapersPage() {
                                 {acceptanceNotificationSentLabel}
                               </p>
                             </>
+                          ) : isConferenceDate ? (
+                            <>
+                              <p>
+                                <span className="font-semibold">{item.label}:</span>{" "}
+                                <span className="font-semibold text-neutral-400 line-through">
+                                  {item.date}
+                                </span>
+                              </p>
+                              <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-red-600 md:text-xs">
+                                {conferenceConcludedLabel}
+                              </p>
+                              <p className="mt-0.5 text-[11px] text-neutral-600 md:text-xs">
+                                {item.note}
+                              </p>
+                            </>
                           ) : (
                             <>
                               <p>
@@ -209,7 +226,7 @@ export default function CallForPapersPage() {
                     size="sm"
                     disabled
                     aria-disabled="true"
-                    className="submission-closed-btn pointer-events-none cursor-not-allowed border border-neutral-300 bg-neutral-200 text-neutral-500 shadow-none hover:bg-neutral-200 hover:text-neutral-500 disabled:opacity-100 sm:whitespace-nowrap whitespace-normal"
+                    className={closedCtaClass}
                   >
                     <span className="font-bold uppercase tracking-[0.12em]">
                       {submissionDeadlineClosedLabel}

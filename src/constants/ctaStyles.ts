@@ -1,3 +1,7 @@
+/** Disabled post-conference CTAs (registration, submissions). */
+export const closedCtaClass =
+  "submission-closed-btn pointer-events-none cursor-not-allowed border border-neutral-300 bg-neutral-200 text-neutral-500 shadow-none hover:bg-neutral-200 hover:text-neutral-500 disabled:opacity-100 sm:whitespace-nowrap whitespace-normal";
+
 /** Navbar Submit Abstract — cream in light, maroon+gold in dark (matches hero). */
 export function submitAbstractNavClass(isDark: boolean): string {
   return isDark

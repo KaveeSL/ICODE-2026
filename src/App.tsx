@@ -39,7 +39,7 @@ import servoLogo from "./assets/SERVO.jpg";
 import mainBg from "./assets/bgmain.png";
 import campusBg from "./assets/bgimg.PNG";
 import { Footer } from "./Footer";
-import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel } from "./constants/importantDates";
+import { importantDates, submissionDeadlineClosedLabel, submissionDeadlineDate, acceptanceNotificationDate, acceptanceNotificationSentLabel, registrationDeadlineDate, registrationClosedLabel, conferenceConcludedLabel } from "./constants/importantDates";
 import { ContactBitWebsiteFooterItem } from "./components/ContactBitWebsiteFooterItem";
 import { ContactWhatsAppFooterItem } from "./components/ContactWhatsAppFooterItem";
 import { FooterConferenceLinks } from "./components/FooterConferenceLinks";
@@ -242,6 +242,21 @@ function isExtendedSubmissionDeadlineSlot(item: ImportantDateItem) {
   return item.label === "Submission Deadline" && item.date === submissionDeadlineDate;
 }
 
+function isRegistrationDeadlineSlot(item: ImportantDateItem) {
+  return item.label === "Registration deadline" && item.date === registrationDeadlineDate;
+}
+
+function isConferenceDateSlot(item: ImportantDateItem) {
+  return item.label === "ICODE2026";
+}
+
+function dateClosedLabel(item: ImportantDateItem): string | null {
+  if (isExtendedSubmissionDeadlineSlot(item)) return submissionDeadlineClosedLabel;
+  if (isRegistrationDeadlineSlot(item)) return registrationClosedLabel;
+  if (isConferenceDateSlot(item)) return conferenceConcludedLabel;
+  return null;
+}
+
 function isAcceptanceNotificationSlot(item: ImportantDateItem) {
   return item.label === "Acceptance notification" && item.date === acceptanceNotificationDate;
 }
@@ -300,11 +315,13 @@ function ProgrammeDayVenue({ venueId }: { venueId: ProgrammeVenueId }) {
   );
 }
 
-function ImportantDateStillAcceptingCard({
+function ImportantDateClosedCard({
   item,
+  closedLabel,
   variant = "mobile"
 }: {
   item: ImportantDateItem;
+  closedLabel: string;
   variant?: "mobile" | "desktop";
 }) {
   const cardWidth =
@@ -322,7 +339,7 @@ function ImportantDateStillAcceptingCard({
       ? "text-sm font-semibold leading-snug text-neutral-400 line-through md:text-base"
       : "text-base font-semibold leading-snug text-neutral-400 line-through";
 
-  const submissionClosedClass =
+  const closedClass =
     variant === "desktop"
       ? "mt-1 text-sm font-bold uppercase tracking-[0.12em] text-red-600 md:text-base"
       : "mt-1 text-base font-bold uppercase tracking-[0.12em] text-red-600";
@@ -330,7 +347,7 @@ function ImportantDateStillAcceptingCard({
   return (
     <div className={cardClass}>
       <p className={dateClass}>{item.date}</p>
-      <p className={submissionClosedClass}>{submissionDeadlineClosedLabel}</p>
+      <p className={closedClass}>{closedLabel}</p>
       <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-uom-maroon">{item.label}</p>
       <p className={`mt-1 leading-relaxed text-neutral-700 ${variant === "desktop" ? "text-xs md:text-sm" : "text-xs"}`}>
         {item.note}
@@ -400,7 +417,8 @@ const faqItems = [
     question: "How do I register for the event?",
     answer: (
       <p>
-        Registration can be done via the online registration portal. This can be found in the 'Registration' page.
+        Registration for ICODE2026 is now closed. Fees and programme access details remain on the
+        Registration page.
       </p>
     )
   },
@@ -549,8 +567,8 @@ function App() {
               <Link to="/programme/day1" className="hover:text-uom-maroon">
                 Schedule
               </Link>
-              <Link to="/registration" className="hover:text-uom-maroon">
-                Registration
+              <Link to="/gallery/day1" className="hover:text-uom-maroon">
+                Gallery
               </Link>
               <Link to="/proceedings" className="hover:text-uom-maroon">
                 Programme
@@ -615,11 +633,11 @@ function App() {
                   Schedule
                 </Link>
                 <Link
-                  to="/registration"
+                  to="/gallery/day1"
                   onClick={() => setMobileNavOpen(false)}
                   className="hover:text-uom-maroon"
                 >
-                  Registration
+                  Gallery
                 </Link>
                 <Link
                   to="/proceedings"
@@ -771,16 +789,16 @@ function App() {
                         </span>
                       </Button>
                     </Link>
-                    <Link to="/registration">
+                    <Link to="/registration" aria-label="Registration is closed. View registration details.">
                       <Button
                         size="lg"
                         variant="outline"
-                        className="homepage-hero-cta homepage-hero-cta--outline h-auto min-h-12 w-full sm:w-auto border-white/80 bg-white/5 text-white hover:bg-white/15 hover:text-white font-semibold shadow-sm"
+                        className="homepage-hero-cta homepage-hero-cta--outline homepage-hero-cta--closed h-auto min-h-12 w-full sm:w-auto font-semibold shadow-sm"
                       >
                         <span className="flex items-center gap-1.5">
                           <CursorArrowRaysIcon className="h-4 w-4 shrink-0" />
                           <span className="flex-1 text-center whitespace-normal leading-snug">
-                            Register Now
+                            Registration Closed
                           </span>
                           <ChevronRightIcon className="h-4 w-4 shrink-0" />
                         </span>
@@ -1173,7 +1191,7 @@ function App() {
                 </Reveal>
                 <Reveal variant="up" delayMs={120}>
                   <p className="mt-2 text-sm text-neutral-700 md:text-base">
-                    Plan your submissions and registration for ICODE2026.
+                    Key dates for ICODE2026.
                   </p>
                 </Reveal>
               </div>
@@ -1196,8 +1214,10 @@ function App() {
                       <CalendarDaysIcon className="h-5 w-5 text-uom-maroon" />
                     </div>
 
-                    {isExtendedSubmissionDeadlineSlot(item) ? (
-                      <ImportantDateStillAcceptingCard item={item} />
+                    {(() => {
+                      const closedLabel = dateClosedLabel(item);
+                      return closedLabel ? (
+                      <ImportantDateClosedCard item={item} closedLabel={closedLabel} />
                     ) : (
                       <div className="important-dates-mobile-card hover-lift min-w-0 flex-1 rounded-xl border border-uom-gold/40 bg-white/95 px-4 py-3.5 shadow-sm">
                         <p className="text-base font-semibold leading-snug text-neutral-900">
@@ -1216,7 +1236,8 @@ function App() {
                         ) : null}
                         <ImportantDateAddToCalendarButton item={item} />
                       </div>
-                    )}
+                    );
+                    })()}
                   </Reveal>
                 ))}
               </ol>
@@ -1251,8 +1272,10 @@ function App() {
                             }`}
                           />
                         </div>
-                        {isExtendedSubmissionDeadlineSlot(item) ? (
-                          <ImportantDateStillAcceptingCard item={item} variant="desktop" />
+                        {(() => {
+                          const closedLabel = dateClosedLabel(item);
+                          return closedLabel ? (
+                          <ImportantDateClosedCard item={item} closedLabel={closedLabel} variant="desktop" />
                         ) : (
                           <div className="hover-lift mx-auto mt-3 flex w-full max-w-[10.5rem] flex-col justify-start rounded-2xl border border-uom-gold/80 bg-white/95 px-2.5 py-3 shadow-[0_12px_30px_rgba(161,98,7,0.28)] md:h-full md:max-w-[11.25rem] md:justify-between md:px-3 md:py-3.5">
                             <p className="text-sm font-semibold text-neutral-900 md:text-base">
@@ -1269,7 +1292,8 @@ function App() {
                             ) : null}
                             <ImportantDateAddToCalendarButton item={item} />
                           </div>
-                        )}
+                        );
+                        })()}
                       </div>
                     </Reveal>
                   );

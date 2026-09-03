@@ -98,12 +98,7 @@ function AbstractCard({
                 <PlayCircleIcon className="h-4 w-4" aria-hidden />
                 Video
               </a>
-            ) : (
-              <span className="abstracts-card__btn abstracts-card__btn--soon" title="Available after the conference">
-                <PlayCircleIcon className="h-4 w-4" aria-hidden />
-                Video soon
-              </span>
-            )}
+            ) : null}
           </>
         )}
       </div>
@@ -200,9 +195,8 @@ export default function AbstractsPage() {
           </Reveal>
           <Reveal variant="up" delayMs={140}>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-neutral-700 md:text-base">
-              Browse accepted Day 1 papers by session. Author details and abstracts
-              will be added here; presentation slides and videos will appear after the
-              conference.
+              Browse accepted Day 1 papers by session. Author details, abstracts, and
+              presentation slides are listed here.
             </p>
           </Reveal>
           <Reveal variant="up" delayMs={180}>

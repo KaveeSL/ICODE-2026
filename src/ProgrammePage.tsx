@@ -22,13 +22,12 @@ import {
   type Day1Slot,
   type ProgrammeSession
 } from "./constants/programmeSchedule";
+import { ConferenceYouTubeEmbed } from "./components/ConferenceYouTubeEmbed";
+import { conferenceVideosByDay } from "./constants/conferenceVideos";
 import { day1LiveFeedbackTracks } from "./constants/day1LiveFeedback";
 import { day2LiveFeedbackTracks } from "./constants/day2LiveFeedback";
 
 type ActiveDay = 1 | 2 | 3;
-
-const workshopRegistrationFormHref =
-  "https://docs.google.com/forms/d/e/1FAIpQLScRuIgWSXXABlJPju4kn_h6rI_k4QyGwBwPxlUbHGbUqeQWvg/viewform?usp=sharing&ouid=112433407747669958215";
 
 const dayIcons = {
   1: AcademicCapIcon,
@@ -434,6 +433,7 @@ export default function ProgrammePage() {
     return <Navigate to="/programme/day1" replace />;
   }
 
+  const dayVideo = conferenceVideosByDay[activeDay];
   const activeMeta = programmeDaysMeta.find((item) => item.day === activeDay)!;
   const ActiveIcon = dayIcons[activeDay];
 
@@ -547,19 +547,17 @@ export default function ProgrammePage() {
             {activeDay === 3 && (
               <div className="programme-day-panel__cta">
                 <p className="programme-day-panel__cta-copy">
-                  Reserve your place for Day 3 workshops.
+                  Day 3 workshop registration is closed.
                 </p>
-                <a
-                  href={workshopRegistrationFormHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="programme-day-panel__cta-btn"
-                >
-                  Register for Workshops
-                  <ChevronRightIcon className="h-4 w-4" aria-hidden />
-                </a>
+                <span className="registration-day-access registration-day-access--closed !mt-0 self-start sm:self-auto">
+                  Workshops closed
+                </span>
               </div>
             )}
+
+            {dayVideo ? (
+              <ConferenceYouTubeEmbed key={dayVideo.videoId} video={dayVideo} />
+            ) : null}
 
             {activeDay === 1 && (
               <Day1Timeline caption="Day 1 Academic Research Conference schedule" />

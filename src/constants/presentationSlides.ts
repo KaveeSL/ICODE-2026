@@ -15,15 +15,19 @@ import slideExplainableAi from "../assets/slides/An Explainable AI Framework for
 import slideEarlyGpa from "../assets/slides/A Group-Stratified Reliability Framework for Trustworthy Early-GPA Prediction in Higher Education.pdf?url";
 import slideYoutube from "../assets/slides/The Impact of AI-Enhanced YouTube Features on Undergraduate Academic Outcomes - 03.pdf?url";
 import slidePreProdSandbox from "../assets/slides/PreProd SE A Governance-Aware Academic Sandbox Platform for Digital Learning and Computational Research.pdf?url";
+import slideDigitalSilence from "../assets/slides/Digital Silence in Hybrid Higher Education.pdf?url";
+import slideSchoolLeavers from "../assets/slides/Understanding School Leavers Perceptions of Open and Distance Learning Institutions.pdf?url";
+import slideStorybooks from "../assets/slides/Representing Visual Concepts in Multisensory Storybooks for Blind and Visually Impaired Children Methods, Techniques, and Media.pdf?url";
 
 /** Flip to true when presentations should be publicly available. */
-export const SHOW_PRESENTATION_SLIDES = false;
+export const SHOW_PRESENTATION_SLIDES = true;
 
 /** Presentation slides (PDF) keyed by Day 1 paper id (e.g. d1-a-01). */
 const slidesByPaperId: Record<string, string> = {
   "d1-a-02": slideOdlInclusive,
   "d1-a-04": slideEarlyGpa,
   "d1-c-02": slideClil,
+  "d1-c-03": slideDigitalSilence,
   "d1-c-05": slideBehavioural,
   "d1-d-01": slideAiLiteracy,
   "d1-d-02": slideGenerationAlpha,
@@ -32,7 +36,9 @@ const slidesByPaperId: Record<string, string> = {
   "d1-e-03": slideLabChemistry,
   "d1-e-04": slideFpga,
   "d1-e-05": slideFashionJourneys,
+  "d1-f-02": slideStorybooks,
   "d1-f-03": slideCareerGuidance,
+  "d1-f-04": slideSchoolLeavers,
   "d1-g-04": slideStudentNegotiations,
   "d1-g-05": slideExplainableAi,
   "d1-h-01": slideContinuation,

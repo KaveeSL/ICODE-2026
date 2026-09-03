@@ -46,8 +46,8 @@ export function FooterConferenceLinks({ samePage = false }: FooterConferenceLink
         </Link>
       </li>
       <li>
-        <Link to="/registration" className={itemClass}>
-          Registration
+        <Link to="/gallery/day1" className={itemClass}>
+          Gallery
         </Link>
       </li>
       <li>
