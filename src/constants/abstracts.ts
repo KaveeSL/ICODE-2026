@@ -156,7 +156,9 @@ const abstractOverrides: Partial<
   "d1-d-02": paperPeople({
     name: "Pasan Wijayawardhana",
     country: "Sri Lanka"
-  }),
+  }, ["Nazardeen Farhath Nuha"]
+),
+  
   "d1-d-03": paperPeople({
     name: "Sheraz Kaleem",
     country: "Pakistan"
